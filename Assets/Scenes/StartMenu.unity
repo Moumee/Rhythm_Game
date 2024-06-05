@@ -2391,9 +2391,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5092258312097708894, guid: 5d81aad83d99cdf40808bfd6434c098e, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5092258312097708894, guid: 5d81aad83d99cdf40808bfd6434c098e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 279382087}
+    - target: {fileID: 8310432963071021836, guid: 5d81aad83d99cdf40808bfd6434c098e, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8310432963071021836, guid: 5d81aad83d99cdf40808bfd6434c098e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
