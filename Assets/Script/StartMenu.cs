@@ -48,7 +48,7 @@ public class StartMenu : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         forkAnimator.SetTrigger("Clicked");
         knifeAnimator.SetTrigger("Clicked");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         AudioManager.Instance.bgmSource.Stop();
         introVideoPlayer.time = 0;
         introVideoPlayer.Play();
