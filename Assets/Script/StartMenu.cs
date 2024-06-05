@@ -8,7 +8,6 @@ using UnityEngine.Video;
 public class StartMenu : MonoBehaviour
 {
     [SerializeField] VideoPlayer introVideoPlayer;
-    [SerializeField] GameObject canvas;
     [SerializeField] Animator chefAnimator;
     [SerializeField] Animator forkAnimator;
     [SerializeField] Animator knifeAnimator;
@@ -17,6 +16,13 @@ public class StartMenu : MonoBehaviour
     {
         introVideoPlayer.loopPointReached += LoadNextScene;
     }
+
+    private void Start()
+    {
+        AudioManager.Instance.PlayBGM("Main");
+
+    }
+
     public void Play()
     {
         chefAnimator.SetTrigger("Clicked");
@@ -25,12 +31,10 @@ public class StartMenu : MonoBehaviour
 
     private void Update()
     {
-        if (introVideoPlayer.isPlaying)
+        if (introVideoPlayer.isPlaying && Input.GetKeyDown(KeyCode.Escape))
         {
-            canvas.SetActive(false);
+            introVideoPlayer.time = introVideoPlayer.length;
         }
-
-        
     }
 
     void LoadNextScene(VideoPlayer vp)
@@ -45,6 +49,7 @@ public class StartMenu : MonoBehaviour
         forkAnimator.SetTrigger("Clicked");
         knifeAnimator.SetTrigger("Clicked");
         yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.bgmSource.Stop();
         introVideoPlayer.time = 0;
         introVideoPlayer.Play();
     }

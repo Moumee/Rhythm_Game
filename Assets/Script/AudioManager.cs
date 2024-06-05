@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     public Sound[] bgmSounds, sfxSounds;
-    [SerializeField] AudioSource bgmSource;
-    [SerializeField] AudioSource sfxSource;
+    public AudioSource bgmSource;
+    public AudioSource sfxSource;
 
     private void Awake()
     {
@@ -22,6 +23,11 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void Start()
+    {
+    }
+
     public void PlayBGM(string name)
     {
         Sound s = Array.Find(bgmSounds, x => x.name == name);   

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     bool isPlaying = true;
     public void OnHomeButtonClicked()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadSceneAsync("StartMenu");
     }
 
@@ -21,6 +23,11 @@ public class PauseMenu : MonoBehaviour
     public void OnRestartButtonClicked()
     {
 
+    }
+
+    public void OnPauseButtonClicked()
+    {
+        Time.timeScale = 1f;
     }
 
     public void Update()
