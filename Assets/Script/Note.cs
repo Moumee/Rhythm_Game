@@ -6,7 +6,7 @@ public class Note : MonoBehaviour
 {
     [SerializeField] GameObject[] standPoint;
     Vector3 targetPostion;
-    private int positionId = 0;
+    [SerializeField] int positionId = 0;
    
     // Start is called before the first frame update
     void Awake()
@@ -22,10 +22,15 @@ public class Note : MonoBehaviour
 
     public void SetNext()
     {
-        if (positionId < standPoint.Length) 
+        if (positionId < standPoint.Length-1) 
         { 
             ++positionId; 
         }
         
+    }
+
+    public void SetStandPoint(GameObject[] pointList)
+    {
+        standPoint = pointList;
     }
 }

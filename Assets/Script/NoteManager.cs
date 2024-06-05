@@ -5,17 +5,16 @@ using UnityEngine.Events;
 
 public class NoteManager : MonoBehaviour
 {
+    [SerializeField] GameObject[] standPoint;
+    [SerializeField] GameObject[] Notes;
 
+    enum noteType {seed, bisket}
     
 
-    void Start()
+    public void SpawnNote()
     {
-        
-    }
+        GameObject instance = Instantiate(Notes[0]);
+        instance.GetComponent<Note>().SetStandPoint(standPoint);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
