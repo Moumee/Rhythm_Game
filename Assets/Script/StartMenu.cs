@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class StartMenu : MonoBehaviour
 {
     [SerializeField] VideoPlayer introVideoPlayer;
-    [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject canvas;
     [SerializeField] Animator chefAnimator;
     [SerializeField] Animator forkAnimator;
     [SerializeField] Animator knifeAnimator;
+
+    private void Awake()
+    {
+        introVideoPlayer.loopPointReached += LoadNextScene;
+    }
     public void Play()
     {
         chefAnimator.SetTrigger("Clicked");
@@ -21,9 +27,17 @@ public class StartMenu : MonoBehaviour
     {
         if (introVideoPlayer.isPlaying)
         {
-            mainMenu.SetActive(false);
+            canvas.SetActive(false);
         }
+
+        
     }
+
+    void LoadNextScene(VideoPlayer vp)
+    {
+        SceneManager.LoadSceneAsync(1);
+    }
+    
 
     IEnumerator Delay()
     {

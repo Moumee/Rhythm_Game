@@ -1,21 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Rotator : MonoBehaviour
 {
-    private Camera _camera;
+    [SerializeField] RectTransform canvasRectTransform;
+    RectTransform eyeRectTransform;
+    [SerializeField] RectTransform centerRectTransform;
+    [SerializeField] float eyeMovementRadius;
+    [SerializeField] float minDistance;
 
-    void Start()
+    private void Start()
     {
-        _camera = Camera.main;
+        eyeRectTransform = GetComponent<RectTransform>();
     }
-
     void Update()
     {
-        Vector2 mousePos = (Vector2)_camera.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 dirVec = mousePos - (Vector2)transform.position; // 마우스가 바라보는 방향을 나타내는 벡터
+        Vector3 mouseCanvasPosition;
+        RectTransformUtility.ScreenPointToWorldPointInRectangle(canvasRectTransform, Input.mousePosition, null, out mouseCanvasPosition);
 
-        transform.up = (Vector3)dirVec.normalized;
+        Vector3 direction = ((Vector2)(mouseCanvasPosition - eyeRectTransform.position));
+        direction.z = 0f;
+        direction = (Vector2)direction.normalized;
+        float distance = Vector2.Distance(mouseCanvasPosition, eyeRectTransform.position);
+        if (distance > minDistance)
+        {
+            Vector2 targetPosition = centerRectTransform.position + direction * eyeMovementRadius;
+            eyeRectTransform.position = targetPosition;
+        }
     }
 }

@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/IntroScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/SlideScene.unity
-    guid: 9491aa95c68064140b17e31b348c176d
+    path: Assets/Scenes/FirstStage.unity
+    guid: 35a3cba5060bd644998d9357a7c160fa
   m_configObjects: {}
