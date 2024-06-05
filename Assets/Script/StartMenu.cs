@@ -8,6 +8,7 @@ using UnityEngine.Video;
 public class StartMenu : MonoBehaviour
 {
     [SerializeField] VideoPlayer introVideoPlayer;
+    [SerializeField] GameObject mainMenu;
     [SerializeField] Animator chefAnimator;
     [SerializeField] Animator forkAnimator;
     [SerializeField] Animator knifeAnimator;
@@ -31,6 +32,10 @@ public class StartMenu : MonoBehaviour
 
     private void Update()
     {
+        if (introVideoPlayer.isPlaying)
+        {
+            mainMenu.SetActive(false);
+        }
         if (introVideoPlayer.isPlaying && Input.GetKeyDown(KeyCode.Escape))
         {
             introVideoPlayer.time = introVideoPlayer.length;

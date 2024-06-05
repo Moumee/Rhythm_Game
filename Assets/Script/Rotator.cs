@@ -20,14 +20,14 @@ public class Rotator : MonoBehaviour
         Vector3 mouseCanvasPosition;
         RectTransformUtility.ScreenPointToWorldPointInRectangle(canvasRectTransform, Input.mousePosition, null, out mouseCanvasPosition);
 
-        Vector3 direction = ((Vector2)(mouseCanvasPosition - eyeRectTransform.position));
+        Vector3 direction = (mouseCanvasPosition - eyeRectTransform.position).normalized;
         direction.z = 0f;
-        direction = (Vector2)direction.normalized;
-        float distance = Vector2.Distance(mouseCanvasPosition, eyeRectTransform.position);
+        
+        float distance = Vector3.Distance(mouseCanvasPosition, eyeRectTransform.position);
         if (distance > minDistance)
         {
-            Vector2 targetPosition = centerRectTransform.position + direction * eyeMovementRadius;
-            eyeRectTransform.position = targetPosition;
+            Vector3 targetPosition = centerRectTransform.position + direction * Mathf.Min(eyeMovementRadius, distance);
+            eyeRectTransform.position = new Vector3(targetPosition.x, targetPosition.y, eyeRectTransform.position.z);
         }
     }
 }
