@@ -45,6 +45,7 @@ public class StartMenu : MonoBehaviour
         forkAnimator.SetTrigger("Clicked");
         knifeAnimator.SetTrigger("Clicked");
         yield return new WaitForSeconds(0.5f);
+        introVideoPlayer.time = 0;
         introVideoPlayer.Play();
     }
 }

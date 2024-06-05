@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ButtonScale : MonoBehaviour
 {
+    [SerializeField] private float buttonScale = 1.2f;
     Vector2 defaultScale;
     private void Start()
     {
@@ -11,7 +12,7 @@ public class ButtonScale : MonoBehaviour
     }
     public void PointerEnter()
     {
-        transform.localScale = new Vector2(1.2f, 1.2f);
+        transform.localScale = new Vector2(buttonScale, buttonScale);
     }
 
     public void PointerExit()

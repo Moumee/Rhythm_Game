@@ -6,7 +6,10 @@ public class Note : MonoBehaviour
 {
     [SerializeField] GameObject[] standPoint;
     Vector3 targetPostion;
+
     [SerializeField] int positionId = 0;
+
+
    
     // Start is called before the first frame update
     void Awake()
