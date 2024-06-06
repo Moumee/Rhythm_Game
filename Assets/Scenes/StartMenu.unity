@@ -314,7 +314,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123030561}
   m_LocalRotation: {x: -0, y: -0, z: -0.20664181, w: 0.9784167}
-  m_LocalPosition: {x: 0, y: 0, z: -4.562255}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -702,6 +702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   introVideoPlayer: {fileID: 900319289}
+  mainMenu: {fileID: 2068027453}
   chefAnimator: {fileID: 1382939361}
   forkAnimator: {fileID: 670477607}
   knifeAnimator: {fileID: 347214193}
@@ -747,7 +748,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 328104700}
   m_LocalRotation: {x: -0, y: -0, z: -0.22563736, w: 0.9742114}
-  m_LocalPosition: {x: 0, y: 0, z: -4.562255}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1169,7 +1170,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629333307}
   m_LocalRotation: {x: -0, y: -0, z: -0.20664181, w: 0.97841674}
-  m_LocalPosition: {x: 0, y: 0, z: -4.562255}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2287,7 +2288,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2091522156}
   m_LocalRotation: {x: -0, y: -0, z: -0.20664181, w: 0.9784167}
-  m_LocalPosition: {x: 0, y: 0, z: -4.562255}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

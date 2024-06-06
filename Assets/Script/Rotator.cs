@@ -26,7 +26,7 @@ public class Rotator : MonoBehaviour
         float distance = Vector3.Distance(mouseCanvasPosition, eyeRectTransform.position);
         if (distance > minDistance)
         {
-            Vector3 targetPosition = centerRectTransform.position + direction * Mathf.Min(eyeMovementRadius, distance);
+            Vector3 targetPosition = centerRectTransform.position + direction * eyeMovementRadius;
             eyeRectTransform.position = new Vector3(targetPosition.x, targetPosition.y, eyeRectTransform.position.z);
         }
     }
