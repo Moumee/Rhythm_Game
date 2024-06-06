@@ -1,21 +1,37 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using TMPro;
 
 public class StartMenu : MonoBehaviour
 {
     [SerializeField] VideoPlayer introVideoPlayer;
-    [SerializeField] GameObject mainMenu;
+    [SerializeField] VideoPlayer hamsterVideoPlayer;
+    [SerializeField] GameObject[] otherUI;
     [SerializeField] Animator chefAnimator;
     [SerializeField] Animator forkAnimator;
     [SerializeField] Animator knifeAnimator;
+    [SerializeField] GameObject continueTextObj;
+    private float fadeSpeed = 1f;
+    bool hamsterVideoFinshed = false;
+    float offset = 0;
+    float alpha;
 
     private void Awake()
     {
-        introVideoPlayer.loopPointReached += LoadNextScene;
+        introVideoPlayer.loopPointReached += PlayHamsterVideo;
+        hamsterVideoPlayer.loopPointReached += HamsterVideoFinished;
+    }
+
+    private void HamsterVideoFinished(VideoPlayer source)
+    {
+        continueTextObj.SetActive(true);
+        
+        hamsterVideoFinshed = true;
     }
 
     private void Start()
@@ -34,18 +50,42 @@ public class StartMenu : MonoBehaviour
     {
         if (introVideoPlayer.isPlaying)
         {
-            mainMenu.SetActive(false);
+            foreach (var UI in otherUI)
+            {
+                UI.SetActive(false);
+            }
         }
         if (introVideoPlayer.isPlaying && Input.GetKeyDown(KeyCode.Escape))
         {
             introVideoPlayer.time = introVideoPlayer.length;
         }
+        if (hamsterVideoPlayer.frame == 2)
+        {
+            introVideoPlayer.gameObject.SetActive(false);
+        }
+        if (hamsterVideoFinshed)
+        {
+            alpha = Mathf.PingPong(Time.time * fadeSpeed + offset, 0.8f);
+            continueTextObj.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, alpha);
+            if (Input.anyKeyDown)
+            {
+                SceneManager.LoadSceneAsync("FirstStage");
+            }
+        }
+
+        if (alpha < Mathf.Epsilon)
+        {
+            offset = -Time.time * fadeSpeed;
+        }
+
     }
 
-    void LoadNextScene(VideoPlayer vp)
+    private void PlayHamsterVideo(VideoPlayer vp)
     {
-        SceneManager.LoadSceneAsync(1);
+        hamsterVideoPlayer.Play();
     }
+
+    
     
 
     IEnumerator Delay()
@@ -55,7 +95,6 @@ public class StartMenu : MonoBehaviour
         knifeAnimator.SetTrigger("Clicked");
         yield return new WaitForSeconds(1f);
         AudioManager.Instance.bgmSource.Stop();
-        introVideoPlayer.time = 0;
         introVideoPlayer.Play();
     }
 }
