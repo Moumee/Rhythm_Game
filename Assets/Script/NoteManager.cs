@@ -15,7 +15,7 @@ public class NoteManager : MonoBehaviour
 
     private GameObject[] noteTimingBoxes;
 
-    private List<int> exampleBeats = new List<int> { 1, 1, 0, 0, 1, 0,1,1,0,0, 0, 1,0,1,0,1,0,1,0, 1 };
+    private List<int> exampleBeats = new List<int> { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     public List<GameObject> notesToCheck = new List<GameObject>();
     [SerializeField] int bpm = 105;
     int currentIndex = 0;

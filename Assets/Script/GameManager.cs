@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
    
     public GameObject[] notePoints;
+
+    public GameObject noteSyncPoint;
 
     public float BPM = 105;
     private float interval;
@@ -19,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        SceneManager.sceneLoaded += PlaySceneBGM;
         if (Instance == null)
         {
             Instance = this;
@@ -26,10 +30,23 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
 
         interval = 60 / BPM;
         timer = Time.time;
+    }
+
+    void PlaySceneBGM(Scene scene, LoadSceneMode mode)
+    {
+        switch (scene.buildIndex)
+        {
+            case 1:
+
+                break;
+            default:
+                break;
+        }
     }
 
 

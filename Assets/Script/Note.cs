@@ -8,7 +8,7 @@ using UnityEngine.Pool;
 public class Note : MonoBehaviour
 {
     private ObjectPool<Note> _pool;
-    private float speed = 10f;
+    private float speed = 15f;
     Transform noteSpawnPoint;
     public Vector3 moveDirection;
 
@@ -27,7 +27,12 @@ public class Note : MonoBehaviour
     {
         if (collision.CompareTag("NoteEnd"))
         {
+            FindObjectOfType<NoteManager>().notesToCheck.Remove(gameObject);
             _pool.Release(this);
+        }
+        if (collision.CompareTag("NoteOut"))
+        {
+            FindObjectOfType<NoteManager>().notesToCheck.Remove(gameObject);
         }
     }
     public void SetPool(ObjectPool<Note> pool)
