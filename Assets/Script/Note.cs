@@ -1,44 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Note : MonoBehaviour
 {
-
-    [SerializeField] int positionId = 0;
-
-    GameObject[] standPoints;
-
-    public float speed;
-    
+    private ObjectPool<Note> _pool;
+    private float speed = 10f;
+    Transform noteSpawnPoint;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        standPoints = GameManager.Instance.standPoints;
-    }
-
-    private void Start()
-    {
-        transform.position = standPoints[positionId].transform.position;
+        noteSpawnPoint = FindObjectOfType<NoteManager>().noteSpawnPoint;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, step);
+        transform.position += Vector3.left * speed * Time.deltaTime;
     }
-
-    public void SetNext()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (positionId == standPoints.Length - 1) return;
-
-        if (positionId < standPoints.Length - 1) 
-        { 
-            ++positionId; 
+        if (collision.CompareTag("NoteEnd"))
+        {
+            _pool.Release(this);
         }
-        
     }
-
+    public void SetPool(ObjectPool<Note> pool)
+    {
+        _pool = pool;
+    }
 }
