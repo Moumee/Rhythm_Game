@@ -13,10 +13,13 @@ public class Ingredient : MonoBehaviour
     [SerializeField] GameObject[] standPoints;
 
     public float speed;
+    public bool isLive = false;
     
     // Start is called before the first frame update
     void Awake()
     {
+        
+        isLive = true;
         //transform.position = standPoints[positionId].transform.position;
     }
 
@@ -29,17 +32,21 @@ public class Ingredient : MonoBehaviour
     void Update()
     {
         float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, speed);
+
+        transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, step);
     }
 
     public void SetNext()
     {
-        if (positionId > standPoints.Length - 1)
+        if (positionId == standPoints.Length - 1)
         {
+            isLive = false;
+            positionId = 0;
+            transform.position = standPoints[positionId].transform.position;
             _pool.Release(this);
         }
 
-        if (positionId < standPoints.Length - 1) 
+        else if (positionId < standPoints.Length - 1) 
         { 
             ++positionId; 
         }
@@ -48,6 +55,7 @@ public class Ingredient : MonoBehaviour
     public void SetPoint(GameObject[] standPoint)
     {
         this.standPoints = standPoint;
+        isLive = true;
     }
 
     public void SetPool(ObjectPool<Ingredient> pool)

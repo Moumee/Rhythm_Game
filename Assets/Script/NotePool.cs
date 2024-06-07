@@ -13,7 +13,7 @@ public class NotePool : MonoBehaviour
     {
         noteSpawnPoint = FindObjectOfType<NoteManager>().noteSpawnPoint;
         pool = new ObjectPool<Note>(CreateNote, OnTakeNoteFromPool,
-            OnReturnNoteToPool, OnDestroyNote, true, 10, 20);
+            OnReturnNoteToPool, OnDestroyNote, false, 4, 20);
     }
 
     private Note CreateNote()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class IngredientManager : MonoBehaviour
@@ -8,7 +9,9 @@ public class IngredientManager : MonoBehaviour
 
     [SerializeField] GameObject[] standPoint;
 
-    [SerializeField] GameObject[] livingIngres;
+    [SerializeField] Ingredient[] livingIngres;
+
+    [SerializeField] Ingredient tempingre;
 
     private void Awake()
     {
@@ -17,19 +20,23 @@ public class IngredientManager : MonoBehaviour
 
     public void SpawnIngredient()
     {
-        Ingredient tempingre = ingrepool.pool.Get();
+        tempingre = ingrepool.pool.Get();
         tempingre.SetPoint(standPoint);
     }
 
     public void MoveIngredient()
     {
-        livingIngres = this.GetComponentsInChildren<GameObject>();
-        foreach (GameObject living in livingIngres)
+        livingIngres = this.gameObject.GetComponentsInChildren<Ingredient>();
+        foreach (Ingredient living in livingIngres)
         {
-            if (living.active)
+            if (living.isLive)
             {
-                living.GetComponent<Ingredient>().SetNext();
+                living.SetNext();
             }
         }
+    }
+
+    private void Update()
+    {
     }
 }

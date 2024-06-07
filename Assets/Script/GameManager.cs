@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public float BPM = 105;
     private float interval;
+    private float margin = 0.114f;
+    private float inputTime;
     private float timer;
     public int count = 0;
 
@@ -40,6 +42,11 @@ public class GameManager : MonoBehaviour
             ++count;
             timer = Time.time;
             CatchBeat.Invoke();
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space)) 
+        { 
+            inputTime = Time.time;
         }
     }
 }
