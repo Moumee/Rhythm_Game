@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
    
     public GameObject[] notePoints;
 
-    public float beat = 1f;
+    public float BPM = 105;
+    private float interval;
+    private float timer;
     public int count = 0;
 
     void Awake()
@@ -23,15 +25,21 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        interval = 60 / BPM;
+        timer = Time.time;
     }
 
-    private void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
     {
 
+        if (Time.time - timer >= BPM/60)
+        {
+            ++count;
+            timer = Time.time;
+            CatchBeat.Invoke();
+        }
     }
 }

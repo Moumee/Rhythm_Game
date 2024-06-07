@@ -6,19 +6,17 @@ using UnityEngine.Pool;
 public class IngredientPool : MonoBehaviour
 {
     public ObjectPool<Ingredient> pool;
-    [SerializeField] Ingredient note;
-    Transform noteSpawnPoint;
+    [SerializeField] Ingredient ingre;
 
     private void Awake()
     {
-        noteSpawnPoint = FindObjectOfType<NoteManager>().noteSpawnPoint;
         pool = new ObjectPool<Ingredient>(CreateNote, OnTakeNoteFromPool,
             OnReturnNoteToPool, OnDestroyNote, true, 10, 20);
     }
 
     private Ingredient CreateNote()
     {
-        Ingredient newNote = Instantiate(note, this.transform);
+        Ingredient newNote = Instantiate(ingre, this.transform);
         newNote.SetPool(pool);
 
         return newNote;
@@ -26,7 +24,6 @@ public class IngredientPool : MonoBehaviour
 
     private void OnTakeNoteFromPool(Ingredient _note)
     {
-        _note.transform.position = noteSpawnPoint.position;
 
         _note.gameObject.SetActive(true);
     }
