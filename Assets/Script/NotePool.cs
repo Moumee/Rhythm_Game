@@ -9,7 +9,7 @@ public class NotePool : MonoBehaviour
     [SerializeField] Note note;
     Transform noteSpawnPoint;
 
-    private void Start()
+    private void Awake()
     {
         noteSpawnPoint = FindObjectOfType<NoteManager>().noteSpawnPoint;
         pool = new ObjectPool<Note>(CreateNote, OnTakeNoteFromPool,

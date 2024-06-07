@@ -10,6 +10,7 @@ public class Note : MonoBehaviour
     private ObjectPool<Note> _pool;
     private float speed = 10f;
     Transform noteSpawnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
