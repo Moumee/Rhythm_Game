@@ -48,7 +48,7 @@ public class StartMenu : MonoBehaviour
 
     private void Update()
     {
-        if (introVideoPlayer.isPlaying)
+        if (introVideoPlayer.frame == 2)
         {
             foreach (var UI in otherUI)
             {

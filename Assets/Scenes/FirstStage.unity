@@ -157,6 +157,7 @@ MonoBehaviour:
   noteSpawnPoint: {fileID: 1586679160}
   noteCenterPoint: {fileID: 745237013}
   Notes: []
+  noteDirection: {x: -1, y: 0, z: 0}
   notesToCheck: []
   bpm: 105
 --- !u!4 &140664322
@@ -924,12 +925,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  standPoints:
-  - {fileID: 1002562057}
-  - {fileID: 1210770787}
-  - {fileID: 523283211}
-  - {fileID: 1411957878}
-  - {fileID: 1033533544}
   notePoints: []
   beat: 1
   count: 0
