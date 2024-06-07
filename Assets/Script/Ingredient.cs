@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.GridBrushBase;
+using UnityEngine.Pool;
 
 public class Ingredient : MonoBehaviour
 {
-
+    private ObjectPool<Ingredient> _pool;
     [SerializeField] int positionId = 0;
 
     GameObject[] standPoints;
@@ -38,7 +40,11 @@ public class Ingredient : MonoBehaviour
         { 
             ++positionId; 
         }
-        
+    }
+
+    public void SetPool(ObjectPool<Ingredient> pool)
+    {
+        _pool = pool;
     }
 
 }
