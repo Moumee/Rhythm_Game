@@ -26,6 +26,7 @@ public class TimingManager : MonoBehaviour
                 notesToCheck[0].GetComponent<Animator>().SetTrigger("Miss");
                 missText.GetComponent<Animator>().SetTrigger("Miss");
                 notesToCheck.RemoveAt(0);
+                
 
             }
         }
