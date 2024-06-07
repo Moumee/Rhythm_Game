@@ -17,7 +17,7 @@ public class Ingredient : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        standPoints = GameManager.Instance.standPoints;
+        
     }
 
     private void Start()

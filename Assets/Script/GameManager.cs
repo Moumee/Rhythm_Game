@@ -8,8 +8,6 @@ public class GameManager : MonoBehaviour
     public UnityEvent CatchBeat;
     public static GameManager Instance;
    
-
-    public GameObject[] standPoints;
     public GameObject[] notePoints;
 
     public float beat = 1f;
