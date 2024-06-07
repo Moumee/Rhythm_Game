@@ -6,9 +6,7 @@ using System;
 public class NoteConverter : MonoBehaviour
 {
     [SerializeField] TextAsset noteData;
-    private List<double> noteTimes;
-    private double tolerance = 0.0001f;
-    // Start is called before the first frame update
+    public List<float> noteTimes;
     void Awake()
     {
         LoadNoteTime();
@@ -16,7 +14,7 @@ public class NoteConverter : MonoBehaviour
 
     void LoadNoteTime()
     {
-        noteTimes = new List<double>();
+        noteTimes = new List<float>();
         string[] lines = noteData.text.Split("\n");
         foreach (string line in lines)
         {
@@ -28,19 +26,5 @@ public class NoteConverter : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        foreach (float noteTime in noteTimes)
-        {
-            if (IsApproximately(AudioSettings.dspTime, noteTime, tolerance))
-            {
-                Debug.Log($"{noteTime} beat!");
-            }
-        }
-    }
-
-    bool IsApproximately(double a, double b, double tolerance)
-    {
-        return System.Math.Abs(a - b) < tolerance;
-    }
+    
 }

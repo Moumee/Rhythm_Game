@@ -6,24 +6,34 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     public UnityEvent CatchBeat;
+    public static GameManager Instance;
+   
+
+    public GameObject[] standPoints;
+    public GameObject[] notePoints;
 
     public float beat = 1f;
     public int count = 0;
-    private float timer;
 
     void Awake()
     {
-        timer = Time.time;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Time.time -timer > beat)
-        {
-            ++count;
-            timer = Time.time;
-            CatchBeat.Invoke();
-        } 
+
     }
 }
