@@ -29,7 +29,7 @@ public class NoteManager : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.Instance.PlayBGM("Hamster");
+        
         StartCoroutine(IterateBeats());
 
 
