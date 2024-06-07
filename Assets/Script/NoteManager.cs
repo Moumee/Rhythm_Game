@@ -11,6 +11,7 @@ public class NoteManager : MonoBehaviour
     public Transform noteCenterPoint;
     [SerializeField] GameObject[] Notes;
     private NotePool notePool;
+    public Vector3 noteDirection;
 
     private GameObject[] noteTimingBoxes;
 
@@ -51,6 +52,7 @@ public class NoteManager : MonoBehaviour
                 if (exampleBeats[currentIndex] == 1)
                 {
                     Note note = notePool.pool.Get();
+                    note.moveDirection = noteDirection;
                     notesToCheck.Add(note.gameObject);
 
                 }

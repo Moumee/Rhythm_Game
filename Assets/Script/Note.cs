@@ -10,6 +10,7 @@ public class Note : MonoBehaviour
     private ObjectPool<Note> _pool;
     private float speed = 10f;
     Transform noteSpawnPoint;
+    public Vector3 moveDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class Note : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.left * speed * Time.deltaTime;
+        transform.position += moveDirection * speed * Time.deltaTime;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
