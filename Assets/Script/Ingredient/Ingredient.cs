@@ -14,6 +14,7 @@ public class Ingredient : MonoBehaviour
 
     public float speed = 10f;
     public bool isLive = false;
+    public bool isOnTime = false;
     
     // Start is called before the first frame update
     void Awake()
@@ -63,4 +64,16 @@ public class Ingredient : MonoBehaviour
         _pool = pool;
     }
 
+    public void SetOnTime()
+    {
+
+    }
+
+    IEnumerator WaitUntilTime()
+    {
+        yield return new WaitForSeconds(60 / GameManager.Instance.BPM * 1.5f);
+        isOnTime = true;
+        yield return new WaitForSeconds(60 / GameManager.Instance.BPM * 0.5f);
+        isOnTime = false;
+    }
 }

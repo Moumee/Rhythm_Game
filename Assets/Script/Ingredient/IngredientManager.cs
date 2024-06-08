@@ -36,7 +36,15 @@ public class IngredientManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void OnEvent_CatchNote()
     {
+        livingIngres = this.gameObject.GetComponentsInChildren<Ingredient>();
+        foreach (Ingredient living in livingIngres)
+        {
+            if (living.isLive)
+            {
+                living.SetNext();
+            }
+        }
     }
 }
