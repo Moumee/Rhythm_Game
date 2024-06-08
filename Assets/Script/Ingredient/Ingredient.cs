@@ -12,7 +12,7 @@ public class Ingredient : MonoBehaviour
 
     [SerializeField] GameObject[] standPoints;
 
-    public float speed;
+    public float speed = 10f;
     public bool isLive = false;
     
     // Start is called before the first frame update

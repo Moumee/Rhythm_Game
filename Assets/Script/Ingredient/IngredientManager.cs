@@ -18,13 +18,13 @@ public class IngredientManager : MonoBehaviour
         ingrepool = GetComponent<IngredientPool>();
     }
 
-    public void SpawnIngredient()
+    public void OnEvent_SpawnIngredient()
     {
         tempingre = ingrepool.pool.Get();
         tempingre.SetPoint(standPoint);
     }
 
-    public void MoveIngredient()
+    public void OnEvent_MoveIngredient()
     {
         livingIngres = this.gameObject.GetComponentsInChildren<Ingredient>();
         foreach (Ingredient living in livingIngres)

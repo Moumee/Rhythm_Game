@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
-    public UnityEvent CatchBeat;
+    public UnityEvent OnBeat;
+    public UnityEvent OnNote;
     public UnityEvent CatchNote;
+
     public static GameManager Instance;
 
-    private List<int> testChart = new List<int> { 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 };
+    private List<int> testChart = new List<int> {1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 };
    
     public GameObject[] notePoints;
 
     public GameObject noteSyncPoint;
 
-    public float BPM = 105;
+    public float BPM = 60;
     private float interval;
     private float margin = 0.114f;
     private float inputError;
@@ -64,10 +67,12 @@ public class GameManager : MonoBehaviour
 
         if (Time.time - timer >= interval)
         {
-            if (testChart[count] == 1) 
+            if (testChart[count%testChart.Count] == 1)
             {
-                CatchBeat.Invoke();
+                OnNote.Invoke();
             }
+            OnBeat.Invoke();
+            
             ++count;
             timer = Time.time;
             if (testChart[count - 1] == 0) { 
@@ -75,7 +80,7 @@ public class GameManager : MonoBehaviour
             
         }
 
-        if (Input.GetKeyUp(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Space)) 
         {
             inputError = Time.time - timer;
 
@@ -84,6 +89,7 @@ public class GameManager : MonoBehaviour
                 if(inputError <= margin && testChart[count-1] == 1)
                 {
                     ++Score;
+                    CatchNote.Invoke();
                 }
             }
             else
@@ -91,6 +97,7 @@ public class GameManager : MonoBehaviour
                 if (inputError > interval - margin && testChart[count] == 1)
                 {
                     ++Score;
+                    CatchNote.Invoke();
                 }
             }
         }
