@@ -69,7 +69,7 @@ public class StartMenu : MonoBehaviour
             continueTextObj.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, alpha);
             if (Input.anyKeyDown)
             {
-                SceneManager.LoadSceneAsync("FirstStage");
+                SceneManager.LoadSceneAsync("1-1");
             }
         }
 

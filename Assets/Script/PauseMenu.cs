@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour
     public void OnHomeButtonClicked()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadSceneAsync("StartMenu");
+        SceneManager.LoadSceneAsync(0);
     }
 
     public void OnSettingButtonClicked()

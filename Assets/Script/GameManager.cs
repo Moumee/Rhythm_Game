@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject noteSyncPoint;
 
-    public float BPM = 60;
+    public float BPM = 210;
     private float interval;
     private float margin = 0.114f;
     private float inputError;
