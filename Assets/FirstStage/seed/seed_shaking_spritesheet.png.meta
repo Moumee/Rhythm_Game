@@ -115,8 +115,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 375
-        height: 531
+        width: 630
+        height: 620
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c51718bede908684c81e3f41af26c929
-      internalID: -1628941001
+      spriteID: 551c60579c82c9f46b92d89ea09466fd
+      internalID: -314300100
       vertices: []
       indices: 
       edges: []
@@ -134,10 +134,10 @@ TextureImporter:
       name: seed_shaking_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 375
+        x: 630
         y: 0
-        width: 375
-        height: 531
+        width: 630
+        height: 620
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af8b73bb1b461c643988f79a523031c3
-      internalID: -1355251583
+      spriteID: 11dd3e247c83f7f448b071bd015575a9
+      internalID: -1918716338
       vertices: []
       indices: 
       edges: []
@@ -155,10 +155,10 @@ TextureImporter:
       name: seed_shaking_spritesheet_2
       rect:
         serializedVersion: 2
-        x: 750
+        x: 1260
         y: 0
-        width: 375
-        height: 531
+        width: 630
+        height: 620
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbad52ffae5e46a4b808e5201b628aaa
-      internalID: -1314084637
+      spriteID: e372b6002a23b554186f7de55b1a722c
+      internalID: -988734332
       vertices: []
       indices: 
       edges: []
@@ -183,9 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      seed_shaking_spritesheet_0: -1628941001
-      seed_shaking_spritesheet_1: -1355251583
-      seed_shaking_spritesheet_2: -1314084637
+      seed_shaking_spritesheet_0: -314300100
+      seed_shaking_spritesheet_1: -1918716338
+      seed_shaking_spritesheet_2: -988734332
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

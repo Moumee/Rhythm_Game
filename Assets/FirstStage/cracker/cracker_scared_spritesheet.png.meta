@@ -115,8 +115,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 490
-        height: 508
+        width: 630
+        height: 620
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e8c266ac1947f742a1b479682498503
-      internalID: 1736154174
+      spriteID: 1eef04860c3ca8a40a01c58454441f67
+      internalID: 569030800
       vertices: []
       indices: 
       edges: []
@@ -134,10 +134,10 @@ TextureImporter:
       name: cracker_scared_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 490
+        x: 630
         y: 0
-        width: 490
-        height: 508
+        width: 630
+        height: 620
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 844e44f8212af8745b81f98104f1082c
-      internalID: 950770395
+      spriteID: 3f26531bedd64ca459b5e66c13ce6678
+      internalID: -1530806319
       vertices: []
       indices: 
       edges: []
@@ -155,10 +155,10 @@ TextureImporter:
       name: cracker_scared_spritesheet_2
       rect:
         serializedVersion: 2
-        x: 980
+        x: 1260
         y: 0
-        width: 490
-        height: 508
+        width: 630
+        height: 620
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 289dbfa118ee1ff47ae2b26855fc9f72
-      internalID: -898647475
+      spriteID: e5fa5cb12bfc81043b8524e9b983e9c3
+      internalID: 594333808
       vertices: []
       indices: 
       edges: []
@@ -183,9 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      cracker_scared_spritesheet_0: 1736154174
-      cracker_scared_spritesheet_1: 950770395
-      cracker_scared_spritesheet_2: -898647475
+      cracker_scared_spritesheet_0: 569030800
+      cracker_scared_spritesheet_1: -1530806319
+      cracker_scared_spritesheet_2: 594333808
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
