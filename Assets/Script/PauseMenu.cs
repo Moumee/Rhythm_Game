@@ -36,6 +36,7 @@ public class PauseMenu : MonoBehaviour
         {
             if (isPlaying)
             {
+                AudioManager.Instance.bgmSource.Pause();
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
                 isPlaying = false;
@@ -48,6 +49,7 @@ public class PauseMenu : MonoBehaviour
                 }
                 else if (!optionMenu.activeInHierarchy)
                 {
+                    AudioManager.Instance.bgmSource.UnPause();
                     pauseMenu.SetActive(false);
                     optionMenu.SetActive(false);
                     Time.timeScale = 1f;

@@ -22,11 +22,11 @@ public class ButtonEffect : MonoBehaviour
 
     public void PlayClick()
     {
-        AudioManager.Instance.PlaySFX("Click");
+        AudioManager.Instance.PlaySFX(AudioManager.SFX.Click);
     }
 
     public void PlayStart()
     {
-        AudioManager.Instance.PlaySFX("Start");
+        AudioManager.Instance.PlaySFX(AudioManager.SFX.Start);
     }
 }

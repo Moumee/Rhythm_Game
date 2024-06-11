@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using static UnityEngine.GridBrushBase;
 using UnityEngine.Pool;
+using TreeEditor;
 
 public class Ingredient : MonoBehaviour
 {
@@ -15,10 +16,10 @@ public class Ingredient : MonoBehaviour
 
     [SerializeField] GameObject[] standPoints;
 
-    public float speed = 10f;
+    private float speed = 10f;
     public bool isLive = false;
     public bool isOnTime = false;
-    
+    Vector3 lastPos;
     
     // Start is called before the first frame update
     void Awake()
@@ -40,15 +41,9 @@ public class Ingredient : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, step);
 
-        if (isMoving)
-        {
-            ChangeAnimationState("seed_moving");
-        }
-        else
-        {
-            ChangeAnimationState("seed_idle");
-        }
+        
     }
+
     
     void ChangeAnimationState(string newState)
     {
@@ -57,10 +52,6 @@ public class Ingredient : MonoBehaviour
         currentState = newState;
     }
 
-    void MoveComplete()
-    {
-        isMoving = false;
-    }
     public void SetNext()
     {
         if (positionId == standPoints.Length - 1)
@@ -73,9 +64,8 @@ public class Ingredient : MonoBehaviour
 
         else if (positionId < standPoints.Length - 1) 
         {
-            isMoving = true;
-            Invoke("MoveComplete", animator.GetCurrentAnimatorStateInfo(0).length);
-            ++positionId; 
+            ++positionId;
+            animator.SetTrigger("Move");
         }
     }
 

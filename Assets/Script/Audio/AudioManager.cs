@@ -10,6 +10,18 @@ public class AudioManager : MonoBehaviour
     public AudioSource bgmSource;
     public AudioSource sfxSource;
 
+    public enum SFX
+    {
+        Click,
+        Start
+    }
+
+    public enum BGM
+    {
+        MainMenu,
+        Hamster
+    }
+
     private static AudioManager _Instance;
     public static AudioManager Instance
     {
@@ -33,31 +45,36 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    public void PlayBGM(string name)
+    public void PlayBGM(BGM bgm)
     {
-        Sound s = Array.Find(soundSO.bgmSounds, x => x.name == name);   
-
-        if (s == null)
-        {
-            Debug.Log("Sound Not Found");
-        }
-        else
-        {
-            bgmSource.clip = s.clip;
-            bgmSource.Play();
-        }
+        
+        
+        bgmSource.clip = GetBGMClip(bgm);
+        bgmSource.Play();
+        
     }
-    public void PlaySFX(string name)
+    public void PlaySFX(SFX sfx)
     {
-        Sound s = Array.Find(soundSO.sfxSounds, x => x.name == name);
+        sfxSource.PlayOneShot(GetSFXClip(sfx));
+    }
 
-        if (s == null)
+    private AudioClip GetSFXClip(SFX sfx)
+    {
+        foreach (SoundSO.SFXAudioClip sfxAudioClip in soundSO.sfxAudioClipArray)
         {
-            Debug.Log("Sound Not Found");
+            if (sfxAudioClip.sfx == sfx) return sfxAudioClip.audioClip;
         }
-        else
+        Debug.LogError("Sound" + sfx + " not found!");
+        return null;
+    }
+
+    private AudioClip GetBGMClip(BGM bgm)
+    {
+        foreach (SoundSO.BGMAudioClip bgmAudioClip in soundSO.bgmAudioClipArray)
         {
-            sfxSource.PlayOneShot(s.clip);
+            if (bgmAudioClip.bgm == bgm) return bgmAudioClip.audioClip;
         }
+        Debug.LogError("Sound" + bgm + " not found!");
+        return null;
     }
 }

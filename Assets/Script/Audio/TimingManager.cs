@@ -34,7 +34,7 @@ public class TimingManager : MonoBehaviour
     {
         if (collision.CompareTag("Note"))
         {
-            AudioManager.Instance.PlayBGM("Hamster");
+            AudioManager.Instance.PlayBGM(AudioManager.BGM.Hamster);
             syncCollider.enabled = false;
         }
     }

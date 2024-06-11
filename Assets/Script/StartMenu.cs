@@ -36,7 +36,7 @@ public class StartMenu : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.Instance.PlayBGM("Main");
+        AudioManager.Instance.PlayBGM(AudioManager.BGM.MainMenu);
 
     }
 
