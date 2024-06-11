@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2c2a2ea77eb45942828633969549669, type: 3}
   m_Name: SoundData
   m_EditorClassIdentifier: 
-  bgmSounds: []
-  sfxSounds: []
+  sfxAudioClipArray:
+  - sfx: 0
+    audioClip: {fileID: 8300000, guid: 8cbcd76730d740544a1e43769ec305c6, type: 3}
+  - sfx: 1
+    audioClip: {fileID: 8300000, guid: eb30b8b647fd1ac4b9d847f469182878, type: 3}
+  bgmAudioClipArray:
+  - bgm: 0
+    audioClip: {fileID: 8300000, guid: 9b87790bba68e1647bfba1673b5e3d24, type: 3}
+  - bgm: 1
+    audioClip: {fileID: 8300000, guid: 4b52fdd793816f04781c52e37f872438, type: 3}
