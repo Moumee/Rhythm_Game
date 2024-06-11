@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d87f94299aa9b19439d3a42fe80056d7
+guid: 30e07b18d10ae0c4fbb2ab6e22be8359
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,64 +110,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: seed_scared_spritesheet_0
+      name: seed_shaking_spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 630
         height: 620
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42e6fe5ab864de742be616d4948d0bef
-      internalID: 1494016164
+      spriteID: 551c60579c82c9f46b92d89ea09466fd
+      internalID: -314300100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: seed_scared_spritesheet_1
+      name: seed_shaking_spritesheet_1
       rect:
         serializedVersion: 2
         x: 630
         y: 0
         width: 630
         height: 620
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58ac35af7aa712e47adad7cc7362c3df
-      internalID: -42870078
+      spriteID: 11dd3e247c83f7f448b071bd015575a9
+      internalID: -1918716338
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: seed_scared_spritesheet_2
+      name: seed_shaking_spritesheet_2
       rect:
         serializedVersion: 2
         x: 1260
         y: 0
         width: 630
         height: 620
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e21dff4672637ce4e92a63515a93be6d
-      internalID: -1838185886
+      spriteID: e372b6002a23b554186f7de55b1a722c
+      internalID: -988734332
       vertices: []
       indices: 
       edges: []
@@ -183,9 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      seed_scared_spritesheet_0: 1494016164
-      seed_scared_spritesheet_1: -42870078
-      seed_scared_spritesheet_2: -1838185886
+      seed_shaking_spritesheet_0: -314300100
+      seed_shaking_spritesheet_1: -1918716338
+      seed_shaking_spritesheet_2: -988734332
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

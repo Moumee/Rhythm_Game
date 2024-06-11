@@ -6,31 +6,36 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance;
-    public Sound[] bgmSounds, sfxSounds;
+    SoundSO soundSO;
     public AudioSource bgmSource;
     public AudioSource sfxSource;
 
-    private void Awake()
+    private static AudioManager _Instance;
+    public static AudioManager Instance
     {
-        if (Instance == null)
+        get
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
+            if (!_Instance)
+            {
+                var prefab = Resources.Load<GameObject>("AudioManagerPrefab");
+                var inScene = Instantiate(prefab);
+                _Instance = inScene.GetComponentInChildren<AudioManager>();
+                if (!_Instance) _Instance = inScene.AddComponent<AudioManager>();
+                DontDestroyOnLoad(_Instance.transform.root.gameObject);
+            }
+            return _Instance;
         }
     }
 
-    private void Start()
+    private void Awake()
     {
+        soundSO = Resources.Load<SoundSO>("SoundData");
     }
+
 
     public void PlayBGM(string name)
     {
-        Sound s = Array.Find(bgmSounds, x => x.name == name);   
+        Sound s = Array.Find(soundSO.bgmSounds, x => x.name == name);   
 
         if (s == null)
         {
@@ -44,7 +49,7 @@ public class AudioManager : MonoBehaviour
     }
     public void PlaySFX(string name)
     {
-        Sound s = Array.Find(sfxSounds, x => x.name == name);
+        Sound s = Array.Find(soundSO.sfxSounds, x => x.name == name);
 
         if (s == null)
         {

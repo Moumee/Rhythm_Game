@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c2a2ea77eb45942828633969549669, type: 3}
+  m_Name: SoundData
+  m_EditorClassIdentifier: 
+  bgmSounds:
+  - name: Main
+    clip: {fileID: 8300000, guid: 9b87790bba68e1647bfba1673b5e3d24, type: 3}
+  - name: Hamster
+    clip: {fileID: 8300000, guid: 4b52fdd793816f04781c52e37f872438, type: 3}
+  sfxSounds:
+  - name: Click
+    clip: {fileID: 8300000, guid: 8cbcd76730d740544a1e43769ec305c6, type: 3}
+  - name: Start
+    clip: {fileID: 8300000, guid: eb30b8b647fd1ac4b9d847f469182878, type: 3}

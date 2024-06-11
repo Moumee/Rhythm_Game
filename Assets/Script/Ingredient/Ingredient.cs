@@ -9,6 +9,9 @@ public class Ingredient : MonoBehaviour
 {
     private ObjectPool<Ingredient> _pool;
     [SerializeField] int positionId = 0;
+    Animator animator;
+    private string currentState;
+    private bool isMoving = false;
 
     [SerializeField] GameObject[] standPoints;
 
@@ -16,10 +19,11 @@ public class Ingredient : MonoBehaviour
     public bool isLive = false;
     public bool isOnTime = false;
     
+    
     // Start is called before the first frame update
     void Awake()
     {
-        
+        animator = GetComponent<Animator>();
         isLive = true;
         //transform.position = standPoints[positionId].transform.position;
     }
@@ -35,8 +39,28 @@ public class Ingredient : MonoBehaviour
         float step = speed * Time.deltaTime;
 
         transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, step);
+
+        if (isMoving)
+        {
+            ChangeAnimationState("seed_moving");
+        }
+        else
+        {
+            ChangeAnimationState("seed_idle");
+        }
+    }
+    
+    void ChangeAnimationState(string newState)
+    {
+        if (currentState == newState) return;
+        animator.Play(newState);
+        currentState = newState;
     }
 
+    void MoveComplete()
+    {
+        isMoving = false;
+    }
     public void SetNext()
     {
         if (positionId == standPoints.Length - 1)
@@ -48,7 +72,9 @@ public class Ingredient : MonoBehaviour
         }
 
         else if (positionId < standPoints.Length - 1) 
-        { 
+        {
+            isMoving = true;
+            Invoke("MoveComplete", animator.GetCurrentAnimatorStateInfo(0).length);
             ++positionId; 
         }
     }
