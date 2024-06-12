@@ -13,8 +13,8 @@ public class Punch : MonoBehaviour
 
     IEnumerator PunchSuccess()
     {
-        transform.position += Vector3.down * 8;
+        transform.position += Vector3.down * 7;
         yield return new WaitForSeconds(0.5f);
-        transform.position -= Vector3.down * 8;
+        transform.position -= Vector3.down * 7;
     }
 }
