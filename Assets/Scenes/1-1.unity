@@ -1388,7 +1388,7 @@ MonoBehaviour:
         m_CallState: 2
   notePoints: []
   noteSyncPoint: {fileID: 0}
-  BPM: 60
+  BPM: 210
   count: 0
   Score: 0
 --- !u!4 &1750320641
