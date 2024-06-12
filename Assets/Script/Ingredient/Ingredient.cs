@@ -13,10 +13,11 @@ public class Ingredient : MonoBehaviour
     Animator animator;
     private string currentState;
     private bool isMoving = false;
+    private int beatChecker;
 
     [SerializeField] GameObject[] standPoints;
 
-    private float speed = 10f;
+    private float speed = 60f;
     public bool isLive = false;
     public bool isOnTime = false;
     Vector3 lastPos;
@@ -40,6 +41,7 @@ public class Ingredient : MonoBehaviour
         float step = speed * Time.deltaTime;
 
         transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, step);
+
 
         
     }

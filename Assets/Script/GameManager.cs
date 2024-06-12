@@ -13,7 +13,11 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    private List<int> testChart = new List<int> {1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 };
+    private List<int> testChart = new List<int> 
+    {0,0,0,
+        0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,
+        0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0};
    
     public GameObject[] notePoints;
 
@@ -86,7 +90,7 @@ public class GameManager : MonoBehaviour
 
             if (inputError < interval/2)
             {
-                if(inputError <= margin && testChart[count-1] == 1)
+                if(inputError <= margin && testChart[count-2] == 1)
                 {
                     ++Score;
                     CatchNote.Invoke();
@@ -94,7 +98,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                if (inputError > interval - margin && testChart[count] == 1)
+                if (inputError > interval - margin && testChart[count-1] == 1)
                 {
                     ++Score;
                     CatchNote.Invoke();

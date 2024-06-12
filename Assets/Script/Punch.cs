@@ -14,7 +14,7 @@ public class Punch : MonoBehaviour
     IEnumerator PunchSuccess()
     {
         transform.position += Vector3.down * 7;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         transform.position -= Vector3.down * 7;
     }
 }
