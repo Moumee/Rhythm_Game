@@ -19,56 +19,18 @@ public class NoteManager : MonoBehaviour
     public List<GameObject> notesToCheck = new List<GameObject>();
     [SerializeField] int bpm = 105;
     int currentIndex = 0;
-
-    double timer = 0d;
-    enum noteType { seed, cracker }
     private void Awake()
     {
         notePool = GetComponent<NotePool>();
     }
 
-    private void Start()
-    {
-        
-        StartCoroutine(IterateBeats());
 
-
-    }
-    private void Update()
+    public void EventNoteSpawn()
     {
-        timer += Time.deltaTime;
-        
+        Note note = notePool.pool.Get();
+        note.moveDirection = noteDirection;
     }
 
-    private IEnumerator IterateBeats()
-    {
-        float beatInterval = 60f / bpm;
-        while (true) 
-        {
-            for (int i = 0; i < exampleBeats.Count; i++)
-            {
-                currentIndex = i;
-
-                if (exampleBeats[currentIndex] == 1)
-                {
-                    Note note = notePool.pool.Get();
-                    note.moveDirection = noteDirection;
-                    notesToCheck.Add(note.gameObject);
-
-                }
-
-                yield return new WaitForSeconds(beatInterval);
-            }
-        }
-    }
-
-    private void CheckTiming()
-    {
-        for (int i = 0; i < noteTimingBoxes.Length; i++)
-        {
-
-        }
-    }
 
 
 }
