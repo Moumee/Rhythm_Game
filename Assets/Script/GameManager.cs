@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     //valriables for manipulate the starttime
     private bool BeatStart =false;
     [SerializeField] float startDelay = 0f;
-    [SerializeField] float bgmStartDelay = 4f;
+    [SerializeField] float bgmStartDelay = 1f;
 
     public int Score = 0;
 
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        SceneManager.sceneLoaded += PlaySceneBGM;
+        
         if (Instance == null)
         {
             Instance = this;
@@ -72,6 +72,8 @@ public class GameManager : MonoBehaviour
         JudgeChart.AddRange(DelayChart);
         JudgeChart.AddRange(MusicChart);
 
+        //SceneManager.sceneLoaded += PlaySceneBGM;
+        StartCoroutine(BGMStartDelay());
         StartCoroutine(NoteStartDelay());
     }
 
@@ -124,12 +126,15 @@ public class GameManager : MonoBehaviour
 
         
     }
+
+    
     IEnumerator NoteStartDelay()
     {
         yield return new WaitForSeconds(startDelay);
         timer = Time.time;
         BeatStart = true;
     }
+
 
     void PlaySceneBGM(Scene scene, LoadSceneMode mode)
     {
