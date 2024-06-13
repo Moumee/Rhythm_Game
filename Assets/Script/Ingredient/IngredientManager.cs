@@ -30,7 +30,7 @@ public class IngredientManager : MonoBehaviour
         {
             if (living.isLive)
             {
-                living.SetNext();
+                living.Event_BeatCall();
             }
         }
     }
@@ -42,7 +42,7 @@ public class IngredientManager : MonoBehaviour
         {
             if (living.isLive)
             {
-                living.SetNext();
+                //living.SetNext();
             }
         }
     }

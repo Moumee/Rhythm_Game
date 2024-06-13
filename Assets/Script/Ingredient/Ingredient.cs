@@ -13,7 +13,7 @@ public class Ingredient : MonoBehaviour
     Animator animator;
     private string currentState;
     private bool isMoving = false;
-    private int beatChecker;
+    private int beatJumpCount;
 
     [SerializeField] GameObject[] standPoints;
 
@@ -27,6 +27,7 @@ public class Ingredient : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         isLive = true;
+        beatJumpCount = 0;
         //transform.position = standPoints[positionId].transform.position;
     }
 
@@ -54,7 +55,18 @@ public class Ingredient : MonoBehaviour
         currentState = newState;
     }
 
-    public void SetNext()
+    public void Event_BeatCall()
+    {
+        beatJumpCount++;
+        if(beatJumpCount > GameManager.Instance.beatJump-1) 
+        {
+            beatJumpCount = 0;
+            SetNext();
+        }
+        
+    }
+
+    private void SetNext()
     {
         if (positionId == standPoints.Length - 1)
         {
@@ -64,7 +76,7 @@ public class Ingredient : MonoBehaviour
             _pool.Release(this);
         }
 
-        else if (positionId < standPoints.Length - 1) 
+        else if (positionId < standPoints.Length - 1)
         {
             ++positionId;
             animator.SetTrigger("Move");
