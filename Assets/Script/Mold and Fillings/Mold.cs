@@ -2,28 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.GridBrushBase;
+using UnityEngine.Pool;
+using TreeEditor;
 
 public class Mold : MonoBehaviour
 {
+    private ObjectPool<Mold> _pool;
     [SerializeField] int positionId = 0;
-    private bool isMoving = false;
+    private string currentState;
     private int beatJumpCount;
 
-    public PointSO pointData;
-    Vector3[] standPoints;
+    [SerializeField] GameObject[] standPoints;
 
-    private float speed = 10f;
+    private float speed = 60f;
     public bool isLive = false;
     public bool isOnTime = false;
-    Vector3 lastPos;
 
     // Start is called before the first frame update
     void Awake()
     {
-        standPoints = pointData.moldPoints;
         isLive = true;
         beatJumpCount = 0;
-        transform.position = standPoints[positionId];
+        //transform.position = standPoints[positionId].transform.position;
     }
 
     private void Start()
@@ -36,19 +37,27 @@ public class Mold : MonoBehaviour
     {
         float step = speed * Time.deltaTime;
 
-        transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId], step);
+        transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, step);
 
-
+        if (Mathf.Abs(standPoints[1].transform.position.x - transform.position.x) <= 1.5f)
+        {
+            isOnTime = true;
+        }
+        else
+        {
+            isOnTime = false;
+        }
 
     }
 
 
-
+    
     public void Event_BeatCall()
     {
         beatJumpCount++;
         if (beatJumpCount > GameManager.Instance.beatJump - 1)
         {
+
             beatJumpCount = 0;
             SetNext();
         }
@@ -61,7 +70,8 @@ public class Mold : MonoBehaviour
         {
             isLive = false;
             positionId = 0;
-            transform.position = standPoints[positionId];
+            transform.position = standPoints[positionId].transform.position;
+            _pool.Release(this);
         }
 
         else if (positionId < standPoints.Length - 1)
@@ -70,15 +80,17 @@ public class Mold : MonoBehaviour
         }
     }
 
-    
-
-    
-
-    IEnumerator WaitUntilTime()
+    public void SetPoint(GameObject[] standPoint)
     {
-        yield return new WaitForSeconds(60 / GameManager.Instance.BPM * 1.5f);
-        isOnTime = true;
-        yield return new WaitForSeconds(60 / GameManager.Instance.BPM * 0.5f);
-        isOnTime = false;
+        this.standPoints = standPoint;
+        isLive = true;
     }
+
+    public void SetPool(ObjectPool<Mold> pool)
+    {
+        _pool = pool;
+    }
+
+
+    
 }

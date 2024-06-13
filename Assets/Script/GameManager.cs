@@ -53,11 +53,11 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
-            DontDestroyOnLoad(gameObject);
         }
 
         
@@ -97,6 +97,7 @@ public class GameManager : MonoBehaviour
                     OnNote.Invoke();
                 }
                 OnBeat.Invoke();
+                
 
                 ++count;
                 timer = Time.time;
@@ -116,6 +117,7 @@ public class GameManager : MonoBehaviour
                     {
                         ++Score;
                         CatchNote.Invoke();
+                        
                     }
                 }
                 else

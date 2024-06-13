@@ -12,7 +12,6 @@ public class Ingredient : MonoBehaviour
     [SerializeField] int positionId = 0;
     Animator animator;
     private string currentState;
-    private bool isMoving = false;
     private int beatJumpCount;
 
     [SerializeField] GameObject[] standPoints;
@@ -20,7 +19,6 @@ public class Ingredient : MonoBehaviour
     private float speed = 60f;
     public bool isLive = false;
     public bool isOnTime = false;
-    Vector3 lastPos;
     
     // Start is called before the first frame update
     void Awake()

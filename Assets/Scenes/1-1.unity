@@ -270,6 +270,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 323354304}
     m_Modifications:
+    - target: {fileID: 656550104777253967, guid: 666ad67a0c5a73b40a5f060ca5d28d1c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4656832365203677905, guid: 666ad67a0c5a73b40a5f060ca5d28d1c, type: 3}
       propertyPath: m_Name
       value: punch
