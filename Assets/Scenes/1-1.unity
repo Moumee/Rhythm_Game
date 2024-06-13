@@ -1293,7 +1293,7 @@ GameObject:
   m_Layer: 0
   m_Name: Note Spawn Point
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1371,6 +1371,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 140664321}
+        m_TargetAssemblyTypeName: NoteManager, Assembly-CSharp
+        m_MethodName: EventNoteSpawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   CatchNote:
     m_PersistentCalls:
       m_Calls:
@@ -1386,11 +1398,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2100601289}
+        m_TargetAssemblyTypeName: IngredientManager, Assembly-CSharp
+        m_MethodName: EventCatchNote
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   notePoints: []
   noteSyncPoint: {fileID: 0}
   BPM: 210
   count: 0
+  startDelay: 0
+  bgmStartDelay: 1
   Score: 0
+  beatJump: 2
 --- !u!4 &1750320641
 Transform:
   m_ObjectHideFlags: 0
@@ -1591,7 +1618,6 @@ MonoBehaviour:
   - {fileID: 523283211}
   - {fileID: 1411957878}
   - {fileID: 1033533544}
-  livingIngres: []
   tempingre: {fileID: 0}
 --- !u!4 &2100601290
 Transform:

@@ -13,9 +13,6 @@ public class NoteManager : MonoBehaviour
     private NotePool notePool;
     public Vector3 noteDirection;
 
-    private GameObject[] noteTimingBoxes;
-
-    private List<int> exampleBeats = new List<int> { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     public List<GameObject> notesToCheck = new List<GameObject>();
     [SerializeField] int bpm = 105;
     int currentIndex = 0;
@@ -29,6 +26,11 @@ public class NoteManager : MonoBehaviour
     {
         Note note = notePool.pool.Get();
         note.moveDirection = noteDirection;
+    }
+
+    public void EventCatchNote()
+    {
+
     }
 
 

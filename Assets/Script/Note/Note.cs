@@ -8,7 +8,7 @@ using UnityEngine.Pool;
 public class Note : MonoBehaviour
 {
     private ObjectPool<Note> _pool;
-    private float speed = 15f;
+    private float speed;
     Transform noteSpawnPoint;
     public Vector3 moveDirection;
 
@@ -16,6 +16,7 @@ public class Note : MonoBehaviour
     void Start()
     {
         noteSpawnPoint = FindObjectOfType<NoteManager>().noteSpawnPoint;
+        speed = 14/(4*60/GameManager.Instance.BPM)+1f;
     }
 
     // Update is called once per frame

@@ -43,7 +43,14 @@ public class Ingredient : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, step);
 
-
+        if (Mathf.Abs(standPoints[2].transform.position.x -transform.position.x)<=1.5f ) 
+        {
+            isOnTime = true;
+        }
+        else
+        {
+            isOnTime = false;
+        }
         
     }
 
@@ -60,6 +67,7 @@ public class Ingredient : MonoBehaviour
         beatJumpCount++;
         if(beatJumpCount > GameManager.Instance.beatJump-1) 
         {
+            
             beatJumpCount = 0;
             SetNext();
         }
@@ -94,16 +102,10 @@ public class Ingredient : MonoBehaviour
         _pool = pool;
     }
 
-    public void SetOnTime()
-    {
 
-    }
-
-    IEnumerator WaitUntilTime()
+    public void Break()
     {
-        yield return new WaitForSeconds(60 / GameManager.Instance.BPM * 1.5f);
-        isOnTime = true;
-        yield return new WaitForSeconds(60 / GameManager.Instance.BPM * 0.5f);
-        isOnTime = false;
+        animator.SetTrigger("Break");
+        gameObject.transform.position += Vector3.down;
     }
 }

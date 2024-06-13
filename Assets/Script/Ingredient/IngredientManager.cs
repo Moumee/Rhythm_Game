@@ -8,7 +8,8 @@ public class IngredientManager : MonoBehaviour
 
     [SerializeField] GameObject[] standPoint;
 
-    [SerializeField] Ingredient[] livingIngres;
+    private Ingredient[] livingIngres;
+    private Ingredient[] livingIngres2;
 
     [SerializeField] Ingredient tempingre;
 
@@ -43,6 +44,18 @@ public class IngredientManager : MonoBehaviour
             if (living.isLive)
             {
                 //living.SetNext();
+            }
+        }
+    }
+
+    public void EventCatchNote()
+    {
+        livingIngres2 = this.gameObject.GetComponentsInChildren<Ingredient>();
+        foreach (Ingredient living in livingIngres2)
+        {
+            if (living.isOnTime)
+            {
+                living.Break();
             }
         }
     }
