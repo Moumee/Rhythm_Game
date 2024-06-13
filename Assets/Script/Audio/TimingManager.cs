@@ -30,12 +30,5 @@ public class TimingManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Note"))
-        {
-            AudioManager.Instance.PlayBGM(AudioManager.BGM.Hamster);
-            syncCollider.enabled = false;
-        }
-    }
+    
 }

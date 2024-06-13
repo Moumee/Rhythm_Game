@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     //valriables for manipulate the starttime
     private bool BeatStart =false;
     [SerializeField] float startDelay = 0f;
+    [SerializeField] float bgmStartDelay = 4f;
 
     public int Score = 0;
 
@@ -74,17 +75,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(NoteStartDelay());
     }
 
-    void PlaySceneBGM(Scene scene, LoadSceneMode mode)
-    {
-        switch (scene.buildIndex)
-        {
-            case 1:
-
-                break;
-            default:
-                break;
-        }
-    }
+    
 
 
     // Update is called once per frame
@@ -138,5 +129,16 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(startDelay);
         timer = Time.time;
         BeatStart = true;
+    }
+
+    void PlaySceneBGM(Scene scene, LoadSceneMode mode)
+    {
+        StartCoroutine(BGMStartDelay());
+    }
+
+    IEnumerator BGMStartDelay()
+    {
+        yield return new WaitForSeconds(bgmStartDelay);
+        AudioManager.Instance.PlayBGM(AudioManager.BGM.Hamster);
     }
 }
