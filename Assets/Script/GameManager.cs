@@ -61,6 +61,9 @@ public class GameManager : MonoBehaviour
         }
 
         
+
+        
+
         interval = 60 / BPM;
 
         SpawnChart.AddRange(DelayChart);
@@ -72,8 +75,10 @@ public class GameManager : MonoBehaviour
         JudgeChart.AddRange(DelayChart);
         JudgeChart.AddRange(MusicChart);
 
-        //SceneManager.sceneLoaded += PlaySceneBGM;
-        StartCoroutine(BGMStartDelay());
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            StartCoroutine(BGMStartDelay());
+        }
         StartCoroutine(NoteStartDelay());
     }
 
@@ -123,6 +128,11 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        
+        if (count == 155)
+        {
+            SceneManager.LoadSceneAsync(2);
+        }
 
         
     }
@@ -136,10 +146,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void PlaySceneBGM(Scene scene, LoadSceneMode mode)
-    {
-        StartCoroutine(BGMStartDelay());
-    }
 
     IEnumerator BGMStartDelay()
     {

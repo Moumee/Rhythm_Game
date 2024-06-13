@@ -16,3 +16,11 @@ MonoBehaviour:
   - {x: 15, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: -17, y: 0, z: 0}
+  fillingSpawnPoints:
+  - {x: -2.5, y: 7.2, z: 0}
+  - {x: 0.65, y: 7.2, z: 0}
+  - {x: 3.75, y: 7.2, z: 0}
+  fillingLandPoints:
+  - {x: -2.5, y: -1.85, z: 0}
+  - {x: 0.65, y: -2, z: 0}
+  - {x: 3.75, y: -2, z: 0}

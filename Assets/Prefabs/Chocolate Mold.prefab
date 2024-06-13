@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 7870787088435957043}
   - component: {fileID: 2196793647487168062}
   m_Layer: 0
-  m_Name: Chocoalte Mold
+  m_Name: Chocolate Mold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

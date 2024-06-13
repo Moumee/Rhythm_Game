@@ -1594,7 +1594,7 @@ GameObject:
   - component: {fileID: 2100601289}
   - component: {fileID: 2100601291}
   m_Layer: 0
-  m_Name: IngreidientManager
+  m_Name: IngredientManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
