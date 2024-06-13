@@ -9,7 +9,8 @@ public class Mold : MonoBehaviour
     private bool isMoving = false;
     private int beatJumpCount;
 
-    [SerializeField] GameObject[] standPoints;
+    public PointSO pointData;
+    Vector3[] standPoints;
 
     private float speed = 10f;
     public bool isLive = false;
@@ -19,9 +20,10 @@ public class Mold : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        standPoints = pointData.moldPoints;
         isLive = true;
         beatJumpCount = 0;
-        //transform.position = standPoints[positionId].transform.position;
+        transform.position = standPoints[positionId];
     }
 
     private void Start()
@@ -34,7 +36,7 @@ public class Mold : MonoBehaviour
     {
         float step = speed * Time.deltaTime;
 
-        transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, step);
+        transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId], step);
 
 
 
@@ -59,7 +61,7 @@ public class Mold : MonoBehaviour
         {
             isLive = false;
             positionId = 0;
-            transform.position = standPoints[positionId].transform.position;
+            transform.position = standPoints[positionId];
         }
 
         else if (positionId < standPoints.Length - 1)
@@ -68,11 +70,7 @@ public class Mold : MonoBehaviour
         }
     }
 
-    public void SetPoint(GameObject[] standPoint)
-    {
-        this.standPoints = standPoint;
-        isLive = true;
-    }
+    
 
     
 
