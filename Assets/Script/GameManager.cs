@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    private List<int> MainChart = new List<int>();
+    private List<int> SpawnChart = new List<int>();
+    private List<int> JudgeChart = new List<int>();
+    
     private List<int> MusicChart = new List<int> 
     {
         0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -21,7 +23,7 @@ public class GameManager : MonoBehaviour
         0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0
     };
 
-    private List<int> DelayChart = new List<int> {0 };
+    private List<int> DelayChart = new List<int> {0,0};
    
     public GameObject[] notePoints;
 
@@ -42,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     public int Score = 0;
 
-    public int beatJump = 2;    //number of beats to move ingredients
+    public int beatJump = 4;    //number of beats to move ingredients
 
     void Awake()
     {
@@ -57,13 +59,17 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
+        
         interval = 60 / BPM;
-        for (int i = 0; i < beatJump; i++) 
+
+        SpawnChart.AddRange(DelayChart);
+        SpawnChart.AddRange(MusicChart);
+        for (int i = 0; i < beatJump*2; i++) 
         {
             DelayChart.Add(0);
         }
-        MainChart.AddRange(DelayChart);
-        MainChart.AddRange(MusicChart);
+        JudgeChart.AddRange(DelayChart);
+        JudgeChart.AddRange(MusicChart);
 
         StartCoroutine(NoteStartDelay());
     }
@@ -88,7 +94,7 @@ public class GameManager : MonoBehaviour
         {
             if (Time.time - timer >= interval)
             {
-                if (MainChart[count] == 1)
+                if (SpawnChart[count] == 1)
                 {
                     OnNote.Invoke();
                 }
@@ -96,7 +102,7 @@ public class GameManager : MonoBehaviour
 
                 ++count;
                 timer = Time.time;
-                if (MainChart[count - 1] == 0)
+                if (SpawnChart[count - 1] == 0)
                 {
                 }
 
@@ -108,7 +114,7 @@ public class GameManager : MonoBehaviour
 
                 if (inputError < interval / 2)
                 {
-                    if (inputError <= margin && MusicChart[count - 2] == 1)
+                    if (inputError <= margin && JudgeChart[count] == 1)
                     {
                         ++Score;
                         CatchNote.Invoke();
@@ -116,7 +122,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    if (inputError > interval - margin && MusicChart[count - 1] == 1)
+                    if (inputError > interval - margin && JudgeChart[count] == 1)
                     {
                         ++Score;
                         CatchNote.Invoke();
