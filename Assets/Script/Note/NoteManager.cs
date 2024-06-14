@@ -14,8 +14,6 @@ public class NoteManager : MonoBehaviour
     public Vector3 noteDirection;
 
     public List<GameObject> notesToCheck = new List<GameObject>();
-    [SerializeField] int bpm = 105;
-    int currentIndex = 0;
     private void Awake()
     {
         notePool = GetComponent<NotePool>();
@@ -25,6 +23,7 @@ public class NoteManager : MonoBehaviour
     public void EventNoteSpawn()
     {
         Note note = notePool.pool.Get();
+        notesToCheck.Add(note.gameObject);
         note.moveDirection = noteDirection;
     }
 
@@ -32,6 +31,25 @@ public class NoteManager : MonoBehaviour
     {
 
     }
+
+    public void NoteJudgeEffect(string name)
+    {
+        GameObject closestNote = null;
+        float minDistance = Mathf.Infinity;
+        foreach (GameObject note in notesToCheck)
+        {
+            float distance = Vector3.Distance(note.gameObject.transform.position, new Vector3(0, 9.3f, 0));
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closestNote = note;
+            }
+        }
+        closestNote.GetComponent<Note>().judged = true;
+        closestNote.GetComponent<Note>().animator.SetTrigger(name);
+    }
+
+
 
 
 

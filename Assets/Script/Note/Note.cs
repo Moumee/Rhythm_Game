@@ -11,33 +11,43 @@ public class Note : MonoBehaviour
     private float speed;
     Transform noteSpawnPoint;
     public Vector3 moveDirection;
+    public bool judged = false;
+    public Animator animator;
+    private NoteManager noteManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        noteSpawnPoint = FindObjectOfType<NoteManager>().noteSpawnPoint;
+        noteManager = FindObjectOfType<NoteManager>();
+        animator = GetComponent<Animator>();
+        noteSpawnPoint = noteManager.noteSpawnPoint;
         speed = 14/(4*60/GameManager.Instance.BPM)+2f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += moveDirection * speed * Time.deltaTime;
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("NoteEnd"))
+        if (!judged)
         {
-            FindObjectOfType<NoteManager>().notesToCheck.Remove(gameObject);
-            _pool.Release(this);
+            transform.position += moveDirection * speed * Time.deltaTime;
+            if (transform.position.x < -11)
+            {
+                noteManager.notesToCheck.Remove(this.gameObject);
+                _pool.Release(this);
+            }
         }
-        if (collision.CompareTag("NoteOut"))
-        {
-            FindObjectOfType<NoteManager>().notesToCheck.Remove(gameObject);
-        }
+        
+        
     }
+    
     public void SetPool(ObjectPool<Note> pool)
     {
         _pool = pool;
+    }
+
+    public void OnAnimationEnd()
+    {
+        noteManager.notesToCheck.Remove(this.gameObject);
+        _pool.Release(this);
     }
 }
