@@ -1450,7 +1450,7 @@ MonoBehaviour:
   BPM: 210
   count: 0
   startDelay: 0
-  bgmStartDelay: 1
+  bgmStartDelay: 1.4
   Score: 0
   beatJump: 2
 --- !u!4 &1750320641

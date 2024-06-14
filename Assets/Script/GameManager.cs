@@ -35,10 +35,15 @@ public class GameManager : MonoBehaviour
 
     public float BPM = 210;
     private float interval;     //time between beat that calculated  by BPM
-    private float margin = 0.342f;
-    private float inputError;
     private float timer;
-    private bool scoreChance = false;
+
+    //value for judge
+    private float margin_perfect = 0.114f;
+    private float margin_good = 0.342f;
+    private float scoreTimer;
+    private bool isScoreGet = true;
+    private float catchDelay = 0.228f;
+    private bool isCatchable = true;
 
     public int count = 0;       //count of called beats
 
@@ -64,10 +69,9 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
 
-        
 
+        isScoreGet = true;
         interval = 60 / BPM;
 
         SpawnChart.AddRange(DelayChart);
@@ -105,35 +109,38 @@ public class GameManager : MonoBehaviour
 
                 ++count;
                 timer = Time.time;
-                if (SpawnChart[count - 1] == 0)
+                if (JudgeChart[count + 1] == 1)
                 {
+                    scoreTimer = timer + interval - margin_good;
+
+                    isScoreGet = false;
                 }
 
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            
+            if (Input.GetKeyDown(KeyCode.Space)&&isCatchable)
             {
-                inputError = Time.time - timer;
-
-                if (inputError < interval / 2)
+                if(Time.time >= scoreTimer && Time.time < scoreTimer + margin_good*2 && !isScoreGet ) 
                 {
-                    if (inputError <= margin && JudgeChart[count] == 1)
+                    ++Score;
+                    CatchNote.Invoke();
+                    if (Time.time >= scoreTimer+margin_good-margin_perfect && Time.time < scoreTimer + margin_good + margin_perfect)
                     {
-                        ++Score;
-                        CatchNote.Invoke();
                         perfectText.SetTrigger("Perfect");
-                        
                     }
+                    else
+                    {
+                        goodText.SetTrigger("Good");
+                    }
+                    isScoreGet = true;
+                    
                 }
                 else
                 {
-                    if (inputError > interval - margin && JudgeChart[count] == 1)
-                    {
-                        ++Score;
-                        CatchNote.Invoke();
-                        goodText.SetTrigger("Good");
-                    }
+                    missText.SetTrigger("Miss");
                 }
+                StartCoroutine(CatchDelay());
             }
         }
         
@@ -159,5 +166,12 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(bgmStartDelay);
         AudioManager.Instance.PlayBGM(AudioManager.BGM.Hamster);
+    }
+
+    IEnumerator CatchDelay()
+    {
+        isCatchable = false;
+        yield return new WaitForSeconds(catchDelay);
+        isCatchable = true;
     }
 }
