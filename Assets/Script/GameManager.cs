@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnNote;
     public UnityEvent CatchNote;
 
+    public Animator missText;
+    public Animator goodText;
+    public Animator perfectText;
+
     public static GameManager Instance;
 
     private List<int> SpawnChart = new List<int>();
@@ -117,6 +121,7 @@ public class GameManager : MonoBehaviour
                     {
                         ++Score;
                         CatchNote.Invoke();
+                        perfectText.SetTrigger("Perfect");
                         
                     }
                 }
@@ -126,6 +131,7 @@ public class GameManager : MonoBehaviour
                     {
                         ++Score;
                         CatchNote.Invoke();
+                        goodText.SetTrigger("Good");
                     }
                 }
             }
