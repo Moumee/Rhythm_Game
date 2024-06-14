@@ -19,6 +19,8 @@ public class Ingredient : MonoBehaviour
     private float speed = 60f;
     public bool isLive = false;
     public bool isOnTime = false;
+
+    private float catchableTime;
     
     // Start is called before the first frame update
     void Awake()
@@ -26,7 +28,13 @@ public class Ingredient : MonoBehaviour
         animator = GetComponent<Animator>();
         isLive = true;
         beatJumpCount = 0;
+        //speed = 15/(60 / GameManager.Instance.BPM/3);
         //transform.position = standPoints[positionId].transform.position;
+        
+    }
+    private void OnEnable()
+    {
+        catchableTime = Time.time + 4 * (60 / GameManager.Instance.BPM);
     }
 
     private void Start()
@@ -41,7 +49,7 @@ public class Ingredient : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, step);
 
-        if (Mathf.Abs(standPoints[2].transform.position.x -transform.position.x)<=1.5f ) 
+        if (Time.time >= catchableTime- GameManager.Instance.margin_good && Time.time < catchableTime + GameManager.Instance.margin_good) 
         {
             isOnTime = true;
         }
@@ -106,4 +114,6 @@ public class Ingredient : MonoBehaviour
         animator.SetTrigger("Break");
         gameObject.transform.position += Vector3.down;
     }
+
+
 }

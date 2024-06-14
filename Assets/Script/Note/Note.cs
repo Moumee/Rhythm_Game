@@ -16,7 +16,7 @@ public class Note : MonoBehaviour
     void Start()
     {
         noteSpawnPoint = FindObjectOfType<NoteManager>().noteSpawnPoint;
-        speed = 14/(4*60/GameManager.Instance.BPM)+1f;
+        speed = 14/(4*60/GameManager.Instance.BPM)+2f;
     }
 
     // Update is called once per frame

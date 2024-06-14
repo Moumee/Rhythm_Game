@@ -39,8 +39,8 @@ public class GameManager : MonoBehaviour
 
     //value for judge
     private float margin_perfect = 0.114f;
-    private float margin_good = 0.342f;
-    private float scoreTimer;
+    public float margin_good = 0.342f;
+    public float scoreTimer;
     private bool isScoreGet = true;
     private float catchDelay = 0.228f;
     private bool isCatchable = true;
@@ -144,7 +144,7 @@ public class GameManager : MonoBehaviour
             }
         }
         
-        if (count == 155)
+        if (count == 152)
         {
             SceneManager.LoadSceneAsync(2);
         }

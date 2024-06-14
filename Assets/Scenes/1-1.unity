@@ -1448,6 +1448,7 @@ MonoBehaviour:
   notePoints: []
   noteSyncPoint: {fileID: 0}
   BPM: 210
+  margin_good: 0.342
   count: 0
   startDelay: 0
   bgmStartDelay: 1.4
