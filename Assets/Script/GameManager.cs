@@ -42,10 +42,10 @@ public class GameManager : MonoBehaviour
 
     //value for judge
     private float margin_perfect = 0.057f;
-    public float margin_good = 0.342f;
+    public float margin_good = 0.2f;
     public float scoreTimer;
     private bool isScoreGet = true;
-    private float catchDelay = 0.228f;
+    private float catchDelay = 0.5f;
     private bool isCatchable = true;
 
     public int count = 0;       //count of called beats
@@ -62,6 +62,10 @@ public class GameManager : MonoBehaviour
     //value for 1-2
     public GameObject BackGround;
     public bool isStage1_2 = false;
+    public GameObject IngredientManager;
+    public GameObject MoldManager;
+
+
 
     public NoteManager noteManager;
 

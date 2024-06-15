@@ -26,7 +26,7 @@ public class MoldManager : MonoBehaviour
 
     public void OnEvent_MoveMold()
     {
-        Debug.Log("f");
+        livingMolds = this.gameObject.GetComponentsInChildren<Mold>();
         foreach (Mold living in livingMolds)
         {
             if (living.isLive)

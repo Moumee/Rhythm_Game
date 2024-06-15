@@ -230,7 +230,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1065760593103605150}
   - {fileID: 2863826833976680205}
@@ -302,6 +302,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionId: 0
-  pointData: {fileID: 11400000, guid: c93895c5bb6e1cd47855372f6565d8c9, type: 2}
+  standPoints: []
   isLive: 0
   isOnTime: 0

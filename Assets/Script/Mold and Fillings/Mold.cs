@@ -54,10 +54,11 @@ public class Mold : MonoBehaviour
     
     public void Event_BeatCall()
     {
+        
         beatJumpCount++;
-        if (beatJumpCount > GameManager.Instance.beatJump - 1)
+        if (beatJumpCount > GameManager.Instance.beatJump*2 - 1)
         {
-
+            
             beatJumpCount = 0;
             SetNext();
         }
@@ -66,18 +67,21 @@ public class Mold : MonoBehaviour
 
     private void SetNext()
     {
+        
         if (positionId == standPoints.Length - 1)
         {
             isLive = false;
             positionId = 0;
             transform.position = standPoints[positionId].transform.position;
             _pool.Release(this);
+            
         }
 
         else if (positionId < standPoints.Length - 1)
         {
             ++positionId;
         }
+        Debug.Log("f");
     }
 
     public void SetPoint(GameObject[] standPoint)
