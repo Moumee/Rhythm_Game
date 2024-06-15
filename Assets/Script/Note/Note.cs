@@ -18,6 +18,8 @@ public class Note : MonoBehaviour
     private float catchableTime;
     public bool isOnTime;
 
+    private int serialnum;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +31,10 @@ public class Note : MonoBehaviour
 
     private void OnEnable()
     {
+        float interval = 60 / GameManager.Instance.BPM;
         judged = false;
-        catchableTime = Time.time + 4 * (60 / GameManager.Instance.BPM);
+        catchableTime = Time.time + 4 * interval;
+        serialnum = GameManager.Instance.noteNumber;
     }
 
     // Update is called once per frame
@@ -46,8 +50,8 @@ public class Note : MonoBehaviour
             }
         }
 
-        if (Time.time >= catchableTime - GameManager.Instance.margin_good && Time.time < catchableTime + GameManager.Instance.margin_good)
-        {
+        if (serialnum == GameManager.Instance.judgeNumber)
+        { 
             isOnTime = true;
         }
         else

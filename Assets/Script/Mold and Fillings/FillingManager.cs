@@ -36,4 +36,17 @@ public class FillingManager : MonoBehaviour
                 break;
         }
     }
+
+    public void Event_FillMiss()
+    {
+        Debug.Log("d");
+        if (callNumber != 2)
+        {
+            callNumber++;
+        }
+        else if (callNumber == 2)
+        {
+            callNumber = 0;
+        }
+    }
 }

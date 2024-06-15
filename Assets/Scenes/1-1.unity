@@ -1847,6 +1847,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  FistMiss:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 665091818}
+        m_TargetAssemblyTypeName: Punch, Assembly-CSharp
+        m_MethodName: OnEvent_Miss
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnBeat_2:
     m_PersistentCalls:
       m_Calls:
@@ -1910,6 +1925,21 @@ MonoBehaviour:
       - m_Target: {fileID: 195566974}
         m_TargetAssemblyTypeName: FillingManager, Assembly-CSharp
         m_MethodName: FillingFall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  FillMiss:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 195566974}
+        m_TargetAssemblyTypeName: FillingManager, Assembly-CSharp
+        m_MethodName: Event_FillMiss
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

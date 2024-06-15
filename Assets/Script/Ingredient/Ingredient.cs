@@ -23,7 +23,9 @@ public class Ingredient : MonoBehaviour
     public bool isOnTime = false;
 
     private float catchableTime;
-    
+
+    private int serialnum;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,6 +40,7 @@ public class Ingredient : MonoBehaviour
     private void OnEnable()
     {
         catchableTime = Time.time + 4 * (60 / GameManager.Instance.BPM);
+        serialnum = GameManager.Instance.noteNumber;
     }
 
     private void Start()
@@ -52,7 +55,7 @@ public class Ingredient : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, step);
 
-        if (Time.time >= catchableTime- GameManager.Instance.margin_good && Time.time < catchableTime + GameManager.Instance.margin_good) 
+        if (serialnum == GameManager.Instance.judgeNumber) 
         {
             isOnTime = true;
         }
