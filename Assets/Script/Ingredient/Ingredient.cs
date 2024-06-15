@@ -18,6 +18,7 @@ public class Ingredient : MonoBehaviour
 
     [SerializeField] GameObject[] standPoints;
 
+    
     private float speed = 60f;
     public bool isLive = false;
     public bool isOnTime = false;
@@ -115,6 +116,21 @@ public class Ingredient : MonoBehaviour
     public void Break()
     {
         animator.SetTrigger("Break");
+        int index = Random.Range(0, 3);
+        switch (index)
+        {
+            case 0:
+                AudioManager.Instance.PlaySFX(AudioManager.SFX.Crack1);
+                break;
+            case 1:
+                AudioManager.Instance.PlaySFX(AudioManager.SFX.Crack2);
+                break;
+            case 2:
+                AudioManager.Instance.PlaySFX(AudioManager.SFX.Crack3);
+                break;
+            default:
+                break;
+        }
         gameObject.transform.position += Vector3.down;
     }
 
