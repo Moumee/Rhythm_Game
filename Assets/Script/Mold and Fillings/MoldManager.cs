@@ -26,6 +26,14 @@ public class MoldManager : MonoBehaviour
         {
             tempMold = moldPool.pool.Get();
             tempMold.SetPoint(standPoint);
+            livingMolds = this.gameObject.GetComponentsInChildren<Mold>();
+            foreach (Mold living in livingMolds)
+            {
+                if (living.isLive)
+                {
+                    living.SetNext();
+                }
+            }
         }
         spawnInterval++;
         if (spawnInterval > 3)
@@ -38,27 +46,20 @@ public class MoldManager : MonoBehaviour
 
     public void OnEvent_MoveMold()
     {
-        livingMolds = this.gameObject.GetComponentsInChildren<Mold>();
-        foreach (Mold living in livingMolds)
-        {
-            if (living.isLive)
-            {
-                living.Event_BeatCall();
-            }
-        }
+        
     }
 
-    public void OnEvent_CatchNote()
-    {
-        livingMolds = this.gameObject.GetComponentsInChildren<Mold>();
-        foreach (Mold living in livingMolds)
-        {
-            if (living.isLive)
-            {
-                //living.SetNext();
-            }
-        }
-    }
+    //public void OnEvent_CatchNote()
+    //{
+    //    livingMolds = this.gameObject.GetComponentsInChildren<Mold>();
+    //    foreach (Mold living in livingMolds)
+    //    {
+    //        if (living.isLive)
+    //        {
+    //            //living.SetNext();
+    //        }
+    //    }
+    //}
 
     public void EventCatchNote()
     {

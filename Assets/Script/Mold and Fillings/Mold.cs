@@ -15,7 +15,7 @@ public class Mold : MonoBehaviour
 
     [SerializeField] GameObject[] standPoints;
 
-    private float speed = 60f;
+    private float speed = 100f;
     public bool isLive = false;
     public bool isOnTime = false;
 
@@ -51,21 +51,30 @@ public class Mold : MonoBehaviour
     }
 
 
-    
+    private void OnEnable()
+    {
+        //SetNext();
+    }
+
     public void Event_BeatCall()
     {
-
+        beatJumpCount++;
+        if (beatJumpCount >= 6)
+        {
+            SetNext();
+            beatJumpCount = 0;
+        }
         //beatJumpCount++;
         //if (beatJumpCount > GameManager.Instance.beatJump * 2 - 1)
         //{
 
         //    beatJumpCount = 0;
-        //    SetNext();
+        //    
         //}
 
     }
 
-    private void SetNext()
+    public void SetNext()
     {
         
         if (positionId == standPoints.Length - 1)
@@ -81,7 +90,6 @@ public class Mold : MonoBehaviour
         {
             ++positionId;
         }
-        Debug.Log("f");
     }
 
     public void SetPoint(GameObject[] standPoint)
