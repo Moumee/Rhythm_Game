@@ -201,8 +201,8 @@ public class GameManager : MonoBehaviour
                 {
                     missText.SetTrigger("Miss");
                     noteManager.NoteJudgeEffect("Miss");
+                    StartCoroutine(CatchDelay());
                 }
-                StartCoroutine(CatchDelay());
             }
         }
 
