@@ -7,7 +7,7 @@ public class NotePool : MonoBehaviour
 {
     public ObjectPool<Note> pool;
     [SerializeField] Note note;
-    Transform noteSpawnPoint;
+    public Transform noteSpawnPoint;
 
     private void Awake()
     {

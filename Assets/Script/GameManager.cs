@@ -56,6 +56,10 @@ public class GameManager : MonoBehaviour
 
     public int beatJump = 4;    //number of beats to move ingredients
 
+    //value for 1-2
+    public GameObject BackGround;
+    public bool isStage1_2 = false;
+
     public NoteManager noteManager;
 
     void Awake()
@@ -150,9 +154,14 @@ public class GameManager : MonoBehaviour
             }
         }
         
-        if (count == 152)
+        if (count >= 152)
         {
+            isStage1_2 = true;
             //SceneManager.LoadSceneAsync(2);
+            if(BackGround.transform.position.x >= -19.2f)
+            {
+                BackGround.transform.position += Vector3.left * 30f*Time.deltaTime;
+            }
         }
 
         

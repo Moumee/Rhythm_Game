@@ -11,7 +11,10 @@ public class NoteManager : MonoBehaviour
     public Transform noteCenterPoint;
     [SerializeField] GameObject[] Notes;
     private NotePool notePool;
+    public Transform secondSpawnPoint;
     public Vector3 noteDirection;
+
+    private bool stageCheck = false;
 
     public List<GameObject> notesToCheck = new List<GameObject>();
     private void Awake()
@@ -19,6 +22,16 @@ public class NoteManager : MonoBehaviour
         notePool = GetComponent<NotePool>();
     }
 
+
+    private void Update()
+    {
+        if (GameManager.Instance.isStage1_2 && !stageCheck)
+        {
+            noteDirection = Vector3.down;
+
+            stageCheck = true;
+        }
+    }
 
     public void EventNoteSpawn()
     {
