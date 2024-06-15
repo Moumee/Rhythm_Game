@@ -6,7 +6,7 @@ public class FillingManager : MonoBehaviour
 {
     [SerializeField] GameObject fillingPrefab;
     public Transform[] fillingStartPos;
-    public int callNumber = 0;
+    public int callNumber;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,15 +25,12 @@ public class FillingManager : MonoBehaviour
         {
             case 0:
                 Instantiate(fillingPrefab);
-                callNumber++;
                 break;
             case 1:
                 Instantiate(fillingPrefab);
-                callNumber++;
                 break;
             case 2:
                 Instantiate(fillingPrefab);
-                callNumber = 0;
                 break;
             default:
                 break;

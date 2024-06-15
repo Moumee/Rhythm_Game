@@ -33,6 +33,15 @@ public class Filling : MonoBehaviour
     {
         if (collision.CompareTag("Hole"))
         {
+            if (fillingManager.callNumber != 2)
+            {
+                fillingManager.callNumber++;
+            }
+            else if (fillingManager.callNumber == 2)
+            {
+                fillingManager.callNumber = 0;
+            }
+            
             collision.GetComponent<SpriteRenderer>().enabled = true;
             Destroy(gameObject);
         }
