@@ -11,7 +11,7 @@ public class Filling : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        index = Random.Range(0, pointData.fillingSpawnPoints.Length);
+        index = FindObjectOfType<FillingManager>().callNumber;
         transform.position = pointData.fillingSpawnPoints[index];
     }
 
