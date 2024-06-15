@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     private float timer;
 
     //value for judge
-    private float margin_perfect = 0.114f;
+    private float margin_perfect = 0.057f;
     public float margin_good = 0.342f;
     public float scoreTimer;
     private bool isScoreGet = true;
@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
 
     public int beatJump = 4;    //number of beats to move ingredients
 
+    public NoteManager noteManager;
+
     void Awake()
     {
         
@@ -69,7 +71,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-
+        noteManager = FindObjectOfType<NoteManager>();  
 
         isScoreGet = true;
         interval = 60 / BPM;
@@ -128,10 +130,13 @@ public class GameManager : MonoBehaviour
                     if (Time.time >= scoreTimer+margin_good-margin_perfect && Time.time < scoreTimer + margin_good + margin_perfect)
                     {
                         perfectText.SetTrigger("Perfect");
+                        noteManager.NoteJudgeEffect("Perfect");
+
                     }
                     else
                     {
                         goodText.SetTrigger("Good");
+                        noteManager.NoteJudgeEffect("Good");
                     }
                     isScoreGet = true;
                     
@@ -139,6 +144,7 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     missText.SetTrigger("Miss");
+                    noteManager.NoteJudgeEffect("Miss");
                 }
                 StartCoroutine(CatchDelay());
             }
