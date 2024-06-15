@@ -32,14 +32,15 @@ public class PauseMenu : MonoBehaviour
 
     public void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPlaying)
             {
+                isPlaying = false;
                 AudioManager.Instance.bgmSource.Pause();
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
-                isPlaying = false;
             }
             else if (!isPlaying)
             {
@@ -49,16 +50,24 @@ public class PauseMenu : MonoBehaviour
                 }
                 else if (!optionMenu.activeInHierarchy)
                 {
+                    isPlaying = true;
                     AudioManager.Instance.bgmSource.UnPause();
                     pauseMenu.SetActive(false);
                     optionMenu.SetActive(false);
                     Time.timeScale = 1f;
-                    isPlaying = true;
                 }
                 
             }
-            
-            
+        }
+        if (isPlaying)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else if (!isPlaying)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
 
     }

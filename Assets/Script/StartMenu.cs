@@ -86,6 +86,7 @@ public class StartMenu : MonoBehaviour
     private void PlayHamsterVideo(VideoPlayer vp)
     {
         hamsterVideoPlayer.Play();
+        
     }
 
     
@@ -93,11 +94,14 @@ public class StartMenu : MonoBehaviour
 
     IEnumerator Delay()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         yield return new WaitForSeconds(0.5f);
         forkAnimator.SetTrigger("Clicked");
         knifeAnimator.SetTrigger("Clicked");
         yield return new WaitForSeconds(1f);
         AudioManager.Instance.bgmSource.Stop();
+        
         introVideoPlayer.Play();
     }
 }
