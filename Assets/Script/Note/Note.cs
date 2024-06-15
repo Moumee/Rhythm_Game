@@ -15,6 +15,9 @@ public class Note : MonoBehaviour
     public Animator animator;
     private NoteManager noteManager;
 
+    private float catchableTime;
+    public bool isOnTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +30,7 @@ public class Note : MonoBehaviour
     private void OnEnable()
     {
         judged = false;
+        catchableTime = Time.time + 4 * (60 / GameManager.Instance.BPM);
     }
 
     // Update is called once per frame
@@ -41,8 +45,15 @@ public class Note : MonoBehaviour
                 _pool.Release(this);
             }
         }
-        
-        
+
+        if (Time.time >= catchableTime - GameManager.Instance.margin_good && Time.time < catchableTime + GameManager.Instance.margin_good)
+        {
+            isOnTime = true;
+        }
+        else
+        {
+            isOnTime = false;
+        }
     }
     
     public void SetPool(ObjectPool<Note> pool)

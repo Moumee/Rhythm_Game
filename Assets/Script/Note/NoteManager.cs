@@ -47,19 +47,15 @@ public class NoteManager : MonoBehaviour
 
     public void NoteJudgeEffect(string name)
     {
-        GameObject closestNote = null;
-        float minDistance = Mathf.Infinity;
         foreach (GameObject note in notesToCheck)
         {
-            float distance = Vector3.Distance(note.gameObject.transform.position, new Vector3(0, 9.3f, 0));
-            if (distance < minDistance)
+            Note tempNote = note.GetComponent<Note>();
+            if (tempNote.isOnTime)
             {
-                minDistance = distance;
-                closestNote = note;
+                tempNote.judged = true;
+                tempNote.animator.SetTrigger(name);
             }
         }
-        closestNote.GetComponent<Note>().judged = true;
-        closestNote.GetComponent<Note>().animator.SetTrigger(name);
     }
 
 
