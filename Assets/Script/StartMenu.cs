@@ -62,6 +62,8 @@ public class StartMenu : MonoBehaviour
         if (hamsterVideoPlayer.frame == 2)
         {
             introVideoPlayer.gameObject.SetActive(false);
+            AudioManager.Instance.PlayBGM(AudioManager.BGM.Restaurant);
+            AudioManager.Instance.PlaySFX(AudioManager.SFX.Bell);
         }
         if (hamsterVideoFinshed)
         {
@@ -69,6 +71,7 @@ public class StartMenu : MonoBehaviour
             continueTextObj.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, alpha);
             if (Input.anyKeyDown)
             {
+                AudioManager.Instance.bgmSource.Stop();
                 SceneManager.LoadSceneAsync("1-1");
             }
         }
