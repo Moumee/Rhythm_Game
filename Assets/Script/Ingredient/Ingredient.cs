@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -10,7 +9,7 @@ public class Ingredient : MonoBehaviour
     private ObjectPool<Ingredient> _pool;
     [SerializeField] int positionId = 0;
     Animator animator;
-    [SerializeField] AnimatorController[] contollers;
+    [SerializeField] RuntimeAnimatorController[] contollers;
     private string currentState;
     private int beatJumpCount;
 
