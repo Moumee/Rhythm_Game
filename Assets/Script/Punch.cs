@@ -5,8 +5,7 @@ using UnityEngine;
 public class Punch : MonoBehaviour
 {
     float punchDuration = 0.1f;
-    float upDuration = 0.2f;
-    float elapsedTime = 0f;
+    float upDuration = 0.2f;   
     float missDuration = 0.05f;
     Vector3 startPos;
     Animator animator;
@@ -29,41 +28,44 @@ public class Punch : MonoBehaviour
 
     IEnumerator PunchSuccess()
     {
-        elapsedTime = 0f;
+        float elapsedTime = 0f;
         while (elapsedTime < punchDuration)
         {
             elapsedTime += Time.deltaTime;
             transform.position = Vector3.Lerp(startPos, startPos + new Vector3(0, -8.5f, 0), elapsedTime / punchDuration);
             yield return null;
         }
+        transform.position = startPos + new Vector3(0, -8.5f, 0);
         animator.SetTrigger("Punch");
         yield return new WaitForSeconds(0.2f);
-        elapsedTime = 0f;
-        while (elapsedTime < upDuration)
+        float secondElapsedTime = 0f;
+        while (secondElapsedTime < upDuration)
         {
-            elapsedTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos + new Vector3(0, -8.5f, 0), startPos, elapsedTime / upDuration);
+            secondElapsedTime += Time.deltaTime;
+            transform.position = Vector3.Lerp(startPos + new Vector3(0, -8.5f, 0), startPos, secondElapsedTime / upDuration);
             yield return null;
         }
-
+        transform.position = startPos;
     }
 
     IEnumerator PunchMiss()
     {
-        elapsedTime = 0f;
+        float elapsedTime = 0f;
         while (elapsedTime < missDuration)
         {
             elapsedTime += Time.deltaTime;
             transform.position = Vector3.Lerp(startPos, startPos + new Vector3(0, -3f, 0), elapsedTime / missDuration);
             yield return null;
         }
+        transform.position = startPos + new Vector3(0, -3f, 0);
         yield return new WaitForSeconds(0.2f);
-        elapsedTime = 0f;
-        while (elapsedTime < missDuration)
+        float secondElapseTime = 0f;
+        while (secondElapseTime < missDuration)
         {
-            elapsedTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos + new Vector3(0, -3f, 0), startPos, elapsedTime / missDuration * 1.5f);
+            secondElapseTime += Time.deltaTime;
+            transform.position = Vector3.Lerp(startPos + new Vector3(0, -3f, 0), startPos, secondElapseTime / missDuration * 1.5f);
             yield return null;
         }
+        transform.position = startPos;
     }
 }
