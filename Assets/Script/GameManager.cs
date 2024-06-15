@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     private float timer;
 
     //value for judge
-    private float margin_perfect = 0.114f;
+    private float margin_perfect = 0.057f;
     public float margin_good = 0.342f;
     public float scoreTimer;
     private bool isScoreGet = true;
