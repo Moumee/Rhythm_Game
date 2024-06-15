@@ -7,7 +7,7 @@ public class Filling : MonoBehaviour
     [SerializeField] PointSO pointData;
     int index;
     float elapsedTime = 0f;
-    float fallDuration = 0.5f;
+    float fallDuration = 0.1f;
     // Start is called before the first frame update
     void Start()
     {
