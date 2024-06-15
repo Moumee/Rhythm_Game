@@ -22,54 +22,50 @@ public class MoldManager : MonoBehaviour
 
     public void OnEvent_SpawnMold()
     {
-
-        if (spawnInterval == 0)
-        {
-            tempMold = moldPool.pool.Get();
-            tempMold.SetPoint(standPoint);
-            livingMolds = this.gameObject.GetComponentsInChildren<Mold>();
-            foreach (Mold living in livingMolds)
-            {
-                if (living.isLive)
-                {
-                    living.SetNext();
-                }
-            }
-        }
+        Debug.Log("mold");
         spawnInterval++;
-        if (spawnInterval > 2)
+        if (spawnInterval == 1)
+        {
+            StartCoroutine(MoldDelay());
+        }
+        if (spawnInterval > 3) 
         {
             spawnInterval = 0;
         }
-
         
+
+
+
     }
 
     public void OnEvent_MoveMold()
     {
+        if (spawnInterval == 0)
+        {
+            
+        }
         
     }
 
-    //public void OnEvent_CatchNote()
-    //{
-    //    livingMolds = this.gameObject.GetComponentsInChildren<Mold>();
-    //    foreach (Mold living in livingMolds)
-    //    {
-    //        if (living.isLive)
-    //        {
-    //            //living.SetNext();
-    //        }
-    //    }
-    //}
-
     public void EventCatchNote()
     {
-        livingMolds2 = this.gameObject.GetComponentsInChildren<Mold>();
-        foreach (Mold living in livingMolds2)
+        //spawnInterval++;
+    }
+
+    IEnumerator MoldDelay()
+    {
+        yield return new WaitForSeconds(4 * (60 / GameManager.Instance.BPM-0.5f));
+        tempMold = moldPool.pool.Get();
+        tempMold.SetPoint(standPoint);
+        spawnInterval++;
+        livingMolds = this.gameObject.GetComponentsInChildren<Mold>();
+        foreach (Mold living in livingMolds)
         {
-            if (living.isOnTime)
+            if (living.isLive)
             {
+                living.SetNext();
             }
         }
     }
 }
+    

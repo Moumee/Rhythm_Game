@@ -58,19 +58,7 @@ public class Mold : MonoBehaviour
 
     public void Event_BeatCall()
     {
-        beatJumpCount++;
-        if (beatJumpCount >= 6)
-        {
-            SetNext();
-            beatJumpCount = 0;
-        }
-        //beatJumpCount++;
-        //if (beatJumpCount > GameManager.Instance.beatJump * 2 - 1)
-        //{
-
-        //    beatJumpCount = 0;
-        //    
-        //}
+        
 
     }
 

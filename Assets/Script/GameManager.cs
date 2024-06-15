@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public UnityEvent OnBeat_2;
     public UnityEvent OnNote_2;
+    public UnityEvent OnNote_forMold;
     public UnityEvent CatchNote_2;
 
     public Animator missText;
@@ -124,6 +125,7 @@ public class GameManager : MonoBehaviour
                     if (isStage1_2)
                     {
                         OnNote_2.Invoke();
+                        Debug.Log("call");
                     }
                     else
                     {
@@ -150,6 +152,12 @@ public class GameManager : MonoBehaviour
                     scoreTimer = timer + interval - margin_good;
 
                     isScoreGet = false;
+
+                    if (isStage1_2)
+                    {
+                        OnNote_forMold.Invoke();
+                        Debug.Log("call");
+                    }
                 }
 
             }
@@ -191,7 +199,7 @@ public class GameManager : MonoBehaviour
             }
         }
         
-        if (count >= 20)//152)
+        if (count >= 0)//152)
         {
             isStage1_2 = true;
             //SceneManager.LoadSceneAsync(2);
@@ -199,12 +207,6 @@ public class GameManager : MonoBehaviour
             {
                 BackGround.transform.position += Vector3.left * 30f*Time.deltaTime;
             }
-        }
-
-        if (isStage1_2)
-        {
-            ingredientManager.SetActive(false);
-            moldManager.SetActive(true);
         }
 
         
