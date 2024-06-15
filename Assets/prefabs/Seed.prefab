@@ -120,7 +120,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionId: 0
+  contollers:
+  - {fileID: 9100000, guid: 2d1a50be41b77b246a8d1d69c30679b8, type: 2}
+  - {fileID: 9100000, guid: 6cf3a42af39e44841ae1c702a3cccd02, type: 2}
   standPoints: []
-  speed: 10
   isLive: 0
   isOnTime: 0
