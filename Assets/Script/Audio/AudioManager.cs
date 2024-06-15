@@ -13,12 +13,21 @@ public class AudioManager : MonoBehaviour
     public enum SFX
     {
         Click,
-        Start
+        Start,
+        Crack1,
+        Crack2,
+        Crack3,
+        Bell,
+        Success,
+        SuccessEffect,
+        Fail,
+
     }
 
     public enum BGM
     {
         MainMenu,
+        Restaurant,
         Hamster
     }
 
