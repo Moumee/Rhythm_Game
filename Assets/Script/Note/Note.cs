@@ -24,6 +24,11 @@ public class Note : MonoBehaviour
         speed = 14/(4*60/GameManager.Instance.BPM)+2f;
     }
 
+    private void OnEnable()
+    {
+        judged = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
