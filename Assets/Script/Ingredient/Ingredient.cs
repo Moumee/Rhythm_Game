@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-using static UnityEngine.GridBrushBase;
-using UnityEngine.Pool;
-using TreeEditor;
 using UnityEditor.Animations;
+using UnityEngine;
+using UnityEngine.Pool;
+
 
 public class Ingredient : MonoBehaviour
 {
