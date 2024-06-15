@@ -17,8 +17,22 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 8cbcd76730d740544a1e43769ec305c6, type: 3}
   - sfx: 1
     audioClip: {fileID: 8300000, guid: eb30b8b647fd1ac4b9d847f469182878, type: 3}
+  - sfx: 2
+    audioClip: {fileID: 8300000, guid: 95bf9b1e88d0b96419914b2bcd68e94c, type: 3}
+  - sfx: 3
+    audioClip: {fileID: 8300000, guid: 1e54dbf6c1aa4e14fa04ecf89e37f134, type: 3}
+  - sfx: 4
+    audioClip: {fileID: 8300000, guid: cdb811df73885f140a3fe6d189fe809a, type: 3}
+  - sfx: 5
+    audioClip: {fileID: 8300000, guid: 0fc9628f89def3841a45f05603b36496, type: 3}
+  - sfx: 6
+    audioClip: {fileID: 8300000, guid: d6aa37b0b98c1f44bb984c530b27b0be, type: 3}
+  - sfx: 7
+    audioClip: {fileID: 8300000, guid: 08d930de4fe7b7647a51cea79a34e56f, type: 3}
   bgmAudioClipArray:
   - bgm: 0
     audioClip: {fileID: 8300000, guid: 9b87790bba68e1647bfba1673b5e3d24, type: 3}
   - bgm: 1
+    audioClip: {fileID: 8300000, guid: 371483bd01d0c7142b052e9a53b99bcc, type: 3}
+  - bgm: 2
     audioClip: {fileID: 8300000, guid: 183e4b0d8d027844cbfd4696c24211e2, type: 3}

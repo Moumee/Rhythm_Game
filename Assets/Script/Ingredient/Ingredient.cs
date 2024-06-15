@@ -5,12 +5,14 @@ using UnityEngine;
 using static UnityEngine.GridBrushBase;
 using UnityEngine.Pool;
 using TreeEditor;
+using UnityEditor.Animations;
 
 public class Ingredient : MonoBehaviour
 {
     private ObjectPool<Ingredient> _pool;
     [SerializeField] int positionId = 0;
     Animator animator;
+    [SerializeField] AnimatorController[] contollers;
     private string currentState;
     private int beatJumpCount;
 
@@ -26,6 +28,7 @@ public class Ingredient : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
+        animator.runtimeAnimatorController = contollers[Random.Range(0, contollers.Length)];
         isLive = true;
         beatJumpCount = 0;
         //speed = 15/(60 / GameManager.Instance.BPM/3);
