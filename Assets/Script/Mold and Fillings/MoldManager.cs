@@ -13,7 +13,7 @@ public class MoldManager : MonoBehaviour
 
     [SerializeField] Mold tempMold;
 
-    private int spawnInterval = 0;
+    public int spawnInterval = 0;
 
     private void Awake()
     {
@@ -22,6 +22,7 @@ public class MoldManager : MonoBehaviour
 
     public void OnEvent_SpawnMold()
     {
+
         if (spawnInterval == 0)
         {
             tempMold = moldPool.pool.Get();
@@ -36,7 +37,7 @@ public class MoldManager : MonoBehaviour
             }
         }
         spawnInterval++;
-        if (spawnInterval > 3)
+        if (spawnInterval > 2)
         {
             spawnInterval = 0;
         }
