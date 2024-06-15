@@ -5,6 +5,7 @@ using UnityEngine;
 public class FillingManager : MonoBehaviour
 {
     [SerializeField] GameObject fillingPrefab;
+    public Transform[] fillingStartPos;
     public int callNumber = 0;
     // Start is called before the first frame update
     void Start()

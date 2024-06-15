@@ -6,6 +6,5 @@ using UnityEngine;
 public class PointSO : ScriptableObject
 {
     public Vector3[] moldPoints;
-    public Vector3[] fillingSpawnPoints;
-    public Vector3[] fillingLandPoints;
+    
 }

@@ -39,7 +39,7 @@ public class Note : MonoBehaviour
         if (!judged)
         {
             transform.position += moveDirection * speed * Time.deltaTime;
-            if (transform.position.x < -11)
+            if (transform.position.x < -11 || transform.position.y < -7)
             {
                 noteManager.notesToCheck.Remove(this.gameObject);
                 _pool.Release(this);

@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Filling : MonoBehaviour
 {
-    [SerializeField] PointSO pointData;
+    FillingManager fillingManager;
     int index;
     float elapsedTime = 0f;
     float fallDuration = 0.1f;
+    Vector3 startPos;
     // Start is called before the first frame update
     void Start()
     {
+        fillingManager = FindObjectOfType<FillingManager>();
         index = FindObjectOfType<FillingManager>().callNumber;
-        transform.position = pointData.fillingSpawnPoints[index];
+        transform.position = fillingManager.fillingStartPos[index].position;
+        startPos = fillingManager.fillingStartPos[index].position;
+
     }
 
     // Update is called once per frame
@@ -22,7 +26,15 @@ public class Filling : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
         }
-        if (transform.position == pointData.fillingLandPoints[index]) Destroy(this.gameObject);
-        transform.position = Vector3.Lerp(pointData.fillingSpawnPoints[index], pointData.fillingLandPoints[index], elapsedTime / fallDuration);
+        transform.position = Vector3.Lerp(startPos, startPos + new Vector3(0, -10f, 0), elapsedTime / fallDuration);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Hole"))
+        {
+            collision.GetComponent<SpriteRenderer>().enabled = true;
+            Destroy(gameObject);
+        }
     }
 }

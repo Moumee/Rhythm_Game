@@ -12,7 +12,8 @@ public class Mold : MonoBehaviour
     [SerializeField] int positionId = 0;
     private string currentState;
     private int beatJumpCount;
-
+    [SerializeField]
+    SpriteRenderer[] fillingRenderers;
     [SerializeField] GameObject[] standPoints;
 
     private float speed = 100f;
@@ -53,6 +54,7 @@ public class Mold : MonoBehaviour
 
     private void OnEnable()
     {
+
         //SetNext();
     }
 
@@ -91,6 +93,13 @@ public class Mold : MonoBehaviour
         _pool = pool;
     }
 
+    private void OnDisable()
+    {
+        foreach (var renderer in fillingRenderers)
+        {
+            renderer.enabled = false;
+        }
+    }
 
-    
+
 }
