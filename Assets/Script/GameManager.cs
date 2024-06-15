@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
             }
         }
         
-        if (count >= 5)//152)
+        if (count >= 20)//152)
         {
             isStage1_2 = true;
             //SceneManager.LoadSceneAsync(2);

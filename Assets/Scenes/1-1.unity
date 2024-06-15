@@ -1801,6 +1801,8 @@ MonoBehaviour:
   beatJump: 2
   BackGround: {fileID: 1183634728}
   isStage1_2: 0
+  IngredientManager: {fileID: 2100601288}
+  MoldManager: {fileID: 96987478}
   noteManager: {fileID: 0}
 --- !u!4 &1750320641
 Transform:
