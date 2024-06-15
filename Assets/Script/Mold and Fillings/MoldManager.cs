@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class MoldManager : MonoBehaviour
 
     [SerializeField] Mold tempMold;
 
+    private int spawnInterval = 0;
+
     private void Awake()
     {
         moldPool = GetComponent<MoldPool>();
@@ -19,9 +22,18 @@ public class MoldManager : MonoBehaviour
 
     public void OnEvent_SpawnMold()
     {
+        if (spawnInterval == 0)
+        {
+            tempMold = moldPool.pool.Get();
+            tempMold.SetPoint(standPoint);
+        }
+        spawnInterval++;
+        if (spawnInterval > 3)
+        {
+            spawnInterval = 0;
+        }
+
         
-        tempMold = moldPool.pool.Get();
-        tempMold.SetPoint(standPoint);
     }
 
     public void OnEvent_MoveMold()

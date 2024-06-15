@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnNote;
     public UnityEvent CatchNote;
 
+    public UnityEvent OnBeat_2;
+    public UnityEvent OnNote_2;
+    public UnityEvent CatchNote_2;
+
     public Animator missText;
     public Animator goodText;
     public Animator perfectText;
@@ -62,8 +66,8 @@ public class GameManager : MonoBehaviour
     //value for 1-2
     public GameObject BackGround;
     public bool isStage1_2 = false;
-    public GameObject IngredientManager;
-    public GameObject MoldManager;
+    public GameObject ingredientManager;
+    public GameObject moldManager;
 
 
 
@@ -83,6 +87,8 @@ public class GameManager : MonoBehaviour
         }
 
         noteManager = FindObjectOfType<NoteManager>();  
+        //ingredientManager = FindObjectOfType<IngredientManager>();  
+        //moldManager = FindObjectOfType<MoldManager>();  
 
         isScoreGet = true;
         interval = 60 / BPM;
@@ -115,9 +121,26 @@ public class GameManager : MonoBehaviour
             {
                 if (SpawnChart[count] == 1)
                 {
-                    OnNote.Invoke();
+                    if (isStage1_2)
+                    {
+                        OnNote_2.Invoke();
+                    }
+                    else
+                    {
+                        OnNote.Invoke();
+                    }
+                    
+
                 }
-                OnBeat.Invoke();
+                if (isStage1_2)
+                {
+                    OnBeat_2.Invoke();
+                }
+                else
+                {
+                    OnBeat.Invoke();
+                }
+                
                 
 
                 ++count;
@@ -137,7 +160,14 @@ public class GameManager : MonoBehaviour
                 if(Time.time >= scoreTimer && Time.time < scoreTimer + margin_good*2 && !isScoreGet ) 
                 {
                     ++Score;
-                    CatchNote.Invoke();
+                    if (isStage1_2)
+                    {
+                        CatchNote_2.Invoke();
+                    }
+                    else
+                    {
+                        CatchNote.Invoke();
+                    }
                     if (Time.time >= scoreTimer+margin_good-margin_perfect && Time.time < scoreTimer + margin_good + margin_perfect)
                     {
                         perfectText.SetTrigger("Perfect");
@@ -169,6 +199,12 @@ public class GameManager : MonoBehaviour
             {
                 BackGround.transform.position += Vector3.left * 30f*Time.deltaTime;
             }
+        }
+
+        if (isStage1_2)
+        {
+            ingredientManager.SetActive(false);
+            moldManager.SetActive(true);
         }
 
         
