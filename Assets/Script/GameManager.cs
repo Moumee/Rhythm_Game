@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
         
         if (count == 152)
         {
-            SceneManager.LoadSceneAsync(2);
+            //SceneManager.LoadSceneAsync(2);
         }
 
         
