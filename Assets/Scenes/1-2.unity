@@ -159,7 +159,6 @@ MonoBehaviour:
   Notes: []
   noteDirection: {x: 0, y: -1, z: 0}
   notesToCheck: []
-  bpm: 105
 --- !u!4 &140664322
 Transform:
   m_ObjectHideFlags: 0

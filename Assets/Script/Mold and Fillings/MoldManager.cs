@@ -19,12 +19,14 @@ public class MoldManager : MonoBehaviour
 
     public void OnEvent_SpawnMold()
     {
+        
         tempMold = moldPool.pool.Get();
         tempMold.SetPoint(standPoint);
     }
 
     public void OnEvent_MoveMold()
     {
+        Debug.Log("f");
         foreach (Mold living in livingMolds)
         {
             if (living.isLive)
