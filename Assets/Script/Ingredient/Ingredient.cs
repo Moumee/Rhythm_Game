@@ -8,7 +8,7 @@ public class Ingredient : MonoBehaviour
 {
     public ObjectPool<Ingredient> _pool;
     [SerializeField] int positionId = 0;
-    Animator animator;
+    public Animator animator;
     [SerializeField] RuntimeAnimatorController[] contollers;
     private string currentState;
     private int beatJumpCount;
@@ -19,6 +19,7 @@ public class Ingredient : MonoBehaviour
     private float speed = 60f;
     public bool isLive = false;
     public bool isOnTime = false;
+    public bool cracked = false;
 
     private float catchableTime;
 
@@ -37,6 +38,7 @@ public class Ingredient : MonoBehaviour
     }
     private void OnEnable()
     {
+        cracked = false;
         catchableTime = Time.time + 4 * (60 / GameManager.Instance.BPM);
         serialnum = GameManager.Instance.noteNumber;
     }
@@ -52,6 +54,24 @@ public class Ingredient : MonoBehaviour
         float step = speed * Time.deltaTime;
 
         transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, step);
+
+        if (transform.position.x < standPoints[0].transform.position.x && transform.position.x > standPoints[1].transform.position.x)
+        {
+            animator.SetTrigger("Move");
+        }
+        else if (transform.position.x == standPoints[1].transform.position.x && !cracked)
+        {
+            animator.SetTrigger("Shake");
+        }
+        else if (transform.position.x == standPoints[2].transform.position.x && !cracked)
+        {
+            animator.SetTrigger("Scared");
+
+        }
+        else if (transform.position.x < standPoints[2].transform.position.x && !cracked)
+        {
+            animator.SetTrigger("Happy");
+        }
 
         if (serialnum == GameManager.Instance.judgeNumber) 
         {
@@ -120,7 +140,8 @@ public class Ingredient : MonoBehaviour
 
     public void Break()
     {
-        animator.SetTrigger("Break");
+        cracked = true;
+        animator.SetTrigger("Crack");
         int index = Random.Range(0, 3);
         switch (index)
         {

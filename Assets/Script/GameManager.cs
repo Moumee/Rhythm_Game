@@ -254,7 +254,7 @@ public class GameManager : MonoBehaviour
             stageEnd = true;
             AudioManager.Instance.bgmSource.Stop();
             videoStarted = true;
-            if (Score > 75 * 5)
+            if (Score > 75 * 7.5)
             {
                 StartCoroutine(videoLoopLength(successPlayer));
 
@@ -287,8 +287,10 @@ public class GameManager : MonoBehaviour
         {
             AudioManager.Instance.PlaySFX(AudioManager.SFX.Fail);
         }
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(4f);
         vp.Stop();
+        AudioManager.Instance.sfxSource.Stop();
+        AudioManager.Instance.effectSource.Stop();
         if (vp == successPlayer)
             SceneManager.LoadSceneAsync("HamsterHappy");
         else if (vp == failedPlayer)
