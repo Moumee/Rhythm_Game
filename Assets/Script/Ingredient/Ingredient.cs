@@ -8,7 +8,7 @@ public class Ingredient : MonoBehaviour
 {
     public ObjectPool<Ingredient> _pool;
     [SerializeField] int positionId = 0;
-    Animator animator;
+    public Animator animator;
     [SerializeField] RuntimeAnimatorController[] contollers;
     private string currentState;
     private int beatJumpCount;
@@ -19,6 +19,7 @@ public class Ingredient : MonoBehaviour
     private float speed = 60f;
     public bool isLive = false;
     public bool isOnTime = false;
+    public bool cracked = false;
 
     private float catchableTime;
 
@@ -39,6 +40,7 @@ public class Ingredient : MonoBehaviour
     {
         catchableTime = Time.time + 4 * (60 / GameManager.Instance.BPM);
         serialnum = GameManager.Instance.noteNumber;
+        cracked = false;
     }
 
     private void Start()
@@ -53,6 +55,24 @@ public class Ingredient : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, step);
 
+        if (transform.position.x < standPoints[0].transform.position.x && transform.position.x > standPoints[1].transform.position.x)
+        {
+            animator.SetTrigger("Move");
+        }
+        else if (transform.position.x == standPoints[1].transform.position.x && !cracked)
+        {
+            animator.SetTrigger("Shake");
+        }
+        else if (transform.position.x == standPoints[2].transform.position.x && !cracked)
+        {
+            animator.SetTrigger("Scared");
+            
+        }
+        else if (transform.position.x < standPoints[2].transform.position.x && !cracked)
+        {
+            animator.SetTrigger("Happy");
+        }
+
         if (serialnum == GameManager.Instance.judgeNumber) 
         {
             isOnTime = true;
@@ -66,6 +86,8 @@ public class Ingredient : MonoBehaviour
         {
             _pool.Release(this);
         }
+
+        
         
     }
 
@@ -102,7 +124,6 @@ public class Ingredient : MonoBehaviour
         else if (positionId < standPoints.Length - 1)
         {
             ++positionId;
-            animator.SetTrigger("Move");
         }
     }
 
@@ -120,7 +141,8 @@ public class Ingredient : MonoBehaviour
 
     public void Break()
     {
-        animator.SetTrigger("Break");
+        cracked = true;
+        animator.SetTrigger("Crack");
         int index = Random.Range(0, 3);
         switch (index)
         {
