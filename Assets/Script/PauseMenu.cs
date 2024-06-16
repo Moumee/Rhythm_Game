@@ -22,8 +22,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OnRestartButtonClicked()
     {
-        AudioManager.Instance.bgmSource.Stop();
-        SceneManager.LoadSceneAsync("1-1");
+
     }
 
     public void OnPauseButtonClicked()

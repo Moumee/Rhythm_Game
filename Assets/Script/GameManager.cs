@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnNote_forMold;
     public UnityEvent CatchNote_2;
     public UnityEvent FillMiss;
-    
 
     public Animator missText;
     public Animator goodText;
@@ -96,6 +95,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -134,10 +134,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (BeatStart && !stageEnd)
-        {
-
-            
-
+        {   
             if (Time.time - timer >= interval)
             {
                 if (SpawnChart[count] == 1)
@@ -162,8 +159,8 @@ public class GameManager : MonoBehaviour
                 {
                     OnBeat.Invoke();
                 }
-
-
+                
+                
 
                 ++count;
                 timer = Time.time;
@@ -249,7 +246,7 @@ public class GameManager : MonoBehaviour
             stageEnd = true;
             AudioManager.Instance.bgmSource.Stop();
             videoStarted = true;
-            if (Score > 75 * 7.5)
+            if (Score > 75 * 5)
             {
                 StartCoroutine(videoLoopLength(successPlayer));
 
@@ -282,10 +279,8 @@ public class GameManager : MonoBehaviour
         {
             AudioManager.Instance.PlaySFX(AudioManager.SFX.Fail);
         }
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(6f);
         vp.Stop();
-        AudioManager.Instance.sfxSource.Stop();
-        AudioManager.Instance.effectSource.Stop();
         if (vp == successPlayer)
             SceneManager.LoadSceneAsync("HamsterHappy");
         else if (vp == failedPlayer)
