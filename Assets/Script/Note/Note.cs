@@ -26,7 +26,7 @@ public class Note : MonoBehaviour
         noteManager = FindObjectOfType<NoteManager>();
         animator = GetComponent<Animator>();
         noteSpawnPoint = noteManager.noteSpawnPoint;
-        speed = 14/(4*60/GameManager.Instance.BPM)+1.44f;
+        speed = 14/(4*60/GameManager.Instance.BPM)/2+0.88f;
     }
 
     private void OnEnable()
@@ -34,7 +34,7 @@ public class Note : MonoBehaviour
         float interval = 60 / GameManager.Instance.BPM;
         judged = false;
         catchableTime = Time.time + 4 * interval;
-        serialnum = GameManager.Instance.noteNumber;
+        serialnum = GameManager.Instance.noteNumber2;
     }
 
     // Update is called once per frame

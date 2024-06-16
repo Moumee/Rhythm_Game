@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public UnityEvent CatchNote_2;
     public UnityEvent FillMiss;
 
+    public UnityEvent OnNote_3;
+
     public Animator missText;
     public Animator goodText;
     public Animator perfectText;
@@ -28,8 +30,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    public int noteNumber;
-    public int judgeNumber;
+    public int noteNumber = 0;
+    public int noteNumber2 = 0;
+    public int judgeNumber = 0;
 
     public VideoPlayer successPlayer;
     public VideoPlayer failedPlayer;
@@ -61,11 +64,11 @@ public class GameManager : MonoBehaviour
 
     bool stageEnd = false;  
     //value for judge
-    private float margin_perfect = 0.016f;
-    public float margin_good = 0.032f;
+    private float margin_perfect = 0.056f;
+    public float margin_good = 0.042f;
     public float scoreTimer;
     private bool isScoreGet = true;
-    private float catchDelay = 0.19f;
+    private float catchDelay = 0.1f;
     private bool isCatchable = true;
 
     public int count = 0;       //count of called beats
@@ -108,7 +111,7 @@ public class GameManager : MonoBehaviour
 
         isScoreGet = true;
         interval = 60 / BPM;
-        margin_good = 0.064f;
+        margin_good = 0.114f;
 
         SpawnChart.AddRange(DelayChart);
         SpawnChart.AddRange(MusicChart);
@@ -148,8 +151,6 @@ public class GameManager : MonoBehaviour
                     {
                         OnNote.Invoke();
                     }
-                    
-
                 }
                 if (isStage1_2)
                 {
@@ -159,15 +160,20 @@ public class GameManager : MonoBehaviour
                 {
                     OnBeat.Invoke();
                 }
-                
-                
 
-                ++count;
+                if (SpawnChart[count+4] == 1)
+                {
+                    noteNumber2++;
+                    OnNote_3.Invoke();
+
+                }
+
+                    ++count;
                 timer = Time.time;
                 if (JudgeChart[count + 1] == 1)
                 {
                     judgeNumber++;
-                    scoreTimer = timer + interval+ 0.114f;
+                    scoreTimer = timer + interval - margin_good;
 
                     isScoreGet = false;
 
@@ -176,6 +182,8 @@ public class GameManager : MonoBehaviour
                         OnNote_forMold.Invoke();
                     }
                 }
+
+                
 
             }
 
