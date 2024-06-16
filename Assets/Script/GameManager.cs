@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +30,11 @@ public class GameManager : MonoBehaviour
     public int noteNumber;
     public int judgeNumber;
 
+    public VideoPlayer successPlayer;
+    public VideoPlayer failedPlayer;
+    public RawImage videoHolder;
+    bool videoStarted = false;
+
     private List<int> SpawnChart = new List<int>();
     private List<int> JudgeChart = new List<int>();
     
@@ -51,6 +58,7 @@ public class GameManager : MonoBehaviour
     private float interval;     //time between beat that calculated  by BPM
     private float timer;
 
+    bool stageEnd = false;  
     //value for judge
     private float margin_perfect = 0.027f;
     public float margin_good = 0.054f;
@@ -123,8 +131,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (BeatStart)
-        {
+        if (BeatStart && !stageEnd)
+        {   
             if (Time.time - timer >= interval)
             {
                 if (SpawnChart[count] == 1)
@@ -170,7 +178,7 @@ public class GameManager : MonoBehaviour
             }
 
             
-            if (Input.GetKeyDown(KeyCode.Space)&&isCatchable)
+            if (Input.GetKeyDown(KeyCode.DownArrow)&&isCatchable)
             {
                 if(Time.time >= scoreTimer && Time.time < scoreTimer + margin_good*2 && !isScoreGet ) 
                 {
@@ -187,12 +195,14 @@ public class GameManager : MonoBehaviour
                     {
                         perfectText.SetTrigger("Perfect");
                         noteManager.NoteJudgeEffect("Perfect");
+                        Score += 10;
 
                     }
                     else
                     {
                         goodText.SetTrigger("Good");
                         noteManager.NoteJudgeEffect("Good");
+                        Score += 5;
                     }
                     isScoreGet = true;
                     
@@ -206,7 +216,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Time.time > scoreTimer + 2*margin_good && !isScoreGet)
+        if (Time.time > scoreTimer + 2*margin_good && !isScoreGet && !stageEnd)
         {
             isScoreGet = true;
             missText.SetTrigger("Miss");
@@ -227,9 +237,45 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (count >= SpawnChart.Count && !videoStarted)
+        {
+            stageEnd = true;
+            AudioManager.Instance.bgmSource.Stop();
+            videoStarted = true;
+            if (Score > 75 * 5)
+            {
+                StartCoroutine(videoLoopLength(successPlayer));
+
+            }
+            else
+            {
+                StartCoroutine(videoLoopLength(failedPlayer));
+
+            }
+        }
         
+        if (successPlayer.frame == 2 || failedPlayer.frame == 2)
+        {
+            videoHolder.color = new Color(1, 1, 1, 1);
+            
+        }
     }
 
+    IEnumerator videoLoopLength(VideoPlayer vp)
+    {
+        vp.Play();
+        if (vp == successPlayer)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.SFX.Success);
+            AudioManager.Instance.PlaySFX(AudioManager.SFX.SuccessEffect);
+        }
+        else if (vp == failedPlayer)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.SFX.Fail);
+        }
+        yield return new WaitForSeconds(6f);
+        vp.Stop();
+    }
     
     IEnumerator NoteStartDelay()
     {

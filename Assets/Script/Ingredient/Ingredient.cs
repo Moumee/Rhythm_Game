@@ -6,7 +6,7 @@ using UnityEngine.Pool;
 
 public class Ingredient : MonoBehaviour
 {
-    private ObjectPool<Ingredient> _pool;
+    public ObjectPool<Ingredient> _pool;
     [SerializeField] int positionId = 0;
     Animator animator;
     [SerializeField] RuntimeAnimatorController[] contollers;
@@ -60,6 +60,11 @@ public class Ingredient : MonoBehaviour
         else
         {
             isOnTime = false;
+        }
+
+        if (GameManager.Instance.count >= 151)
+        {
+            _pool.Release(this);
         }
         
     }

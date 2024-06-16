@@ -28,6 +28,9 @@ public class PauseMenu : MonoBehaviour
     public void OnPauseButtonClicked()
     {
         Time.timeScale = 1f;
+        AudioManager.Instance.bgmSource.UnPause();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void Update()

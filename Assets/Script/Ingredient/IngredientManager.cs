@@ -11,7 +11,7 @@ public class IngredientManager : MonoBehaviour
     private Ingredient[] livingIngres;
     private Ingredient[] livingIngres2;
 
-    [SerializeField] Ingredient tempingre;
+    public Ingredient tempingre;
 
     private void Awake()
     {

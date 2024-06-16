@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     SoundSO soundSO;
     public AudioSource bgmSource;
     public AudioSource sfxSource;
+    public AudioSource effectSource;
 
     public enum SFX
     {
@@ -64,7 +65,17 @@ public class AudioManager : MonoBehaviour
     }
     public void PlaySFX(SFX sfx)
     {
-        sfxSource.PlayOneShot(GetSFXClip(sfx));
+        if (sfx == SFX.SuccessEffect)
+        {
+            effectSource.clip = GetSFXClip(sfx);
+            effectSource.Play();    
+        }
+        else
+        {
+            sfxSource.clip = GetSFXClip(sfx);
+            sfxSource.Play();
+        }
+
     }
 
     private AudioClip GetSFXClip(SFX sfx)
