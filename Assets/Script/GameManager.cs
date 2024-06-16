@@ -259,6 +259,8 @@ public class GameManager : MonoBehaviour
             videoHolder.color = new Color(1, 1, 1, 1);
             
         }
+
+        
     }
 
     IEnumerator videoLoopLength(VideoPlayer vp)
@@ -275,6 +277,10 @@ public class GameManager : MonoBehaviour
         }
         yield return new WaitForSeconds(6f);
         vp.Stop();
+        if (vp == successPlayer)
+            SceneManager.LoadSceneAsync("HamsterHappy");
+        else if (vp == failedPlayer)
+            SceneManager.LoadSceneAsync("HamsterAngry");
     }
     
     IEnumerator NoteStartDelay()
