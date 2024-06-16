@@ -61,8 +61,8 @@ public class GameManager : MonoBehaviour
 
     bool stageEnd = false;  
     //value for judge
-    private float margin_perfect = 0.027f;
-    public float margin_good = 0.054f;
+    private float margin_perfect = 0.016f;
+    public float margin_good = 0.032f;
     public float scoreTimer;
     private bool isScoreGet = true;
     private float catchDelay = 0.19f;
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
 
         isScoreGet = true;
         interval = 60 / BPM;
-        margin_good = 0.114f;
+        margin_good = 0.064f;
 
         SpawnChart.AddRange(DelayChart);
         SpawnChart.AddRange(MusicChart);
@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
                 if (JudgeChart[count + 1] == 1)
                 {
                     judgeNumber++;
-                    scoreTimer = timer + interval - margin_good;
+                    scoreTimer = timer + interval+ 0.114f;
 
                     isScoreGet = false;
 

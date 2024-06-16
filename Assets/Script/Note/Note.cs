@@ -26,7 +26,7 @@ public class Note : MonoBehaviour
         noteManager = FindObjectOfType<NoteManager>();
         animator = GetComponent<Animator>();
         noteSpawnPoint = noteManager.noteSpawnPoint;
-        speed = 14/(4*60/GameManager.Instance.BPM)+2f;
+        speed = 14/(4*60/GameManager.Instance.BPM)+1.44f;
     }
 
     private void OnEnable()
