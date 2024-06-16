@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public Animator missText;
     public Animator goodText;
     public Animator perfectText;
+    public GameObject textEffectObj;
 
     public static GameManager Instance;
 
@@ -123,6 +124,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(BGMStartDelay());
         }
         StartCoroutine(NoteStartDelay());
+
     }
 
     
@@ -230,11 +232,13 @@ public class GameManager : MonoBehaviour
         if (count >= 151)
         {
             isStage1_2 = true;
+
             //SceneManager.LoadSceneAsync(2);
             if(BackGround.transform.position.x >= -19.2f)
             {
                 BackGround.transform.position += Vector3.left * 30f*Time.deltaTime;
             }
+            textEffectObj.transform.position = new Vector3(-7.2f, -3.6f, 0f);
         }
 
         if (count >= SpawnChart.Count && !videoStarted)
