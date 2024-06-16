@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/1-2.unity
     guid: f7e420bbaec234a418bf7828021d9a14
+  - enabled: 1
+    path: Assets/Scenes/HamsterHappy.unity
+    guid: 6e81518623732fa42b07b6d9cd038391
+  - enabled: 1
+    path: Assets/Scenes/HamsterAngry.unity
+    guid: fe5334cb355eb7e41b0054cfcf2ca39f
   m_configObjects: {}
