@@ -261,7 +261,7 @@ public class GameManager : MonoBehaviour
             textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
         }
 
-        if (count == SpawnChart.Count - 1)
+        if (count == SpawnChart.Count - 1 && !stageEnd)
         {
             stageEnd = true;
             AudioManager.Instance.bgmSource.Stop();

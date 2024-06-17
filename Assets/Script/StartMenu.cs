@@ -115,6 +115,7 @@ public class StartMenu : MonoBehaviour
         yield return new WaitForSeconds(1f);
         pauseController.SetActive(true);
         hamsterVideoPlayer.Play();
+        yield return new WaitForSeconds(0.2f);
         fade.GetComponent<Animator>().SetTrigger("FadeIn");
         yield return new WaitForSeconds(1f);
         fade.SetActive(false);
