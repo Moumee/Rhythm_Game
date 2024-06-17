@@ -51,6 +51,7 @@ public class Ingredient : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!FindObjectOfType<PauseMenu>().isPlaying) { return;}
         float step = speed * Time.deltaTime;
 
         transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, step);

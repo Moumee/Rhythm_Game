@@ -63,8 +63,8 @@ public class GameManager : MonoBehaviour
     public GameObject noteSyncPoint;
 
     public float BPM = 210;
-    private double interval;     //time between beat that calculated  by BPM
-    private double timer;
+    private float interval;     //time between beat that calculated  by BPM
+    private float timer;
 
     bool stageEnd = false;
     bool skipAvailable = false;
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
     //value for judge
     private float margin_perfect = 0.056f;
     public float margin_good = 0.042f;
-    public double scoreTimer;
+    public float scoreTimer;
     private bool isScoreGet = true;
     private float catchDelay = 0.1f;
     private bool isCatchable = true;
@@ -144,9 +144,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!FindObjectOfType<PauseMenu>().isPlaying)
+        {
+            return;
+        }
         if (BeatStart && !stageEnd)
         {   
-            if (AudioSettings.dspTime - timer >= interval)
+            if ((float)AudioSettings.dspTime - timer >= interval)
             {
                 if (SpawnChart[count] == 1)
                 {
@@ -181,7 +185,7 @@ public class GameManager : MonoBehaviour
                 
 
                     ++count;
-                timer = AudioSettings.dspTime;
+                timer = (float)AudioSettings.dspTime;
                 if (JudgeChart[count + 1] == 1)
                 {
                     judgeNumber++;
@@ -202,7 +206,7 @@ public class GameManager : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.DownArrow)&&isCatchable)
             {
-                if(AudioSettings.dspTime >= scoreTimer && AudioSettings.dspTime < scoreTimer + margin_good*2 && !isScoreGet ) 
+                if((float)AudioSettings.dspTime >= scoreTimer && (float)AudioSettings.dspTime < scoreTimer + margin_good*2 && !isScoreGet ) 
                 {
                     ++Score;
                     if (isStage1_2)
@@ -213,7 +217,7 @@ public class GameManager : MonoBehaviour
                     {
                         CatchNote.Invoke();
                     }
-                    if (AudioSettings.dspTime >= scoreTimer+margin_good-margin_perfect && AudioSettings.dspTime <= scoreTimer + margin_good + margin_perfect)
+                    if ((float)AudioSettings.dspTime >= scoreTimer+margin_good-margin_perfect && (float)AudioSettings.dspTime <= scoreTimer + margin_good + margin_perfect)
                     {
                         perfectText.SetTrigger("Perfect");
                         noteManager.NoteJudgeEffect("Perfect");
@@ -238,7 +242,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (AudioSettings.dspTime > scoreTimer + 2*margin_good && !isScoreGet && !stageEnd)
+        if ((float)AudioSettings.dspTime > scoreTimer + 2*margin_good && !isScoreGet && !stageEnd)
         {
             isScoreGet = true;
             missText.SetTrigger("Miss");
@@ -292,7 +296,7 @@ public class GameManager : MonoBehaviour
     IEnumerator NoteStartDelay()
     {
         yield return new WaitForSeconds(startDelay);
-        timer = AudioSettings.dspTime;
+        timer = (float)AudioSettings.dspTime;
         BeatStart = true;
     }
 

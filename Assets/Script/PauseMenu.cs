@@ -8,11 +8,12 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject optionMenu;
     [SerializeField] GameObject pauseMenu;
-    bool isPlaying = true;
+    public bool isPlaying = true;
     public void OnHomeButtonClicked()
     {
         Time.timeScale = 1f;
         SceneManager.LoadSceneAsync(0);
+        isPlaying = true;
     }
 
     public void OnSettingButtonClicked()
@@ -25,6 +26,7 @@ public class PauseMenu : MonoBehaviour
         AudioManager.Instance.bgmSource.Stop();
         Time.timeScale = 1f;
         SceneManager.LoadSceneAsync("1-1");
+        isPlaying = true;
 
     }
 
@@ -34,6 +36,7 @@ public class PauseMenu : MonoBehaviour
         AudioManager.Instance.bgmSource.UnPause();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        isPlaying = true;
     }
 
     public void Update()
