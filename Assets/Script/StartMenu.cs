@@ -19,6 +19,8 @@ public class StartMenu : MonoBehaviour
     [SerializeField] GameObject pauseController;
     [SerializeField] GameObject fade;
     [SerializeField] SceneController sceneController;
+    [SerializeField] SceneFade sceneFade;
+    AsyncOperation asyncOperation;
     private float fadeSpeed = 1f;
     bool hamsterVideoFinshed = false;
     float offset = 0;
@@ -28,6 +30,8 @@ public class StartMenu : MonoBehaviour
     {
         introVideoPlayer.loopPointReached += PlayHamsterVideo;
         hamsterVideoPlayer.loopPointReached += HamsterVideoFinished;
+
+        
     }
 
     private void HamsterVideoFinished(VideoPlayer source)
@@ -40,7 +44,7 @@ public class StartMenu : MonoBehaviour
     private void Start()
     {
         AudioManager.Instance.PlayBGM(AudioManager.BGM.MainMenu);
-
+        StartCoroutine(PreLoadScene());
     }
 
     public void Play()
@@ -74,7 +78,8 @@ public class StartMenu : MonoBehaviour
                 if (!Input.GetKey(KeyCode.Escape))
                 {
                     AudioManager.Instance.bgmSource.Stop();
-                    sceneController.LoadScene("1-1");
+                    sceneFade.FadeOutCoroutine(1f);
+                    asyncOperation.allowSceneActivation = true;
                 }
             }
         }
@@ -90,6 +95,17 @@ public class StartMenu : MonoBehaviour
     {
         StartCoroutine(Fade());
         
+    }
+
+    IEnumerator PreLoadScene()
+    {
+        asyncOperation = SceneManager.LoadSceneAsync("1-1");
+        asyncOperation.allowSceneActivation = false;
+
+        while(!asyncOperation.isDone)
+        {
+            yield return null;
+        }
     }
 
     IEnumerator Fade()

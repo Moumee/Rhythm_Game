@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.Video;
+using AsyncOperation = UnityEngine.AsyncOperation;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,14 +38,10 @@ public class GameManager : MonoBehaviour
     public int noteNumber2 = 0;
     public int judgeNumber = 0;
 
-    public VideoPlayer successPlayer;
-    public VideoPlayer failedPlayer;
-    public RawImage videoHolder;
-    bool videoStarted = false;
+    
     public GameObject anyKeyObj;
 
     [SerializeField] SceneController sceneController;
-    [SerializeField] GameObject fade;
 
     private List<int> SpawnChart = new List<int>();
     private List<int> JudgeChart = new List<int>();
@@ -65,8 +63,8 @@ public class GameManager : MonoBehaviour
     public GameObject noteSyncPoint;
 
     public float BPM = 210;
-    private float interval;     //time between beat that calculated  by BPM
-    private float timer;
+    private double interval;     //time between beat that calculated  by BPM
+    private double timer;
 
     bool stageEnd = false;
     bool skipAvailable = false;
@@ -75,7 +73,7 @@ public class GameManager : MonoBehaviour
     //value for judge
     private float margin_perfect = 0.056f;
     public float margin_good = 0.042f;
-    public float scoreTimer;
+    public double scoreTimer;
     private bool isScoreGet = true;
     private float catchDelay = 0.1f;
     private bool isCatchable = true;
@@ -100,7 +98,9 @@ public class GameManager : MonoBehaviour
 
 
     public NoteManager noteManager;
-
+    AsyncOperation successScene;
+    AsyncOperation failScene;
+    
     void Awake()
     {
         
@@ -146,7 +146,7 @@ public class GameManager : MonoBehaviour
     {
         if (BeatStart && !stageEnd)
         {   
-            if (Time.time - timer >= interval)
+            if (AudioSettings.dspTime - timer >= interval)
             {
                 if (SpawnChart[count] == 1)
                 {
@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
                 
 
                     ++count;
-                timer = Time.time;
+                timer = AudioSettings.dspTime;
                 if (JudgeChart[count + 1] == 1)
                 {
                     judgeNumber++;
@@ -202,7 +202,7 @@ public class GameManager : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.DownArrow)&&isCatchable)
             {
-                if(Time.time >= scoreTimer && Time.time < scoreTimer + margin_good*2 && !isScoreGet ) 
+                if(AudioSettings.dspTime >= scoreTimer && AudioSettings.dspTime < scoreTimer + margin_good*2 && !isScoreGet ) 
                 {
                     ++Score;
                     if (isStage1_2)
@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
                     {
                         CatchNote.Invoke();
                     }
-                    if (Time.time >= scoreTimer+margin_good-margin_perfect && Time.time <= scoreTimer + margin_good + margin_perfect)
+                    if (AudioSettings.dspTime >= scoreTimer+margin_good-margin_perfect && AudioSettings.dspTime <= scoreTimer + margin_good + margin_perfect)
                     {
                         perfectText.SetTrigger("Perfect");
                         noteManager.NoteJudgeEffect("Perfect");
@@ -238,7 +238,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Time.time > scoreTimer + 2*margin_good && !isScoreGet && !stageEnd)
+        if (AudioSettings.dspTime > scoreTimer + 2*margin_good && !isScoreGet && !stageEnd)
         {
             isScoreGet = true;
             missText.SetTrigger("Miss");
@@ -261,85 +261,38 @@ public class GameManager : MonoBehaviour
             textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
         }
 
-        if (count >= SpawnChart.Count - 1 && !videoStarted)
+        if (count >= SpawnChart.Count - 1)
         {
             stageEnd = true;
             AudioManager.Instance.bgmSource.Stop();
-            videoStarted = true;
             if (Score > 75 * 7.5)
             {
-                success = true;
-                StartCoroutine(FadeOut(successPlayer));
-
+                sceneController.LoadScene("HamsterHappy");
             }
             else
             {
-                fail = true;
-                StartCoroutine(FadeOut(failedPlayer));
+                sceneController.LoadScene("HamsterAngry");
+
 
             }
         }
         
-        if (successPlayer.frame == 2 || failedPlayer.frame == 2)
-        {
-            
-            
-        }
-
-        if (skipAvailable && Input.anyKey)
-        {
-            if (!Input.GetKey(KeyCode.Escape))
-            {
-                AudioManager.Instance.sfxSource.Stop();
-                AudioManager.Instance.effectSource.Stop();
-                if (success)
-                    sceneController.LoadScene("HamsterHappy");
-                else if (fail)
-                    sceneController.LoadScene("HamsterAngry");
-            }
-            
-        }
-
-        
     }
 
-    IEnumerator FadeOut(VideoPlayer vp)
-    {
-        fade.SetActive(true);
-        fade.GetComponent<Animator>().SetTrigger("FadeOut");
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(videoLoopLength(vp));
-        fade.GetComponent<Animator>().SetTrigger("FadeIn");
-        yield return new WaitForSeconds(1f);
-        fade.SetActive(false);
+    //IEnumerator PreLoadScene(string sceneName)
+    //{
+    //    asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+    //    asyncOperation.allowSceneActivation = false;
 
-    }
-
-
-    IEnumerator videoLoopLength(VideoPlayer vp)
-    {
-        vp.Play();
-        videoHolder.color = new Color(1, 1, 1, 1);
-        if (vp == successPlayer)
-        {
-            AudioManager.Instance.PlaySFX(AudioManager.SFX.Success);
-            AudioManager.Instance.PlaySFX(AudioManager.SFX.SuccessEffect);
-        }
-        else if (vp == failedPlayer)
-        {
-            AudioManager.Instance.PlaySFX(AudioManager.SFX.Fail);
-        }
-        yield return new WaitForSeconds(4f);
-        skipAvailable = true;
-        anyKeyObj.SetActive(true);
-
-        
-    }
-    
+    //    while (!asyncOperation.isDone)
+    //    {
+    //        yield return null;
+    //    }
+    //}
     IEnumerator NoteStartDelay()
     {
         yield return new WaitForSeconds(startDelay);
-        timer = Time.time;
+        timer = AudioSettings.dspTime;
         BeatStart = true;
     }
 

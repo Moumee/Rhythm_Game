@@ -725,6 +725,7 @@ MonoBehaviour:
   pauseController: {fileID: 963443195}
   fade: {fileID: 1866940053}
   sceneController: {fileID: 1016056852753519800}
+  sceneFade: {fileID: 1466148658}
 --- !u!114 &279382087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2114,6 +2115,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02779f09146343046a8c1e7c8dfb72d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1466148658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4732781490427319601, guid: f86de78c0b76a41409843a36943dae09, type: 3}
+  m_PrefabInstance: {fileID: 1016056852753519799}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4854b61741b1c9e4898ab2e7de9eb74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1472658244

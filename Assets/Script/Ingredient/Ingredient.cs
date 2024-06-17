@@ -21,7 +21,7 @@ public class Ingredient : MonoBehaviour
     public bool isOnTime = false;
     public bool cracked = false;
 
-    private float catchableTime;
+    private double catchableTime;
 
     private int serialnum;
 
@@ -39,7 +39,7 @@ public class Ingredient : MonoBehaviour
     private void OnEnable()
     {
         cracked = false;
-        catchableTime = Time.time + 4 * (60 / GameManager.Instance.BPM);
+        catchableTime = AudioSettings.dspTime + 4 * (60 / GameManager.Instance.BPM);
         serialnum = GameManager.Instance.noteNumber;
     }
 
