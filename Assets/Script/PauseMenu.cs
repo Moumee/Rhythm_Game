@@ -34,6 +34,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         AudioManager.Instance.bgmSource.UnPause();
+        pauseMenu.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         isPlaying = true;
