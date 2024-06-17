@@ -16,6 +16,9 @@ public class StartMenu : MonoBehaviour
     [SerializeField] Animator forkAnimator;
     [SerializeField] Animator knifeAnimator;
     [SerializeField] GameObject continueTextObj;
+    [SerializeField] GameObject pauseController;
+    [SerializeField] GameObject fade;
+    [SerializeField] SceneController sceneController;
     private float fadeSpeed = 1f;
     bool hamsterVideoFinshed = false;
     float offset = 0;
@@ -55,10 +58,7 @@ public class StartMenu : MonoBehaviour
                 UI.SetActive(false);
             }
         }
-        if (introVideoPlayer.isPlaying && Input.GetKeyDown(KeyCode.Escape))
-        {
-            introVideoPlayer.time = introVideoPlayer.length;
-        }
+        
         if (hamsterVideoPlayer.frame == 2)
         {
             introVideoPlayer.gameObject.SetActive(false);
@@ -69,10 +69,13 @@ public class StartMenu : MonoBehaviour
         {
             alpha = Mathf.PingPong(Time.time * fadeSpeed + offset, 0.8f);
             continueTextObj.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, alpha);
-            if (Input.anyKeyDown)
+            if (Input.anyKey)
             {
-                AudioManager.Instance.bgmSource.Stop();
-                SceneManager.LoadSceneAsync("1-1");
+                if (!Input.GetKey(KeyCode.Escape))
+                {
+                    AudioManager.Instance.bgmSource.Stop();
+                    sceneController.LoadScene("1-1");
+                }
             }
         }
 
@@ -85,9 +88,22 @@ public class StartMenu : MonoBehaviour
 
     private void PlayHamsterVideo(VideoPlayer vp)
     {
-        hamsterVideoPlayer.Play();
+        StartCoroutine(Fade());
         
     }
+
+    IEnumerator Fade()
+    {
+        fade.SetActive(true);
+        fade.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(1f);
+        pauseController.SetActive(true);
+        hamsterVideoPlayer.Play();
+        fade.GetComponent<Animator>().SetTrigger("FadeIn");
+        yield return new WaitForSeconds(1f);
+        fade.SetActive(false);
+    }
+
 
     
     

@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public Animator perfectText;
     public GameObject textEffectObj;
 
+    public Animator fadeAnim;
+
     public static GameManager Instance;
 
     public int noteNumber = 0;
@@ -38,6 +40,10 @@ public class GameManager : MonoBehaviour
     public VideoPlayer failedPlayer;
     public RawImage videoHolder;
     bool videoStarted = false;
+    public GameObject anyKeyObj;
+
+    [SerializeField] SceneController sceneController;
+    [SerializeField] GameObject fade;
 
     private List<int> SpawnChart = new List<int>();
     private List<int> JudgeChart = new List<int>();
@@ -62,7 +68,10 @@ public class GameManager : MonoBehaviour
     private float interval;     //time between beat that calculated  by BPM
     private float timer;
 
-    bool stageEnd = false;  
+    bool stageEnd = false;
+    bool skipAvailable = false;
+    bool success = false;
+    bool fail = false;
     //value for judge
     private float margin_perfect = 0.056f;
     public float margin_good = 0.042f;
@@ -98,7 +107,6 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -161,12 +169,16 @@ public class GameManager : MonoBehaviour
                     OnBeat.Invoke();
                 }
 
-                if (SpawnChart[count+4] == 1)
+                if (count + 4 <= SpawnChart.Count -1 )
                 {
-                    noteNumber2++;
-                    OnNote_3.Invoke();
+                    if (SpawnChart[count + 4] == 1)
+                    {
+                        noteNumber2++;
+                        OnNote_3.Invoke();
 
+                    }
                 }
+                
 
                     ++count;
                 timer = Time.time;
@@ -244,40 +256,70 @@ public class GameManager : MonoBehaviour
             //SceneManager.LoadSceneAsync(2);
             if(BackGround.transform.position.x >= -19.2f)
             {
-                BackGround.transform.position += Vector3.left * 30f*Time.deltaTime;
+                BackGround.transform.position += Vector3.left * 60f*Time.deltaTime;
             }
-            textEffectObj.transform.position = new Vector3(-7.2f, -3.6f, 0f);
+            textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
         }
 
-        if (count >= SpawnChart.Count && !videoStarted)
+        if (count >= SpawnChart.Count - 1 && !videoStarted)
         {
             stageEnd = true;
             AudioManager.Instance.bgmSource.Stop();
             videoStarted = true;
             if (Score > 75 * 7.5)
             {
-                StartCoroutine(videoLoopLength(successPlayer));
+                success = true;
+                StartCoroutine(FadeOut(successPlayer));
 
             }
             else
             {
-                StartCoroutine(videoLoopLength(failedPlayer));
+                fail = true;
+                StartCoroutine(FadeOut(failedPlayer));
 
             }
         }
         
         if (successPlayer.frame == 2 || failedPlayer.frame == 2)
         {
-            videoHolder.color = new Color(1, 1, 1, 1);
+            
+            
+        }
+
+        if (skipAvailable && Input.anyKey)
+        {
+            if (!Input.GetKey(KeyCode.Escape))
+            {
+                AudioManager.Instance.sfxSource.Stop();
+                AudioManager.Instance.effectSource.Stop();
+                if (success)
+                    sceneController.LoadScene("HamsterHappy");
+                else if (fail)
+                    sceneController.LoadScene("HamsterAngry");
+            }
             
         }
 
         
     }
 
+    IEnumerator FadeOut(VideoPlayer vp)
+    {
+        fade.SetActive(true);
+        fade.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(videoLoopLength(vp));
+        fade.GetComponent<Animator>().SetTrigger("FadeIn");
+        yield return new WaitForSeconds(1f);
+        fade.SetActive(false);
+
+    }
+
+
     IEnumerator videoLoopLength(VideoPlayer vp)
     {
         vp.Play();
+        videoHolder.color = new Color(1, 1, 1, 1);
         if (vp == successPlayer)
         {
             AudioManager.Instance.PlaySFX(AudioManager.SFX.Success);
@@ -288,13 +330,10 @@ public class GameManager : MonoBehaviour
             AudioManager.Instance.PlaySFX(AudioManager.SFX.Fail);
         }
         yield return new WaitForSeconds(4f);
-        vp.Stop();
-        AudioManager.Instance.sfxSource.Stop();
-        AudioManager.Instance.effectSource.Stop();
-        if (vp == successPlayer)
-            SceneManager.LoadSceneAsync("HamsterHappy");
-        else if (vp == failedPlayer)
-            SceneManager.LoadSceneAsync("HamsterAngry");
+        skipAvailable = true;
+        anyKeyObj.SetActive(true);
+
+        
     }
     
     IEnumerator NoteStartDelay()

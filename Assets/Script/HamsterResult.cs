@@ -26,9 +26,13 @@ public class HamsterResult : MonoBehaviour
         {
             if (Input.anyKey)
             {
-                continueTextObj.SetActive(false);
-                hamsterAnim.SetTrigger("Down");
-                StartCoroutine(FadeOut());
+                if (!Input.GetKey(KeyCode.Escape))
+                {
+                    continueTextObj.SetActive(false);
+                    hamsterAnim.SetTrigger("Down");
+                    StartCoroutine(FadeOut());
+                }
+                
             }
         }
         
@@ -44,13 +48,11 @@ public class HamsterResult : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
-            speechBubble.color = new Color(originalSpeechBubbleColor.r, originalSpeechBubbleColor.g, originalSpeechBubbleColor.b, alpha);
-            effect.color = new Color(originalEffectColor.r, originalEffectColor.g, originalEffectColor.b, alpha);
+            speechBubble.material.color = new Color(originalSpeechBubbleColor.r, originalSpeechBubbleColor.g, originalSpeechBubbleColor.b, alpha);
+            effect.material.color = new Color(originalEffectColor.r, originalEffectColor.g, originalEffectColor.b, alpha);
             yield return null;
         }
 
-        speechBubble.color = new Color(originalSpeechBubbleColor.r, originalSpeechBubbleColor.g, originalSpeechBubbleColor.b, 0);
-        effect.color = new Color(originalEffectColor.r, originalEffectColor.g, originalEffectColor.b, 0);
     }
 
     IEnumerator PressAnyKey()
