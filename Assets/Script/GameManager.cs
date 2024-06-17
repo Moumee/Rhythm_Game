@@ -100,7 +100,8 @@ public class GameManager : MonoBehaviour
     public NoteManager noteManager;
     AsyncOperation successScene;
     AsyncOperation failScene;
-    
+    float dspSongTime;
+    float songPositionInBeats;
     void Awake()
     {
         
@@ -130,15 +131,13 @@ public class GameManager : MonoBehaviour
         JudgeChart.AddRange(DelayChart);
         JudgeChart.AddRange(MusicChart);
 
-        if (SceneManager.GetActiveScene().buildIndex == 1)
-        {
-            StartCoroutine(BGMStartDelay());
-        }
+        
+
+        StartCoroutine(BGMStartDelay());
+
         StartCoroutine(NoteStartDelay());
 
     }
-
-    
 
 
     // Update is called once per frame
@@ -148,9 +147,12 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+
+        //if (Input.GetKeyDown(KeyCode.DownArrow)) { Debug.Log(Time.time); }
+
         if (BeatStart && !stageEnd)
         {   
-            if ((float)AudioSettings.dspTime - timer >= interval)
+            if (Time.time - timer >= interval)
             {
                 if (SpawnChart[count] == 1)
                 {
@@ -185,11 +187,11 @@ public class GameManager : MonoBehaviour
                 
 
                     ++count;
-                timer = (float)AudioSettings.dspTime;
+                timer = Time.time;
                 if (JudgeChart[count + 1] == 1)
                 {
                     judgeNumber++;
-                    scoreTimer = timer + interval - margin_good;
+                    scoreTimer = Time.time + interval - margin_good;
 
                     isScoreGet = false;
 
@@ -204,9 +206,9 @@ public class GameManager : MonoBehaviour
             }
 
             
-            if (Input.GetKeyDown(KeyCode.DownArrow)&&isCatchable)
+            if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                if((float)AudioSettings.dspTime >= scoreTimer && (float)AudioSettings.dspTime < scoreTimer + margin_good*2 && !isScoreGet ) 
+                if(Time.time >= scoreTimer && Time.time < scoreTimer + margin_good*2 && !isScoreGet ) 
                 {
                     ++Score;
                     if (isStage1_2)
@@ -217,7 +219,7 @@ public class GameManager : MonoBehaviour
                     {
                         CatchNote.Invoke();
                     }
-                    if ((float)AudioSettings.dspTime >= scoreTimer+margin_good-margin_perfect && (float)AudioSettings.dspTime <= scoreTimer + margin_good + margin_perfect)
+                    if (Time.time >= scoreTimer+margin_good-margin_perfect && Time.time <= scoreTimer + margin_good + margin_perfect)
                     {
                         perfectText.SetTrigger("Perfect");
                         noteManager.NoteJudgeEffect("Perfect");
@@ -242,7 +244,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if ((float)AudioSettings.dspTime > scoreTimer + 2*margin_good && !isScoreGet && !stageEnd)
+        if (Time.time > scoreTimer + 2*margin_good && !isScoreGet && !stageEnd)
         {
             isScoreGet = true;
             missText.SetTrigger("Miss");
@@ -296,7 +298,7 @@ public class GameManager : MonoBehaviour
     IEnumerator NoteStartDelay()
     {
         yield return new WaitForSeconds(startDelay);
-        timer = (float)AudioSettings.dspTime;
+        timer = Time.time;
         BeatStart = true;
     }
 

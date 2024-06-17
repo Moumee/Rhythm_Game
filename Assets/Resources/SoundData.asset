@@ -37,4 +37,4 @@ MonoBehaviour:
   - bgm: 1
     audioClip: {fileID: 8300000, guid: 371483bd01d0c7142b052e9a53b99bcc, type: 3}
   - bgm: 2
-    audioClip: {fileID: 8300000, guid: bbc210f9392e27043ae8c0c6e01db3ec, type: 3}
+    audioClip: {fileID: 8300000, guid: c06d078bb908721489093a784d0730a2, type: 3}
