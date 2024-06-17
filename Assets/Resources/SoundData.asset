@@ -36,5 +36,6 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 9b87790bba68e1647bfba1673b5e3d24, type: 3}
   - bgm: 1
     audioClip: {fileID: 8300000, guid: 371483bd01d0c7142b052e9a53b99bcc, type: 3}
-  - bgm: 2
-    audioClip: {fileID: 8300000, guid: c06d078bb908721489093a784d0730a2, type: 3}
+  stageAudioClipArray:
+  - stage: 0
+    audioClip: {fileID: 8300000, guid: 49ae30efea33bfb458b1353cabf9e585, type: 3}

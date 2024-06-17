@@ -55,6 +55,11 @@ public class StartMenu : MonoBehaviour
 
     private void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            StartCoroutine(Fade());
+        }
         if (introVideoPlayer.frame == 2)
         {
             foreach (var UI in otherUI)
@@ -78,8 +83,9 @@ public class StartMenu : MonoBehaviour
                 if (!Input.GetKey(KeyCode.Escape))
                 {
                     AudioManager.Instance.bgmSource.Stop();
-                    sceneFade.FadeOutCoroutine(1f);
+                    sceneFade.FadeOutCoroutine(2f);
                     asyncOperation.allowSceneActivation = true;
+
                 }
             }
         }

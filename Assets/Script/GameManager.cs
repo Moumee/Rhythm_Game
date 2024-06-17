@@ -38,15 +38,15 @@ public class GameManager : MonoBehaviour
     public int noteNumber2 = 0;
     public int judgeNumber = 0;
 
-    
+
     public GameObject anyKeyObj;
 
     [SerializeField] SceneController sceneController;
 
     private List<int> SpawnChart = new List<int>();
     private List<int> JudgeChart = new List<int>();
-    
-    private List<int> MusicChart = new List<int> 
+
+    private List<int> MusicChart = new List<int>
     {
         0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,
@@ -56,8 +56,8 @@ public class GameManager : MonoBehaviour
         0,0,0,0,1,0,0,0,1,0,0,0,1,1,0,0,1,1,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0
     };
 
-    private List<int> DelayChart = new List<int> {0,0};
-   
+    private List<int> DelayChart = new List<int> { 0, 0 };
+
     public GameObject[] notePoints;
 
     public GameObject noteSyncPoint;
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     public int count = 0;       //count of called beats
 
     //valriables for manipulate the starttime
-    private bool BeatStart =false;
+    private bool BeatStart = false;
     [SerializeField] float startDelay = 0f;
     [SerializeField] float bgmStartDelay = 1f;
 
@@ -95,16 +95,19 @@ public class GameManager : MonoBehaviour
     public GameObject ingredientManager;
     public GameObject moldManager;
 
+    private double dspStartTime;
+    private double elapsedDSPTime;
 
 
     public NoteManager noteManager;
     AsyncOperation successScene;
     AsyncOperation failScene;
-    float dspSongTime;
-    float songPositionInBeats;
+
+    AudioSource stageSource;
+
     void Awake()
     {
-        
+
         if (Instance == null)
         {
             Instance = this;
@@ -114,9 +117,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        noteManager = FindObjectOfType<NoteManager>();  
+        noteManager = FindObjectOfType<NoteManager>();
         //ingredientManager = FindObjectOfType<IngredientManager>();  
         //moldManager = FindObjectOfType<MoldManager>();  
+        stageSource = AudioManager.Instance.stageSource;
 
         isScoreGet = true;
         interval = 60 / BPM;
@@ -124,18 +128,18 @@ public class GameManager : MonoBehaviour
 
         SpawnChart.AddRange(DelayChart);
         SpawnChart.AddRange(MusicChart);
-        for (int i = 0; i < beatJump*2; i++) 
+        for (int i = 0; i < beatJump * 2; i++)
         {
             DelayChart.Add(0);
         }
         JudgeChart.AddRange(DelayChart);
         JudgeChart.AddRange(MusicChart);
 
-        
 
-        StartCoroutine(BGMStartDelay());
 
         StartCoroutine(NoteStartDelay());
+        StartCoroutine(BGMStartDelay());
+
 
     }
 
@@ -148,11 +152,12 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        //if (Input.GetKeyDown(KeyCode.DownArrow)) { Debug.Log((float)AudioSettings.dspTime); }
+        //if (Input.GetKeyDown(KeyCode.DownArrow)) { Debug.Log((AudioManager.Instance.stageSource.time)); }
 
         if (BeatStart && !stageEnd)
-        {   
-            if ((float)AudioSettings.dspTime - timer >= interval)
+        {
+            
+            if (Time.time - timer >= interval)
             {
                 if (SpawnChart[count] == 1)
                 {
@@ -175,7 +180,7 @@ public class GameManager : MonoBehaviour
                     OnBeat.Invoke();
                 }
 
-                if (count + 4 <= SpawnChart.Count -1 )
+                if (count + 4 <= SpawnChart.Count - 1)
                 {
                     if (SpawnChart[count + 4] == 1)
                     {
@@ -184,14 +189,14 @@ public class GameManager : MonoBehaviour
 
                     }
                 }
-                
 
-                    ++count;
-                timer = (float)AudioSettings.dspTime;
+
+                ++count;
+                timer = Time.time;
                 if (JudgeChart[count + 1] == 1)
                 {
                     judgeNumber++;
-                    scoreTimer = (float)AudioSettings.dspTime + interval - margin_good;
+                    scoreTimer = Time.time + interval - margin_good;
 
                     isScoreGet = false;
 
@@ -201,14 +206,15 @@ public class GameManager : MonoBehaviour
                     }
                 }
 
-                
+
 
             }
 
-            
+
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                if((float)AudioSettings.dspTime >= scoreTimer && (float)AudioSettings.dspTime < scoreTimer + margin_good*2 && !isScoreGet ) 
+                if (Time.time >= scoreTimer &&
+                    Time.time < scoreTimer + margin_good * 2 && !isScoreGet)
                 {
                     ++Score;
                     if (isStage1_2)
@@ -219,7 +225,8 @@ public class GameManager : MonoBehaviour
                     {
                         CatchNote.Invoke();
                     }
-                    if ((float)AudioSettings.dspTime >= scoreTimer+margin_good-margin_perfect && (float)AudioSettings.dspTime <= scoreTimer + margin_good + margin_perfect)
+                    if (Time.time >= scoreTimer + margin_good - margin_perfect
+                        && Time.time <= scoreTimer + margin_good + margin_perfect)
                     {
                         perfectText.SetTrigger("Perfect");
                         noteManager.NoteJudgeEffect("Perfect");
@@ -233,7 +240,7 @@ public class GameManager : MonoBehaviour
                         Score += 5;
                     }
                     isScoreGet = true;
-                    
+
                 }
                 else
                 {
@@ -244,7 +251,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if ((float)AudioSettings.dspTime > scoreTimer + 2*margin_good && !isScoreGet && !stageEnd)
+        if (Time.time > scoreTimer + 2 * margin_good && !isScoreGet && !stageEnd)
         {
             isScoreGet = true;
             missText.SetTrigger("Miss");
@@ -254,15 +261,15 @@ public class GameManager : MonoBehaviour
                 FillMiss.Invoke();
             }
         }
-        
+
         if (count >= 151)
         {
             isStage1_2 = true;
 
             //SceneManager.LoadSceneAsync(2);
-            if(BackGround.transform.position.x >= -19.2f)
+            if (BackGround.transform.position.x >= -19.2f)
             {
-                BackGround.transform.position += Vector3.left * 60f*Time.deltaTime;
+                BackGround.transform.position += Vector3.left * 40f * Time.deltaTime;
             }
             textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
         }
@@ -270,7 +277,7 @@ public class GameManager : MonoBehaviour
         if (count == SpawnChart.Count - 1 && !stageEnd)
         {
             stageEnd = true;
-            AudioManager.Instance.bgmSource.Stop();
+            AudioManager.Instance.stageSource.Stop();
             if (Score > 75 * 7.5)
             {
                 sceneController.LoadScene("HamsterHappy");
@@ -282,7 +289,7 @@ public class GameManager : MonoBehaviour
 
             }
         }
-        
+
     }
 
     //IEnumerator PreLoadScene(string sceneName)
@@ -298,7 +305,8 @@ public class GameManager : MonoBehaviour
     IEnumerator NoteStartDelay()
     {
         yield return new WaitForSeconds(startDelay);
-        timer = (float)AudioSettings.dspTime;
+        timer = Time.time;
+
         BeatStart = true;
     }
 
@@ -307,7 +315,7 @@ public class GameManager : MonoBehaviour
     IEnumerator BGMStartDelay()
     {
         yield return new WaitForSeconds(bgmStartDelay);
-        AudioManager.Instance.PlayBGM(AudioManager.BGM.Hamster);
+        AudioManager.Instance.PlayStageMusic(AudioManager.Stage.Hamster, timer + 1f);
     }
 
     IEnumerator CatchDelay()
@@ -321,3 +329,7 @@ public class GameManager : MonoBehaviour
         isCatchable = true;
     }
 }
+
+
+
+

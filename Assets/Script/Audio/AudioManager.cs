@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource bgmSource;
     public AudioSource sfxSource;
     public AudioSource effectSource;
+    public AudioSource stageSource;
 
     public enum SFX
     {
@@ -28,7 +29,11 @@ public class AudioManager : MonoBehaviour
     public enum BGM
     {
         MainMenu,
-        Restaurant,
+        Restaurant
+    }
+
+    public enum Stage
+    {
         Hamster
     }
 
@@ -78,6 +83,15 @@ public class AudioManager : MonoBehaviour
 
     }
 
+    public void PlayStageMusic(Stage stage, double startTime)
+    {
+
+
+        stageSource.clip = GetStageClip(stage);
+        stageSource.PlayScheduled(startTime);
+
+    }
+
     private AudioClip GetSFXClip(SFX sfx)
     {
         foreach (SoundSO.SFXAudioClip sfxAudioClip in soundSO.sfxAudioClipArray)
@@ -95,6 +109,16 @@ public class AudioManager : MonoBehaviour
             if (bgmAudioClip.bgm == bgm) return bgmAudioClip.audioClip;
         }
         Debug.LogError("Sound" + bgm + " not found!");
+        return null;
+    }
+
+    private AudioClip GetStageClip(Stage stage)
+    {
+        foreach (SoundSO.StageAudioClip stageAudioClip in soundSO.stageAudioClipArray)
+        {
+            if (stageAudioClip.stage == stage) return stageAudioClip.audioClip;
+        }
+        Debug.LogError("Sound" + stage + " not found!");
         return null;
     }
 }

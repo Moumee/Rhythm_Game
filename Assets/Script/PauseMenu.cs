@@ -24,6 +24,7 @@ public class PauseMenu : MonoBehaviour
     public void OnRestartButtonClicked()
     {
         AudioManager.Instance.bgmSource.Stop();
+        AudioManager.Instance.stageSource.Stop();
         Time.timeScale = 1f;
         SceneManager.LoadSceneAsync("1-1");
         isPlaying = true;
@@ -34,6 +35,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         AudioManager.Instance.bgmSource.UnPause();
+        AudioManager.Instance.stageSource.UnPause();
         pauseMenu.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -49,6 +51,7 @@ public class PauseMenu : MonoBehaviour
             {
                 isPlaying = false;
                 AudioManager.Instance.bgmSource.Pause();
+                AudioManager.Instance.stageSource.Pause();
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
             }
@@ -62,6 +65,7 @@ public class PauseMenu : MonoBehaviour
                 {
                     isPlaying = true;
                     AudioManager.Instance.bgmSource.UnPause();
+                    AudioManager.Instance.stageSource.UnPause();
                     pauseMenu.SetActive(false);
                     optionMenu.SetActive(false);
                     Time.timeScale = 1f;

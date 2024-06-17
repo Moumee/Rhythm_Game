@@ -8,6 +8,7 @@ public class SoundSO : ScriptableObject
 {
     public SFXAudioClip[] sfxAudioClipArray;
     public BGMAudioClip[] bgmAudioClipArray;
+    public StageAudioClip[] stageAudioClipArray;
 
     [System.Serializable]
     public class SFXAudioClip
@@ -21,5 +22,12 @@ public class SoundSO : ScriptableObject
     {
         public AudioManager.BGM bgm;
         public AudioClip audioClip;
+    }
+
+    [System.Serializable]
+    public class StageAudioClip
+    {
+        public AudioManager.Stage stage;
+        public AudioClip audioClip; 
     }
 }
