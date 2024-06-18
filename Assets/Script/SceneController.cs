@@ -27,7 +27,7 @@ public class SceneController : MonoBehaviour
     private IEnumerator LoadSceneCoroutine(string sceneName)
     {
         yield return sceneFade.FadeOutCoroutine(sceneFadeDuration);
-        yield return SceneManager.LoadScene(sceneName);
+        yield return SceneManager.LoadSceneAsync(sceneName);
 
     }
 }

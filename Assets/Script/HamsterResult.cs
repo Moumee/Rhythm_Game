@@ -14,17 +14,17 @@ public class HamsterResult : MonoBehaviour
     [SerializeField] Animator hamsterAnim;
     [SerializeField] Animator speechAnim;
     private int anyKeyIndex = 0;
-    [SerializeField] VideoPlayer videoPlayer;
-    [SerializeField] RawImage videoPlaceHold;
+    [SerializeField] SpriteRenderer foodSpriteRenderer;
     [SerializeField] AudioManager.SFX sfx;
     [SerializeField] AudioManager.SFX effectSfx;
     public float videoFadeDuration = 1f;
+    public bool isAngry = true;
     float fadeDuration = 0.2f;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(PressAnyKey());
-        if (videoPlayer.clip.name == "hamster_food_success")
+        if (!isAngry)
         {
             AudioManager.Instance.PlaySFX(effectSfx);
         }
@@ -41,7 +41,7 @@ public class HamsterResult : MonoBehaviour
             {
                 if (anyKeyIndex == 0)
                 {
-                    StartCoroutine(VideoFade(videoFadeDuration));
+                    StartCoroutine(FoodFade(videoFadeDuration));
                     continueTextObj.SetActive(false);
                     StartCoroutine(PressAnyKey());
                     anyKeyIndex++;
@@ -58,20 +58,20 @@ public class HamsterResult : MonoBehaviour
         
     }
 
-    IEnumerator VideoFade(float duration)
+    IEnumerator FoodFade(float duration)
     {
         float elapsedTime = 0f;
-        while (elapsedTime < duration) 
+        while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
             Color originColor = new Color(1f, 1f, 1f, 1f);
             Color targerColor = new Color(1f, 1f, 1f, 0f);
-            videoPlaceHold.color = Color.Lerp(originColor, targerColor, elapsedTime / duration);
+            foodSpriteRenderer.color = Color.Lerp(originColor, targerColor, elapsedTime / duration);
             yield return null;
         }
         speechAnim.SetTrigger("Speak");
     }
-    
+
 
     private IEnumerator ObjectFadeOut()
     {
