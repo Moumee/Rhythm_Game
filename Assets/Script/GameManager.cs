@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     private float interval;     //time between beat that calculated  by BPM
     private float timer;
 
+    bool backgroundMoved = false;
     bool stageEnd = false;
     bool skipAvailable = false;
     bool success = false;
@@ -75,7 +76,7 @@ public class GameManager : MonoBehaviour
     public float margin_good = 0.042f;
     public float scoreTimer;
     private bool isScoreGet = true;
-    private float catchDelay = 0.1f;
+    private float catchDelay = 0.05f;
     private bool isCatchable = true;
 
     public int count = 0;       //count of called beats
@@ -143,7 +144,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -211,7 +212,7 @@ public class GameManager : MonoBehaviour
             }
 
 
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.DownArrow) && isCatchable)
             {
                 if (Time.time >= scoreTimer &&
                     Time.time < scoreTimer + margin_good * 2 && !isScoreGet)
@@ -267,10 +268,10 @@ public class GameManager : MonoBehaviour
             isStage1_2 = true;
 
             //SceneManager.LoadSceneAsync(2);
-            if (BackGround.transform.position.x >= -19.2f)
-            {
-                BackGround.transform.position += Vector3.left * 40f * Time.deltaTime;
-            }
+            //if (BackGround.transform.position.x >= -19.2f)
+            //{
+            //    BackGround.transform.position += Vector3.left * 40f * Time.deltaTime;
+            //}
             textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
         }
 
@@ -290,7 +291,25 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (isStage1_2 && !backgroundMoved)
+        {
+            StartCoroutine(MoveBackground(0.2f));
+        }
+
     }
+
+    IEnumerator MoveBackground(float duration)
+    {
+        backgroundMoved = true;
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            BackGround.transform.position = Vector3.Lerp(Vector3.zero, new Vector3(-19.2f, 0f, 0f), elapsedTime / duration);
+            yield return null;
+        }
+    }
+
 
     //IEnumerator PreLoadScene(string sceneName)
     //{
@@ -315,7 +334,7 @@ public class GameManager : MonoBehaviour
     IEnumerator BGMStartDelay()
     {
         yield return new WaitForSeconds(bgmStartDelay);
-        AudioManager.Instance.PlayStageMusic(AudioManager.Stage.Hamster, timer + 1f);
+        AudioManager.Instance.PlayStageMusic(AudioManager.Stage.Hamster);
     }
 
     IEnumerator CatchDelay()

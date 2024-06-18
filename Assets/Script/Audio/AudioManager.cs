@@ -83,12 +83,12 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    public void PlayStageMusic(Stage stage, double startTime)
+    public void PlayStageMusic(Stage stage)
     {
 
 
         stageSource.clip = GetStageClip(stage);
-        stageSource.PlayScheduled(startTime);
+        stageSource.Play();
 
     }
 
