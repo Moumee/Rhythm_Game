@@ -276,6 +276,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &90317658
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1877809074087427677, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+      propertyPath: bgmSlider
+      value: 
+      objectReference: {fileID: 1096949146}
+    - target: {fileID: 1877809074087427677, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+      propertyPath: sfxSlider
+      value: 
+      objectReference: {fileID: 118581316}
+    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.2817268
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.27351514
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.04377245
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082132545043387870, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+      propertyPath: m_Name
+      value: VolumeSettings
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
 --- !u!1 &93537934
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,7 +666,6 @@ GameObject:
   - component: {fileID: 279382083}
   - component: {fileID: 279382082}
   - component: {fileID: 279382086}
-  - component: {fileID: 279382087}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -726,21 +790,6 @@ MonoBehaviour:
   fade: {fileID: 1866940053}
   sceneController: {fileID: 0}
   sceneFade: {fileID: 0}
---- !u!114 &279382087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279382081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5583f62e72441ec44b766ab81d9d1759, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: e1cdc6687594c4a49a5ff747e60c26d5, type: 2}
-  bgmSlider: {fileID: 1096949146}
-  sfxSlider: {fileID: 118581316}
 --- !u!1 &328104700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1815,14 +1864,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2555951674773504018, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3991815193345703253, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
+      propertyPath: optionMenu
+      value: 
+      objectReference: {fileID: 16419471}
     - target: {fileID: 4742752772157945909, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 822
       objectReference: {fileID: 0}
     - target: {fileID: 5688634414397928442, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5688634414397928442, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 279382087}
+      objectReference: {fileID: 0}
     - target: {fileID: 5688634414397928442, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetSFXVolume
@@ -1856,17 +1917,22 @@ PrefabInstance:
       value: Pause Folder
       objectReference: {fileID: 0}
     - target: {fileID: 8866978088426576808, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866978088426576808, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 279382087}
+      objectReference: {fileID: 279382081}
     - target: {fileID: 8866978088426576808, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetBGMVolume
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5212926669567513675, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
     - {fileID: 3865531720768666179, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
+    - {fileID: 2555951674773504018, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
@@ -1950,6 +2016,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155766984}
   m_CullTransparentMesh: 1
+--- !u!114 &1161989201 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1877809074087427677, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+  m_PrefabInstance: {fileID: 90317658}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5583f62e72441ec44b766ab81d9d1759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1382939357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2623,7 +2700,11 @@ PrefabInstance:
     - target: {fileID: 5092258312097708894, guid: 5d81aad83d99cdf40808bfd6434c098e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 279382087}
+      objectReference: {fileID: 1161989201}
+    - target: {fileID: 5092258312097708894, guid: 5d81aad83d99cdf40808bfd6434c098e, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetBGMVolume
+      objectReference: {fileID: 0}
     - target: {fileID: 8310432963071021836, guid: 5d81aad83d99cdf40808bfd6434c098e, type: 3}
       propertyPath: m_Navigation.m_Mode
       value: 0
@@ -2631,7 +2712,11 @@ PrefabInstance:
     - target: {fileID: 8310432963071021836, guid: 5d81aad83d99cdf40808bfd6434c098e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 279382087}
+      objectReference: {fileID: 1161989201}
+    - target: {fileID: 8310432963071021836, guid: 5d81aad83d99cdf40808bfd6434c098e, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSFXVolume
+      objectReference: {fileID: 0}
     - target: {fileID: 8516096050113145420, guid: 5d81aad83d99cdf40808bfd6434c098e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2756,3 +2841,4 @@ SceneRoots:
   - {fileID: 900319290}
   - {fileID: 1472658246}
   - {fileID: 1437512494}
+  - {fileID: 90317658}

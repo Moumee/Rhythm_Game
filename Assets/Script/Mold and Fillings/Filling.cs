@@ -33,21 +33,8 @@ public class Filling : MonoBehaviour
     {
         if (collision.CompareTag("Hole"))
         {
-            int index = Random.Range(0, 3);
-            switch (index)
-            {
-                case 0:
-                    AudioManager.Instance.PlaySFX(AudioManager.SFX.Choco1);
-                    break;
-                case 1:
-                    AudioManager.Instance.PlaySFX(AudioManager.SFX.Choco2);
-                    break;
-                case 2:
-                    AudioManager.Instance.PlaySFX(AudioManager.SFX.Choco3);
-                    break;
-                default:
-                    break;
-            }
+            
+            
             if (fillingManager.callNumber != 2)
             {
                 fillingManager.callNumber++;

@@ -2099,7 +2099,7 @@ MonoBehaviour:
   scoreTimer: 0
   count: 0
   startDelay: 0
-  bgmStartDelay: 1.25
+  bgmStartDelay: 1.305
   Score: 0
   beatJump: 2
   BackGround: {fileID: 1183634728}

@@ -7,6 +7,7 @@ public class FillingManager : MonoBehaviour
     [SerializeField] GameObject fillingPrefab;
     public Transform[] fillingStartPos;
     public int callNumber;
+    AudioManager.SFX[] chocoSounds = {AudioManager.SFX.Choco1, AudioManager.SFX.Choco2, AudioManager.SFX.Choco3};
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,10 @@ public class FillingManager : MonoBehaviour
 
     public void FillingFall()
     {
+
+        AudioManager.Instance.PlaySFX(chocoSounds[Random.Range(0, chocoSounds.Length)]);
+
+
         switch (callNumber)
         {
             case 0:
