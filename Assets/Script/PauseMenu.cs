@@ -11,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     public bool isPlaying = true;
     public void OnHomeButtonClicked()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 1f;
         SceneManager.LoadSceneAsync(0);
         isPlaying = true;
@@ -23,6 +25,8 @@ public class PauseMenu : MonoBehaviour
 
     public void OnRestartButtonClicked()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         AudioManager.Instance.bgmSource.Stop();
         AudioManager.Instance.stageSource.Stop();
         Time.timeScale = 1f;
@@ -49,6 +53,8 @@ public class PauseMenu : MonoBehaviour
         {
             if (isPlaying)
             {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 isPlaying = false;
                 AudioManager.Instance.bgmSource.Pause();
                 AudioManager.Instance.stageSource.Pause();
@@ -57,6 +63,8 @@ public class PauseMenu : MonoBehaviour
             }
             else if (!isPlaying)
             {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
                 if (optionMenu.activeInHierarchy)
                 {
                     optionMenu.SetActive(false);
@@ -73,16 +81,7 @@ public class PauseMenu : MonoBehaviour
                 
             }
         }
-        if (isPlaying)
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else if (!isPlaying)
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
+        
 
     }
 }

@@ -89,7 +89,7 @@ public class AudioManager : MonoBehaviour
     public void PlayStageMusic(Stage stage)
     {
 
-
+        stageSource.clip = null;
         stageSource.clip = GetStageClip(stage);
         stageSource.Play();
 

@@ -83,8 +83,7 @@ public class StartMenu : MonoBehaviour
                 if (!Input.GetKey(KeyCode.Escape) && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
                 {
                     AudioManager.Instance.bgmSource.Stop();
-                    sceneFade.FadeOutCoroutine(2f);
-                    asyncOperation.allowSceneActivation = true;
+                    StartCoroutine(FadeOutToNextScene());
 
                 }
             }
@@ -114,16 +113,23 @@ public class StartMenu : MonoBehaviour
         }
     }
 
+    IEnumerator FadeOutToNextScene()
+    {
+        fade.SetActive(true);
+        fade.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(0.5f);
+        asyncOperation.allowSceneActivation = true;
+    }
     IEnumerator Fade()
     {
         fade.SetActive(true);
         fade.GetComponent<Animator>().SetTrigger("FadeOut");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         pauseController.SetActive(true);
         hamsterVideoPlayer.Play();
         yield return new WaitForSeconds(0.2f);
         fade.GetComponent<Animator>().SetTrigger("FadeIn");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         fade.SetActive(false);
     }
 

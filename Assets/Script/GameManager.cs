@@ -101,10 +101,9 @@ public class GameManager : MonoBehaviour
 
 
     public NoteManager noteManager;
-    AsyncOperation successScene;
-    AsyncOperation failScene;
 
-    AudioSource stageSource;
+    [SerializeField] GameObject fade;
+    bool fadeOutStart = false;
 
     void Awake()
     {
@@ -121,7 +120,7 @@ public class GameManager : MonoBehaviour
         noteManager = FindObjectOfType<NoteManager>();
         //ingredientManager = FindObjectOfType<IngredientManager>();  
         //moldManager = FindObjectOfType<MoldManager>();  
-        stageSource = AudioManager.Instance.stageSource;
+        
 
         isScoreGet = true;
         interval = 60 / BPM;
@@ -137,11 +136,19 @@ public class GameManager : MonoBehaviour
         JudgeChart.AddRange(MusicChart);
 
 
-
         StartCoroutine(NoteStartDelay());
         StartCoroutine(BGMStartDelay());
 
 
+    }
+
+
+    IEnumerator FadeOutToNextScene(string sceneName)
+    {
+        fade.SetActive(true);
+        fade.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(sceneName);
     }
 
     
@@ -279,14 +286,13 @@ public class GameManager : MonoBehaviour
         {
             stageEnd = true;
             AudioManager.Instance.stageSource.Stop();
-            if (Score > 75 * 7.5)
+            if (Score > 75 * 7.5 && !fadeOutStart)
             {
-                sceneController.LoadScene("HamsterHappy");
+                StartCoroutine(FadeOutToNextScene("HamsterHappy"));
             }
-            else
+            else if (Score <= 75 * 7.5 && !fadeOutStart)
             {
-                sceneController.LoadScene("HamsterAngry");
-
+                StartCoroutine(FadeOutToNextScene("HamsterAngry"));
 
             }
         }

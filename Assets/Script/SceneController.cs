@@ -12,9 +12,16 @@ public class SceneController : MonoBehaviour
     private void Awake()
     {
         sceneFade = GetComponentInChildren<SceneFade>();
-        StartCoroutine(sceneFade.FadeInCoroutine(sceneFadeDuration));
     }
 
+    private IEnumerator Start()
+    {
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            yield return sceneFade.FadeInCoroutine(sceneFadeDuration);
+        }
+
+    }
 
     public void LoadScene(string sceneName)
     {
