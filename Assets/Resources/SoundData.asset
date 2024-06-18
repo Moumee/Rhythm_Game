@@ -31,6 +31,12 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 08d930de4fe7b7647a51cea79a34e56f, type: 3}
   - sfx: 8
     audioClip: {fileID: 8300000, guid: 3714e3be07aa2364e9fd9406f5e5e00f, type: 3}
+  - sfx: 9
+    audioClip: {fileID: 8300000, guid: 138d908794a9f724d899ee6758e6e74f, type: 3}
+  - sfx: 10
+    audioClip: {fileID: 8300000, guid: a81a9dbfbac10384c96ad185057e91d4, type: 3}
+  - sfx: 11
+    audioClip: {fileID: 8300000, guid: 25682d65dc43bf24bb9ae6de9a7ce355, type: 3}
   bgmAudioClipArray:
   - bgm: 0
     audioClip: {fileID: 8300000, guid: 9b87790bba68e1647bfba1673b5e3d24, type: 3}

@@ -569,6 +569,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2479649166802137184, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
   m_PrefabInstance: {fileID: 427442349}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &427442351 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5688634414397928442, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
+  m_PrefabInstance: {fileID: 427442349}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &427442352 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8866978088426576808, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
+  m_PrefabInstance: {fileID: 427442349}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &779590538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -577,6 +599,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1877809074087427677, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+      propertyPath: bgmSlider
+      value: 
+      objectReference: {fileID: 427442352}
+    - target: {fileID: 1877809074087427677, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
+      propertyPath: sfxSlider
+      value: 
+      objectReference: {fileID: 427442351}
     - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.2817268

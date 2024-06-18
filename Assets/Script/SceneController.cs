@@ -12,11 +12,7 @@ public class SceneController : MonoBehaviour
     private void Awake()
     {
         sceneFade = GetComponentInChildren<SceneFade>();
-    }
-
-    private IEnumerator Start()
-    {
-        yield return sceneFade.FadeInCoroutine(sceneFadeDuration);
+        StartCoroutine(sceneFade.FadeInCoroutine(sceneFadeDuration));
     }
 
 

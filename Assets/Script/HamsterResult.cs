@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using static System.Net.WebRequestMethods;
 
 public class HamsterResult : MonoBehaviour
 {
@@ -37,21 +38,25 @@ public class HamsterResult : MonoBehaviour
         
         if (continueTextObj.activeInHierarchy)
         {
-            if (Input.anyKey && !Input.GetKey(KeyCode.Escape))
+            if (Input.anyKey)
             {
-                if (anyKeyIndex == 0)
+                if (!Input.GetKey(KeyCode.Escape) && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
                 {
-                    StartCoroutine(FoodFade(videoFadeDuration));
-                    continueTextObj.SetActive(false);
-                    StartCoroutine(PressAnyKey());
-                    anyKeyIndex++;
+                    if (anyKeyIndex == 0)
+                    {
+                        StartCoroutine(FoodFade(videoFadeDuration));
+                        continueTextObj.SetActive(false);
+                        StartCoroutine(PressAnyKey());
+                        anyKeyIndex++;
+                    }
+                    else if (anyKeyIndex == 1)
+                    {
+                        continueTextObj.SetActive(false);
+                        hamsterAnim.SetTrigger("Down");
+                        StartCoroutine(ObjectFadeOut());
+                    }
                 }
-                else if (anyKeyIndex == 1)
-                {
-                    continueTextObj.SetActive(false);
-                    hamsterAnim.SetTrigger("Down");
-                    StartCoroutine(ObjectFadeOut());
-                }
+                
             }
             
         }

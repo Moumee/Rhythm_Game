@@ -80,7 +80,7 @@ public class StartMenu : MonoBehaviour
             continueTextObj.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, alpha);
             if (Input.anyKey)
             {
-                if (!Input.GetKey(KeyCode.Escape))
+                if (!Input.GetKey(KeyCode.Escape) && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
                 {
                     AudioManager.Instance.bgmSource.Stop();
                     sceneFade.FadeOutCoroutine(2f);
