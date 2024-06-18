@@ -1819,6 +1819,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 822
       objectReference: {fileID: 0}
+    - target: {fileID: 5688634414397928442, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 279382087}
+    - target: {fileID: 5688634414397928442, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSFXVolume
+      objectReference: {fileID: 0}
     - target: {fileID: 6663513170986890884, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 704
@@ -1846,6 +1854,14 @@ PrefabInstance:
     - target: {fileID: 7623716706962161612, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
       propertyPath: m_Name
       value: Pause Folder
+      objectReference: {fileID: 0}
+    - target: {fileID: 8866978088426576808, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 279382087}
+    - target: {fileID: 8866978088426576808, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetBGMVolume
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

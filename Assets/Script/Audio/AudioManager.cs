@@ -23,6 +23,9 @@ public class AudioManager : MonoBehaviour
         Success,
         SuccessEffect,
         Fail,
+        Choco1,
+        Choco2,
+        Choco3
 
     }
 
