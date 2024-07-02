@@ -37,7 +37,8 @@ public class AudioManager : MonoBehaviour
 
     public enum Stage
     {
-        Hamster
+        Hamster,
+        Cat
     }
 
     private static AudioManager _Instance;
