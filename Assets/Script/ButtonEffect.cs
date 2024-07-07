@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class ButtonEffect : MonoBehaviour
 {
     [SerializeField] private float buttonScale = 1.2f;
     Vector2 defaultScale;
+    
     private void Start()
     {
         defaultScale = transform.localScale;
@@ -22,11 +24,13 @@ public class ButtonEffect : MonoBehaviour
 
     public void PlayClick()
     {
-        AudioManager.Instance.PlaySFX(AudioManager.SFX.Click);
+        //AudioManager.Instance.PlaySFX(AudioManager.SFX);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
     }
 
     public void PlayStart()
     {
-        AudioManager.Instance.PlaySFX(AudioManager.SFX.Start);
+        //AudioManager.Instance.PlaySFX(startSound);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.start);
     }
 }

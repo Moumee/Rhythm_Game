@@ -14,36 +14,146 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxAudioClipArray:
   - sfx: 0
-    audioClip: {fileID: 8300000, guid: 8cbcd76730d740544a1e43769ec305c6, type: 3}
+    sfxSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   - sfx: 1
-    audioClip: {fileID: 8300000, guid: eb30b8b647fd1ac4b9d847f469182878, type: 3}
+    sfxSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   - sfx: 2
-    audioClip: {fileID: 8300000, guid: 95bf9b1e88d0b96419914b2bcd68e94c, type: 3}
+    sfxSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   - sfx: 3
-    audioClip: {fileID: 8300000, guid: 1e54dbf6c1aa4e14fa04ecf89e37f134, type: 3}
+    sfxSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   - sfx: 4
-    audioClip: {fileID: 8300000, guid: cdb811df73885f140a3fe6d189fe809a, type: 3}
+    sfxSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   - sfx: 5
-    audioClip: {fileID: 8300000, guid: 0fc9628f89def3841a45f05603b36496, type: 3}
+    sfxSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   - sfx: 6
-    audioClip: {fileID: 8300000, guid: d6aa37b0b98c1f44bb984c530b27b0be, type: 3}
+    sfxSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   - sfx: 7
-    audioClip: {fileID: 8300000, guid: 08d930de4fe7b7647a51cea79a34e56f, type: 3}
+    sfxSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   - sfx: 8
-    audioClip: {fileID: 8300000, guid: 3714e3be07aa2364e9fd9406f5e5e00f, type: 3}
+    sfxSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   - sfx: 9
-    audioClip: {fileID: 8300000, guid: 138d908794a9f724d899ee6758e6e74f, type: 3}
+    sfxSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   - sfx: 10
-    audioClip: {fileID: 8300000, guid: a81a9dbfbac10384c96ad185057e91d4, type: 3}
+    sfxSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   - sfx: 11
-    audioClip: {fileID: 8300000, guid: 25682d65dc43bf24bb9ae6de9a7ce355, type: 3}
+    sfxSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   bgmAudioClipArray:
   - bgm: 0
-    audioClip: {fileID: 8300000, guid: 9b87790bba68e1647bfba1673b5e3d24, type: 3}
+    bgmSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   - bgm: 1
-    audioClip: {fileID: 8300000, guid: 371483bd01d0c7142b052e9a53b99bcc, type: 3}
+    bgmSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   stageAudioClipArray:
   - stage: 0
-    audioClip: {fileID: 8300000, guid: bbc210f9392e27043ae8c0c6e01db3ec, type: 3}
+    stageSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
   - stage: 1
-    audioClip: {fileID: 8300000, guid: ac06b7fc738c37f4bb4276bc66b1ca2b, type: 3}
+    stageSound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+  clickSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  startSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

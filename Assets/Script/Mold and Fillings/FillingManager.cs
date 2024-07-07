@@ -23,7 +23,7 @@ public class FillingManager : MonoBehaviour
     public void FillingFall()
     {
 
-        AudioManager.Instance.PlaySFX(chocoSounds[Random.Range(0, chocoSounds.Length)]);
+        //AudioManager.Instance.PlaySFX(chocoSounds[Random.Range(0, chocoSounds.Length)]);
 
 
         switch (callNumber)

@@ -144,20 +144,20 @@ public class Ingredient : MonoBehaviour
         cracked = true;
         animator.SetTrigger("Crack");
         int index = Random.Range(0, 3);
-        switch (index)
-        {
-            case 0:
-                AudioManager.Instance.PlaySFX(AudioManager.SFX.Crack1);
-                break;
-            case 1:
-                AudioManager.Instance.PlaySFX(AudioManager.SFX.Crack2);
-                break;
-            case 2:
-                AudioManager.Instance.PlaySFX(AudioManager.SFX.Crack3);
-                break;
-            default:
-                break;
-        }
+        //switch (index)
+        //{
+        //    case 0:
+        //        AudioManager.Instance.PlaySFX(AudioManager.SFX.Crack1);
+        //        break;
+        //    case 1:
+        //        AudioManager.Instance.PlaySFX(AudioManager.SFX.Crack2);
+        //        break;
+        //    case 2:
+        //        AudioManager.Instance.PlaySFX(AudioManager.SFX.Crack3);
+        //        break;
+        //    default:
+        //        break;
+        //}
         gameObject.transform.position += Vector3.down;
     }
 

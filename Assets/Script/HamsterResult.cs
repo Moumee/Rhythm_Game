@@ -27,9 +27,14 @@ public class HamsterResult : MonoBehaviour
         StartCoroutine(PressAnyKey());
         if (!isAngry)
         {
-            AudioManager.Instance.PlaySFX(effectSfx);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.successEffect);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.success);
         }
-        AudioManager.Instance.PlaySFX(sfx);
+        else
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.fail);
+        }
+        
     }
 
     // Update is called once per frame

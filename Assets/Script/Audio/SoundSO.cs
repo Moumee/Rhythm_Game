@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 
@@ -14,20 +15,24 @@ public class SoundSO : ScriptableObject
     public class SFXAudioClip
     {
         public AudioManager.SFX sfx;
-        public AudioClip audioClip;
+        public EventReference sfxSound;
     }
 
     [System.Serializable]
     public class BGMAudioClip
     {
         public AudioManager.BGM bgm;
-        public AudioClip audioClip;
+        public EventReference bgmSound;
     }
 
     [System.Serializable]
     public class StageAudioClip
     {
         public AudioManager.Stage stage;
-        public AudioClip audioClip; 
+        public EventReference stageSound; 
     }
+
+    public EventReference clickSound;
+    public EventReference startSound;
+
 }

@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class AudioManager : MonoBehaviour
 {
-    SoundSO soundSO;
+    public SoundSO soundSO;
     public AudioSource bgmSource;
     public AudioSource sfxSource;
     public AudioSource effectSource;
     public AudioSource stageSource;
+
+    public EventReference click;
+    public EventReference start;
+    public EventReference bell;
+    public EventReference success;
+    public EventReference successEffect;
+    public EventReference fail;
+
 
     public enum SFX
     {
@@ -28,6 +37,8 @@ public class AudioManager : MonoBehaviour
         Choco3
 
     }
+
+    
 
     public enum BGM
     {
@@ -60,7 +71,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        soundSO = Resources.Load<SoundSO>("SoundData");
+        //soundSO = Resources.Load<SoundSO>("SoundData");
     }
 
 
@@ -68,61 +79,51 @@ public class AudioManager : MonoBehaviour
     {
         
         
-        bgmSource.clip = GetBGMClip(bgm);
-        bgmSource.Play();
+        //bgmSource.clip = GetBGMClip(bgm);
+        //bgmSource.Play();
         
     }
-    public void PlaySFX(SFX sfx)
+    public void PlaySFX(EventReference sound)
     {
-        if (sfx == SFX.SuccessEffect)
-        {
-            effectSource.clip = GetSFXClip(sfx);
-            effectSource.Play();    
-        }
-        else
-        {
-            sfxSource.clip = GetSFXClip(sfx);
-            sfxSource.Play();
-        }
+        RuntimeManager.PlayOneShot(sound);
 
     }
 
     public void PlayStageMusic(Stage stage)
     {
 
-        stageSource.clip = null;
-        stageSource.clip = GetStageClip(stage);
-        stageSource.Play();
+        //stageSource.clip = null;
+        //stageSource.clip = GetStageClip(stage);
+        //stageSource.Play();
 
     }
 
-    private AudioClip GetSFXClip(SFX sfx)
-    {
-        foreach (SoundSO.SFXAudioClip sfxAudioClip in soundSO.sfxAudioClipArray)
-        {
-            if (sfxAudioClip.sfx == sfx) return sfxAudioClip.audioClip;
-        }
-        Debug.LogError("Sound" + sfx + " not found!");
-        return null;
-    }
+    //private EventReference GetSFXClip(SFX sfx)
+    //{
+    //    foreach (SoundSO.SFXAudioClip sfxAudioClip in soundSO.sfxAudioClipArray)
+    //    {
+    //        if (sfxAudioClip.sfx == sfx) return sfxAudioClip.sfxSound;
+    //    }
+    //    return null;
+    //}
 
-    private AudioClip GetBGMClip(BGM bgm)
-    {
-        foreach (SoundSO.BGMAudioClip bgmAudioClip in soundSO.bgmAudioClipArray)
-        {
-            if (bgmAudioClip.bgm == bgm) return bgmAudioClip.audioClip;
-        }
-        Debug.LogError("Sound" + bgm + " not found!");
-        return null;
-    }
+    //private AudioClip GetBGMClip(BGM bgm)
+    //{
+    //    foreach (SoundSO.BGMAudioClip bgmAudioClip in soundSO.bgmAudioClipArray)
+    //    {
+    //        if (bgmAudioClip.bgm == bgm) return bgmAudioClip.audioClip;
+    //    }
+    //    Debug.LogError("Sound" + bgm + " not found!");
+    //    return null;
+    //}
 
-    private AudioClip GetStageClip(Stage stage)
-    {
-        foreach (SoundSO.StageAudioClip stageAudioClip in soundSO.stageAudioClipArray)
-        {
-            if (stageAudioClip.stage == stage) return stageAudioClip.audioClip;
-        }
-        Debug.LogError("Sound" + stage + " not found!");
-        return null;
-    }
+    //private AudioClip GetStageClip(Stage stage)
+    //{
+    //    foreach (SoundSO.StageAudioClip stageAudioClip in soundSO.stageAudioClipArray)
+    //    {
+    //        if (stageAudioClip.stage == stage) return stageAudioClip.audioClip;
+    //    }
+    //    Debug.LogError("Sound" + stage + " not found!");
+    //    return null;
+    //}
 }

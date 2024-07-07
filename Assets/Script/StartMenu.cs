@@ -71,8 +71,8 @@ public class StartMenu : MonoBehaviour
         if (hamsterVideoPlayer.frame == 2)
         {
             introVideoPlayer.gameObject.SetActive(false);
-            AudioManager.Instance.PlayBGM(AudioManager.BGM.Restaurant);
-            AudioManager.Instance.PlaySFX(AudioManager.SFX.Bell);
+            //AudioManager.Instance.PlayBGM(AudioManager.BGM.Restaurant);
+            //AudioManager.Instance.PlaySFX(AudioManager.SFX.Bell);
         }
         if (hamsterVideoFinshed)
         {
