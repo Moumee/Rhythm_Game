@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+<<<<<<< Updated upstream
+=======
+using FMODUnity;
+using FMOD.Studio;
+>>>>>>> Stashed changes
 
 public class AudioManager : MonoBehaviour
 {
@@ -12,6 +17,26 @@ public class AudioManager : MonoBehaviour
     public AudioSource effectSource;
     public AudioSource stageSource;
 
+<<<<<<< Updated upstream
+=======
+    public EventReference click;
+    public EventReference start;
+    public EventReference bell;
+    public EventReference success;
+    public EventReference successEffect;
+    public EventReference fail;
+    public EventReference crack;
+    public EventReference chocolate;
+    public EventReference mainMenu;
+    public EventReference restaurant;
+    public EventReference stage1;
+
+    public EventInstance stageEventInstance;
+    public EventInstance bgmEventInstance;
+
+
+
+>>>>>>> Stashed changes
     public enum SFX
     {
         Click,
@@ -64,12 +89,20 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    public void PlayBGM(BGM bgm)
+    public void PlayBGM(EventReference bgm)
     {
+<<<<<<< Updated upstream
         
         
         bgmSource.clip = GetBGMClip(bgm);
         bgmSource.Play();
+=======
+        bgmEventInstance = RuntimeManager.CreateInstance(bgm);
+        bgmEventInstance.start();
+        bgmEventInstance.release();
+        //bgmSource.clip = GetBGMClip(bgm);
+        //bgmSource.Play();
+>>>>>>> Stashed changes
         
     }
     public void PlaySFX(SFX sfx)
@@ -87,8 +120,9 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    public void PlayStageMusic(Stage stage)
+    public void PlayStageMusic(EventReference stageBGM)
     {
+<<<<<<< Updated upstream
 
         stageSource.clip = null;
         stageSource.clip = GetStageClip(stage);
@@ -105,6 +139,29 @@ public class AudioManager : MonoBehaviour
         Debug.LogError("Sound" + sfx + " not found!");
         return null;
     }
+=======
+        stageEventInstance = RuntimeManager.CreateInstance(stageBGM);
+        stageEventInstance.start();
+        stageEventInstance.release();
+        //stageSource.clip = null;
+        //stageSource.clip = GetStageClip(stage);
+        //stageSource.Play();
+
+    }
+
+    
+
+    
+
+    //private EventReference GetSFXClip(SFX sfx)
+    //{
+    //    foreach (SoundSO.SFXAudioClip sfxAudioClip in soundSO.sfxAudioClipArray)
+    //    {
+    //        if (sfxAudioClip.sfx == sfx) return sfxAudioClip.sfxSound;
+    //    }
+    //    return null;
+    //}
+>>>>>>> Stashed changes
 
     private AudioClip GetBGMClip(BGM bgm)
     {

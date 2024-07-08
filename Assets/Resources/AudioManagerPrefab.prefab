@@ -52,6 +52,106 @@ MonoBehaviour:
   sfxSource: {fileID: 3604140198538749763}
   effectSource: {fileID: 1225012053925132778}
   stageSource: {fileID: 5108334976233703700}
+<<<<<<< Updated upstream
+=======
+  click:
+    Guid:
+      Data1: 118210756
+      Data2: 1205291542
+      Data3: 1912851843
+      Data4: -39658756
+    Path: event:/UI/Click
+  start:
+    Guid:
+      Data1: -232455444
+      Data2: 1178726060
+      Data3: 1378457019
+      Data4: -144081407
+    Path: event:/UI/Start
+  bell:
+    Guid:
+      Data1: 819647745
+      Data2: 1235402516
+      Data3: 1304708238
+      Data4: 2081840289
+    Path: event:/Bell
+  success:
+    Guid:
+      Data1: -824825237
+      Data2: 1247706144
+      Data3: -1261597265
+      Data4: -124261645
+    Path: event:/Success
+  successEffect:
+    Guid:
+      Data1: -959965758
+      Data2: 1121224162
+      Data3: -900458317
+      Data4: 781297183
+    Path: event:/SuccessEffect
+  fail:
+    Guid:
+      Data1: 1596495638
+      Data2: 1144733937
+      Data3: -1996734838
+      Data4: -454918378
+    Path: event:/Fail
+  crack:
+    Guid:
+      Data1: -1665558226
+      Data2: 1121852312
+      Data3: -420351061
+      Data4: -535988180
+    Path: event:/Crack
+  chocolate:
+    Guid:
+      Data1: 1195699194
+      Data2: 1218095954
+      Data3: -535941710
+      Data4: 348197004
+    Path: event:/Chocolate
+  mainMenu:
+    Guid:
+      Data1: 1017582998
+      Data2: 1132803821
+      Data3: 1766551218
+      Data4: -1955537712
+    Path: event:/MainMenu
+  restaurant:
+    Guid:
+      Data1: -348807882
+      Data2: 1241249953
+      Data3: 964635019
+      Data4: 39249072
+    Path: event:/Restaurant
+  stage1:
+    Guid:
+      Data1: 631569524
+      Data2: 1300886421
+      Data3: 1728182462
+      Data4: -211870564
+    Path: event:/StageMusic/Stage 1
+--- !u!114 &3045072922224617601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115537146551082551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadEvent: 1
+  UnloadEvent: 2
+  Banks:
+  - Master
+  - SFX
+  - BGM
+  CollisionTag: 
+  PreloadSamples: 0
+>>>>>>> Stashed changes
 --- !u!1 &1327919883664191207
 GameObject:
   m_ObjectHideFlags: 0

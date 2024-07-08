@@ -143,6 +143,7 @@ public class Ingredient : MonoBehaviour
     {
         cracked = true;
         animator.SetTrigger("Crack");
+<<<<<<< Updated upstream
         int index = Random.Range(0, 3);
         switch (index)
         {
@@ -158,6 +159,9 @@ public class Ingredient : MonoBehaviour
             default:
                 break;
         }
+=======
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.crack);
+>>>>>>> Stashed changes
         gameObject.transform.position += Vector3.down;
     }
 

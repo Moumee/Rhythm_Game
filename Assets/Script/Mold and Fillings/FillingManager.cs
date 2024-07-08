@@ -23,7 +23,12 @@ public class FillingManager : MonoBehaviour
     public void FillingFall()
     {
 
+<<<<<<< Updated upstream
         AudioManager.Instance.PlaySFX(chocoSounds[Random.Range(0, chocoSounds.Length)]);
+=======
+        //AudioManager.Instance.PlaySFX(chocoSounds[Random.Range(0, chocoSounds.Length)]);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.chocolate);
+>>>>>>> Stashed changes
 
 
         switch (callNumber)
