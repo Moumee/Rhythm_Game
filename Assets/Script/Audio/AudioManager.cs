@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
     public EventReference crack;
     public EventReference chocolate;
     public EventReference mainMenu;
+    public EventReference introVideoAudio;
     public EventReference restaurant;
     public EventReference stage1;
 
@@ -83,12 +84,12 @@ public class AudioManager : MonoBehaviour
     {
         if (bgmEventInstance.isValid())
         {
-            bgmEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            bgmEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             bgmEventInstance.release();
         }
         if (stageEventInstance.isValid())
         {
-            stageEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            stageEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             stageEventInstance.release();
         }
     }

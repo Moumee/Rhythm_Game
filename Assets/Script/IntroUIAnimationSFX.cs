@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class IntroUIAnimationSFX : MonoBehaviour
 {
-    AudioSource audioSource;
+    public bool isChef = false;
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
@@ -19,6 +20,13 @@ public class IntroUIAnimationSFX : MonoBehaviour
 
     public void PlayUISFX()
     {
-        audioSource.Play();
+        if (isChef)
+        {
+            RuntimeManager.PlayOneShot("event:/Woosh1");
+        }
+        else
+        {
+            RuntimeManager.PlayOneShot("event:/Woosh2");
+        }
     }
 }

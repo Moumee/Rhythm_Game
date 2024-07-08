@@ -139,5 +139,6 @@ public class StartMenu : MonoBehaviour
         AudioManager.Instance.StopAllMusic(); // Updated this line
 
         introVideoPlayer.Play();
+        AudioManager.Instance.PlayBGM(AudioManager.Instance.introVideoAudio);
     }
 }

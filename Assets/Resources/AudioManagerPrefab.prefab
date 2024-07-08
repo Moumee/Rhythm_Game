@@ -117,6 +117,13 @@ MonoBehaviour:
       Data3: 1766551218
       Data4: -1955537712
     Path: event:/MainMenu
+  introVideoAudio:
+    Guid:
+      Data1: -623704697
+      Data2: 1160060719
+      Data3: -272614231
+      Data4: 161371665
+    Path: event:/IntroVideo
   restaurant:
     Guid:
       Data1: 340133334
