@@ -340,7 +340,7 @@ public class GameManager : MonoBehaviour
     IEnumerator BGMStartDelay()
     {
         yield return new WaitForSeconds(bgmStartDelay);
-        AudioManager.Instance.PlayStageMusic(AudioManager.Instance.stage1);
+        AudioManager.Instance.PlayStageMusic(AudioManager.Stage.Hamster);
     }
 
     IEnumerator CatchDelay()

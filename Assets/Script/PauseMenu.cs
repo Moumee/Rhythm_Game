@@ -27,10 +27,8 @@ public class PauseMenu : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        
-        AudioManager.Instance.bgmEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        
-        AudioManager.Instance.stageEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        AudioManager.Instance.bgmSource.Stop();
+        AudioManager.Instance.stageSource.Stop();
         Time.timeScale = 1f;
         SceneManager.LoadSceneAsync("1-1");
         isPlaying = true;
@@ -40,9 +38,8 @@ public class PauseMenu : MonoBehaviour
     public void OnPauseButtonClicked()
     {
         Time.timeScale = 1f;
-       
-        AudioManager.Instance.bgmEventInstance.setPaused(false);
-        AudioManager.Instance.stageEventInstance.setPaused(false);
+        AudioManager.Instance.bgmSource.UnPause();
+        AudioManager.Instance.stageSource.UnPause();
         pauseMenu.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -59,8 +56,8 @@ public class PauseMenu : MonoBehaviour
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
                 isPlaying = false;
-                AudioManager.Instance.bgmEventInstance.setPaused(true);
-                AudioManager.Instance.stageEventInstance.setPaused(true);
+                AudioManager.Instance.bgmSource.Pause();
+                AudioManager.Instance.stageSource.Pause();
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
             }
@@ -75,8 +72,8 @@ public class PauseMenu : MonoBehaviour
                 else if (!optionMenu.activeInHierarchy)
                 {
                     isPlaying = true;
-                    AudioManager.Instance.bgmEventInstance.setPaused(false);
-                    AudioManager.Instance.stageEventInstance.setPaused(false);
+                    AudioManager.Instance.bgmSource.UnPause();
+                    AudioManager.Instance.stageSource.UnPause();
                     pauseMenu.SetActive(false);
                     optionMenu.SetActive(false);
                     Time.timeScale = 1f;

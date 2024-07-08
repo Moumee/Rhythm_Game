@@ -7,7 +7,6 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using TMPro;
 
-
 public class StartMenu : MonoBehaviour
 {
     [SerializeField] VideoPlayer introVideoPlayer;
@@ -44,7 +43,7 @@ public class StartMenu : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.Instance.PlayBGM(AudioManager.Instance.mainMenu);
+        AudioManager.Instance.PlayBGM(AudioManager.BGM.MainMenu);
         StartCoroutine(PreLoadScene());
     }
 
@@ -72,15 +71,8 @@ public class StartMenu : MonoBehaviour
         if (hamsterVideoPlayer.frame == 2)
         {
             introVideoPlayer.gameObject.SetActive(false);
-<<<<<<< Updated upstream
             AudioManager.Instance.PlayBGM(AudioManager.BGM.Restaurant);
             AudioManager.Instance.PlaySFX(AudioManager.SFX.Bell);
-=======
-            //AudioManager.Instance.PlayBGM(AudioManager.BGM.Restaurant);
-            //AudioManager.Instance.PlaySFX(AudioManager.SFX.Bell);
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.bell);
-            AudioManager.Instance.PlayBGM(AudioManager.Instance.restaurant);
->>>>>>> Stashed changes
         }
         if (hamsterVideoFinshed)
         {
@@ -90,8 +82,7 @@ public class StartMenu : MonoBehaviour
             {
                 if (!Input.GetKey(KeyCode.Escape) && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
                 {
-                    
-                    AudioManager.Instance.bgmEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    AudioManager.Instance.bgmSource.Stop();
                     StartCoroutine(FadeOutToNextScene());
 
                 }
@@ -155,7 +146,6 @@ public class StartMenu : MonoBehaviour
         knifeAnimator.SetTrigger("Clicked");
         yield return new WaitForSeconds(1f);
         AudioManager.Instance.bgmSource.Stop();
-        AudioManager.Instance.bgmEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         
         introVideoPlayer.Play();
     }
