@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
 using FMODUnity;
+using FMOD.Studio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -19,7 +20,14 @@ public class AudioManager : MonoBehaviour
     public EventReference success;
     public EventReference successEffect;
     public EventReference fail;
+    public EventReference crack;
+    public EventReference chocolate;
+    public EventReference mainMenu;
+    public EventReference restaurant;
+    public EventReference stage1;
 
+    public EventInstance stageEventInstance;
+    public EventInstance bgmEventInstance;
 
     public enum SFX
     {
@@ -35,10 +43,7 @@ public class AudioManager : MonoBehaviour
         Choco1,
         Choco2,
         Choco3
-
     }
-
-    
 
     public enum BGM
     {
@@ -74,56 +79,40 @@ public class AudioManager : MonoBehaviour
         //soundSO = Resources.Load<SoundSO>("SoundData");
     }
 
-
-    public void PlayBGM(BGM bgm)
+    public void StopAllMusic()
     {
-        
-        
-        //bgmSource.clip = GetBGMClip(bgm);
-        //bgmSource.Play();
-        
+        if (bgmEventInstance.isValid())
+        {
+            bgmEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            bgmEventInstance.release();
+        }
+        if (stageEventInstance.isValid())
+        {
+            stageEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            stageEventInstance.release();
+        }
     }
+
+    public void PlayBGM(EventReference bgm)
+    {
+        StopAllMusic(); // Stop any existing music before playing new BGM
+        bgmEventInstance = RuntimeManager.CreateInstance(bgm);
+        bgmEventInstance.start();
+        bgmEventInstance.release();
+    }
+
     public void PlaySFX(EventReference sound)
     {
         RuntimeManager.PlayOneShot(sound);
-
     }
 
-    public void PlayStageMusic(Stage stage)
+    public void PlayStageMusic(EventReference stageBGM)
     {
-
-        //stageSource.clip = null;
-        //stageSource.clip = GetStageClip(stage);
-        //stageSource.Play();
-
+        StopAllMusic(); // Stop any existing music before playing new stage music
+        stageEventInstance = RuntimeManager.CreateInstance(stageBGM);
+        stageEventInstance.start();
+        stageEventInstance.release();
     }
 
-    //private EventReference GetSFXClip(SFX sfx)
-    //{
-    //    foreach (SoundSO.SFXAudioClip sfxAudioClip in soundSO.sfxAudioClipArray)
-    //    {
-    //        if (sfxAudioClip.sfx == sfx) return sfxAudioClip.sfxSound;
-    //    }
-    //    return null;
-    //}
-
-    //private AudioClip GetBGMClip(BGM bgm)
-    //{
-    //    foreach (SoundSO.BGMAudioClip bgmAudioClip in soundSO.bgmAudioClipArray)
-    //    {
-    //        if (bgmAudioClip.bgm == bgm) return bgmAudioClip.audioClip;
-    //    }
-    //    Debug.LogError("Sound" + bgm + " not found!");
-    //    return null;
-    //}
-
-    //private AudioClip GetStageClip(Stage stage)
-    //{
-    //    foreach (SoundSO.StageAudioClip stageAudioClip in soundSO.stageAudioClipArray)
-    //    {
-    //        if (stageAudioClip.stage == stage) return stageAudioClip.audioClip;
-    //    }
-    //    Debug.LogError("Sound" + stage + " not found!");
-    //    return null;
-    //}
+    // Removed commented-out methods for GetSFXClip, GetBGMClip, and GetStageClip
 }

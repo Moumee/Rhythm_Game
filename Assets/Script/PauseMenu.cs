@@ -9,11 +9,13 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject optionMenu;
     [SerializeField] GameObject pauseMenu;
     public bool isPlaying = true;
+
     public void OnHomeButtonClicked()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 1f;
+        AudioManager.Instance.StopAllMusic(); // Added this line
         SceneManager.LoadSceneAsync(0);
         isPlaying = true;
     }
@@ -27,19 +29,20 @@ public class PauseMenu : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        AudioManager.Instance.bgmSource.Stop();
-        AudioManager.Instance.stageSource.Stop();
+
+        AudioManager.Instance.StopAllMusic(); // Updated this line
+
         Time.timeScale = 1f;
         SceneManager.LoadSceneAsync("1-1");
         isPlaying = true;
-
     }
 
     public void OnPauseButtonClicked()
     {
         Time.timeScale = 1f;
-        AudioManager.Instance.bgmSource.UnPause();
-        AudioManager.Instance.stageSource.UnPause();
+
+        AudioManager.Instance.bgmEventInstance.setPaused(false);
+        AudioManager.Instance.stageEventInstance.setPaused(false);
         pauseMenu.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -48,7 +51,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Update()
     {
-        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPlaying)
@@ -56,8 +58,8 @@ public class PauseMenu : MonoBehaviour
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
                 isPlaying = false;
-                AudioManager.Instance.bgmSource.Pause();
-                AudioManager.Instance.stageSource.Pause();
+                AudioManager.Instance.bgmEventInstance.setPaused(true);
+                AudioManager.Instance.stageEventInstance.setPaused(true);
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
             }
@@ -72,16 +74,13 @@ public class PauseMenu : MonoBehaviour
                 else if (!optionMenu.activeInHierarchy)
                 {
                     isPlaying = true;
-                    AudioManager.Instance.bgmSource.UnPause();
-                    AudioManager.Instance.stageSource.UnPause();
+                    AudioManager.Instance.bgmEventInstance.setPaused(false);
+                    AudioManager.Instance.stageEventInstance.setPaused(false);
                     pauseMenu.SetActive(false);
                     optionMenu.SetActive(false);
                     Time.timeScale = 1f;
                 }
-                
             }
         }
-        
-
     }
 }

@@ -96,6 +96,41 @@ MonoBehaviour:
       Data3: -1996734838
       Data4: -454918378
     Path: event:/Fail
+  crack:
+    Guid:
+      Data1: -1529290527
+      Data2: 1101353114
+      Data3: 1327880624
+      Data4: 2098553056
+    Path: event:/Crack
+  chocolate:
+    Guid:
+      Data1: 882093107
+      Data2: 1184525394
+      Data3: -822088289
+      Data4: -1872218818
+    Path: event:/Choco
+  mainMenu:
+    Guid:
+      Data1: 1017582998
+      Data2: 1132803821
+      Data3: 1766551218
+      Data4: -1955537712
+    Path: event:/MainMenu
+  restaurant:
+    Guid:
+      Data1: 340133334
+      Data2: 1272764009
+      Data3: -524011610
+      Data4: 505291998
+    Path: event:/Restaurant
+  stage1:
+    Guid:
+      Data1: -1395302964
+      Data2: 1104837930
+      Data3: -1610714434
+      Data4: 375302408
+    Path: event:/Stage1
 --- !u!114 &3045072922224617601
 MonoBehaviour:
   m_ObjectHideFlags: 0

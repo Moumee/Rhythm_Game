@@ -30,20 +30,17 @@ public class StartMenu : MonoBehaviour
     {
         introVideoPlayer.loopPointReached += PlayHamsterVideo;
         hamsterVideoPlayer.loopPointReached += HamsterVideoFinished;
-
-        
     }
 
     private void HamsterVideoFinished(VideoPlayer source)
     {
         continueTextObj.SetActive(true);
-        
         hamsterVideoFinshed = true;
     }
 
     private void Start()
     {
-        AudioManager.Instance.PlayBGM(AudioManager.BGM.MainMenu);
+        AudioManager.Instance.PlayBGM(AudioManager.Instance.mainMenu);
         StartCoroutine(PreLoadScene());
     }
 
@@ -55,7 +52,6 @@ public class StartMenu : MonoBehaviour
 
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.S))
         {
             StartCoroutine(Fade());
@@ -67,12 +63,12 @@ public class StartMenu : MonoBehaviour
                 UI.SetActive(false);
             }
         }
-        
+
         if (hamsterVideoPlayer.frame == 2)
         {
             introVideoPlayer.gameObject.SetActive(false);
-            //AudioManager.Instance.PlayBGM(AudioManager.BGM.Restaurant);
-            //AudioManager.Instance.PlaySFX(AudioManager.SFX.Bell);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.bell);
+            AudioManager.Instance.PlayBGM(AudioManager.Instance.restaurant);
         }
         if (hamsterVideoFinshed)
         {
@@ -82,9 +78,8 @@ public class StartMenu : MonoBehaviour
             {
                 if (!Input.GetKey(KeyCode.Escape) && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
                 {
-                    AudioManager.Instance.bgmSource.Stop();
+                    AudioManager.Instance.StopAllMusic(); // Updated this line
                     StartCoroutine(FadeOutToNextScene());
-
                 }
             }
         }
@@ -93,13 +88,11 @@ public class StartMenu : MonoBehaviour
         {
             offset = -Time.time * fadeSpeed;
         }
-
     }
 
     private void PlayHamsterVideo(VideoPlayer vp)
     {
         StartCoroutine(Fade());
-        
     }
 
     IEnumerator PreLoadScene()
@@ -107,7 +100,7 @@ public class StartMenu : MonoBehaviour
         asyncOperation = SceneManager.LoadSceneAsync("1-1");
         asyncOperation.allowSceneActivation = false;
 
-        while(!asyncOperation.isDone)
+        while (!asyncOperation.isDone)
         {
             yield return null;
         }
@@ -118,8 +111,10 @@ public class StartMenu : MonoBehaviour
         fade.SetActive(true);
         fade.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.StopAllMusic(); // Added this line
         asyncOperation.allowSceneActivation = true;
     }
+
     IEnumerator Fade()
     {
         fade.SetActive(true);
@@ -133,10 +128,6 @@ public class StartMenu : MonoBehaviour
         fade.SetActive(false);
     }
 
-
-    
-    
-
     IEnumerator Delay()
     {
         Cursor.visible = false;
@@ -145,8 +136,8 @@ public class StartMenu : MonoBehaviour
         forkAnimator.SetTrigger("Clicked");
         knifeAnimator.SetTrigger("Clicked");
         yield return new WaitForSeconds(1f);
-        AudioManager.Instance.bgmSource.Stop();
-        
+        AudioManager.Instance.StopAllMusic(); // Updated this line
+
         introVideoPlayer.Play();
     }
 }
