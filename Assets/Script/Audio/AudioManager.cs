@@ -99,7 +99,6 @@ public class AudioManager : MonoBehaviour
         StopAllMusic(); // Stop any existing music before playing new BGM
         bgmEventInstance = RuntimeManager.CreateInstance(bgm);
         bgmEventInstance.start();
-        bgmEventInstance.release();
     }
 
     public void PlaySFX(EventReference sound)
@@ -107,13 +106,12 @@ public class AudioManager : MonoBehaviour
         RuntimeManager.PlayOneShot(sound);
     }
 
-    public void PlayStageMusic(EventReference stageBGM)
-    {
-        StopAllMusic(); // Stop any existing music before playing new stage music
-        stageEventInstance = RuntimeManager.CreateInstance(stageBGM);
-        stageEventInstance.start();
-        stageEventInstance.release();
-    }
+    //public void PlayStageMusic(EventReference stageBGM)
+    //{
+    //    StopAllMusic(); // Stop any existing music before playing new stage music
+    //    stageEventInstance = RuntimeManager.CreateInstance(stageBGM);
+    //    stageEventInstance.start();
+    //}
 
     // Removed commented-out methods for GetSFXClip, GetBGMClip, and GetStageClip
 }

@@ -8,9 +8,17 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.Video;
 using AsyncOperation = UnityEngine.AsyncOperation;
+using System;
+using System.Runtime.InteropServices;
+using Unity.VisualScripting;
+using static GameManager;
 
 public class GameManager : MonoBehaviour
 {
+
+  
+    
+
     public UnityEvent OnBeat;
     public UnityEvent OnNote;
     public UnityEvent CatchNote;
@@ -42,6 +50,14 @@ public class GameManager : MonoBehaviour
     public GameObject anyKeyObj;
 
     [SerializeField] SceneController sceneController;
+
+    
+
+
+
+
+
+
 
     private List<int> SpawnChart = new List<int>();
     private List<int> JudgeChart = new List<int>();
@@ -105,9 +121,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject fade;
     bool fadeOutStart = false;
 
+   
+
     void Awake()
     {
-
+        BeatTracker.onFixedBeat += IterateChart;
         if (Instance == null)
         {
             Instance = this;
@@ -116,6 +134,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        
 
         noteManager = FindObjectOfType<NoteManager>();
         //ingredientManager = FindObjectOfType<IngredientManager>();  
@@ -137,11 +157,19 @@ public class GameManager : MonoBehaviour
 
 
         StartCoroutine(NoteStartDelay());
-        StartCoroutine(BGMStartDelay());
-
+        //StartCoroutine(BGMStartDelay());
+        
 
     }
 
+
+    
+
+  
+
+    
+
+   
 
     IEnumerator FadeOutToNextScene(string sceneName)
     {
@@ -151,55 +179,63 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+
     
+
     // Update is called once per frame
     void Update()
     {
+
+        
+
+
         if (!FindObjectOfType<PauseMenu>().isPlaying)
         {
             return;
         }
 
-        //if (Input.GetKeyDown(KeyCode.DownArrow)) { Debug.Log((AudioManager.Instance.stageSource.time)); }
+        
 
         if (BeatStart && !stageEnd)
         {
             
-            if (Time.time - timer >= interval)
+            if (Time.time - timer > interval)
             {
-                if (SpawnChart[count] == 1)
-                {
-                    noteNumber++;
-                    if (isStage1_2)
-                    {
-                        OnNote_2.Invoke();
-                    }
-                    else
-                    {
-                        OnNote.Invoke();
-                    }
-                }
-                if (isStage1_2)
-                {
-                    OnBeat_2.Invoke();
-                }
-                else
-                {
-                    OnBeat.Invoke();
-                }
+                
 
-                if (count + 4 <= SpawnChart.Count - 1)
-                {
-                    if (SpawnChart[count + 4] == 1)
-                    {
-                        noteNumber2++;
-                        OnNote_3.Invoke();
+                //if (SpawnChart[count] == 1)
+                //{
+                //    noteNumber++;
+                //    if (isStage1_2)
+                //    {
+                //        OnNote_2.Invoke();
+                //    }
+                //    else
+                //    {
+                //        OnNote.Invoke();
+                //    }
+                //}
+                //if (isStage1_2)
+                //{
+                //    OnBeat_2.Invoke();
+                //}
+                //else
+                //{
+                //    OnBeat.Invoke();
+                //}
 
-                    }
-                }
+                //if (count + 4 <= SpawnChart.Count - 1)
+                //{
+                //    if (SpawnChart[count + 4] == 1)
+                //    {
+                //        noteNumber2++;
+                //        OnNote_3.Invoke();
+
+                //    }
+                //}
 
 
-                ++count;
+                //++count;
                 timer = Time.time;
                 if (JudgeChart[count + 1] == 1)
                 {
@@ -304,6 +340,42 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void IterateChart()
+    {
+        if (SpawnChart[count] == 1)
+        {
+            noteNumber++;
+            if (isStage1_2)
+            {
+                OnNote_2.Invoke();
+            }
+            else
+            {
+                OnNote.Invoke();
+            }
+        }
+        if (isStage1_2)
+        {
+            OnBeat_2.Invoke();
+        }
+        else
+        {
+            OnBeat.Invoke();
+        }
+
+        if (count + 4 <= SpawnChart.Count - 1)
+        {
+            if (SpawnChart[count + 4] == 1)
+            {
+                noteNumber2++;
+                OnNote_3.Invoke();
+
+            }
+        }
+
+
+        ++count;
+    }
     IEnumerator MoveBackground(float duration)
     {
         backgroundMoved = true;
@@ -337,11 +409,11 @@ public class GameManager : MonoBehaviour
 
 
 
-    IEnumerator BGMStartDelay()
-    {
-        yield return new WaitForSeconds(bgmStartDelay);
-        AudioManager.Instance.PlayStageMusic(AudioManager.Instance.stage1);
-    }
+    //IEnumerator BGMStartDelay()
+    //{
+    //    yield return new WaitForSeconds(bgmStartDelay);
+    //    AudioManager.Instance.PlayStageMusic(AudioManager.Instance.stage1);
+    //}
 
     IEnumerator CatchDelay()
     {
