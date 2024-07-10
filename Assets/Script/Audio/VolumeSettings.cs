@@ -6,39 +6,62 @@ using UnityEngine.UI;
 
 public class VolumeSettings : MonoBehaviour
 {
-    [SerializeField] AudioMixer audioMixer;
-    [SerializeField] Slider bgmSlider;
-    [SerializeField] Slider sfxSlider;
-    private void Start()
+    
+    
+    
+    private enum VoulmeType
     {
-        if (PlayerPrefs.HasKey("bgmVolume") && PlayerPrefs.HasKey("sfxVolume"))
-        {
-            LoadVolume();
-        }
-        else
-        {
-            SetBGMVolume();
-            SetSFXVolume();
-        }
-        
-    }
-    public void SetBGMVolume()
-    {
-        float volume = bgmSlider.value;
-        audioMixer.SetFloat("BGM", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("bgmVolume", volume);
+        MASTER,
+        BGM,
+        SFX
     }
 
-    private void LoadVolume()
+    [Header("Type")]
+    [SerializeField] private VoulmeType volumeType;
+
+
+    private Slider volumeSlider;
+
+    private void Awake()
     {
-        bgmSlider.value = PlayerPrefs.GetFloat("bgmVolume");
-        sfxSlider.value = PlayerPrefs.GetFloat("sfxVolume");
+        volumeSlider = GetComponentInChildren<Slider>();
     }
 
-    public void SetSFXVolume()
+    private void Update()
     {
-        float volume = sfxSlider.value;
-        audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("sfxVolume", volume);
+        switch (volumeType)
+        {
+            case VoulmeType.MASTER:
+                volumeSlider.value = AudioManager.Instance.masterVolume;
+                break;
+            case VoulmeType.BGM:
+                volumeSlider.value = AudioManager.Instance.bgmVolume;
+                break;
+            case VoulmeType.SFX:
+                volumeSlider.value = AudioManager.Instance.sfxVolume;
+                break;
+            default:
+                Debug.LogWarning("VoulmeType error");
+                break;
+        }
+    }
+
+    public void OnSliderValueChanged()
+    {
+        switch (volumeType)
+        {
+            case VoulmeType.MASTER:
+                AudioManager.Instance.masterVolume = volumeSlider.value;
+                break;
+            case VoulmeType.BGM:
+                AudioManager.Instance.bgmVolume = volumeSlider.value;
+                break;
+            case VoulmeType.SFX:
+                AudioManager.Instance.sfxVolume = volumeSlider.value;
+                break;
+            default:
+                Debug.LogWarning("VoulmeType error");
+                break;
+        }
     }
 }

@@ -27,8 +27,23 @@ public class AudioManager : MonoBehaviour
     public EventReference restaurant;
     public EventReference stage1;
 
-    public EventInstance stageEventInstance;
     public EventInstance bgmEventInstance;
+
+    [Header("Volume")]
+    [Range(0, 1)]
+    public float masterVolume = 1;
+
+    [Range(0, 1)]
+    public float bgmVolume = 1;
+
+    [Range(0, 1)]
+    public float sfxVolume = 1;
+
+    private Bus masterBus;
+    private Bus bgmBus;
+    private Bus sfxBus; 
+
+
 
     public enum SFX
     {
@@ -77,20 +92,29 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        //soundSO = Resources.Load<SoundSO>("SoundData");
+        masterBus = RuntimeManager.GetBus("bus:/");
+        bgmBus = RuntimeManager.GetBus("bus:/BGM");
+        sfxBus = RuntimeManager.GetBus("bus:/SFX");
+    }
+
+    private void Update()
+    {
+        masterBus.setVolume(masterVolume);
+        bgmBus.setVolume(bgmVolume);
+        sfxBus.setVolume(sfxVolume);    
     }
 
     public void StopAllMusic()
     {
         if (bgmEventInstance.isValid())
         {
-            bgmEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            bgmEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             bgmEventInstance.release();
         }
-        if (stageEventInstance.isValid())
+        if (BeatTracker.currentMusicTrack.isValid())
         {
-            stageEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            stageEventInstance.release();
+            BeatTracker.currentMusicTrack.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            BeatTracker.currentMusicTrack.release();
         }
     }
 

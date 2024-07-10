@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 public class BeatTracker : MonoBehaviour
 {
+    //In FMOD you must set music event priority to highest, turn off stream, and persistent to on.
     public EventReference eventToPlay;
 
     public enum BeatType { FixedBeat, UpBeat };
@@ -47,12 +48,12 @@ public class BeatTracker : MonoBehaviour
 
     // BEAT DELEGATES!!!
     public delegate void BeatEventDelegate();
-    public static event BeatEventDelegate onFixedBeat;
+    public static event BeatEventDelegate OnFixedBeat;
 
     private static double lastFixedBeatTime = -2;
     private static double lastFixedBeatDSPTime = -2;
 
-    public static event BeatEventDelegate onUpBeat;
+    public static event BeatEventDelegate OnUpBeat;
 
     private double lastUpBeatTime = -2;
 
@@ -89,7 +90,7 @@ public class BeatTracker : MonoBehaviour
     private FMOD.Studio.EVENT_CALLBACK beatCallback;
     private FMOD.Studio.EventDescription descriptionCallback;
 
-    private static FMOD.Studio.EventInstance currentMusicTrack;
+    public static FMOD.Studio.EventInstance currentMusicTrack;
 
 
 
@@ -315,11 +316,13 @@ public class BeatTracker : MonoBehaviour
         
     }
 
-    private void TestFunc()
+#if UNITY_EDITOR
+    private void OnGUI()
     {
-        Debug.Log("Beat!");
+        GUILayout.Box($"LastfixedDsPtime: {GetLastFixedBeatDSPTime()}");
+        GUILayout.Box($"Current Time: {GetCurrentTime()}");
     }
-
+#endif
     public static float UpBeatPosition()
     {
         return ((float)beatInterval / beatTrackerInstance.upBeatDivisor);
@@ -362,9 +365,9 @@ public class BeatTracker : MonoBehaviour
 
     private void DoFixedBeat()
     {
-        if (onFixedBeat != null)
+        if (OnFixedBeat != null)
         {
-            onFixedBeat();
+            OnFixedBeat();
         }
 
         if (doDebugSounds)
@@ -375,9 +378,9 @@ public class BeatTracker : MonoBehaviour
 
     private void DoUpBeat()
     {
-        if (onUpBeat != null)
+        if (OnUpBeat != null)
         {
-            onUpBeat();
+            OnUpBeat();
         }
 
         if (doDebugSounds)

@@ -21,19 +21,21 @@ public class Note : MonoBehaviour
     private int serialnum;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         noteManager = FindObjectOfType<NoteManager>();
         animator = GetComponent<Animator>();
         noteSpawnPoint = noteManager.noteSpawnPoint;
-        speed = 14/(4*60/GameManager.Instance.BPM)/2+0.88f;
+
+        speed = 14 / (4 * BeatTracker.GetBeatInterval()) / 2 + 0.88f;
+
     }
 
     private void OnEnable()
     {
         float interval = 60 / GameManager.Instance.BPM;
         judged = false;
-        catchableTime = Time.time + 4 * interval;
+        catchableTime = BeatTracker.GetCurrentTime() + 4 * interval;
         serialnum = GameManager.Instance.noteNumber2;
     }
 

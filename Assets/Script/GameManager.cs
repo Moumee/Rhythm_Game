@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        BeatTracker.onFixedBeat += IterateChart;
+        BeatTracker.OnFixedBeat += IterateChart;
         if (Instance == null)
         {
             Instance = this;
@@ -236,19 +236,19 @@ public class GameManager : MonoBehaviour
 
 
                 //++count;
-                timer = Time.time;
-                if (JudgeChart[count + 1] == 1)
-                {
-                    judgeNumber++;
-                    scoreTimer = Time.time + interval - margin_good;
+                //timer = Time.time;
+                //if (JudgeChart[count + 1] == 1)
+                //{
+                //    judgeNumber++;
+                //    scoreTimer = Time.time + interval - margin_good;
 
-                    isScoreGet = false;
+                //    isScoreGet = false;
 
-                    if (isStage1_2)
-                    {
-                        OnNote_forMold.Invoke();
-                    }
-                }
+                //    if (isStage1_2)
+                //    {
+                //        OnNote_forMold.Invoke();
+                //    }
+                //}
 
 
 
@@ -257,8 +257,8 @@ public class GameManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.DownArrow) && isCatchable)
             {
-                if (Time.time >= scoreTimer &&
-                    Time.time < scoreTimer + margin_good * 2 && !isScoreGet)
+                if (BeatTracker.GetCurrentTime() >= scoreTimer &&
+                    BeatTracker.GetCurrentTime() < scoreTimer + margin_good * 2 && !isScoreGet)
                 {
                     ++Score;
                     if (isStage1_2)
@@ -269,8 +269,8 @@ public class GameManager : MonoBehaviour
                     {
                         CatchNote.Invoke();
                     }
-                    if (Time.time >= scoreTimer + margin_good - margin_perfect
-                        && Time.time <= scoreTimer + margin_good + margin_perfect)
+                    if (BeatTracker.GetCurrentTime() >= scoreTimer + margin_good - margin_perfect
+                        && BeatTracker.GetCurrentTime() <= scoreTimer + margin_good + margin_perfect)
                     {
                         perfectText.SetTrigger("Perfect");
                         noteManager.NoteJudgeEffect("Perfect");
@@ -295,16 +295,16 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Time.time > scoreTimer + 2 * margin_good && !isScoreGet && !stageEnd)
-        {
-            isScoreGet = true;
-            missText.SetTrigger("Miss");
-            noteManager.NoteJudgeEffect("Miss");
-            if (isStage1_2)
-            {
-                FillMiss.Invoke();
-            }
-        }
+        //if (Time.time > scoreTimer + 2 * margin_good && !isScoreGet && !stageEnd)
+        //{
+        //    isScoreGet = true;
+        //    missText.SetTrigger("Miss");
+        //    noteManager.NoteJudgeEffect("Miss");
+        //    if (isStage1_2)
+        //    {
+        //        FillMiss.Invoke();
+        //    }
+        //}
 
         if (count >= 151)
         {
@@ -340,41 +340,65 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //Made IterateChart function and subscribed to BeatTracker.OnFixedBeat in the Awake function
+    //On every beat IterateChart is called
     private void IterateChart()
     {
-        if (SpawnChart[count] == 1)
+        if (!FindObjectOfType<PauseMenu>().isPlaying)
         {
-            noteNumber++;
+            return;
+        }
+
+        if (BeatStart && !stageEnd)
+        {
+            if (SpawnChart[count] == 1)
+            {
+                noteNumber++;
+                if (isStage1_2)
+                {
+                    OnNote_2.Invoke();
+                }
+                else
+                {
+                    OnNote.Invoke();
+                }
+            }
             if (isStage1_2)
             {
-                OnNote_2.Invoke();
+                OnBeat_2.Invoke();
             }
             else
             {
-                OnNote.Invoke();
+                OnBeat.Invoke();
             }
-        }
-        if (isStage1_2)
-        {
-            OnBeat_2.Invoke();
-        }
-        else
-        {
-            OnBeat.Invoke();
-        }
 
-        if (count + 4 <= SpawnChart.Count - 1)
-        {
-            if (SpawnChart[count + 4] == 1)
+            if (count + 4 <= SpawnChart.Count - 1)
             {
-                noteNumber2++;
-                OnNote_3.Invoke();
+                if (SpawnChart[count + 4] == 1)
+                {
+                    noteNumber2++;
+                    OnNote_3.Invoke();
 
+                }
+            }
+
+
+            ++count;
+        }
+        if (JudgeChart[count + 1] == 1)
+        {
+            judgeNumber++;
+            scoreTimer = BeatTracker.GetCurrentTime() + BeatTracker.GetBeatInterval() - margin_good;
+
+            isScoreGet = false;
+
+            if (isStage1_2)
+            {
+                OnNote_forMold.Invoke();
             }
         }
 
 
-        ++count;
     }
     IEnumerator MoveBackground(float duration)
     {
@@ -407,6 +431,10 @@ public class GameManager : MonoBehaviour
         BeatStart = true;
     }
 
+    private void OnDestroy()
+    {
+        BeatTracker.OnFixedBeat -= IterateChart;
+    }
 
 
     //IEnumerator BGMStartDelay()
@@ -426,6 +454,7 @@ public class GameManager : MonoBehaviour
         isCatchable = true;
     }
 }
+
 
 
 

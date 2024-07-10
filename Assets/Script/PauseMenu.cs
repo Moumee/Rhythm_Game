@@ -42,7 +42,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
 
         AudioManager.Instance.bgmEventInstance.setPaused(false);
-        AudioManager.Instance.stageEventInstance.setPaused(false);
+        BeatTracker.currentMusicTrack.setPaused(false);
         pauseMenu.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -59,7 +59,7 @@ public class PauseMenu : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 isPlaying = false;
                 AudioManager.Instance.bgmEventInstance.setPaused(true);
-                AudioManager.Instance.stageEventInstance.setPaused(true);
+                BeatTracker.currentMusicTrack.setPaused(true);
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
             }
@@ -75,7 +75,7 @@ public class PauseMenu : MonoBehaviour
                 {
                     isPlaying = true;
                     AudioManager.Instance.bgmEventInstance.setPaused(false);
-                    AudioManager.Instance.stageEventInstance.setPaused(false);
+                    BeatTracker.currentMusicTrack.setPaused(false);
                     pauseMenu.SetActive(false);
                     optionMenu.SetActive(false);
                     Time.timeScale = 1f;
