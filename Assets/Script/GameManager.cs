@@ -12,6 +12,7 @@ using System;
 using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using static GameManager;
+using FMODUnity;
 
 public class GameManager : MonoBehaviour
 {
@@ -51,8 +52,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] SceneController sceneController;
 
-    
 
+    
 
 
 
