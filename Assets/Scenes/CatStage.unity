@@ -516,6 +516,7 @@ MonoBehaviour:
   leftSlapPosition: {fileID: 7403340459483847499}
   rightSlapPosition: {fileID: 1792414711454553323}
   fishAnim: {fileID: 391209218}
+  waterAnim: {fileID: 1283870367}
 --- !u!4 &803492507
 Transform:
   m_ObjectHideFlags: 0

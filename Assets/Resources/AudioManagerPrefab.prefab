@@ -137,7 +137,10 @@ MonoBehaviour:
       Data2: 1104837930
       Data3: -1610714434
       Data4: 375302408
-    Path: event:/Stage1
+    Path: event:/StageMusic/Stage1
+  masterVolume: 1
+  bgmVolume: 1
+  sfxVolume: 1
 --- !u!114 &3045072922224617601
 MonoBehaviour:
   m_ObjectHideFlags: 0

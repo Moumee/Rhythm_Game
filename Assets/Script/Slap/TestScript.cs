@@ -8,6 +8,7 @@ public class TestScript : MonoBehaviour
     [SerializeField] Transform leftSlapPosition;
     [SerializeField] Transform rightSlapPosition;
     [SerializeField] Animator fishAnim;
+    [SerializeField] Animator waterAnim;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class TestScript : MonoBehaviour
             leftSlap.transform.position = leftSlapPosition.position;
             leftSlap.SetActive(true);
             fishAnim.SetTrigger("LeftHit");
+            waterAnim.SetTrigger("WaterLeft");
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -30,6 +32,7 @@ public class TestScript : MonoBehaviour
             rightSlap.transform.position = rightSlapPosition.position;
             rightSlap.SetActive(true);
             fishAnim.SetTrigger("RightHit");
+            waterAnim.SetTrigger("WaterRight");
         }
     }
 }
