@@ -14,6 +14,8 @@ public class BeatTracker : MonoBehaviour
 
     public static bool isPlayingMusic = false;
 
+    public int beatNumber = 0;
+
     [Header("DEBUG STUFF:")]
     public bool doDebugSounds = false;
     public FMODUnity.StudioEventEmitter downBeatEvent;
@@ -96,10 +98,21 @@ public class BeatTracker : MonoBehaviour
 
     private void Awake()
     {
-        
+        OnFixedBeat += IncrementBeatNumber;
         beatTrackerInstance = this;
         SetMusicTrack(eventToPlay);
         PlayMusicTrack();
+
+    }
+
+    private void OnDestroy()
+    {
+        OnFixedBeat -= IncrementBeatNumber;
+    }
+
+    private void IncrementBeatNumber()
+    {
+        beatNumber++;
     }
 
     private void AssignMusicCallbacks()
