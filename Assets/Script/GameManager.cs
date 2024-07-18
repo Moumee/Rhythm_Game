@@ -261,6 +261,7 @@ public class GameManager : MonoBehaviour
                 if (BeatTracker.GetCurrentTime() >= scoreTimer &&
                     BeatTracker.GetCurrentTime() < scoreTimer + margin_good * 2 && !isScoreGet)
                 {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.notePress);
                     ++Score;
                     if (isStage1_2)
                     {

@@ -103,6 +103,13 @@ MonoBehaviour:
       Data3: 1327880624
       Data4: 2098553056
     Path: event:/Crack
+  notePress:
+    Guid:
+      Data1: 1808905763
+      Data2: 1314147218
+      Data3: -999878503
+      Data4: 914439959
+    Path: event:/NotePress
   chocolate:
     Guid:
       Data1: 882093107

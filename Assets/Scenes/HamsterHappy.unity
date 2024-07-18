@@ -465,12 +465,12 @@ SpriteRenderer:
   m_SortingLayerID: -726705179
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ea886f793321ac14ebeb59284158e907, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 801b2f10e15508e4db8db9c6d7a3d30c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -999,7 +999,7 @@ PrefabInstance:
     - target: {fileID: 5688634414397928442, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1782761023}
+      objectReference: {fileID: 0}
     - target: {fileID: 5688634414397928442, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetSFXVolume
@@ -1011,7 +1011,7 @@ PrefabInstance:
     - target: {fileID: 8866978088426576808, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1782761023}
+      objectReference: {fileID: 0}
     - target: {fileID: 8866978088426576808, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetBGMVolume
@@ -1026,28 +1026,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2479649166802137184, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
   m_PrefabInstance: {fileID: 1455130558}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1455130560 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5688634414397928442, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
-  m_PrefabInstance: {fileID: 1455130558}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1455130561 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8866978088426576808, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
-  m_PrefabInstance: {fileID: 1455130558}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1613161496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,82 +1259,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1001 &1782761022
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1877809074087427677, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
-      propertyPath: bgmSlider
-      value: 
-      objectReference: {fileID: 1455130561}
-    - target: {fileID: 1877809074087427677, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
-      propertyPath: sfxSlider
-      value: 
-      objectReference: {fileID: 1455130560}
-    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.2817268
-      objectReference: {fileID: 0}
-    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.27351514
-      objectReference: {fileID: 0}
-    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.04377245
-      objectReference: {fileID: 0}
-    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4864647770506082674, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6082132545043387870, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
-      propertyPath: m_Name
-      value: VolumeSettings
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
---- !u!114 &1782761023 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1877809074087427677, guid: 43c8e6f375a0ad44393018db29779603, type: 3}
-  m_PrefabInstance: {fileID: 1782761022}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5583f62e72441ec44b766ab81d9d1759, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1829186282
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,4 +1356,3 @@ SceneRoots:
   - {fileID: 1613161501}
   - {fileID: 1105566663}
   - {fileID: 435214868}
-  - {fileID: 1782761022}

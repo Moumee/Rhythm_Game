@@ -21,6 +21,7 @@ public class AudioManager : MonoBehaviour
     public EventReference successEffect;
     public EventReference fail;
     public EventReference crack;
+    public EventReference notePress;
     public EventReference chocolate;
     public EventReference mainMenu;
     public EventReference introVideoAudio;
