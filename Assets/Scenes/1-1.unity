@@ -1156,12 +1156,12 @@ GameObject:
   - component: {fileID: 1088902574}
   - component: {fileID: 1088902575}
   m_Layer: 0
-  m_Name: EventAdabter
+  m_Name: EventAdapter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1088902574
 Transform:
   m_ObjectHideFlags: 0
@@ -2425,7 +2425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1956375516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2902,6 +2902,7 @@ MonoBehaviour:
       Data3: -1610714434
       Data4: 375302408
     Path: event:/StageMusic/Stage1
+  beatNumber: 0
   doDebugSounds: 0
   downBeatEvent: {fileID: 0}
   upBeatEvent: {fileID: 0}
