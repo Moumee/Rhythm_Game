@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class CatGameManager : MonoBehaviour
 {
+    [SerializeField] FishManager fishManager;
     PauseMenu pauseMenu;
     public int count = 0;
+    private int lastFishMoveCount = -1;
+
+    private int fishMoveCount = 0;
 
     private List<int> musicChart = new List<int>
     {
@@ -33,15 +37,37 @@ public class CatGameManager : MonoBehaviour
         BeatTracker.OnFixedBeat -= IterateChart;
     }
 
-    private void IterateChart()
+    private void Update()
     {
         if (!pauseMenu.isPlaying)
             return;
 
-        if (musicChart[count + 2] == 1)
+        
+
+    }
+
+    private void IterateChart()
+    {
+        if (!pauseMenu.isPlaying)
+            return;
+        if (count >= 144)
         {
-            //spawn note
+            if (musicChart[count] == 1)
+            {
+                fishMoveCount++;
+
+                if (fishMoveCount % 5 == 0 && fishMoveCount != lastFishMoveCount)
+                {
+                    fishManager.MoveAllFish();
+
+                    lastFishMoveCount = fishMoveCount;
+                }
+            }
+
+
+
         }
+
         count++;
 
         
