@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        //BeatTracker.OnFixedBeat += IterateChart;
+        BeatTracker.OnFixedBeat += IterateChart;
         if (Instance == null)
         {
             Instance = this;
@@ -138,32 +138,32 @@ public class GameManager : MonoBehaviour
 
         
 
-        //noteManager = FindObjectOfType<NoteManager>();
-        ////ingredientManager = FindObjectOfType<IngredientManager>();  
-        ////moldManager = FindObjectOfType<MoldManager>();  
+        noteManager = FindObjectOfType<NoteManager>();
+        //ingredientManager = FindObjectOfType<IngredientManager>();  
+        //moldManager = FindObjectOfType<MoldManager>();  
         
 
-        //isScoreGet = true;
-        //interval = 60 / BPM;
-        //margin_good = 0.114f;
+        isScoreGet = true;
+        interval = 60 / BPM;
+        margin_good = 0.114f;
 
-        //SpawnChart.AddRange(DelayChart);
-        //SpawnChart.AddRange(MusicChart);
-        //for (int i = 0; i < beatJump * 2; i++)
-        //{
-        //    DelayChart.Add(0);
-        //}
-        //JudgeChart.AddRange(DelayChart);
-        //JudgeChart.AddRange(MusicChart);
+        SpawnChart.AddRange(DelayChart);
+        SpawnChart.AddRange(MusicChart);
+        for (int i = 0; i < beatJump * 2; i++)
+        {
+            DelayChart.Add(0);
+        }
+        JudgeChart.AddRange(DelayChart);
+        JudgeChart.AddRange(MusicChart);
 
 
-        //StartCoroutine(NoteStartDelay());
-        ////StartCoroutine(BGMStartDelay());
+        StartCoroutine(NoteStartDelay());
+        //StartCoroutine(BGMStartDelay());
         
 
     }
 
-    /*
+
     
 
   
@@ -454,7 +454,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(catchDelay);
         isCatchable = true;
     }
-    */
 }
 
 
