@@ -1,37 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
-using UnityEngine.Video;
-using AsyncOperation = UnityEngine.AsyncOperation;
-using System;
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
-using static GameManager;
-using FMODUnity;
 
-public class GameManager : MonoBehaviour
+public class RythmManager : MonoBehaviour
 {
-
-  
-    
 
     public UnityEvent OnBeat;
     public UnityEvent OnNote;
     public UnityEvent CatchNote;
+
     public UnityEvent FistMiss;
-
-
-    public UnityEvent OnBeat_2;
-    public UnityEvent OnNote_2;
-    public UnityEvent OnNote_forMold;
-    public UnityEvent CatchNote_2;
-    public UnityEvent FillMiss;
-
+    public UnityEvent Moldmove;
     public UnityEvent OnNote_3;
 
     public Animator missText;
@@ -41,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     public Animator fadeAnim;
 
-    public static GameManager Instance;
+    public static RythmManager Instance;
 
     public int noteNumber = 0;
     public int noteNumber2 = 0;
@@ -51,12 +32,6 @@ public class GameManager : MonoBehaviour
     public GameObject anyKeyObj;
 
     [SerializeField] SceneController sceneController;
-
-
-    
-
-
-
 
 
 
@@ -110,23 +85,17 @@ public class GameManager : MonoBehaviour
     //value for 1-2
     public GameObject BackGround;
     public bool isStage1_2 = false;
-    public GameObject ingredientManager;
-    public GameObject moldManager;
-
-    private double dspStartTime;
-    private double elapsedDSPTime;
-
 
     public NoteManager noteManager;
 
     [SerializeField] GameObject fade;
     bool fadeOutStart = false;
 
-   
+
 
     void Awake()
     {
-        //BeatTracker.OnFixedBeat += IterateChart;
+        BeatTracker.OnFixedBeat += IterateChart;
         if (Instance == null)
         {
             Instance = this;
@@ -136,41 +105,31 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
-
-        //noteManager = FindObjectOfType<NoteManager>();
-        ////ingredientManager = FindObjectOfType<IngredientManager>();  
-        ////moldManager = FindObjectOfType<MoldManager>();  
-        
-
-        //isScoreGet = true;
-        //interval = 60 / BPM;
-        //margin_good = 0.114f;
-
-        //SpawnChart.AddRange(DelayChart);
-        //SpawnChart.AddRange(MusicChart);
-        //for (int i = 0; i < beatJump * 2; i++)
-        //{
-        //    DelayChart.Add(0);
-        //}
-        //JudgeChart.AddRange(DelayChart);
-        //JudgeChart.AddRange(MusicChart);
 
 
-        //StartCoroutine(NoteStartDelay());
-        ////StartCoroutine(BGMStartDelay());
-        
+        noteManager = FindObjectOfType<NoteManager>();
+        //ingredientManager = FindObjectOfType<IngredientManager>();  
+        //moldManager = FindObjectOfType<MoldManager>();  
+
+
+        isScoreGet = true;
+        interval = 60 / BPM;
+        margin_good = 0.114f;
+
+        SpawnChart.AddRange(DelayChart);
+        SpawnChart.AddRange(MusicChart);
+        for (int i = 0; i < beatJump * 2; i++)
+        {
+            DelayChart.Add(0);
+        }
+        JudgeChart.AddRange(DelayChart);
+        JudgeChart.AddRange(MusicChart);
+
+
+        StartCoroutine(NoteStartDelay());
+
 
     }
-
-    /*
-    
-
-  
-
-    
-
-   
 
     IEnumerator FadeOutToNextScene(string sceneName)
     {
@@ -181,95 +140,29 @@ public class GameManager : MonoBehaviour
     }
 
 
-    
+
 
     // Update is called once per frame
     void Update()
     {
-
-        
-
 
         if (!FindObjectOfType<PauseMenu>().isPlaying)
         {
             return;
         }
 
-        
+
 
         if (BeatStart && !stageEnd)
         {
-            
-            if (Time.time - timer > interval)
-            {
-                
-
-                //if (SpawnChart[count] == 1)
-                //{
-                //    noteNumber++;
-                //    if (isStage1_2)
-                //    {
-                //        OnNote_2.Invoke();
-                //    }
-                //    else
-                //    {
-                //        OnNote.Invoke();
-                //    }
-                //}
-                //if (isStage1_2)
-                //{
-                //    OnBeat_2.Invoke();
-                //}
-                //else
-                //{
-                //    OnBeat.Invoke();
-                //}
-
-                //if (count + 4 <= SpawnChart.Count - 1)
-                //{
-                //    if (SpawnChart[count + 4] == 1)
-                //    {
-                //        noteNumber2++;
-                //        OnNote_3.Invoke();
-
-                //    }
-                //}
-
-
-                //++count;
-                //timer = Time.time;
-                //if (JudgeChart[count + 1] == 1)
-                //{
-                //    judgeNumber++;
-                //    scoreTimer = Time.time + interval - margin_good;
-
-                //    isScoreGet = false;
-
-                //    if (isStage1_2)
-                //    {
-                //        OnNote_forMold.Invoke();
-                //    }
-                //}
-
-
-
-            }
-
-
             if (Input.GetKeyDown(KeyCode.DownArrow) && isCatchable)
             {
                 if (BeatTracker.GetCurrentTime() >= scoreTimer &&
                     BeatTracker.GetCurrentTime() < scoreTimer + margin_good * 2 && !isScoreGet)
                 {
                     ++Score;
-                    if (isStage1_2)
-                    {
-                        CatchNote_2.Invoke();
-                    }
-                    else
-                    {
-                        CatchNote.Invoke();
-                    }
+                    CatchNote.Invoke();
+
                     if (BeatTracker.GetCurrentTime() >= scoreTimer + margin_good - margin_perfect
                         && BeatTracker.GetCurrentTime() <= scoreTimer + margin_good + margin_perfect)
                     {
@@ -296,26 +189,10 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        //if (Time.time > scoreTimer + 2 * margin_good && !isScoreGet && !stageEnd)
-        //{
-        //    isScoreGet = true;
-        //    missText.SetTrigger("Miss");
-        //    noteManager.NoteJudgeEffect("Miss");
-        //    if (isStage1_2)
-        //    {
-        //        FillMiss.Invoke();
-        //    }
-        //}
 
         if (count >= 151)
         {
             isStage1_2 = true;
-
-            //SceneManager.LoadSceneAsync(2);
-            //if (BackGround.transform.position.x >= -19.2f)
-            //{
-            //    BackGround.transform.position += Vector3.left * 40f * Time.deltaTime;
-            //}
             textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
         }
 
@@ -355,23 +232,9 @@ public class GameManager : MonoBehaviour
             if (SpawnChart[count] == 1)
             {
                 noteNumber++;
-                if (isStage1_2)
-                {
-                    OnNote_2.Invoke();
-                }
-                else
-                {
-                    OnNote.Invoke();
-                }
+                OnNote.Invoke();
             }
-            if (isStage1_2)
-            {
-                OnBeat_2.Invoke();
-            }
-            else
-            {
-                OnBeat.Invoke();
-            }
+            OnBeat.Invoke();
 
             if (count + 4 <= SpawnChart.Count - 1)
             {
@@ -379,24 +242,18 @@ public class GameManager : MonoBehaviour
                 {
                     noteNumber2++;
                     OnNote_3.Invoke();
-
                 }
             }
-
-
             ++count;
         }
+
         if (JudgeChart[count + 1] == 1)
         {
             judgeNumber++;
             scoreTimer = BeatTracker.GetCurrentTime() + BeatTracker.GetBeatInterval() - margin_good;
 
+            Moldmove.Invoke();
             isScoreGet = false;
-
-            if (isStage1_2)
-            {
-                OnNote_forMold.Invoke();
-            }
         }
 
 
@@ -414,16 +271,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //IEnumerator PreLoadScene(string sceneName)
-    //{
-    //    asyncOperation = SceneManager.LoadSceneAsync(sceneName);
-    //    asyncOperation.allowSceneActivation = false;
-
-    //    while (!asyncOperation.isDone)
-    //    {
-    //        yield return null;
-    //    }
-    //}
     IEnumerator NoteStartDelay()
     {
         yield return new WaitForSeconds(startDelay);
@@ -438,11 +285,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //IEnumerator BGMStartDelay()
-    //{
-    //    yield return new WaitForSeconds(bgmStartDelay);
-    //    AudioManager.Instance.PlayStageMusic(AudioManager.Instance.stage1);
-    //}
 
     IEnumerator CatchDelay()
     {
@@ -454,10 +296,4 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(catchDelay);
         isCatchable = true;
     }
-    */
 }
-
-
-
-
-

@@ -928,6 +928,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7675655784323722303, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
   m_PrefabInstance: {fileID: 766084077}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &766084079 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8926981330407627510, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
+  m_PrefabInstance: {fileID: 766084077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &797153303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1219,6 +1224,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2101843774}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1088902573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1088902574}
+  - component: {fileID: 1088902575}
+  m_Layer: 0
+  m_Name: EventAdabter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1088902574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088902573}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.8659263, y: 3.2417924, z: -0.13134614}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1088902575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088902573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f037178185767334285ad6baee86becb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredientManager: {fileID: 2100601289}
+  punch: {fileID: 665091818}
+  moldManager: {fileID: 96987481}
+  fillingManager: {fileID: 195566974}
 --- !u!1 &1148487600
 GameObject:
   m_ObjectHideFlags: 0
@@ -2435,6 +2488,164 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1956375515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1956375517}
+  - component: {fileID: 1956375516}
+  m_Layer: 0
+  m_Name: RythmManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1956375516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956375515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6437628ef9772264885f23686dfba80f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnBeat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1088902575}
+        m_TargetAssemblyTypeName: EventAdapter, Assembly-CSharp
+        m_MethodName: Event_OnBeat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnNote:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1088902575}
+        m_TargetAssemblyTypeName: EventAdapter, Assembly-CSharp
+        m_MethodName: Event_OnNote
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  CatchNote:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1088902575}
+        m_TargetAssemblyTypeName: EventAdapter, Assembly-CSharp
+        m_MethodName: Event_CatchNote
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  FistMiss:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 665091818}
+        m_TargetAssemblyTypeName: Punch, Assembly-CSharp
+        m_MethodName: OnEvent_Miss
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Moldmove:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 96987481}
+        m_TargetAssemblyTypeName: MoldManager, Assembly-CSharp
+        m_MethodName: OnEvent_MoveMold
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnNote_3:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 140664321}
+        m_TargetAssemblyTypeName: NoteManager, Assembly-CSharp
+        m_MethodName: EventNoteSpawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  missText: {fileID: 1348473699}
+  goodText: {fileID: 166179783}
+  perfectText: {fileID: 1383203660}
+  textEffectObj: {fileID: 0}
+  fadeAnim: {fileID: 766084079}
+  noteNumber: 0
+  noteNumber2: 0
+  judgeNumber: 0
+  anyKeyObj: {fileID: 1789407388}
+  sceneController: {fileID: 0}
+  notePoints: []
+  noteSyncPoint: {fileID: 0}
+  BPM: 210
+  margin_good: 0.042
+  scoreTimer: 0
+  count: 0
+  startDelay: 0
+  bgmStartDelay: 1
+  Score: 0
+  beatJump: 4
+  BackGround: {fileID: 1183634728}
+  isStage1_2: 0
+  noteManager: {fileID: 140664321}
+  fade: {fileID: 1731977071}
+--- !u!4 &1956375517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956375515}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.8659263, y: 3.2417924, z: -0.13134614}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1966859301
 GameObject:
   m_ObjectHideFlags: 0
@@ -2961,3 +3172,5 @@ SceneRoots:
   - {fileID: 1816464403}
   - {fileID: 1684405199}
   - {fileID: 2118084802}
+  - {fileID: 1956375517}
+  - {fileID: 1088902574}
