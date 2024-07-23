@@ -2,76 +2,144 @@ using UnityEngine;
 
 public class Knife : MonoBehaviour
 {
-    [SerializeField] Transform[] knifePoints;
-    public int knifeIndex = 0;
-    public float speed = 10f;
-    public float readySpeed = 60f;
+    [SerializeField] private Transform[] knifePoints;
+    [SerializeField] private float cutSpeed = 10f;
+    [SerializeField] private float readySpeed = 60f;
+    [SerializeField] private float horizontalSpeed = 6f;
+    [SerializeField] private float cutDepth = 0.6f;
+    [SerializeField] private float resetDepth = 10f;
+
+    private int knifeIndex = 0;
     private bool isMoving = false;
     private Vector3 targetPosition;
     private Vector3 startPosition;
-    private bool movingDown = true;
-    private bool isBeingReady = false;
+    private KnifeState currentState = KnifeState.Resetting;
 
-    void OnEnable()
+    private enum KnifeState
     {
-        transform.position = knifePoints[0].position + Vector3.down * 10f;
-        isBeingReady = true;
+        Ready,
+        MovingDown,
+        MovingUp,
+        MovingHorizontal,
+        MovingDownToReset,
+        Resetting
     }
 
-    void Update()
+    private void OnEnable()
     {
-        if (isBeingReady)
-        {
-            ReadyKnife();
-        }
+        ResetKnife();
+    }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow) && !isMoving && !isBeingReady)
+    private void Update()
+    {
+        switch (currentState)
         {
-            StartKnifeMovement();
-        }
-
-        if (isMoving)
-        {
-            MoveKnife();
+            case KnifeState.Ready:
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    StartKnifeMovement();
+                }
+                break;
+            case KnifeState.MovingDown:
+            case KnifeState.MovingUp:
+            case KnifeState.MovingHorizontal:
+            case KnifeState.MovingDownToReset:
+            case KnifeState.Resetting:
+                MoveKnife();
+                break;
         }
     }
 
-    void ReadyKnife()
+    private void ResetKnife()
     {
-        transform.position = Vector3.MoveTowards(transform.position, knifePoints[0].position, readySpeed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, knifePoints[0].position) < 0.001f)
+        if (knifePoints.Length == 0)
         {
-            isBeingReady = false;
-            transform.position = knifePoints[0].position;
+            Debug.LogError("No knife points assigned!");
+            return;
         }
+
+        Vector3 initialPosition = knifePoints[0].position;
+        transform.position = new Vector3(initialPosition.x, initialPosition.y - resetDepth, initialPosition.z);
+        currentState = KnifeState.Resetting;
+        targetPosition = knifePoints[0].position;
+        isMoving = true;
     }
 
-    void StartKnifeMovement()
+    private void StartKnifeMovement()
     {
         isMoving = true;
-        movingDown = true;
-        startPosition = transform.position;
-        targetPosition = startPosition + Vector3.down * 0.6f;
-    }
-
-    void MoveKnife()
-    {
-        if (movingDown)
+        if (knifeIndex == knifePoints.Length - 1 && currentState == KnifeState.Ready)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-            if (Vector3.Distance(transform.position, targetPosition) < 0.001f)
-            {
-                movingDown = false;
-            }
+            // At the last point, start moving down to reset
+            currentState = KnifeState.MovingDownToReset;
+            startPosition = transform.position;
+            targetPosition = new Vector3(startPosition.x, startPosition.y - resetDepth, startPosition.z);
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, startPosition, speed * Time.deltaTime);
-            if (Vector3.Distance(transform.position, startPosition) < 0.001f)
-            {
-                isMoving = false;
-                transform.position = knifePoints[knifeIndex].position;
-            }
+            currentState = KnifeState.MovingDown;
+            startPosition = transform.position;
+            targetPosition = startPosition + Vector3.down * cutDepth;
+        }
+    }
+
+    private void MoveKnife()
+    {
+        switch (currentState)
+        {
+            case KnifeState.MovingDown:
+                MoveTowardsTarget(targetPosition, cutSpeed, () =>
+                {
+                    currentState = KnifeState.MovingUp;
+                    targetPosition = startPosition;
+                });
+                break;
+
+            case KnifeState.MovingUp:
+                MoveTowardsTarget(targetPosition, cutSpeed, () =>
+                {
+                    currentState = KnifeState.MovingHorizontal;
+                    knifeIndex = (knifeIndex + 1) % knifePoints.Length;
+                    targetPosition = knifePoints[knifeIndex].position;
+                });
+                break;
+
+            case KnifeState.MovingHorizontal:
+                MoveTowardsTarget(targetPosition, horizontalSpeed, () =>
+                {
+                    currentState = KnifeState.Ready;
+                    isMoving = false;
+                });
+                break;
+
+            case KnifeState.MovingDownToReset:
+                MoveTowardsTarget(targetPosition, readySpeed, () =>
+                {
+                    // Teleport to the position below the first knife point
+                    Vector3 firstKnifePoint = knifePoints[0].position;
+                    transform.position = new Vector3(firstKnifePoint.x, firstKnifePoint.y - resetDepth, firstKnifePoint.z);
+                    currentState = KnifeState.Resetting;
+                    targetPosition = knifePoints[0].position;
+                });
+                break;
+
+            case KnifeState.Resetting:
+                MoveTowardsTarget(targetPosition, readySpeed, () =>
+                {
+                    currentState = KnifeState.Ready;
+                    isMoving = false;
+                    knifeIndex = 0;
+                });
+                break;
+        }
+    }
+
+    private void MoveTowardsTarget(Vector3 target, float speed, System.Action onReachedTarget)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        if (Vector3.Distance(transform.position, target) < 0.001f)
+        {
+            onReachedTarget?.Invoke();
         }
     }
 }

@@ -9,15 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/1-1.unity
+    path: Assets/Scenes/1_Hamster/1-1.unity
     guid: 35a3cba5060bd644998d9357a7c160fa
   - enabled: 1
-    path: Assets/Scenes/HamsterHappy.unity
+    path: Assets/Scenes/1_Hamster/HamsterHappy.unity
     guid: 6e81518623732fa42b07b6d9cd038391
   - enabled: 1
-    path: Assets/Scenes/HamsterAngry.unity
+    path: Assets/Scenes/1_Hamster/HamsterAngry.unity
     guid: fe5334cb355eb7e41b0054cfcf2ca39f
   - enabled: 1
-    path: Assets/Scenes/CatStage.unity
+    path: Assets/Scenes/2_Cat/CatStage.unity
     guid: 1155a3ef56080854dbb8bda6a6d742cc
   m_configObjects: {}

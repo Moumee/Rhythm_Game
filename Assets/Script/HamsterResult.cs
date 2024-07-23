@@ -20,6 +20,7 @@ public class HamsterResult : MonoBehaviour
     [SerializeField] AudioManager.SFX effectSfx;
     public float videoFadeDuration = 1f;
     public bool isAngry = true;
+    public bool hasEffect = false;
     float fadeDuration = 0.2f;
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,11 @@ public class HamsterResult : MonoBehaviour
         else
         {
             AudioManager.Instance.PlaySFX(AudioManager.Instance.fail);
+        }
+
+        if (!hasEffect)
+        {
+            effect = null;
         }
         
     }
@@ -59,6 +65,10 @@ public class HamsterResult : MonoBehaviour
                         continueTextObj.SetActive(false);
                         hamsterAnim.SetTrigger("Down");
                         StartCoroutine(ObjectFadeOut());
+                        if (hasEffect)
+                        {
+                            StartCoroutine(EffectFadeOut());
+                        }
                     }
                 }
                 
@@ -99,6 +109,20 @@ public class HamsterResult : MonoBehaviour
         }
 
     }
+
+    private IEnumerator EffectFadeOut()
+    {
+        float elapsedTime = 0;
+        Color originalEffectColor = effect.color;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+            effect.material.color = new Color(originalEffectColor.r, originalEffectColor.g, originalEffectColor.b, alpha);
+            yield return null;
+        }
+    }
+
 
     IEnumerator PressAnyKey()
     {
