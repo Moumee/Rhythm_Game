@@ -97,14 +97,12 @@ public class HamsterResult : MonoBehaviour
     {
         float elapsedTime = 0;
         Color originalSpeechBubbleColor = speechBubble.color;
-        Color originalEffectColor = effect.color;
 
         while (elapsedTime < fadeDuration)
         {
             elapsedTime += Time.deltaTime;
             float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
             speechBubble.material.color = new Color(originalSpeechBubbleColor.r, originalSpeechBubbleColor.g, originalSpeechBubbleColor.b, alpha);
-            effect.material.color = new Color(originalEffectColor.r, originalEffectColor.g, originalEffectColor.b, alpha);
             yield return null;
         }
 
