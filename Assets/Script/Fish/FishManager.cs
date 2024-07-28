@@ -7,6 +7,8 @@ public class FishManager : MonoBehaviour
     private bool secondFishActive = false;
     private bool thirdFishActive = false;
     public List<Fish> fishList = new List<Fish>();
+    public Fish currentFish;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,13 @@ public class FishManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        foreach (var fish in fishList)
+        {
+            if (fish.positionId == 1)
+            {
+                currentFish = fish;
+            }
+        }
         if (fishList[0].positionId == 1 && !secondFishActive)
         {
             fishList[1].gameObject.SetActive(true);

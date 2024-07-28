@@ -67,19 +67,12 @@ public class PauseMenu : MonoBehaviour
             {
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
-                if (optionMenu.activeInHierarchy)
-                {
-                    optionMenu.SetActive(false);
-                }
-                else if (!optionMenu.activeInHierarchy)
-                {
-                    isPlaying = true;
-                    AudioManager.Instance.bgmEventInstance.setPaused(false);
-                    BeatTracker.currentMusicTrack.setPaused(false);
-                    pauseMenu.SetActive(false);
-                    optionMenu.SetActive(false);
-                    Time.timeScale = 1f;
-                }
+                isPlaying = true;
+                AudioManager.Instance.bgmEventInstance.setPaused(false);
+                BeatTracker.currentMusicTrack.setPaused(false);
+                pauseMenu.SetActive(false);
+                optionMenu.SetActive(false);
+                Time.timeScale = 1f;
             }
         }
     }

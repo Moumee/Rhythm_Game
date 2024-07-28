@@ -7,6 +7,8 @@ using System.Collections.Generic;
 
 public class BeatTracker : MonoBehaviour
 {
+
+    private BoxCollider2D startCollider;
     //In FMOD you must set music event priority to highest, turn off stream, and persistent to on.
     public EventReference eventToPlay;
 
@@ -100,10 +102,21 @@ public class BeatTracker : MonoBehaviour
     {
         OnFixedBeat += IncrementBeatNumber;
         beatTrackerInstance = this;
+        startCollider = GetComponent<BoxCollider2D>();
         SetMusicTrack(eventToPlay);
         PlayMusicTrack();
+        
 
     }
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Note"))
+    //    {
+    //        PlayMusicTrack();
+    //        startCollider.gameObject.SetActive(false);
+    //    }
+    //}
 
     private void OnDestroy()
     {

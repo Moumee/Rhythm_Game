@@ -9,10 +9,13 @@ public class TestScript : MonoBehaviour
     [SerializeField] Transform rightSlapPosition;
     [SerializeField] Animator fishAnim;
     [SerializeField] Animator waterAnim;
+    [SerializeField] FishManager fishManager;
+    [SerializeField] Knife knife;
+    public bool isSecondPart = false;
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -20,19 +23,31 @@ public class TestScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            GameObject leftSlap = slapObjectPool.GetLeftSlap();
-            leftSlap.transform.position = leftSlapPosition.position;
-            leftSlap.SetActive(true);
-            fishAnim.SetTrigger("LeftHit");
-            waterAnim.SetTrigger("WaterLeft");
+            if (!isSecondPart)
+            {
+                GameObject leftSlap = slapObjectPool.GetLeftSlap();
+                leftSlap.transform.position = leftSlapPosition.position;
+                leftSlap.SetActive(true);
+                fishAnim.SetTrigger("LeftHit");
+                waterAnim.SetTrigger("WaterLeft");
+            }
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            GameObject rightSlap = slapObjectPool.GetRightSlap();
-            rightSlap.transform.position = rightSlapPosition.position;
-            rightSlap.SetActive(true);
-            fishAnim.SetTrigger("RightHit");
-            waterAnim.SetTrigger("WaterRight");
+            if (!isSecondPart)
+            {
+                GameObject rightSlap = slapObjectPool.GetRightSlap();
+                rightSlap.transform.position = rightSlapPosition.position;
+                rightSlap.SetActive(true);
+                fishAnim.SetTrigger("RightHit");
+                waterAnim.SetTrigger("WaterRight");
+            }
         }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow) && isSecondPart)
+        {
+            fishManager.currentFish.cutObjects[knife.knifeIndex].SetActive(true);
+        }
+
     }
 }

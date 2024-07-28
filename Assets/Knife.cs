@@ -4,18 +4,18 @@ public class Knife : MonoBehaviour
 {
     [SerializeField] private Transform[] knifePoints;
     [SerializeField] private float cutSpeed = 10f;
-    [SerializeField] private float readySpeed = 60f;
-    [SerializeField] private float horizontalSpeed = 6f;
+    [SerializeField] private float readySpeed = 80f;
+    [SerializeField] private float horizontalSpeed = 40f;
     [SerializeField] private float cutDepth = 0.6f;
     [SerializeField] private float resetDepth = 10f;
 
-    private int knifeIndex = 0;
+    public int knifeIndex = 0;
     private bool isMoving = false;
     private Vector3 targetPosition;
     private Vector3 startPosition;
-    private KnifeState currentState = KnifeState.Resetting;
+    public KnifeState currentState = KnifeState.Resetting;
 
-    private enum KnifeState
+    public enum KnifeState
     {
         Ready,
         MovingDown,
