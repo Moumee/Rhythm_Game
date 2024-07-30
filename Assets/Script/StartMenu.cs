@@ -23,6 +23,7 @@ public class StartMenu : MonoBehaviour
     AsyncOperation asyncOperation;
     private float fadeSpeed = 1f;
     bool hamsterVideoFinshed = false;
+    bool hamsterVideoStart = false;
     float offset = 0;
     float alpha;
 
@@ -64,11 +65,12 @@ public class StartMenu : MonoBehaviour
             }
         }
 
-        if (hamsterVideoPlayer.frame == 2)
+        if (hamsterVideoPlayer.frame == 2 && !hamsterVideoStart)
         {
             introVideoPlayer.gameObject.SetActive(false);
             AudioManager.Instance.PlaySFX(AudioManager.Instance.bell);
             AudioManager.Instance.PlayBGM(AudioManager.Instance.restaurant);
+            hamsterVideoStart = true;
         }
         if (hamsterVideoFinshed)
         {
