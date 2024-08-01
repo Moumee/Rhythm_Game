@@ -9,7 +9,6 @@ public class MoldManager : MonoBehaviour
     [SerializeField] GameObject[] standPoint;
 
     private Mold[] livingMolds;
-    private Mold[] livingMolds2;
 
     [SerializeField] Mold tempMold;
 
@@ -22,7 +21,7 @@ public class MoldManager : MonoBehaviour
 
     public void OnEvent_SpawnMold()
     {
-        Debug.Log("mold");
+        Debug.Log(spawnInterval);
         spawnInterval++;
         if (spawnInterval == 1)
         {
@@ -54,7 +53,8 @@ public class MoldManager : MonoBehaviour
 
     IEnumerator MoldDelay()
     {
-        yield return new WaitForSeconds(4 * (60 / GameManager.Instance.BPM-0.5f));
+        yield return null;
+        //yield return new WaitForSeconds(1 * (60 / GameManager.Instance.BPM-0.5f));
         tempMold = moldPool.pool.Get();
         tempMold.SetPoint(standPoint);
         spawnInterval++;
