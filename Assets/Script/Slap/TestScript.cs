@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TestScript : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class TestScript : MonoBehaviour
     [SerializeField] FishManager fishManager;
     [SerializeField] Knife knife;
     public bool isSecondPart = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,7 @@ public class TestScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow) && isSecondPart)
         {
             fishManager.currentFish.cutObjects[knife.knifeIndex].SetActive(true);
+            fishManager.VibrateCurrentFish();
         }
 
     }

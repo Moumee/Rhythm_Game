@@ -8,5 +8,7 @@ public class PointSO : ScriptableObject
     public Vector3[] moldPoints;
 
     public Vector3[] fishWaypoints;
+
+    public Vector3[] stickPoints;
     
 }

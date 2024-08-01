@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FishManager : MonoBehaviour
@@ -8,7 +10,10 @@ public class FishManager : MonoBehaviour
     private bool thirdFishActive = false;
     public List<Fish> fishList = new List<Fish>();
     public Fish currentFish;
-    
+    public float vibrateFishOffset = 0.3f;
+    private Coroutine vibrateCoroutine;
+    public float vibrateDuration = 0.1f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,5 +54,33 @@ public class FishManager : MonoBehaviour
             thirdFishActive = true;
         }
 
+    }
+
+    public void VibrateCurrentFish()
+    {
+        if (vibrateCoroutine != null)
+        {
+            StopCoroutine(vibrateCoroutine);
+        }
+        vibrateCoroutine = StartCoroutine(VibrateCoroutine());
+    }
+
+    private IEnumerator VibrateCoroutine()
+    {
+        Vector3 startPos = currentFish.transform.position;
+        Vector3 vibratePos = startPos - new Vector3(0, vibrateFishOffset, 0);
+        float elapsedTime = 0f;
+
+        while (elapsedTime < vibrateDuration)
+        {
+            float t = elapsedTime / vibrateDuration;
+            float yOffset = Mathf.Sin(t * Mathf.PI * 2) * vibrateFishOffset;
+            currentFish.transform.position = startPos + new Vector3(0, yOffset, 0);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        currentFish.transform.position = startPos;
     }
 }

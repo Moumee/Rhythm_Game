@@ -1730,6 +1730,8 @@ MonoBehaviour:
   - {fileID: 1328891224}
   - {fileID: 669047237}
   currentFish: {fileID: 0}
+  vibrateFishOffset: 0.2
+  vibrateDuration: 0.1
 --- !u!1 &1726142468
 GameObject:
   m_ObjectHideFlags: 0

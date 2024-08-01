@@ -70,7 +70,6 @@ public class Knife : MonoBehaviour
         isMoving = true;
         if (knifeIndex == knifePoints.Length - 1 && currentState == KnifeState.Ready)
         {
-            // At the last point, start moving down to reset
             currentState = KnifeState.MovingDownToReset;
             startPosition = transform.position;
             targetPosition = new Vector3(startPosition.x, startPosition.y - resetDepth, startPosition.z);
@@ -115,7 +114,6 @@ public class Knife : MonoBehaviour
             case KnifeState.MovingDownToReset:
                 MoveTowardsTarget(targetPosition, readySpeed, () =>
                 {
-                    // Teleport to the position below the first knife point
                     Vector3 firstKnifePoint = knifePoints[0].position;
                     transform.position = new Vector3(firstKnifePoint.x, firstKnifePoint.y - resetDepth, firstKnifePoint.z);
                     currentState = KnifeState.Resetting;
