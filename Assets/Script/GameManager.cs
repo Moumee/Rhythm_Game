@@ -16,23 +16,16 @@ using FMODUnity;
 
 public class GameManager : MonoBehaviour
 {
-
-  
-    
-
     public UnityEvent OnBeat;
     public UnityEvent OnNote;
     public UnityEvent CatchNote;
     public UnityEvent FistMiss;
 
-
-    public UnityEvent OnBeat_2;
-    public UnityEvent OnNote_2;
-    public UnityEvent OnNote_forMold;
-    public UnityEvent CatchNote_2;
+    //public UnityEvent OnNote_forMold;
     public UnityEvent FillMiss;
 
     public UnityEvent OnNote_3;
+    public UnityEvent OnSpawnIngre;
 
     public Animator missText;
     public Animator goodText;
@@ -47,17 +40,9 @@ public class GameManager : MonoBehaviour
     public int noteNumber2 = 0;
     public int judgeNumber = 0;
 
-
     public GameObject anyKeyObj;
 
     [SerializeField] SceneController sceneController;
-
-
-    
-
-
-
-
 
 
     private List<int> SpawnChart = new List<int>();
@@ -75,25 +60,17 @@ public class GameManager : MonoBehaviour
 
     private List<int> DelayChart = new List<int> { 0, 0 };
 
-    public GameObject[] notePoints;
-
-    public GameObject noteSyncPoint;
-
     public float BPM = 210;
     private float interval;     //time between beat that calculated  by BPM
-    private float timer;
 
     bool backgroundMoved = false;
     bool stageEnd = false;
-    bool skipAvailable = false;
-    bool success = false;
-    bool fail = false;
     //value for judge
     private float margin_perfect = 0.056f;
-    public float margin_good = 0.042f;
+    public float margin_good = 0.09f;
     public float scoreTimer;
     private bool isScoreGet = true;
-    private float catchDelay = 0.05f;
+    private float catchDelay = 0.01f;
     private bool isCatchable = true;
 
     public int count = 0;       //count of called beats
@@ -105,7 +82,7 @@ public class GameManager : MonoBehaviour
 
     public int Score = 0;
 
-    public int beatJump = 4;    //number of beats to move ingredients
+    public int beatJump = 3;    //number of beats to move ingredients
 
     //value for 1-2
     public GameObject BackGround;
@@ -113,8 +90,8 @@ public class GameManager : MonoBehaviour
     public GameObject ingredientManager;
     public GameObject moldManager;
 
-    private double dspStartTime;
-    private double elapsedDSPTime;
+    private enum catchState { Miss = 0, Perfect = 1, good = 2 };
+    public int currentState = (int)catchState.Miss;
 
 
     public NoteManager noteManager;
@@ -163,13 +140,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-
-    
-
-  
-
-    
-
    
 
     IEnumerator FadeOutToNextScene(string sceneName)
@@ -187,92 +157,22 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        
-
-
         if (!FindObjectOfType<PauseMenu>().isPlaying)
         {
             return;
         }
 
-        
-
         if (BeatStart && !stageEnd)
         {
-            
-            if (Time.time - timer > interval)
-            {
-                
-
-                //if (SpawnChart[count] == 1)
-                //{
-                //    noteNumber++;
-                //    if (isStage1_2)
-                //    {
-                //        OnNote_2.Invoke();
-                //    }
-                //    else
-                //    {
-                //        OnNote.Invoke();
-                //    }
-                //}
-                //if (isStage1_2)
-                //{
-                //    OnBeat_2.Invoke();
-                //}
-                //else
-                //{
-                //    OnBeat.Invoke();
-                //}
-
-                //if (count + 4 <= SpawnChart.Count - 1)
-                //{
-                //    if (SpawnChart[count + 4] == 1)
-                //    {
-                //        noteNumber2++;
-                //        OnNote_3.Invoke();
-
-                //    }
-                //}
-
-
-                //++count;
-                //timer = Time.time;
-                //if (JudgeChart[count + 1] == 1)
-                //{
-                //    judgeNumber++;
-                //    scoreTimer = Time.time + interval - margin_good;
-
-                //    isScoreGet = false;
-
-                //    if (isStage1_2)
-                //    {
-                //        OnNote_forMold.Invoke();
-                //    }
-                //}
-
-
-
-            }
-
-
             if (Input.GetKeyDown(KeyCode.DownArrow) && isCatchable)
             {
-                if (BeatTracker.GetCurrentTime() >= scoreTimer &&
-                    BeatTracker.GetCurrentTime() < scoreTimer + margin_good * 2 && !isScoreGet)
+                if (currentState == (int)catchState.good)
                 {
                     AudioManager.Instance.PlaySFX(AudioManager.Instance.notePress);
                     ++Score;
-                    if (isStage1_2)
-                    {
-                        CatchNote_2.Invoke();
-                    }
-                    else
-                    {
-                        CatchNote.Invoke();
-                    }
-                    if (BeatTracker.GetCurrentTime() >= scoreTimer + margin_good - margin_perfect
-                        && BeatTracker.GetCurrentTime() <= scoreTimer + margin_good + margin_perfect)
+                    CatchNote.Invoke();
+
+                    if (true)
                     {
                         perfectText.SetTrigger("Perfect");
                         noteManager.NoteJudgeEffect("Perfect");
@@ -296,30 +196,14 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
-        //if (Time.time > scoreTimer + 2 * margin_good && !isScoreGet && !stageEnd)
-        //{
-        //    isScoreGet = true;
-        //    missText.SetTrigger("Miss");
-        //    noteManager.NoteJudgeEffect("Miss");
-        //    if (isStage1_2)
-        //    {
-        //        FillMiss.Invoke();
-        //    }
-        //}
-
+        
+        //ok
         if (count >= 151)
         {
             isStage1_2 = true;
-
-            //SceneManager.LoadSceneAsync(2);
-            //if (BackGround.transform.position.x >= -19.2f)
-            //{
-            //    BackGround.transform.position += Vector3.left * 40f * Time.deltaTime;
-            //}
             textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
         }
-
+        //ending
         if (count == SpawnChart.Count - 1 && !stageEnd)
         {
             stageEnd = true;
@@ -356,30 +240,17 @@ public class GameManager : MonoBehaviour
             if (SpawnChart[count] == 1)
             {
                 noteNumber++;
-                if (isStage1_2)
-                {
-                    OnNote_2.Invoke();
-                }
-                else
-                {
-                    OnNote.Invoke();
-                }
+                OnNote.Invoke();
+                
             }
-            if (isStage1_2)
-            {
-                OnBeat_2.Invoke();
-            }
-            else
-            {
-                OnBeat.Invoke();
-            }
+            OnBeat.Invoke();
 
             if (count + 4 <= SpawnChart.Count - 1)
             {
                 if (SpawnChart[count + 4] == 1)
                 {
                     noteNumber2++;
-                    OnNote_3.Invoke();
+                    OnSpawnIngre.Invoke();
 
                 }
             }
@@ -390,14 +261,16 @@ public class GameManager : MonoBehaviour
         if (JudgeChart[count + 1] == 1)
         {
             judgeNumber++;
-            scoreTimer = BeatTracker.GetCurrentTime() + BeatTracker.GetBeatInterval() - margin_good;
+            //scoreTimer = BeatTracker.GetCurrentTime() + BeatTracker.GetBeatInterval() - margin_good;
+
+            StartCoroutine(DefaultCycle());
 
             isScoreGet = false;
 
-            if (isStage1_2)
-            {
-                OnNote_forMold.Invoke();
-            }
+            //if (isStage1_2)
+            //{
+            //    OnNote_forMold.Invoke();
+            //}
         }
 
 
@@ -428,8 +301,6 @@ public class GameManager : MonoBehaviour
     IEnumerator NoteStartDelay()
     {
         yield return new WaitForSeconds(startDelay);
-        timer = Time.time;
-
         BeatStart = true;
     }
 
@@ -454,6 +325,14 @@ public class GameManager : MonoBehaviour
         }
         yield return new WaitForSeconds(catchDelay);
         isCatchable = true;
+    }
+
+    IEnumerator DefaultCycle()
+    {
+        yield return new WaitForSeconds(interval - margin_good);
+        currentState = (int)catchState.good;
+        yield return new WaitForSeconds(2*margin_good);
+        currentState = (int)catchState.Miss;
     }
 }
 

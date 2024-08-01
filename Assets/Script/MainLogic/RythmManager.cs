@@ -13,7 +13,7 @@ public class RythmManager : MonoBehaviour
 
     public UnityEvent FistMiss;
     public UnityEvent Moldmove;
-    public UnityEvent OnNote_3;
+    public UnityEvent OnNote_Effect;
 
     public Animator missText;
     public Animator goodText;
@@ -241,7 +241,7 @@ public class RythmManager : MonoBehaviour
                 if (SpawnChart[count + 4] == 1)
                 {
                     noteNumber2++;
-                    OnNote_3.Invoke();
+                    OnNote_Effect.Invoke();
                 }
             }
             ++count;

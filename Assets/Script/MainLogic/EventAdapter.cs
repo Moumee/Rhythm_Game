@@ -19,21 +19,22 @@ public class EventAdapter : MonoBehaviour
 
     public void Event_OnBeat()
     {
-        if (RythmManager.Instance.isStage1_2)
+        if (GameManager.Instance.isStage1_2)
         {
             moldManager.OnEvent_MoveMold();
         }
         else
-        {
+        { 
             ingredientManager.OnEvent_MoveIngredient();
         }
     }
 
     public void Event_OnNote()
     {
-        if (RythmManager.Instance.isStage1_2)
+        if (GameManager.Instance.isStage1_2)
         {
-
+            Debug.Log("f");
+            moldManager.OnEvent_SpawnMold();
         }
         else
         {
@@ -43,7 +44,7 @@ public class EventAdapter : MonoBehaviour
 
     public void Event_CatchNote()
     {
-        if (RythmManager.Instance.isStage1_2)
+        if (GameManager.Instance.isStage1_2)
         {
             moldManager.EventCatchNote();
             fillingManager.FillingFall();

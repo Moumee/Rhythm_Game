@@ -16,7 +16,7 @@ public class Ingredient : MonoBehaviour
     [SerializeField] GameObject[] standPoints;
 
     
-    private float speed = 60f;
+    private float speed = 70f;
     public bool isLive = false;
     public bool isOnTime = false;
     public bool cracked = false;
