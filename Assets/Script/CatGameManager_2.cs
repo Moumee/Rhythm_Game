@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class CatGameManager_ : MonoBehaviour
+public class CatGameManager_2 : MonoBehaviour
 {
     [SerializeField] FishManager fishManager;
     PauseMenu pauseMenu;
     public int count = 0;
     private int lastFishMoveCount = -1;
+
+    public UnityEvent beat;
 
     private int fishMoveCount = 0;
 
@@ -29,12 +32,12 @@ public class CatGameManager_ : MonoBehaviour
     void Awake()
     {
         pauseMenu = FindObjectOfType<PauseMenu>();
-        //BeatTracker.OnFixedBeat += IterateChart;
+        BeatTracker.OnFixedBeat += IterateChart;
     }
 
     private void OnDestroy()
     {
-        //BeatTracker.OnFixedBeat -= IterateChart;
+        BeatTracker.OnFixedBeat -= IterateChart;
     }
 
     private void Update()
@@ -48,25 +51,27 @@ public class CatGameManager_ : MonoBehaviour
 
     private void IterateChart()
     {
-        if (!pauseMenu.isPlaying)
-            return;
-        if (count >= 144)
-        {
-            if (musicChart[count] == 1)
-            {
-                fishMoveCount++;
+        Debug.Log("f2");
+        //beat.Invoke();
+        //if (!pauseMenu.isPlaying)
+        //    return;
+        //if (count >= 144)
+        //{
+        //    if (musicChart[count] == 1)
+        //    {
+        //        fishMoveCount++;
 
-                if (fishMoveCount % 5 == 0 && fishMoveCount != lastFishMoveCount)
-                {
-                    fishManager.MoveAllFish();
+        //        if (fishMoveCount % 5 == 0 && fishMoveCount != lastFishMoveCount)
+        //        {
+        //            fishManager.MoveAllFish();
 
-                    lastFishMoveCount = fishMoveCount;
-                }
-            }
+        //            lastFishMoveCount = fishMoveCount;
+        //        }
+        //    }
 
 
 
-        }
+        //}
 
         //count++;
 

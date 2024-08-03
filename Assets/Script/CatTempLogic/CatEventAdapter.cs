@@ -22,11 +22,11 @@ public class CatEventAdapter : MonoBehaviour
         Debug.Log("ffffff");
         if (CatGameManager.Instance.isStage1_2)
         {
-            moldManager.OnEvent_MoveMold();
+            //moldManager.OnEvent_MoveMold();
         }
         else
         { 
-            ingredientManager.OnEvent_MoveIngredient();
+            //ingredientManager.OnEvent_MoveIngredient();
         }
     }
 
@@ -35,11 +35,11 @@ public class CatEventAdapter : MonoBehaviour
         if (CatGameManager.Instance.isStage1_2)
         {
             Debug.Log("f");
-            moldManager.OnEvent_SpawnMold();
+            //moldManager.OnEvent_SpawnMold();
         }
         else
         {
-            ingredientManager.OnEvent_SpawnIngredient();
+            //ingredientManager.OnEvent_SpawnIngredient();
         }
     }
 
@@ -47,13 +47,13 @@ public class CatEventAdapter : MonoBehaviour
     {
         if (CatGameManager.Instance.isStage1_2)
         {
-            moldManager.EventCatchNote();
+            //moldManager.EventCatchNote();
             //fishManager
         }
         else
         {
             testScript.Slap();
-            ingredientManager.EventCatchNote();
+            //ingredientManager.EventCatchNote();
         }
     }
 }

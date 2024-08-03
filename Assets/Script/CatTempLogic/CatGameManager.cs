@@ -108,7 +108,7 @@ public class CatGameManager : MonoBehaviour
 
     void Awake()
     {
-        BeatTracker.OnFixedBeat += CatIterateChart;
+        //BeatTracker.OnFixedBeat += IterateChart;
         if (Instance == null)
         {
             Instance = this;
@@ -235,13 +235,14 @@ public class CatGameManager : MonoBehaviour
 
     //Made IterateChart function and subscribed to BeatTracker.OnFixedBeat in the Awake function
     //On every beat IterateChart is called
-    private void CatIterateChart()
+    public void CatIterateChart()
     {
 
         if (!FindObjectOfType<PauseMenu>().isPlaying)
         {
             return;
         }
+
         Debug.Log("f2");
 
         if (BeatStart && !stageEnd)
@@ -321,7 +322,7 @@ public class CatGameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        BeatTracker.OnFixedBeat -= CatIterateChart;
+        //BeatTracker.OnFixedBeat -= IterateChart;
     }
 
 
