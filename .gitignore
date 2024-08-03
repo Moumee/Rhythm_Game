@@ -6,6 +6,7 @@
 /[Bb]uild/
 /[Bb]uilds/
 /[Ll]ogs/
+/[Uu]ser[Ss]ettings/
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
@@ -56,6 +57,6 @@ sysinfo.txt
 crashlytics-build.properties
 
 # FMOD files
-Assets/Plugins/FMOD/Resources/FMODStudioCache.asset
+Assets/Plugins/FMOD/Resources/Cache/Editor/FMODStudioCache.asset
 Assets/StreamingAssets/*.bank
 fmod_editor.log
