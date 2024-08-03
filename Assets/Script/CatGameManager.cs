@@ -29,12 +29,12 @@ public class CatGameManager : MonoBehaviour
     void Awake()
     {
         pauseMenu = FindObjectOfType<PauseMenu>();
-        BeatTracker.OnFixedBeat += IterateChart;
+        //BeatTracker.OnFixedBeat += IterateChart;
     }
 
     private void OnDestroy()
     {
-        BeatTracker.OnFixedBeat -= IterateChart;
+        //BeatTracker.OnFixedBeat -= IterateChart;
     }
 
     private void Update()
@@ -71,5 +71,20 @@ public class CatGameManager : MonoBehaviour
         count++;
 
         
+    }
+    public void Fish()
+    {
+        fishMoveCount++;
+
+        if (fishMoveCount % 5 == 0 && fishMoveCount != lastFishMoveCount)
+        {
+            fishManager.MoveAllFish();
+
+            lastFishMoveCount = fishMoveCount;
+        }
+        if (musicChart[GameManager.Instance.count] == 1)
+        {
+            
+        }
     }
 }

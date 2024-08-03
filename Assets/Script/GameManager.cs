@@ -50,27 +50,37 @@ public class GameManager : MonoBehaviour
 
     private List<int> MusicChart = new List<int>
     {
-        0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,
-        0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,
-        //1-2 start
-        1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,
-        0,0,0,0,1,0,0,0,1,0,0,0,1,1,0,0,1,1,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0
+        //0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        //1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,
+        //0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,
+        ////1-2 start
+        //1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,
+        //0,0,0,0,1,0,0,0,1,0,0,0,1,1,0,0,1,1,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,1,0,0,1,1,0,0,1,0,0,0,1,0,1,0,1,0,0,0,
+        1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1,0,0,1,1,0,0,1,0,1,0,1,0,0,1,0,0,1,0,0,0,1,0,0,0,1,0,
+        0,0,1,0,0,0,1,1,1,0,1,0,0,0,1,1,0,0,1,0,0,0,1,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,1,0,0,0,1,0,
+        0,0,0,0,0,0,0,0,0,0, // next pattern
+        1,0,0,1,0,0,0,0,1,0,0,1,0,0,0,1,1,1,0,0,0,1,1,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,
+        1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,1,1,0,0,1,1,0,0,1,0,1,0,1,0,0,0,1,0,0,0,0,0,
+        0,0,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,
+        1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,1,0,0,0,0,1,0,1,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,1,0,0,0,0,
+        1,0,0,0,1,0,0,0,1,1,1,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
     };
 
     private List<int> DelayChart = new List<int> { 0, 0 };
 
-    public float BPM = 210;
+    public float BPM = 283;//210;
     private float interval;     //time between beat that calculated  by BPM
 
     bool backgroundMoved = false;
     bool stageEnd = false;
     //value for judge
     private float margin_perfect = 0.056f;
-    public float margin_good = 0.09f;
+    public float margin_good = 0.03f;
     public float scoreTimer;
     private bool isScoreGet = true;
-    private float catchDelay = 0.01f;
+    private float catchDelay = 0.0001f;
     private bool isCatchable = true;
 
     public int count = 0;       //count of called beats
@@ -85,7 +95,8 @@ public class GameManager : MonoBehaviour
     public int beatJump = 3;    //number of beats to move ingredients
 
     //value for 1-2
-    public GameObject BackGround;
+    public GameObject BackGround1;
+    public GameObject BackGround2;
     public bool isStage1_2 = false;
     public GameObject ingredientManager;
     public GameObject moldManager;
@@ -150,6 +161,13 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    void Fade()
+    {
+        fade.SetActive(true);
+        fade.GetComponent<Animator>().SetTrigger("FadeOut");
+        fade.SetActive(false);
+    }
+
 
     
 
@@ -198,10 +216,10 @@ public class GameManager : MonoBehaviour
         }
         
         //ok
-        if (count >= 151)
+        if (count >= 12)//144)//151)
         {
             isStage1_2 = true;
-            textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
+            //textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
         }
         //ending
         if (count == SpawnChart.Count - 1 && !stageEnd)
@@ -279,13 +297,19 @@ public class GameManager : MonoBehaviour
     {
         backgroundMoved = true;
         float elapsedTime = 0f;
-        while (elapsedTime < duration)
-        {
-            elapsedTime += Time.deltaTime;
-            BackGround.transform.position = Vector3.Lerp(Vector3.zero, new Vector3(-19.2f, 0f, 0f), elapsedTime / duration);
-            yield return null;
-        }
+        //while (elapsedTime < duration)
+        //{
+        //    elapsedTime += Time.deltaTime;
+        //    BackGround1.transform.position = Vector3.Lerp(Vector3.zero, new Vector3(-19.2f, 0f, 0f), elapsedTime / duration);
+        //    yield return null;
+        //}
+        //Fade();
+        yield return new WaitForSeconds(0.1f);
+        BackGround1.SetActive(false);
+        BackGround2.SetActive(true);   
     }
+
+
 
 
     //IEnumerator PreLoadScene(string sceneName)
@@ -332,7 +356,11 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(interval - margin_good);
         currentState = (int)catchState.good;
         yield return new WaitForSeconds(2*margin_good);
-        currentState = (int)catchState.Miss;
+        if (currentState != 0) 
+        {
+            currentState = (int)catchState.Miss;
+        }
+        
     }
 }
 

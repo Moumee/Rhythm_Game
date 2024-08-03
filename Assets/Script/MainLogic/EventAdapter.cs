@@ -6,10 +6,10 @@ public class EventAdapter : MonoBehaviour
 {
     private enum stageState { ingredient = 0, mold = 1 };
 
-    public IngredientManager ingredientManager;
-    public Punch punch;
-    public MoldManager moldManager;
-    public FillingManager fillingManager;
+    //public IngredientManager ingredientManager;
+    public FishManager fishManager;
+    public CatGameManager catGameManager;
+    public TestScript testscript;
 
     private int moldCounter = 0;
 
@@ -21,11 +21,12 @@ public class EventAdapter : MonoBehaviour
     {
         if (GameManager.Instance.isStage1_2)
         {
-            moldManager.OnEvent_MoveMold();
+            catGameManager.Fish();
+            //moldManager.OnEvent_MoveMold();
         }
         else
         { 
-            ingredientManager.OnEvent_MoveIngredient();
+            //ingredientManager.OnEvent_MoveIngredient();
         }
     }
 
@@ -34,11 +35,11 @@ public class EventAdapter : MonoBehaviour
         if (GameManager.Instance.isStage1_2)
         {
             Debug.Log("f");
-            moldManager.OnEvent_SpawnMold();
+            //moldManager.OnEvent_SpawnMold();
         }
         else
         {
-            ingredientManager.OnEvent_SpawnIngredient();
+            //ingredientManager.OnEvent_SpawnIngredient();
         }
     }
 
@@ -46,13 +47,13 @@ public class EventAdapter : MonoBehaviour
     {
         if (GameManager.Instance.isStage1_2)
         {
-            moldManager.EventCatchNote();
-            fillingManager.FillingFall();
+            //moldManager.EventCatchNote();
+            testscript.Chop();
         }
         else
         {
-            punch.OnEvent_Punch();
-            ingredientManager.EventCatchNote();
+            testscript.Slap();
+            //ingredientManager.EventCatchNote();
         }
     }
 }
