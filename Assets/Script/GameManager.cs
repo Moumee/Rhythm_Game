@@ -216,23 +216,23 @@ public class GameManager : MonoBehaviour
         }
         
         //ok
-        if (count >= 12)//144)//151)
+        if (count >= 144)//151)
         {
             isStage1_2 = true;
             //textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
         }
         //ending
-        if (count == SpawnChart.Count - 1 && !stageEnd)
+        if (count == 386 && !stageEnd)//SpawnChart.Count - 1 && !stageEnd)
         {
             stageEnd = true;
             AudioManager.Instance.stageSource.Stop();
             if (Score > 75 * 7.5 && !fadeOutStart)
             {
-                StartCoroutine(FadeOutToNextScene("HamsterHappy"));
+                StartCoroutine(FadeOutToNextScene("CatHappy"));
             }
             else if (Score <= 75 * 7.5 && !fadeOutStart)
             {
-                StartCoroutine(FadeOutToNextScene("HamsterAngry"));
+                StartCoroutine(FadeOutToNextScene("CatAngry"));
 
             }
         }

@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/2_Cat/CatStage.unity
     guid: 1155a3ef56080854dbb8bda6a6d742cc
+  - enabled: 1
+    path: Assets/Scenes/2_Cat/CatHappy.unity
+    guid: 8e1b7d4c7b8bb464a9de75bda3020c1f
+  - enabled: 1
+    path: Assets/Scenes/2_Cat/CatAngry.unity
+    guid: 2bbe046ceaa817346963ad853df956af
   m_configObjects: {}

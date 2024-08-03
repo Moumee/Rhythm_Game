@@ -74,17 +74,17 @@ public class CatGameManager : MonoBehaviour
     }
     public void Fish()
     {
-        fishMoveCount++;
-
-        if (fishMoveCount % 5 == 0 && fishMoveCount != lastFishMoveCount)
-        {
-            fishManager.MoveAllFish();
-
-            lastFishMoveCount = fishMoveCount;
-        }
+        
         if (musicChart[GameManager.Instance.count] == 1)
         {
-            
+            fishMoveCount++;
+
+            if (fishMoveCount % 5 == 0 && fishMoveCount != lastFishMoveCount)
+            {
+                fishManager.MoveAllFish();
+
+                lastFishMoveCount = fishMoveCount;
+            }
         }
     }
 }

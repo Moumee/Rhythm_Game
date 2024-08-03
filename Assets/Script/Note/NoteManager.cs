@@ -27,7 +27,7 @@ public class NoteManager : MonoBehaviour
     {
         if (GameManager.Instance.isStage1_2 && !stageCheck)
         {
-            noteDirection = Vector3.down;
+            //noteDirection = Vector3.down;
             notePool.noteSpawnPoint = secondSpawnPoint;
             stageCheck = true;
         }
