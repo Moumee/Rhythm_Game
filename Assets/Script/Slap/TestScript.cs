@@ -13,6 +13,7 @@ public class TestScript : MonoBehaviour
     [SerializeField] FishManager fishManager;
     [SerializeField] Knife knife;
     public bool isSecondPart = false;
+    bool bungal = false;
     
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class TestScript : MonoBehaviour
     }
 
     // Update is called once per frame
+    /*
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -52,5 +54,30 @@ public class TestScript : MonoBehaviour
             fishManager.VibrateCurrentFish();
         }
 
+    }
+    */
+
+    public void Slap()
+    {
+        if (bungal)
+        {
+            GameObject leftSlap = slapObjectPool.GetLeftSlap();
+            leftSlap.transform.position = leftSlapPosition.position;
+            leftSlap.SetActive(true);
+            fishAnim.SetTrigger("LeftHit");
+            waterAnim.SetTrigger("WaterLeft");
+            bungal = false;
+        }
+        else 
+        {
+            GameObject rightSlap = slapObjectPool.GetRightSlap();
+            rightSlap.transform.position = rightSlapPosition.position;
+            rightSlap.SetActive(true);
+            fishAnim.SetTrigger("RightHit");
+            waterAnim.SetTrigger("WaterRight");
+            bungal = true;
+        }
+
+        
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CatGameManager : MonoBehaviour
+public class CatGameManager_ : MonoBehaviour
 {
     [SerializeField] FishManager fishManager;
     PauseMenu pauseMenu;
@@ -29,12 +29,12 @@ public class CatGameManager : MonoBehaviour
     void Awake()
     {
         pauseMenu = FindObjectOfType<PauseMenu>();
-        BeatTracker.OnFixedBeat += IterateChart;
+        //BeatTracker.OnFixedBeat += IterateChart;
     }
 
     private void OnDestroy()
     {
-        BeatTracker.OnFixedBeat -= IterateChart;
+        //BeatTracker.OnFixedBeat -= IterateChart;
     }
 
     private void Update()
@@ -68,7 +68,7 @@ public class CatGameManager : MonoBehaviour
 
         }
 
-        count++;
+        //count++;
 
         
     }
