@@ -145,6 +145,27 @@ MonoBehaviour:
       Data3: -1610714434
       Data4: 375302408
     Path: event:/StageMusic/Stage1
+  hamsterGreetingTTS:
+    Guid:
+      Data1: -1490963627
+      Data2: 1265121516
+      Data3: 65467043
+      Data4: 806662900
+    Path: event:/TTS/Hamster Greeting
+  hamsterHappyTTS:
+    Guid:
+      Data1: -1775006246
+      Data2: 1110528891
+      Data3: 1733812412
+      Data4: -913826347
+    Path: event:/TTS/Hamster Happy
+  hamsterAngryTTS:
+    Guid:
+      Data1: -1066202743
+      Data2: 1186593255
+      Data3: -2012557948
+      Data4: -1782854476
+    Path: event:/TTS/Hamster Angry
   masterVolume: 1
   bgmVolume: 1
   sfxVolume: 1

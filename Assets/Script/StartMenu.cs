@@ -57,7 +57,7 @@ public class StartMenu : MonoBehaviour
         {
             StartCoroutine(Fade());
         }
-        if (introVideoPlayer.frame == 2)
+        if (introVideoPlayer.frame == 1)
         {
             foreach (var UI in otherUI)
             {
@@ -65,11 +65,12 @@ public class StartMenu : MonoBehaviour
             }
         }
 
-        if (hamsterVideoPlayer.frame == 2 && !hamsterVideoStart)
+        if (hamsterVideoPlayer.frame == 1 && !hamsterVideoStart)
         {
             introVideoPlayer.gameObject.SetActive(false);
             AudioManager.Instance.PlaySFX(AudioManager.Instance.bell);
             AudioManager.Instance.PlayBGM(AudioManager.Instance.restaurant);
+            StartCoroutine(PlayHamsterGreetingTTS());
             hamsterVideoStart = true;
         }
         if (hamsterVideoFinshed)
@@ -142,5 +143,11 @@ public class StartMenu : MonoBehaviour
 
         introVideoPlayer.Play();
         AudioManager.Instance.PlayBGM(AudioManager.Instance.introVideoAudio);
+    }
+
+    IEnumerator PlayHamsterGreetingTTS()
+    {
+        yield return new WaitForSeconds(1f);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.hamsterGreetingTTS);
     }
 }

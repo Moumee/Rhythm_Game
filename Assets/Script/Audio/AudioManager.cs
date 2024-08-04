@@ -27,6 +27,9 @@ public class AudioManager : MonoBehaviour
     public EventReference introVideoAudio;
     public EventReference restaurant;
     public EventReference stage1;
+    public EventReference hamsterGreetingTTS;
+    public EventReference hamsterHappyTTS;
+    public EventReference hamsterAngryTTS;
 
     public EventInstance bgmEventInstance;
 

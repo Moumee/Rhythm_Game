@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{b28c7a73-723f-469e-8057-8051fbeb98cf}">
+		<property name="assetPath">
+			<value>TTS/Hamster/햄스터 분노 멘트_속도조절.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.1120000000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7aac224d-fac4-455f-830d-dba4aad57a74}</destination>
+		</relationship>
+	</object>
+</objects>

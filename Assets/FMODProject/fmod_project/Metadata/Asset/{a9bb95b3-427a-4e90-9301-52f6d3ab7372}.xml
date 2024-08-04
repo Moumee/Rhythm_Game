@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{a9bb95b3-427a-4e90-9301-52f6d3ab7372}">
+		<property name="assetPath">
+			<value>TTS/Hamster/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7aac224d-fac4-455f-830d-dba4aad57a74}</destination>
+		</relationship>
+	</object>
+</objects>
