@@ -1,11 +1,14 @@
 using UnityEngine;
+using UnityEngine.Events;
+using System.Collections;
 
 public class Knife : MonoBehaviour
 {
+    [SerializeField] private FishManager fishManager;
     [SerializeField] private Transform[] knifePoints;
-    [SerializeField] private float cutSpeed = 10f;
+    [SerializeField] private float cutSpeed = 20f;
     [SerializeField] private float readySpeed = 80f;
-    [SerializeField] private float horizontalSpeed = 40f;
+    [SerializeField] private float horizontalSpeed = 70f;
     [SerializeField] private float cutDepth = 0.6f;
     [SerializeField] private float resetDepth = 10f;
 
@@ -118,15 +121,17 @@ public class Knife : MonoBehaviour
                     transform.position = new Vector3(firstKnifePoint.x, firstKnifePoint.y - resetDepth, firstKnifePoint.z);
                     currentState = KnifeState.Resetting;
                     targetPosition = knifePoints[0].position;
+                    fishManager.MoveAllFish();
+                    
                 });
                 break;
 
             case KnifeState.Resetting:
                 MoveTowardsTarget(targetPosition, readySpeed, () =>
                 {
+                    knifeIndex = 0;
                     currentState = KnifeState.Ready;
                     isMoving = false;
-                    knifeIndex = 0;
                 });
                 break;
         }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Timers;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FishManager : MonoBehaviour
 {
-    private bool secondFishActive = false;
+    [SerializeField] private Knife knife;
     private bool thirdFishActive = false;
     public List<Fish> fishList = new List<Fish>();
     public Fish currentFish;
@@ -14,9 +15,15 @@ public class FishManager : MonoBehaviour
     private Coroutine vibrateCoroutine;
     public float vibrateDuration = 0.1f;
 
+    
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
+    {
+        
+    }
+
+    private void OnDestroy()
     {
         
     }
@@ -41,11 +48,6 @@ public class FishManager : MonoBehaviour
             {
                 currentFish = fish;
             }
-        }
-        if (fishList[0].positionId == 1 && !secondFishActive)
-        {
-            fishList[1].gameObject.SetActive(true);
-            secondFishActive = true;
         }
 
         if (fishList[1].positionId == 1 && !thirdFishActive)
@@ -82,5 +84,16 @@ public class FishManager : MonoBehaviour
         }
 
         currentFish.transform.position = startPos;
+    }
+
+    public void OnNoteHit()
+    {
+        currentFish.cutObjects[knife.knifeIndex].SetActive(true);
+        VibrateCurrentFish();
+    }
+
+    public void OnNoteMiss()
+    {
+        //nothing
     }
 }

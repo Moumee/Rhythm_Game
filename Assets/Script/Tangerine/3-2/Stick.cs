@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class StickManager : MonoBehaviour
+public class Stick : MonoBehaviour
 {
-    public float rotationSpeed = 100f;
-    [SerializeField] Transform rotationPoint;
+    [SerializeField] private TangerineFallManger tangerineFallManger;
+    public float rotationSpeed = 500f;
+    public Transform rotationPoint;
+    public float rotationDelay = 0.8f;
+    public bool isRotating = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +29,9 @@ public class StickManager : MonoBehaviour
 
     IEnumerator RotateStickCoroutine()
     {
-        float remainingAngle = 90f;
+        isRotating = true;
+        yield return new WaitForSeconds(rotationDelay);
+        float remainingAngle = 180f;
         while (remainingAngle > 0)
         {
             float rotationThisFrame = rotationSpeed * Time.deltaTime;
@@ -34,5 +40,8 @@ public class StickManager : MonoBehaviour
             remainingAngle -= rotationThisFrame;
             yield return null;
         }
+        
+        tangerineFallManger.ResetAllTangerines();
+        isRotating = false;
     }
 }

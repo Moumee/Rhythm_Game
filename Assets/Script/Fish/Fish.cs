@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class Fish : MonoBehaviour
 {
     public PointSO pointData;
-    private float speed = 100f;
+    private float speed = 200f;
     public int positionId = 0;
     private FishManager fishManager;
     public GameObject[] cutObjects;

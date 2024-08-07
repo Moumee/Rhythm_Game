@@ -48,8 +48,7 @@ public class TestScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.DownArrow) && isSecondPart)
         {
-            fishManager.currentFish.cutObjects[knife.knifeIndex].SetActive(true);
-            fishManager.VibrateCurrentFish();
+            fishManager.OnNoteHit();
         }
 
     }

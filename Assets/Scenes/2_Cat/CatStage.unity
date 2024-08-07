@@ -1160,7 +1160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1851937093427300885, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7835194825191127534, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1725,6 +1725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fba251c4f639414187762fc60177b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knife: {fileID: 1404966248}
   fishList:
   - {fileID: 7993708723497112550}
   - {fileID: 1328891224}
@@ -2283,12 +2284,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1455947204}
     m_Modifications:
     - target: {fileID: 517734504728677847, guid: 98b539e3dbafe994982c5b8db1b1ee13, type: 3}
-      propertyPath: readySpeed
-      value: 80
+      propertyPath: cutSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 517734504728677847, guid: 98b539e3dbafe994982c5b8db1b1ee13, type: 3}
+      propertyPath: readySpeed
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 517734504728677847, guid: 98b539e3dbafe994982c5b8db1b1ee13, type: 3}
+      propertyPath: fishManager
+      value: 
+      objectReference: {fileID: 1535740803}
+    - target: {fileID: 517734504728677847, guid: 98b539e3dbafe994982c5b8db1b1ee13, type: 3}
       propertyPath: horizontalSpeed
-      value: 40
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 517734504728677847, guid: 98b539e3dbafe994982c5b8db1b1ee13, type: 3}
       propertyPath: knifePoints.Array.size
@@ -2379,9 +2388,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4390637903612459477, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+      propertyPath: positionId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7835194825191127534, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7835194825191127534, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
       propertyPath: m_LocalPosition.y

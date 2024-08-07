@@ -50,25 +50,9 @@ public class CatGameManager : MonoBehaviour
     {
         if (!pauseMenu.isPlaying)
             return;
-        if (count >= 144)
-        {
-            if (musicChart[count] == 1)
-            {
-                fishMoveCount++;
+        
 
-                if (fishMoveCount % 5 == 0 && fishMoveCount != lastFishMoveCount)
-                {
-                    fishManager.MoveAllFish();
-
-                    lastFishMoveCount = fishMoveCount;
-                }
-            }
-
-
-
-        }
-
-        count++;
+        
 
         
     }

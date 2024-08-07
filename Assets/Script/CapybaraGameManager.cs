@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class CapybaraGameManager : MonoBehaviour
 {
-    [SerializeField] StickManager stickManager;
     PauseMenu pauseMenu;
     public int count = 0;
-    private int stickMoveCount = 0;
-    private int lastStickMoveCount = -1;
+    
 
     private List<int> musicChart = new List<int>
     {
@@ -53,20 +51,9 @@ public class CapybaraGameManager : MonoBehaviour
         if (!pauseMenu.isPlaying)
             return;
         
-        if (count > 129)
-        {
-            if (musicChart[count] == 1)
-            {
-                stickMoveCount++;
-                if (stickMoveCount % 3 == 0 && stickMoveCount != lastStickMoveCount)
-                {
-                    stickManager.RotateStick();
-                    lastStickMoveCount = stickMoveCount;
-                }
-            }
-        }
+        
 
-        count++;
+        
 
 
     }
