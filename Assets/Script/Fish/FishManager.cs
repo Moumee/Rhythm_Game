@@ -88,12 +88,13 @@ public class FishManager : MonoBehaviour
 
     public void OnNoteHit()
     {
+        knife.OnKeyPress();
         currentFish.cutObjects[knife.knifeIndex].SetActive(true);
         VibrateCurrentFish();
     }
 
     public void OnNoteMiss()
     {
-        //nothing
+         knife.OnKeyPress();
     }
 }

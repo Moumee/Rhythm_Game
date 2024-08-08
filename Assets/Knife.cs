@@ -37,12 +37,6 @@ public class Knife : MonoBehaviour
     {
         switch (currentState)
         {
-            case KnifeState.Ready:
-                if (Input.GetKeyDown(KeyCode.DownArrow))
-                {
-                    StartKnifeMovement();
-                }
-                break;
             case KnifeState.MovingDown:
             case KnifeState.MovingUp:
             case KnifeState.MovingHorizontal:
@@ -50,6 +44,14 @@ public class Knife : MonoBehaviour
             case KnifeState.Resetting:
                 MoveKnife();
                 break;
+        }
+    }
+
+    public void OnKeyPress()
+    {
+        if (currentState == KnifeState.Ready)
+        {
+            StartKnifeMovement();
         }
     }
 
@@ -122,7 +124,7 @@ public class Knife : MonoBehaviour
                     currentState = KnifeState.Resetting;
                     targetPosition = knifePoints[0].position;
                     fishManager.MoveAllFish();
-                    
+
                 });
                 break;
 
