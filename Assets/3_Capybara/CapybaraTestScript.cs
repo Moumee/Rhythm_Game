@@ -6,8 +6,10 @@ public class CapybaraTestScript : MonoBehaviour
 {
     public TangerineManager tangerineManager;
     public TangerineFallManger tangerineFallManger;
+    public TangerineCandyManager tangerineCandyManager;
     public GameObject firstSubStage;
     public GameObject secondSubStage;
+    public GameObject thirdSubStage;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,15 @@ public class CapybaraTestScript : MonoBehaviour
             {
                 tangerineFallManger.OnNoteMiss();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            tangerineCandyManager.OnRightNoteHit();
+        }
+        if (Input.GetKeyDown (KeyCode.LeftArrow))
+        {
+            tangerineCandyManager.OnLeftNoteHit();
         }
     }
 }

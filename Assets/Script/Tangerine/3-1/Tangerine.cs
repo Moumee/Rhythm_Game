@@ -10,7 +10,7 @@ public class Tangerine : MonoBehaviour
     public int sunHitCount = 0;
     public int currentIndex;
     private int moveOffset = 13;
-    private float moveDuration = 0.3f;
+    private float moveDuration = 0.2f;
     // Start is called before the first frame update
     void Awake()
     {
