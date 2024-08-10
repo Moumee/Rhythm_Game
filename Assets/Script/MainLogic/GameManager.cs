@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent FillMiss;
     public UnityEvent OnSpawnIngre;
 
-    private EventAdapter eventAdapter;
+    public EventAdapter eventAdapter;
     private JudgePrinter judgePrinter;
     DataStorage dataStorage;
 
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     //value for 1-2
     public GameObject BackGround;
-    public bool isStage1_2 = false;
+    public int isStage1_2 = 0;
     public GameObject ingredientManager;
     public GameObject moldManager;
 
@@ -89,7 +89,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject fade;
     bool fadeOutStart = false;
 
-   
+
+    public GameObject firstSubStage;
+    public GameObject secondSubStage;
+    public GameObject thirdSubStage;
+
 
     void Awake()
     {
@@ -115,6 +119,7 @@ public class GameManager : MonoBehaviour
         dataStorage = new DataStorage();
         BPM = dataStorage.Data_Hamster.BPM;
         MusicChart = dataStorage.Data_Hamster.MusicChart;
+
         SpawnChart.AddRange(DelayChart);
         SpawnChart.AddRange(MusicChart);
         for (int i = 0; i < beatJump * 2; i++)
@@ -185,10 +190,18 @@ public class GameManager : MonoBehaviour
         }
         
         //stage change
-        if (count >= 151)
+        if (count == 105)
         {
-            isStage1_2 = true;
-            textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
+            isStage1_2 = 1;
+            //textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
+            secondSubStage.SetActive(true);
+            firstSubStage.SetActive(false);
+        }
+        if (count == 235)
+        {
+            isStage1_2 = 2;
+            secondSubStage.SetActive(false);
+            thirdSubStage.SetActive(true);
         }
         //ending
         if (count == SpawnChart.Count - 1 && !stageEnd)
@@ -206,9 +219,9 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (isStage1_2 && !backgroundMoved)
+        if (isStage1_2>0 && !backgroundMoved)
         {
-            StartCoroutine(MoveBackground(0.2f));
+            //StartCoroutine(MoveBackground(0.2f));
         }
 
     }
@@ -288,7 +301,7 @@ public class GameManager : MonoBehaviour
     IEnumerator CatchDelay()
     {
         isCatchable = false;
-        if (!isStage1_2)
+        if (isStage1_2==0)
         {
             FistMiss.Invoke();
         }

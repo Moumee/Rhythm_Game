@@ -1228,19 +1228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f037178185767334285ad6baee86becb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnBeat:
-    m_PersistentCalls:
-      m_Calls: []
-  CatchNote:
-    m_PersistentCalls:
-      m_Calls: []
-  FistMiss:
-    m_PersistentCalls:
-      m_Calls: []
-  ingredientManager: {fileID: 2100601289}
-  punch: {fileID: 665091818}
-  moldManager: {fileID: 96987481}
-  fillingManager: {fileID: 195566974}
 --- !u!1 &1148487600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1971,9 +1958,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnNote_3:
-    m_PersistentCalls:
-      m_Calls: []
   OnSpawnIngre:
     m_PersistentCalls:
       m_Calls:
@@ -1989,6 +1973,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  eventAdapter: {fileID: 1750320642}
   missText: {fileID: 1348473699}
   goodText: {fileID: 166179783}
   perfectText: {fileID: 1383203660}
@@ -2000,8 +1985,6 @@ MonoBehaviour:
   anyKeyObj: {fileID: 1789407388}
   sceneController: {fileID: 0}
   BPM: 210
-  margin_good: 0.342
-  scoreTimer: 0
   count: 0
   startDelay: 0
   bgmStartDelay: 1.305
@@ -2038,20 +2021,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1750320639}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f037178185767334285ad6baee86becb, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b53491a1c3d29442b3ed59a600f9078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnBeat:
-    m_PersistentCalls:
-      m_Calls: []
-  CatchNote:
-    m_PersistentCalls:
-      m_Calls: []
-  FistMiss:
-    m_PersistentCalls:
-      m_Calls: []
-  ingredientManager: {fileID: 2100601289}
-  punch: {fileID: 665091818}
+  ingredientManager: {fileID: 0}
+  punch: {fileID: 0}
   moldManager: {fileID: 96987481}
   fillingManager: {fileID: 195566974}
 --- !u!1 &1789407388
@@ -2590,13 +2564,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8428ca5cceee3d942b50871c6cbe9b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standPoint:
-  - {fileID: 1002562057}
-  - {fileID: 1210770787}
-  - {fileID: 523283211}
-  - {fileID: 1411957878}
-  - {fileID: 1033533544}
-  tempingre: {fileID: 0}
 --- !u!4 &2100601290
 Transform:
   m_ObjectHideFlags: 0
@@ -2624,8 +2591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5542e2fc2ebd2644bca1e6e295d1600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingre: {fileID: 5824541796284388424, guid: ddcf95ad95c41494cb852336db3e9008, type: 3}
-  startPos: {fileID: 1002562057}
 --- !u!1 &2101843773
 GameObject:
   m_ObjectHideFlags: 0
