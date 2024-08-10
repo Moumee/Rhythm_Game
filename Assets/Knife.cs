@@ -50,9 +50,8 @@ public class Knife : MonoBehaviour
     public void OnKeyPress()
     {
         if (currentState == KnifeState.Ready)
-        {
             StartKnifeMovement();
-        }
+        
     }
 
     private void ResetKnife()

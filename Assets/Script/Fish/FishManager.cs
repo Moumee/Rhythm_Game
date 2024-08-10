@@ -50,12 +50,6 @@ public class FishManager : MonoBehaviour
             }
         }
 
-        if (fishList[1].positionId == 1 && !thirdFishActive)
-        {
-            fishList[2].gameObject.SetActive(true);
-            thirdFishActive = true;
-        }
-
     }
 
     public void VibrateCurrentFish()
@@ -88,6 +82,8 @@ public class FishManager : MonoBehaviour
 
     public void OnNoteHit()
     {
+        if (currentFish.isMoving)
+            return;
         knife.OnKeyPress();
         currentFish.cutObjects[knife.knifeIndex].SetActive(true);
         VibrateCurrentFish();
@@ -95,6 +91,7 @@ public class FishManager : MonoBehaviour
 
     public void OnNoteMiss()
     {
-         knife.OnKeyPress();
+
+        knife.OnKeyPress();
     }
 }

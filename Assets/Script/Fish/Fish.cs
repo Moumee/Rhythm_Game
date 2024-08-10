@@ -7,10 +7,11 @@ using UnityEngine.UIElements;
 public class Fish : MonoBehaviour
 {
     public PointSO pointData;
-    private float speed = 200f;
     public int positionId = 0;
     private FishManager fishManager;
     public GameObject[] cutObjects;
+    public bool isMoving = false;
+    private float moveDuration = 0.1f;
 
     
     private void OnEnable()
@@ -38,22 +39,35 @@ public class Fish : MonoBehaviour
         }
 
 
-        float step = speed * Time.deltaTime;
-
-        transform.position = Vector3.MoveTowards(transform.position, pointData.fishWaypoints[positionId], step);
+        
     }
 
     public void MoveFish()
-    {   
-        if (positionId < pointData.fishWaypoints.Length - 1)
+    {
+        StartCoroutine(MoveFishLeftCoroutine());
+    }
+
+    private IEnumerator MoveFishLeftCoroutine()
+    {
+        isMoving = true;
+        int nextIndex = (positionId + 1) % pointData.fishWaypoints.Length;
+        float elapsedTime = 0;
+        while (moveDuration >= elapsedTime)
         {
-            positionId++;
+            transform.position = Vector3.Lerp(pointData.fishWaypoints[positionId],
+                pointData.fishWaypoints[nextIndex], elapsedTime / moveDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
-        else if (positionId == pointData.fishWaypoints.Length - 1)
+        positionId = nextIndex;
+        transform.position = pointData.fishWaypoints[nextIndex];
+        if (positionId == pointData.fishWaypoints.Length - 1)
         {
-            gameObject.transform.position = pointData.fishWaypoints[0];
+            transform.position = pointData.fishWaypoints[0];
             positionId = 0;
         }
+        isMoving = false;
+
     }
 
 
