@@ -1200,7 +1200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1088902574
 Transform:
   m_ObjectHideFlags: 0
@@ -1228,6 +1228,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f037178185767334285ad6baee86becb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnBeat:
+    m_PersistentCalls:
+      m_Calls: []
+  CatchNote:
+    m_PersistentCalls:
+      m_Calls: []
+  FistMiss:
+    m_PersistentCalls:
+      m_Calls: []
   ingredientManager: {fileID: 2100601289}
   punch: {fileID: 665091818}
   moldManager: {fileID: 96987481}
@@ -1912,6 +1921,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1750320641}
   - component: {fileID: 1750320640}
+  - component: {fileID: 1750320642}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1931,72 +1941,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a009e21b0bd4d944bf0e22cc31461aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnBeat:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2100601289}
-        m_TargetAssemblyTypeName: IngredientManager, Assembly-CSharp
-        m_MethodName: OnEvent_MoveIngredient
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnNote:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1088902575}
-        m_TargetAssemblyTypeName: EventAdapter, Assembly-CSharp
-        m_MethodName: Event_OnNote
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  CatchNote:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1088902575}
-        m_TargetAssemblyTypeName: EventAdapter, Assembly-CSharp
-        m_MethodName: Event_CatchNote
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   FistMiss:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 665091818}
         m_TargetAssemblyTypeName: Punch, Assembly-CSharp
         m_MethodName: OnEvent_Miss
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnNote_forMold:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 96987481}
-        m_TargetAssemblyTypeName: MoldManager, Assembly-CSharp
-        m_MethodName: OnEvent_SpawnMold
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2023,19 +1973,7 @@ MonoBehaviour:
         m_CallState: 2
   OnNote_3:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 140664321}
-        m_TargetAssemblyTypeName: NoteManager, Assembly-CSharp
-        m_MethodName: EventNoteSpawn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnSpawnIngre:
     m_PersistentCalls:
       m_Calls:
@@ -2073,6 +2011,7 @@ MonoBehaviour:
   isStage1_2: 0
   ingredientManager: {fileID: 2100601288}
   moldManager: {fileID: 96987478}
+  currentState: 0
   noteManager: {fileID: 0}
   fade: {fileID: 1731977071}
 --- !u!4 &1750320641
@@ -2090,6 +2029,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 145542653}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1750320642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750320639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f037178185767334285ad6baee86becb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnBeat:
+    m_PersistentCalls:
+      m_Calls: []
+  CatchNote:
+    m_PersistentCalls:
+      m_Calls: []
+  FistMiss:
+    m_PersistentCalls:
+      m_Calls: []
+  ingredientManager: {fileID: 2100601289}
+  punch: {fileID: 665091818}
+  moldManager: {fileID: 96987481}
+  fillingManager: {fileID: 195566974}
 --- !u!1 &1789407388
 GameObject:
   m_ObjectHideFlags: 0

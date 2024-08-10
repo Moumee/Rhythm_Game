@@ -1,19 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using UnityEngine.Video;
+using AsyncOperation = UnityEngine.AsyncOperation;
+using System;
+using System.Runtime.InteropServices;
+using Unity.VisualScripting;
+using static GameManager;
+using FMODUnity;
 
-public class RythmManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-
-    public UnityEvent OnBeat;
-    public UnityEvent OnNote;
-    public UnityEvent CatchNote;
-
     public UnityEvent FistMiss;
-    public UnityEvent Moldmove;
-    public UnityEvent OnNote_Effect;
+    public UnityEvent FillMiss;
+    public UnityEvent OnSpawnIngre;
+
+    private EventAdapter eventAdapter;
+    private JudgePrinter judgePrinter;
+    DataStorage dataStorage;
 
     public Animator missText;
     public Animator goodText;
@@ -22,53 +31,36 @@ public class RythmManager : MonoBehaviour
 
     public Animator fadeAnim;
 
-    public static RythmManager Instance;
+    public static GameManager Instance;
 
-    public int noteNumber = 0;
-    public int noteNumber2 = 0;
-    public int judgeNumber = 0;
 
+    [HideInInspector]public int noteNumber = 0;
+    [HideInInspector]public int noteNumber2 = 0;
+    [HideInInspector]public int judgeNumber = 0;
 
     public GameObject anyKeyObj;
 
     [SerializeField] SceneController sceneController;
 
 
-
     private List<int> SpawnChart = new List<int>();
     private List<int> JudgeChart = new List<int>();
 
-    private List<int> MusicChart = new List<int>
-    {
-        0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-        1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,
-        0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,
-        //1-2 start
-        1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,
-        0,0,0,0,1,0,0,0,1,0,0,0,1,1,0,0,1,1,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0
-    };
 
+    private List<int> MusicChart;
     private List<int> DelayChart = new List<int> { 0, 0 };
 
-    public GameObject[] notePoints;
 
-    public GameObject noteSyncPoint;
-
-    public float BPM = 210;
+    [HideInInspector]public float BPM;
     private float interval;     //time between beat that calculated  by BPM
-    private float timer;
 
     bool backgroundMoved = false;
     bool stageEnd = false;
-    bool skipAvailable = false;
-    bool success = false;
-    bool fail = false;
     //value for judge
-    private float margin_perfect = 0.056f;
-    public float margin_good = 0.042f;
-    public float scoreTimer;
+    private float margin_perfect = 0.025f;
+    private float margin_good = 0.05f;
     private bool isScoreGet = true;
-    private float catchDelay = 0.05f;
+    private float catchDelay = 0.01f;
     private bool isCatchable = true;
 
     public int count = 0;       //count of called beats
@@ -80,18 +72,24 @@ public class RythmManager : MonoBehaviour
 
     public int Score = 0;
 
-    public int beatJump = 4;    //number of beats to move ingredients
+    public int beatJump = 3;    //number of beats to move ingredients
 
     //value for 1-2
     public GameObject BackGround;
     public bool isStage1_2 = false;
+    public GameObject ingredientManager;
+    public GameObject moldManager;
+
+    public enum catchState { Miss = 0, Perfect = 1, good = 2 };
+    public int currentState = (int)catchState.Miss;
+
 
     public NoteManager noteManager;
 
     [SerializeField] GameObject fade;
     bool fadeOutStart = false;
 
-
+   
 
     void Awake()
     {
@@ -105,17 +103,18 @@ public class RythmManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-
+        eventAdapter = GetComponent<EventAdapter>();
 
         noteManager = FindObjectOfType<NoteManager>();
-        //ingredientManager = FindObjectOfType<IngredientManager>();  
-        //moldManager = FindObjectOfType<MoldManager>();  
-
+        
 
         isScoreGet = true;
         interval = 60 / BPM;
-        margin_good = 0.114f;
 
+        
+        dataStorage = new DataStorage();
+        BPM = dataStorage.Data_Hamster.BPM;
+        MusicChart = dataStorage.Data_Hamster.MusicChart;
         SpawnChart.AddRange(DelayChart);
         SpawnChart.AddRange(MusicChart);
         for (int i = 0; i < beatJump * 2; i++)
@@ -127,7 +126,7 @@ public class RythmManager : MonoBehaviour
 
 
         StartCoroutine(NoteStartDelay());
-
+        
 
     }
 
@@ -140,31 +139,27 @@ public class RythmManager : MonoBehaviour
     }
 
 
-
+    
 
     // Update is called once per frame
     void Update()
     {
-
         if (!FindObjectOfType<PauseMenu>().isPlaying)
         {
             return;
         }
 
-
-
         if (BeatStart && !stageEnd)
         {
             if (Input.GetKeyDown(KeyCode.DownArrow) && isCatchable)
             {
-                if (BeatTracker.GetCurrentTime() >= scoreTimer &&
-                    BeatTracker.GetCurrentTime() < scoreTimer + margin_good * 2 && !isScoreGet)
+                if (currentState == (int)catchState.good)
                 {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.notePress);
                     ++Score;
-                    CatchNote.Invoke();
+                    eventAdapter.Event_CatchNote();
 
-                    if (BeatTracker.GetCurrentTime() >= scoreTimer + margin_good - margin_perfect
-                        && BeatTracker.GetCurrentTime() <= scoreTimer + margin_good + margin_perfect)
+                    if (true)
                     {
                         perfectText.SetTrigger("Perfect");
                         noteManager.NoteJudgeEffect("Perfect");
@@ -188,25 +183,25 @@ public class RythmManager : MonoBehaviour
                 }
             }
         }
-
-
+        
+        //stage change
         if (count >= 151)
         {
             isStage1_2 = true;
             textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
         }
-
+        //ending
         if (count == SpawnChart.Count - 1 && !stageEnd)
         {
             stageEnd = true;
             AudioManager.Instance.stageSource.Stop();
             if (Score > 75 * 7.5 && !fadeOutStart)
             {
-                StartCoroutine(FadeOutToNextScene("HamsterHappy"));
+                StartCoroutine(FadeOutToNextScene(dataStorage.Data_Hamster.successScene));
             }
             else if (Score <= 75 * 7.5 && !fadeOutStart)
             {
-                StartCoroutine(FadeOutToNextScene("HamsterAngry"));
+                StartCoroutine(FadeOutToNextScene(dataStorage.Data_Hamster.failScene));
 
             }
         }
@@ -232,28 +227,30 @@ public class RythmManager : MonoBehaviour
             if (SpawnChart[count] == 1)
             {
                 noteNumber++;
-                OnNote.Invoke();
+                eventAdapter.Event_OnNote();
             }
-            OnBeat.Invoke();
+            eventAdapter.Event_OnBeat();
 
             if (count + 4 <= SpawnChart.Count - 1)
             {
                 if (SpawnChart[count + 4] == 1)
                 {
                     noteNumber2++;
-                    OnNote_Effect.Invoke();
+                    OnSpawnIngre.Invoke();
+
                 }
             }
+
+
             ++count;
         }
-
         if (JudgeChart[count + 1] == 1)
         {
             judgeNumber++;
-            scoreTimer = BeatTracker.GetCurrentTime() + BeatTracker.GetBeatInterval() - margin_good;
+            StartCoroutine(DefaultCycle());
 
-            Moldmove.Invoke();
             isScoreGet = false;
+
         }
 
 
@@ -270,12 +267,9 @@ public class RythmManager : MonoBehaviour
         }
     }
 
-
     IEnumerator NoteStartDelay()
     {
         yield return new WaitForSeconds(startDelay);
-        timer = Time.time;
-
         BeatStart = true;
     }
 
@@ -285,6 +279,11 @@ public class RythmManager : MonoBehaviour
     }
 
 
+    //IEnumerator BGMStartDelay()
+    //{
+    //    yield return new WaitForSeconds(bgmStartDelay);
+    //    AudioManager.Instance.PlayStageMusic(AudioManager.Instance.stage1);
+    //}
 
     IEnumerator CatchDelay()
     {
@@ -296,4 +295,18 @@ public class RythmManager : MonoBehaviour
         yield return new WaitForSeconds(catchDelay);
         isCatchable = true;
     }
+
+    IEnumerator DefaultCycle()
+    {
+        yield return new WaitForSeconds(interval - margin_good);
+        currentState = (int)catchState.good;
+
+        yield return new WaitForSeconds(2*margin_good);
+        currentState = (int)catchState.Miss;
+    }
 }
+
+
+
+
+

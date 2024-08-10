@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EventAdapter : MonoBehaviour
 {
     private enum stageState { ingredient = 0, mold = 1 };
+
+    [SerializeField] UnityEvent OnBeat;
+    [SerializeField]UnityEvent OnNote;
+    public UnityEvent CatchNote;
+    public UnityEvent FistMiss;
 
     public IngredientManager ingredientManager;
     public Punch punch;
@@ -55,4 +61,20 @@ public class EventAdapter : MonoBehaviour
             ingredientManager.EventCatchNote();
         }
     }
+
+    public void Event_SpawnIngre()
+    {
+        if (GameManager.Instance.isStage1_2)
+        {
+            moldManager.EventCatchNote();
+            fillingManager.FillingFall();
+        }
+        else
+        {
+            punch.OnEvent_Punch();
+            ingredientManager.EventCatchNote();
+        }
+    }
+
+    //public void 
 }
