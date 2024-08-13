@@ -5,6 +5,7 @@ using System;
 using UnityEngine.SceneManagement;
 using FMODUnity;
 using FMOD.Studio;
+using Unity.VisualScripting;
 
 public class AudioManager : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class AudioManager : MonoBehaviour
     public EventReference hamsterHappyTTS;
     public EventReference hamsterAngryTTS;
 
+    public Dictionary<EventInstance, Coroutine> activeInstances = new Dictionary<EventInstance, Coroutine>();
     public EventInstance bgmEventInstance;
 
     [Header("Volume")]
@@ -131,9 +133,45 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(EventReference sound)
     {
-        RuntimeManager.PlayOneShot(sound);
+        EventInstance instance = RuntimeManager.CreateInstance(sound);
+        Coroutine coroutine = StartCoroutine(PlaySFXCoroutine(instance));
+        activeInstances.Add(instance, coroutine);
     }
 
+    private IEnumerator PlaySFXCoroutine(EventInstance instance)
+    {
+        instance.start();
+
+        PLAYBACK_STATE playbackState;
+        do
+        {
+            instance.getPlaybackState(out playbackState);
+            yield return null;
+        } while (playbackState != PLAYBACK_STATE.STOPPED);
+
+        instance.release();
+        activeInstances.Remove(instance);
+    }
+
+    public void PauseAllSFX(bool pause)
+    {
+        foreach (var kvp in activeInstances)
+        {
+            kvp.Key.setPaused(pause);
+        }
+    }
+
+    private void OnDisable()
+    {
+        // Clean up any active instances when the script is disabled or the object is destroyed
+        foreach (var kvp in activeInstances)
+        {
+            StopCoroutine(kvp.Value);
+            kvp.Key.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            kvp.Key.release();
+        }
+        activeInstances.Clear();
+    }
     //public void PlayStageMusic(EventReference stageBGM)
     //{
     //    StopAllMusic(); // Stop any existing music before playing new stage music

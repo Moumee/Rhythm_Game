@@ -16,8 +16,6 @@ public class HamsterResult : MonoBehaviour
     [SerializeField] Animator speechAnim;
     private int anyKeyIndex = 0;
     [SerializeField] SpriteRenderer foodSpriteRenderer;
-    [SerializeField] AudioManager.SFX sfx;
-    [SerializeField] AudioManager.SFX effectSfx;
     public float videoFadeDuration = 1f;
     public bool isAngry = true;
     public bool hasEffect = false;

@@ -59,6 +59,7 @@ public class PauseMenu : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 isPlaying = false;
                 AudioManager.Instance.bgmEventInstance.setPaused(true);
+                AudioManager.Instance.PauseAllSFX(true);
                 BeatTracker.currentMusicTrack.setPaused(true);
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
@@ -69,6 +70,7 @@ public class PauseMenu : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 isPlaying = true;
                 AudioManager.Instance.bgmEventInstance.setPaused(false);
+                AudioManager.Instance.PauseAllSFX(false);
                 BeatTracker.currentMusicTrack.setPaused(false);
                 pauseMenu.SetActive(false);
                 optionMenu.SetActive(false);
