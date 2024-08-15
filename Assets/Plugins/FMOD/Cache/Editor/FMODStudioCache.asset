@@ -69,7 +69,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638584151064428902
+  lastModified: 638591799336140706
   FileSizes: []
   Exists: 1
 --- !u!114 &-7471541365338935949
@@ -132,7 +132,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638584151064091385
+  lastModified: 638591799506814466
   FileSizes: []
   Exists: 1
 --- !u!114 &-5364227473486772159
@@ -285,10 +285,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638584151064448895
+  lastModified: 638591799336155777
   FileSizes:
   - Name: 
-    Value: 1716
+    Value: 1748
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -328,12 +328,13 @@ MonoBehaviour:
   - {fileID: -5364227473486772159}
   - {fileID: 8895486253887775664}
   - {fileID: 5588914364416479039}
+  - {fileID: 5451712102424962776}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7767095849538853268}
   StringsBanks:
   - {fileID: -1955523241680991564}
-  cacheTime: 638584157222617152
+  cacheTime: 638591799506814466
   cacheVersion: 131618
 --- !u!114 &359600167592558344
 MonoBehaviour:
@@ -470,6 +471,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &5451712102424962776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/StageMusic/Stage4
+  m_EditorClassIdentifier: 
+  Path: event:/StageMusic/Stage4
+  Guid:
+    Data1: 241817985
+    Data2: 1104598186
+    Data3: -1029944406
+    Data4: -1628605459
+  Banks:
+  - {fileID: -6392482322019898061}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 95952
 --- !u!114 &5588914364416479039
 MonoBehaviour:
   m_ObjectHideFlags: 0
