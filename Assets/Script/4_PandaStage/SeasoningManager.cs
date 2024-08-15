@@ -1,50 +1,64 @@
 using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SeasoningManager : MonoBehaviour
 {
     public Transform[] wayPoints;
-    public Dictionary<string, GameObject> seasonings = new Dictionary<string, GameObject>();
-    public SoySauce soySauce;
-    public SugarSpoon sugarSpoon;
-    public Vinegar vinegar;
-    public GameObject currentObject;
+    public List<Seasoning> seasonings = new List<Seasoning>();
+    public List<Seasoning> readySeasonings = new List<Seasoning>();
+    public Seasoning currentSeasoning;
     
     // Start is called before the first frame update
     void Awake()
     {
-        seasonings["Soy"] = soySauce.gameObject;
-        seasonings["Sugar"] = sugarSpoon.gameObject;
-        seasonings["Vinegar"] = vinegar.gameObject;
+        Seasoning.onMove += MoveReadySeasonings;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentObject == null)
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            foreach (var seasoning in seasonings)
-            {
-                if (seasoning.Value.transform.position == wayPoints[1].position)
-                {
-                    currentObject = seasoning.Value;
-                    break;
-                }
-            }
+            OnNoteHit();
         }
 
+        foreach (var seasoning in seasonings)
+        {
+            if (seasoning.gameObject.transform.position == wayPoints[1].position)
+            {
+                currentSeasoning = seasoning;
+                readySeasonings.Remove(seasoning);
+                break;
+            }
+        }
+        
+        
+
+    }
+
+    private void OnDestroy()
+    {
+        Seasoning.onMove -= MoveReadySeasonings;
+    }
+
+    public void MoveReadySeasonings()
+    {
+        readySeasonings[Random.Range(0, readySeasonings.Count)].MoveNext();
     }
 
     public void OnNoteHit()
     {
-        
+        currentSeasoning.OnNoteHit();
+        currentSeasoning.MoveNextCheck();
     }
 
     public void OnNoteMiss()
     {
-
+        currentSeasoning.OnNoteMiss();
+        currentSeasoning.MoveNextCheck();   
     }
 
     
