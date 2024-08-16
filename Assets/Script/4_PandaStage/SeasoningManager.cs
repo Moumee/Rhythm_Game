@@ -27,7 +27,7 @@ public class SeasoningManager : MonoBehaviour
 
         foreach (var seasoning in seasonings)
         {
-            if (seasoning.gameObject.transform.position == wayPoints[1].position)
+            if (seasoning.transform.position.x >= 0 && seasoning.transform.position.x < 10)
             {
                 currentSeasoning = seasoning;
                 readySeasonings.Remove(seasoning);

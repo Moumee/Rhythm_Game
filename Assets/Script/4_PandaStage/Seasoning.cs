@@ -107,20 +107,14 @@ public class Seasoning : MonoBehaviour
 
     public void OnNoteHit()
     {
-        if (currentState == State.Idle)
-        {
-            animator.SetBool("NoteHit", true);
-            animator.SetTrigger("Down");
-        }
-        
+        animator.SetBool("NoteHit", true);
+        animator.SetTrigger("Down");
+
     }
 
     public void OnNoteMiss()
     {
-        if (currentState == State.Idle)
-        {
-            animator.SetBool("NoteHit", false);
-            animator.SetTrigger("Down");
-        }
+        animator.SetBool("NoteHit", false);
+        animator.SetTrigger("Down");
     }
 }
