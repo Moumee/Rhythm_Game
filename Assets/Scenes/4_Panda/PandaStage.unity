@@ -1200,10 +1200,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11b8ecf506dd0148bb54395ba2184eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standPoint: []
-  noteSpawnPoint: {fileID: 1988931751}
-  Notes: []
-  secondSpawnPoint: {fileID: 1988931751}
+  noteSpawnPoint:
+  - {fileID: 1988931751}
+  - {fileID: 1988931751}
   noteDirection: {x: 1, y: 0, z: 0}
   notesToCheck: []
 --- !u!114 &719293583
@@ -2565,7 +2564,6 @@ MonoBehaviour:
   noteNumber2: 0
   judgeNumber: 0
   anyKeyObj: {fileID: 0}
-  sceneController: {fileID: 0}
   BPM: 210
   count: 0
   startDelay: 0

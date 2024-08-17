@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
 
 
     [HideInInspector]public EventAdapter eventAdapter;
-    private JudgePrinter judgePrinter;
     
 
     [Header("¿Ã∆Â∆Æ")]
@@ -84,7 +83,7 @@ public class GameManager : MonoBehaviour
     public int currentStage = 0;
 
     public enum catchState { Miss = 0, Perfect = 1, good = 2 };
-    public int currentState = (int)catchState.Miss;
+    public catchState currentState = catchState.Miss;
 
 
     public NoteManager noteManager;
@@ -110,7 +109,7 @@ public class GameManager : MonoBehaviour
         BPM = stageData.BPM;
         MusicChart = stageData.MusicChart;
 
-        noteManager.DirectionChange(stageData.noteDirection[currentStage]);
+        noteManager.DirectionChange(stageData.noteDirection[currentStage], 0);
 
         isScoreGet = true;
         interval = 60 / BPM;
@@ -154,7 +153,7 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.DownArrow) && isCatchable)
             {
-                if (currentState == (int)catchState.good)
+                if (currentState == catchState.good)
                 {
                     AudioManager.Instance.PlaySFX(AudioManager.Instance.notePress);
                     ++Score;
@@ -192,7 +191,7 @@ public class GameManager : MonoBehaviour
             subStages[currentStage].SetActive(false);
             subStages[currentStage + 1].SetActive(true);
             currentStage++;
-            noteManager.DirectionChange(stageData.stageChangeBeats[currentStage]);
+            noteManager.DirectionChange(stageData.stageChangeBeats[currentStage], currentStage);
             //textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
         }
         //ending
@@ -301,10 +300,10 @@ public class GameManager : MonoBehaviour
     IEnumerator DefaultCycle()
     {
         yield return new WaitForSeconds(interval - margin_good);
-        currentState = (int)catchState.good;
+        currentState = catchState.good;
 
         yield return new WaitForSeconds(2*margin_good);
-        currentState = (int)catchState.Miss;
+        currentState = catchState.Miss;
     }
 }
 

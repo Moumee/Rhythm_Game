@@ -37,7 +37,7 @@ public class DataStorage
         "HamsterAngry",
         2,
         new List<int> { 135 },
-        new List<int> { 1, 4 }
+        new List<int> { 1, 3 }
     );
     public StageData Data_Cat = new StageData(
        new List<int>
@@ -61,7 +61,7 @@ public class DataStorage
         "CatAngry",
         2,
         new List<int> { 95 },
-        new List<int> { 4, 1 }
+        new List<int> { 3, 1 }
     );
     public StageData Data_Capybara = new StageData(
        new List<int>
@@ -91,7 +91,7 @@ public class DataStorage
         "CapybaraHappy",
         "CapybaraAngry",
         3,
-        new List<int> { 100, 236 },
+        new List<int> { 100, 236, },
         new List<int> { 0, 3, 0 }
     );
 
