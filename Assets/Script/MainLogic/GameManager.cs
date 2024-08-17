@@ -76,9 +76,7 @@ public class GameManager : MonoBehaviour
 
     //value for 1-2
     public GameObject BackGround;
-    public int isStage1_2 = 0;
-    public GameObject ingredientManager;
-    public GameObject moldManager;
+    public int currentStage = 0;
 
     public enum catchState { Miss = 0, Perfect = 1, good = 2 };
     public int currentState = (int)catchState.Miss;
@@ -190,16 +188,16 @@ public class GameManager : MonoBehaviour
         }
         
         //stage change
-        if (count == 105)
+        if (count == 151)
         {
-            isStage1_2 = 1;
+            currentStage = 1;
             //textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
             secondSubStage.SetActive(true);
             firstSubStage.SetActive(false);
         }
         if (count == 235)
         {
-            isStage1_2 = 2;
+            currentStage = 2;
             secondSubStage.SetActive(false);
             thirdSubStage.SetActive(true);
         }
@@ -219,7 +217,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (isStage1_2>0 && !backgroundMoved)
+        if (currentStage>0 && !backgroundMoved)
         {
             //StartCoroutine(MoveBackground(0.2f));
         }
@@ -301,7 +299,7 @@ public class GameManager : MonoBehaviour
     IEnumerator CatchDelay()
     {
         isCatchable = false;
-        if (isStage1_2==0)
+        if (currentStage==0)
         {
             FistMiss.Invoke();
         }
