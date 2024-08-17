@@ -15,11 +15,11 @@ public class CapybaraAdapter : EventAdapter
 
     public override void Event_OnBeat()
     {
-        if(GameManager.Instance.isStage1_2 == 0)
+        if(GameManager.Instance.currentStage == 0)
         {
 
         }
-        else if (GameManager.Instance.isStage1_2 == 1)
+        else if (GameManager.Instance.currentStage == 1)
         {
 
         }
@@ -36,11 +36,11 @@ public class CapybaraAdapter : EventAdapter
 
     public override void Event_CatchNote()
     {
-        if (GameManager.Instance.isStage1_2 == 0)
+        if (GameManager.Instance.currentStage == 0)
         {
             tangerineManager.OnNoteHit();
         }
-        else if (GameManager.Instance.isStage1_2 == 1)
+        else if (GameManager.Instance.currentStage == 1)
         {
             tangerineFallManger.OnNoteHit();
         }
