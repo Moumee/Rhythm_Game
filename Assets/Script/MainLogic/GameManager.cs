@@ -27,9 +27,7 @@ public class GameManager : MonoBehaviour
     public Animator missText;
     public Animator goodText;
     public Animator perfectText;
-    public GameObject textEffectObj;
 
-    public Animator fadeAnim;
 
     public static GameManager Instance;
 

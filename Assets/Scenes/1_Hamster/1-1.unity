@@ -1964,8 +1964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b53491a1c3d29442b3ed59a600f9078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredientManager: {fileID: 0}
-  punch: {fileID: 0}
+  ingredientManager: {fileID: 2100601289}
+  punch: {fileID: 665091818}
   moldManager: {fileID: 96987481}
   fillingManager: {fileID: 195566974}
 --- !u!1 &1789407388
@@ -2504,6 +2504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8428ca5cceee3d942b50871c6cbe9b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  standPoint: []
+  tempingre: {fileID: 0}
 --- !u!4 &2100601290
 Transform:
   m_ObjectHideFlags: 0
@@ -2531,6 +2533,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5542e2fc2ebd2644bca1e6e295d1600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ingre: {fileID: 0}
+  startPos: {fileID: 0}
 --- !u!1 &2101843773
 GameObject:
   m_ObjectHideFlags: 0
