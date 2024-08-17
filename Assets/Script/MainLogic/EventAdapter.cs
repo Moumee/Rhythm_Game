@@ -9,4 +9,5 @@ abstract public class EventAdapter : MonoBehaviour
     abstract public void Event_OnBeat();
     abstract public void Event_OnNote();
     abstract public void Event_CatchNote();
+    abstract public void Event_MissNote();
 }

@@ -8,7 +8,7 @@ public class NoteManager : MonoBehaviour
 {
     [SerializeField] GameObject[] standPoint;
     public Transform noteSpawnPoint;
-    public Transform noteCenterPoint;
+    //public Transform noteCenterPoint;
     [SerializeField] GameObject[] Notes;
     private NotePool notePool;
     public Transform secondSpawnPoint;

@@ -16,14 +16,21 @@ using FMODUnity;
 
 public class GameManager : MonoBehaviour
 {
-    public UnityEvent FistMiss;
+    //public UnityEvent FistMiss;
     public UnityEvent FillMiss;
     public UnityEvent OnSpawnIngre;
 
-    public EventAdapter eventAdapter;
-    private JudgePrinter judgePrinter;
-    DataStorage dataStorage;
+    [HideInInspector]public enum numberofStage {_1Hamster = 1, _2Cat = 2, _3Capybara = 3, _4Panda = 4, _5Lion = 5};
+    public numberofStage stageNumber = numberofStage._1Hamster;
+    DataStorage dataStorage = new DataStorage();
+    StageData stageData;
 
+
+    [HideInInspector]public EventAdapter eventAdapter;
+    private JudgePrinter judgePrinter;
+    
+
+    [Header("이펙트")]
     public Animator missText;
     public Animator goodText;
     public Animator perfectText;
@@ -66,7 +73,7 @@ public class GameManager : MonoBehaviour
     //valriables for manipulate the starttime
     private bool BeatStart = false;
     [SerializeField] float startDelay = 0f;
-    [SerializeField] float bgmStartDelay = 1f;
+    //[SerializeField] float bgmStartDelay = 1f;
 
     public int Score = 0;
 
@@ -93,28 +100,21 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        BeatTracker.OnFixedBeat += IterateChart;
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-        eventAdapter = GetComponent<EventAdapter>();
-
-        noteManager = FindObjectOfType<NoteManager>();
+        BeatTracker.OnFixedBeat += IterateChart;    //FMOD 차트 구독
+        if (Instance == null) { Instance = this; }  //singleton
+        else { Destroy(gameObject); }
         
+        eventAdapter = GetComponent<EventAdapter>();
+        noteManager = FindObjectOfType<NoteManager>();
+
+        stageData = dataStorage.getStageData((int)stageNumber);
+
+        BPM = stageData.BPM;
+        MusicChart = stageData.MusicChart;
 
         isScoreGet = true;
         interval = 60 / BPM;
 
-        
-        dataStorage = new DataStorage();
-        BPM = dataStorage.Data_Hamster.BPM;
-        MusicChart = dataStorage.Data_Hamster.MusicChart;
 
         SpawnChart.AddRange(DelayChart);
         SpawnChart.AddRange(MusicChart);
@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
                 {
                     AudioManager.Instance.PlaySFX(AudioManager.Instance.notePress);
                     ++Score;
-                    eventAdapter.Event_CatchNote();
+                    eventAdapter.Event_CatchNote(); //노트캐치
 
                     if (true)
                     {
@@ -178,6 +178,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
+                    eventAdapter.Event_MissNote();
                     missText.SetTrigger("Miss");
                     noteManager.NoteJudgeEffect("Miss");
                     StartCoroutine(CatchDelay());
@@ -206,11 +207,11 @@ public class GameManager : MonoBehaviour
             AudioManager.Instance.stageSource.Stop();
             if (Score > 75 * 7.5 && !fadeOutStart)
             {
-                StartCoroutine(FadeOutToNextScene(dataStorage.Data_Hamster.successScene));
+                StartCoroutine(FadeOutToNextScene(stageData.successScene));
             }
             else if (Score <= 75 * 7.5 && !fadeOutStart)
             {
-                StartCoroutine(FadeOutToNextScene(dataStorage.Data_Hamster.failScene));
+                StartCoroutine(FadeOutToNextScene(stageData.failScene));
 
             }
         }
@@ -297,10 +298,7 @@ public class GameManager : MonoBehaviour
     IEnumerator CatchDelay()
     {
         isCatchable = false;
-        if (currentStage==0)
-        {
-            FistMiss.Invoke();
-        }
+        
         yield return new WaitForSeconds(catchDelay);
         isCatchable = true;
     }

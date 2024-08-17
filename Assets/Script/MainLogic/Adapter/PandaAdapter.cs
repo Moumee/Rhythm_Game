@@ -2,20 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CapybaraAdapter : EventAdapter
+public class PandaAdapter : EventAdapter
 {
-    public TangerineManager tangerineManager;
-    public TangerineFallManger tangerineFallManger;
-    public TangerineCandyManager tangerineCandyManager;
-
-
-
+    public SliceHand sliceHand;
+    public PickleContainer pickleContainer;
+    public SeasoningManager seasoningManager;
     // Start is called before the first frame update
 
 
     public override void Event_OnBeat()
     {
-        if(GameManager.Instance.currentStage == 0)
+        if (GameManager.Instance.currentStage == 0)
         {
 
         }
@@ -31,31 +28,36 @@ public class CapybaraAdapter : EventAdapter
 
     public override void Event_OnNote()
     {
-        
+
     }
 
     public override void Event_CatchNote()
     {
         if (GameManager.Instance.currentStage == 0)
         {
-            tangerineManager.OnNoteHit();
+            sliceHand.OnNoteHit();
         }
         else if (GameManager.Instance.currentStage == 1)
         {
-            tangerineFallManger.OnNoteHit();
+            seasoningManager.OnNoteHit();
         }
-        else
-        {
-            tangerineCandyManager.OnRightNoteHit();
-        }
-    }
-    public override void Event_MissNote()
-    {
-
     }
 
     public void Event_SpawnIngre()
     {
 
     }
+
+    public override void Event_MissNote()
+    {
+        if (GameManager.Instance.currentStage == 0)
+        {
+            sliceHand.OnNoteMiss();
+        }
+        else if (GameManager.Instance.currentStage == 1)
+        {
+            seasoningManager.OnNoteMiss();
+        }
+    }
+
 }

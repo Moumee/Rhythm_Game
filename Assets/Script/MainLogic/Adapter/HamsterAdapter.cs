@@ -66,4 +66,9 @@ public class HamsterAdapter : EventAdapter
             ingredientManager.EventCatchNote();
         }
     }
+
+    public override void Event_MissNote()
+    {
+
+    }
 }

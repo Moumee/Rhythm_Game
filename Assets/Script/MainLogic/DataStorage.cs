@@ -5,8 +5,14 @@ using UnityEngine;
 
 public class DataStorage
 {
-    public List<StageData> stages = new List<StageData>();
-    
+    public StageData getStageData(int stage)
+    {
+        if(stage == 1) { return Data_Hamster; }
+        else if(stage == 2) { return Data_Cat; }
+        else if(stage == 3) { return Data_Capybara; }
+        else if(stage == 4) { return Data_Panda; }
+        else { return Data_Lion; }
+    }
 
     public StageData Data_Hamster = new StageData(
        new List<int>
@@ -151,4 +157,5 @@ public class DataStorage
         4,
         new List<int> { }
     );
+
 }
