@@ -51,7 +51,18 @@ public class CapybaraAdapter : EventAdapter
     }
     public override void Event_MissNote()
     {
+        if (GameManager.Instance.currentStage == 0)
+        {
 
+        }
+        else if (GameManager.Instance.currentStage == 1)
+        {
+            tangerineFallManger.OnNoteMiss();
+        }
+        else
+        {
+            tangerineCandyManager.OnNoteMiss();
+        }
     }
 
     public void Event_SpawnIngre()

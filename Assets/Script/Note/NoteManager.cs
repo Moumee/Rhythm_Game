@@ -14,6 +14,9 @@ public class NoteManager : MonoBehaviour
     public Transform secondSpawnPoint;
     public Vector3 noteDirection;
 
+    private Vector3[] directionList = new Vector3[4] {Vector3.left, Vector3.right, Vector3.up, Vector3.down };
+    
+
     private bool stageCheck = false;
 
     public List<GameObject> notesToCheck = new List<GameObject>();
@@ -22,21 +25,25 @@ public class NoteManager : MonoBehaviour
         notePool = GetComponent<NotePool>();
     }
 
+    public void DirectionChange(int dir)
+    {
+        noteDirection = directionList[dir];
+    }
 
     private void Update()
     {
         if (GameManager.Instance.currentStage == 1 && !stageCheck)
         {
-            noteDirection = Vector3.down;
             notePool.noteSpawnPoint = secondSpawnPoint;
             stageCheck = true;
         }
         else if (GameManager.Instance.currentStage == 2)
         {
-            noteDirection = Vector3.left;
             notePool.noteSpawnPoint = noteSpawnPoint;
         }
     }
+
+
 
     public void EventNoteSpawn()
     {

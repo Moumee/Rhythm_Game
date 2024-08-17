@@ -36,7 +36,8 @@ public class DataStorage
         "HamsterHappy",
         "HamsterAngry",
         2,
-        new List<int> { 135 }
+        new List<int> { 135 },
+        new List<int> { 1, 4 }
     );
     public StageData Data_Cat = new StageData(
        new List<int>
@@ -59,7 +60,8 @@ public class DataStorage
         "CatHappy",
         "CatAngry",
         2,
-        new List<int> { 95 }
+        new List<int> { 95 },
+        new List<int> { 4, 1 }
     );
     public StageData Data_Capybara = new StageData(
        new List<int>
@@ -89,7 +91,8 @@ public class DataStorage
         "CapybaraHappy",
         "CapybaraAngry",
         3,
-        new List<int> { }
+        new List<int> { 100, 236 },
+        new List<int> { 0, 3, 0 }
     );
 
     public StageData Data_Panda = new StageData(
@@ -120,8 +123,9 @@ public class DataStorage
         330, //BPM
         "PandaHappy",
         "PandaAngry",
-        3,
-        new List<int> { }
+        2,
+        new List<int> { 178 },
+        new List<int> { 3, 3 }
     );
 
     public StageData Data_Lion = new StageData(
@@ -155,7 +159,8 @@ public class DataStorage
         "LionHappy",
         "LionAngry",
         4,
-        new List<int> { }
+        new List<int> { },
+        new List<int> { 1, 4 }
     );
 
 }

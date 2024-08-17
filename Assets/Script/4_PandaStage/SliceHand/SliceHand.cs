@@ -38,14 +38,6 @@ public class SliceHand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            OnNoteHit();
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            OnNoteMiss();
-        }
         
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("slice_hand_down") && 
             !animator.GetCurrentAnimatorStateInfo(0).IsName("slice_hand_up") && 

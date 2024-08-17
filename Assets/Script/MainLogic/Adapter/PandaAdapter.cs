@@ -9,6 +9,7 @@ public class PandaAdapter : EventAdapter
     public SeasoningManager seasoningManager;
     // Start is called before the first frame update
 
+    private int containerCount = 0;
 
     public override void Event_OnBeat()
     {
@@ -40,6 +41,19 @@ public class PandaAdapter : EventAdapter
         else if (GameManager.Instance.currentStage == 1)
         {
             seasoningManager.OnNoteHit();
+            containerCount++;
+            if(containerCount == 20)
+            {
+                pickleContainer.OnOneThird();
+            }
+            else if(containerCount == 40)
+            {
+                pickleContainer.OnTwoThirds();
+            }
+            else if(containerCount == 60)
+            {
+                pickleContainer.OnThreeThirds();
+            }
         }
     }
 

@@ -1633,21 +1633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a009e21b0bd4d944bf0e22cc31461aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FistMiss:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Punch, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   FillMiss:
     m_PersistentCalls:
       m_Calls:
@@ -1698,9 +1683,10 @@ MonoBehaviour:
   currentState: 0
   noteManager: {fileID: 1695466995}
   fade: {fileID: 1849276259}
-  firstSubStage: {fileID: 1249866005}
-  secondSubStage: {fileID: 235917492}
-  thirdSubStage: {fileID: 62021170}
+  subStages:
+  - {fileID: 1249866005}
+  - {fileID: 235917492}
+  - {fileID: 62021170}
 --- !u!4 &935664841
 Transform:
   m_ObjectHideFlags: 0

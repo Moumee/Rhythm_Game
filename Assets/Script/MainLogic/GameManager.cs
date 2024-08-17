@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject anyKeyObj;
 
-    [SerializeField] SceneController sceneController;
+    //[SerializeField] SceneController sceneController;
 
 
     private List<int> SpawnChart = new List<int>();
@@ -93,9 +93,7 @@ public class GameManager : MonoBehaviour
     bool fadeOutStart = false;
 
 
-    public GameObject firstSubStage;
-    public GameObject secondSubStage;
-    public GameObject thirdSubStage;
+    public List<GameObject> subStages = new List<GameObject>();
 
 
     void Awake()
@@ -111,6 +109,8 @@ public class GameManager : MonoBehaviour
 
         BPM = stageData.BPM;
         MusicChart = stageData.MusicChart;
+
+        noteManager.DirectionChange(stageData.noteDirection[currentStage]);
 
         isScoreGet = true;
         interval = 60 / BPM;
@@ -185,20 +185,15 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        
+
         //stage change
-        if (count == 151)
+        if (currentStage!= stageData.stageCount-1 && count == stageData.stageChangeBeats[currentStage])
         {
-            currentStage = 1;
+            subStages[currentStage].SetActive(false);
+            subStages[currentStage + 1].SetActive(true);
+            currentStage++;
+            noteManager.DirectionChange(stageData.stageChangeBeats[currentStage]);
             //textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
-            secondSubStage.SetActive(true);
-            firstSubStage.SetActive(false);
-        }
-        if (count == 235)
-        {
-            currentStage = 2;
-            secondSubStage.SetActive(false);
-            thirdSubStage.SetActive(true);
         }
         //ending
         if (count == SpawnChart.Count - 1 && !stageEnd)
