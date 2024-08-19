@@ -11,7 +11,7 @@ public class Fish : MonoBehaviour
     private FishManager fishManager;
     public GameObject[] cutObjects;
     public bool isMoving = false;
-    private float moveDuration = 0.1f;
+    private float moveDuration = 0.05f;
 
     
     private void OnEnable()

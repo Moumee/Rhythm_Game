@@ -28,6 +28,7 @@ public class SlapManager : MonoBehaviour
         leftSlap.SetActive(true);
         fishAnim.SetTrigger("LeftHit");
         waterAnim.SetTrigger("WaterLeft");
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.slap);
     }
 
     public void OnRightNoteHit()
@@ -37,6 +38,7 @@ public class SlapManager : MonoBehaviour
         rightSlap.SetActive(true);
         fishAnim.SetTrigger("RightHit");
         waterAnim.SetTrigger("WaterRight");
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.slap);
     }
 
     public void OnNoteMiss()

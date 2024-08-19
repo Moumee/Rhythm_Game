@@ -14,6 +14,7 @@ public class Knife : MonoBehaviour
 
     public int knifeIndex = 0;
     private bool isMoving = false;
+    private bool sfxPlayed = false;
     private Vector3 targetPosition;
     private Vector3 startPosition;
     public KnifeState currentState = KnifeState.Resetting;
@@ -51,7 +52,6 @@ public class Knife : MonoBehaviour
     {
         if (currentState == KnifeState.Ready)
             StartKnifeMovement();
-        
     }
 
     private void ResetKnife()
@@ -72,18 +72,9 @@ public class Knife : MonoBehaviour
     private void StartKnifeMovement()
     {
         isMoving = true;
-        if (knifeIndex == knifePoints.Length - 1 && currentState == KnifeState.Ready)
-        {
-            currentState = KnifeState.MovingDownToReset;
-            startPosition = transform.position;
-            targetPosition = new Vector3(startPosition.x, startPosition.y - resetDepth, startPosition.z);
-        }
-        else
-        {
-            currentState = KnifeState.MovingDown;
-            startPosition = transform.position;
-            targetPosition = startPosition + Vector3.down * cutDepth;
-        }
+        currentState = KnifeState.MovingDown;
+        startPosition = transform.position;
+        targetPosition = startPosition + Vector3.down * cutDepth;
     }
 
     private void MoveKnife()
@@ -91,20 +82,36 @@ public class Knife : MonoBehaviour
         switch (currentState)
         {
             case KnifeState.MovingDown:
+                if (!sfxPlayed)
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.knifeCut);
+                    sfxPlayed = true;
+                }
                 MoveTowardsTarget(targetPosition, cutSpeed, () =>
                 {
                     currentState = KnifeState.MovingUp;
                     targetPosition = startPosition;
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.cuttingBoard);
+                    sfxPlayed = false;
                 });
                 break;
 
             case KnifeState.MovingUp:
                 MoveTowardsTarget(targetPosition, cutSpeed, () =>
                 {
-                    currentState = KnifeState.MovingHorizontal;
-                    knifeIndex = (knifeIndex + 1) % knifePoints.Length;
-                    targetPosition = knifePoints[knifeIndex].position;
+                    if (knifeIndex == knifePoints.Length - 1)
+                    {
+                        currentState = KnifeState.MovingDownToReset;
+                        targetPosition = new Vector3(startPosition.x, startPosition.y - resetDepth, startPosition.z);
+                    }
+                    else
+                    {
+                        currentState = KnifeState.MovingHorizontal;
+                        knifeIndex = (knifeIndex + 1) % knifePoints.Length;
+                        targetPosition = knifePoints[knifeIndex].position;
+                    }
                 });
+                
                 break;
 
             case KnifeState.MovingHorizontal:
@@ -123,7 +130,6 @@ public class Knife : MonoBehaviour
                     currentState = KnifeState.Resetting;
                     targetPosition = knifePoints[0].position;
                     fishManager.MoveAllFish();
-
                 });
                 break;
 

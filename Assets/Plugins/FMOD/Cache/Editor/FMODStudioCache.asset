@@ -69,7 +69,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638570978680097128
+  lastModified: 638596793546297892
   FileSizes: []
   Exists: 1
 --- !u!114 &-7471541365338935949
@@ -87,7 +87,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638591601799616518
+  lastModified: 638597068297567107
   FileSizes: []
   Exists: 1
 --- !u!114 &-7224081704133390864
@@ -132,7 +132,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638595002951430721
+  lastModified: 638596793545978267
   FileSizes: []
   Exists: 1
 --- !u!114 &-5364227473486772159
@@ -216,6 +216,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-3433152183790245570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CatStageSFX/KnifeCut
+  m_EditorClassIdentifier: 
+  Path: event:/CatStageSFX/KnifeCut
+  Guid:
+    Data1: 1416553820
+    Data2: 1330554350
+    Data3: -2135982972
+    Data4: -789616448
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 500
 --- !u!114 &-2497065274687334701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,11 +312,38 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638595002951432861
+  lastModified: 638596793546308550
   FileSizes:
   - Name: 
-    Value: 1748
+    Value: 1888
   Exists: 1
+--- !u!114 &-1082267935710891279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CatStageSFX/Slap
+  m_EditorClassIdentifier: 
+  Path: event:/CatStageSFX/Slap
+  Guid:
+    Data1: -1590098514
+    Data2: 1257242841
+    Data3: 898176152
+    Data4: 1566897229
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 560
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,12 +383,15 @@ MonoBehaviour:
   - {fileID: 8895486253887775664}
   - {fileID: 5588914364416479039}
   - {fileID: 5451712102424962776}
+  - {fileID: 3319439732442790897}
+  - {fileID: -3433152183790245570}
+  - {fileID: -1082267935710891279}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7767095849538853268}
   StringsBanks:
   - {fileID: -1955523241680991564}
-  cacheTime: 638595002951432861
+  cacheTime: 638597068297567107
   cacheVersion: 131618
 --- !u!114 &359600167592558344
 MonoBehaviour:
@@ -444,6 +501,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &3319439732442790897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CatStageSFX/CuttingBoard
+  m_EditorClassIdentifier: 
+  Path: event:/CatStageSFX/CuttingBoard
+  Guid:
+    Data1: 625079576
+    Data2: 1106723125
+    Data3: 1702527115
+    Data4: 1295886206
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &4413436926068837499
 MonoBehaviour:
   m_ObjectHideFlags: 0

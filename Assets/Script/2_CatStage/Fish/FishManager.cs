@@ -13,7 +13,7 @@ public class FishManager : MonoBehaviour
     public Fish currentFish;
     public float vibrateFishOffset = 0.3f;
     private Coroutine vibrateCoroutine;
-    public float vibrateDuration = 0.1f;
+    public float vibrateDuration = 0.05f;
 
     
 

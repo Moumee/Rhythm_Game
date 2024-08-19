@@ -145,6 +145,27 @@ MonoBehaviour:
       Data3: -1610714434
       Data4: 375302408
     Path: event:/StageMusic/Stage1
+  knifeCut:
+    Guid:
+      Data1: 1416553820
+      Data2: 1330554350
+      Data3: -2135982972
+      Data4: -789616448
+    Path: event:/CatStageSFX/KnifeCut
+  slap:
+    Guid:
+      Data1: -1590098514
+      Data2: 1257242841
+      Data3: 898176152
+      Data4: 1566897229
+    Path: event:/CatStageSFX/Slap
+  cuttingBoard:
+    Guid:
+      Data1: 625079576
+      Data2: 1106723125
+      Data3: 1702527115
+      Data4: 1295886206
+    Path: event:/CatStageSFX/CuttingBoard
   hamsterGreetingTTS:
     Guid:
       Data1: -1490963627

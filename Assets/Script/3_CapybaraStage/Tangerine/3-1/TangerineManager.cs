@@ -19,7 +19,7 @@ public class TangerineManager : MonoBehaviour
     {
         foreach (var tangerine in tangerines)
         {
-            if (tangerine.transform.position == tangerinePoints[1].position)
+            if (tangerine.transform.position.x < tangerinePoints[1].position.x + 5)
             {
                 currentTangerine = tangerine;
                 break;
@@ -27,9 +27,7 @@ public class TangerineManager : MonoBehaviour
         }
         if (currentTangerine != null)
         {
-            if (currentTangerine.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 &&
-            !currentTangerine.animator.IsInTransition(0) &&
-            currentTangerine.animator.GetCurrentAnimatorStateInfo(0).IsName("tangerine_peel"))
+            if (currentTangerine.sunHitCount == 3)
             {
                 MoveAllTangerinesLeft();
                 hasMoved = true;
