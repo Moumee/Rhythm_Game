@@ -3073,7 +3073,7 @@ MonoBehaviour:
   - {fileID: 1232181358}
   - {fileID: 553748905}
   - {fileID: 2038124536}
-  noteDirection: {x: -1, y: 0, z: 0}
+  noteDirection: {x: 1, y: 0, z: 0}
   notesToCheck: []
 --- !u!4 &1695466996
 Transform:

@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
         BPM = stageData.BPM;
         MusicChart = stageData.MusicChart;
 
-        noteManager.DirectionChange(stageData.noteDirection[currentStage], 0);
+        
 
         isScoreGet = true;
         interval = 60 / BPM;
@@ -126,8 +126,10 @@ public class GameManager : MonoBehaviour
 
 
         StartCoroutine(NoteStartDelay());
-        
 
+        noteManager.spawnPointCange(-1);
+        noteManager.DirectionChange(stageData.noteDirection[currentStage]);
+        
     }
 
     IEnumerator FadeOutToNextScene(string sceneName)
@@ -191,7 +193,9 @@ public class GameManager : MonoBehaviour
             subStages[currentStage].SetActive(false);
             subStages[currentStage + 1].SetActive(true);
             currentStage++;
-            noteManager.DirectionChange(stageData.stageChangeBeats[currentStage], currentStage);
+            noteManager.spawnPointCange(currentStage);
+            noteManager.DirectionChange(stageData.noteDirection[currentStage]);
+            
             //textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
         }
         //ending

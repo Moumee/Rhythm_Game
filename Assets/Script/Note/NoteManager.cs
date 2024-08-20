@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class NoteManager : MonoBehaviour
 {
-    public Transform[] noteSpawnPoint;
+    public Transform[] noteSpawnPoint = new Transform[3];
     //[SerializeField] GameObject[] Notes;
     private NotePool notePool;
     public Vector3 noteDirection;
@@ -14,18 +15,30 @@ public class NoteManager : MonoBehaviour
     private Vector3[] directionList = new Vector3[4] {Vector3.left, Vector3.right, Vector3.up, Vector3.down };
     
 
-    private bool stageCheck = false;
+    //private bool stageCheck = false;
 
     public List<GameObject> notesToCheck = new List<GameObject>();
     private void Awake()
     {
         notePool = GetComponent<NotePool>();
+        notePool.noteSpawnPoint = noteSpawnPoint[0];
+
+
     }
 
-    public void DirectionChange(int dir, int sequence)
+    public void DirectionChange(int dir)
     {
+        Debug.Log(dir);
         noteDirection = directionList[dir];
-        notePool.noteSpawnPoint = noteSpawnPoint[sequence];
+        
+    }
+
+    public void spawnPointCange(int sequence)
+    {
+        if (sequence != -1)
+        {
+            notePool.noteSpawnPoint = noteSpawnPoint[sequence];
+        }
     }
 
     private void Update()
