@@ -990,8 +990,6 @@ MonoBehaviour:
   hamsterAnim: {fileID: 102851448}
   speechAnim: {fileID: 1627838535}
   foodSpriteRenderer: {fileID: 180500545}
-  sfx: 8
-  effectSfx: 7
   videoFadeDuration: 1
   isAngry: 1
   hasEffect: 0
@@ -1091,6 +1089,7 @@ GameObject:
   - component: {fileID: 1627838534}
   - component: {fileID: 1627838533}
   - component: {fileID: 1627838535}
+  - component: {fileID: 1627838536}
   m_Layer: 0
   m_Name: Speech Bubble
   m_TagString: Untagged
@@ -1186,6 +1185,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1627838536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627838532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a0af363ee7a8d46933bc6b7b6b006d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TTSEvent:
+    Guid:
+      Data1: -728241421
+      Data2: 1281583322
+      Data3: -1856044389
+      Data4: -918127641
+    Path: event:/TTS/Cat/Cat Angry
 --- !u!1 &1829186282
 GameObject:
   m_ObjectHideFlags: 0

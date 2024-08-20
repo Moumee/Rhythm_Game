@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using static System.Net.WebRequestMethods;
 
-public class HamsterResult : MonoBehaviour
+public class StageResult : MonoBehaviour
 {
     float objectAlpha;
     [SerializeField] GameObject continueTextObj;

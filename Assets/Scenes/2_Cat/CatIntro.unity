@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 1218164050}
   - component: {fileID: 1218164049}
   - component: {fileID: 1218164048}
+  - component: {fileID: 1218164051}
   m_Layer: 0
   m_Name: Cat Intro
   m_TagString: Untagged
@@ -389,6 +390,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1218164051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218164047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a0af363ee7a8d46933bc6b7b6b006d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TTSEvent:
+    Guid:
+      Data1: -967100445
+      Data2: 1203146817
+      Data3: 1276265662
+      Data4: -574514420
+    Path: event:/TTS/Cat/Cat Greeting
 --- !u!1001 &1676124716
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -31,9 +31,11 @@ public class AudioManager : MonoBehaviour
     public EventReference knifeCut;
     public EventReference slap;
     public EventReference cuttingBoard;
+    public EventReference tangerineStick;
     public EventReference hamsterGreetingTTS;
     public EventReference hamsterHappyTTS;
     public EventReference hamsterAngryTTS;
+    
 
     public Dictionary<EventInstance, Coroutine> activeInstances = new Dictionary<EventInstance, Coroutine>();
     public EventInstance bgmEventInstance;

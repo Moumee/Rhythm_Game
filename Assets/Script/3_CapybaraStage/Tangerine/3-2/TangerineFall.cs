@@ -47,6 +47,7 @@ public class TangerineFall : MonoBehaviour
             }
             else
             {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.tangerineStick);
                 transform.position = stickPoints[tangerineIndex];
                 tangerineStuck = true;
                 

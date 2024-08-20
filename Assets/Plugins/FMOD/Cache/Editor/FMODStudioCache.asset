@@ -69,7 +69,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638596793546297892
+  lastModified: 638598237360457239
   FileSizes: []
   Exists: 1
 --- !u!114 &-7471541365338935949
@@ -87,7 +87,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638597068297567107
+  lastModified: 638598237361924849
   FileSizes: []
   Exists: 1
 --- !u!114 &-7224081704133390864
@@ -135,33 +135,6 @@ MonoBehaviour:
   lastModified: 638596793545978267
   FileSizes: []
   Exists: 1
---- !u!114 &-5364227473486772159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/TTS/Hamster Greeting
-  m_EditorClassIdentifier: 
-  Path: event:/TTS/Hamster Greeting
-  Guid:
-    Data1: -1490963627
-    Data2: 1265121516
-    Data3: 65467043
-    Data4: 806662900
-  Banks:
-  - {fileID: -7471541365338935949}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-5296404545856308810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +162,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &-5256115023326709734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TTS/Cat/Cat Greeting
+  m_EditorClassIdentifier: 
+  Path: event:/TTS/Cat/Cat Greeting
+  Guid:
+    Data1: -967100445
+    Data2: 1203146817
+    Data3: 1276265662
+    Data4: -574514420
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-4507059194610763417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +243,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 500
+--- !u!114 &-2564121282339723027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TTS/Capybara/Capybara Greeting
+  m_EditorClassIdentifier: 
+  Path: event:/TTS/Capybara/Capybara Greeting
+  Guid:
+    Data1: -1335616658
+    Data2: 1217979155
+    Data3: -1640529011
+    Data4: 696130049
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2497065274687334701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,10 +339,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638596793546308550
+  lastModified: 638598237360472305
   FileSizes:
   - Name: 
-    Value: 1888
+    Value: 2262
   Exists: 1
 --- !u!114 &-1082267935710891279
 MonoBehaviour:
@@ -379,19 +406,26 @@ MonoBehaviour:
   - {fileID: -1972109259833627361}
   - {fileID: 6940819139051256328}
   - {fileID: 977166051830387736}
-  - {fileID: -5364227473486772159}
-  - {fileID: 8895486253887775664}
-  - {fileID: 5588914364416479039}
   - {fileID: 5451712102424962776}
   - {fileID: 3319439732442790897}
   - {fileID: -3433152183790245570}
   - {fileID: -1082267935710891279}
+  - {fileID: 4780483286438989470}
+  - {fileID: 5814032125671027749}
+  - {fileID: 5174640559768582955}
+  - {fileID: 1191082997394820924}
+  - {fileID: 1549713235281040127}
+  - {fileID: -5256115023326709734}
+  - {fileID: 6490144741882771779}
+  - {fileID: 4030449657366468290}
+  - {fileID: 7446497426146274523}
+  - {fileID: -2564121282339723027}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7767095849538853268}
   StringsBanks:
   - {fileID: -1955523241680991564}
-  cacheTime: 638597068297567107
+  cacheTime: 638598237361924849
   cacheVersion: 131618
 --- !u!114 &359600167592558344
 MonoBehaviour:
@@ -447,6 +481,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 112968
+--- !u!114 &1191082997394820924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TTS/Hamster/Hamster Happy
+  m_EditorClassIdentifier: 
+  Path: event:/TTS/Hamster/Hamster Happy
+  Guid:
+    Data1: -1775006246
+    Data2: 1110528891
+    Data3: 1733812412
+    Data4: -913826347
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &1549713235281040127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TTS/Cat/Cat Happy
+  m_EditorClassIdentifier: 
+  Path: event:/TTS/Cat/Cat Happy
+  Guid:
+    Data1: -391468065
+    Data2: 1175112760
+    Data3: 292800957
+    Data4: 2026687013
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &2104208464348190294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,6 +616,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &4030449657366468290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TTS/Capybara/Capybara Happy
+  m_EditorClassIdentifier: 
+  Path: event:/TTS/Capybara/Capybara Happy
+  Guid:
+    Data1: -126138577
+    Data2: 1135772441
+    Data3: 551947667
+    Data4: 1276854105
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &4413436926068837499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,6 +661,60 @@ MonoBehaviour:
     Data2: 1144733937
     Data3: -1996734838
     Data4: -454918378
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4780483286438989470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CapybaraStageSFX/TangerineStick
+  m_EditorClassIdentifier: 
+  Path: event:/CapybaraStageSFX/TangerineStick
+  Guid:
+    Data1: 1886440595
+    Data2: 1132652980
+    Data3: 170111929
+    Data4: -1648008470
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5174640559768582955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TTS/Hamster/Hamster Angry
+  m_EditorClassIdentifier: 
+  Path: event:/TTS/Hamster/Hamster Angry
+  Guid:
+    Data1: -1066202743
+    Data2: 1186593255
+    Data3: -2012557948
+    Data4: -1782854476
   Banks:
   - {fileID: -7471541365338935949}
   IsStream: 0
@@ -582,33 +751,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 95952
---- !u!114 &5588914364416479039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/TTS/Hamster Happy
-  m_EditorClassIdentifier: 
-  Path: event:/TTS/Hamster Happy
-  Guid:
-    Data1: -1775006246
-    Data2: 1110528891
-    Data3: 1733812412
-    Data4: -913826347
-  Banks:
-  - {fileID: -7471541365338935949}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &5611457976217604155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,6 +805,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &5814032125671027749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TTS/Hamster/Hamster Greeting
+  m_EditorClassIdentifier: 
+  Path: event:/TTS/Hamster/Hamster Greeting
+  Guid:
+    Data1: -1490963627
+    Data2: 1265121516
+    Data3: 65467043
+    Data4: 806662900
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6490144741882771779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TTS/Cat/Cat Angry
+  m_EditorClassIdentifier: 
+  Path: event:/TTS/Cat/Cat Angry
+  Guid:
+    Data1: -728241421
+    Data2: 1281583322
+    Data3: -1856044389
+    Data4: -918127641
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &6940819139051256328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,6 +913,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &7446497426146274523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TTS/Capybara/Capybara Angry
+  m_EditorClassIdentifier: 
+  Path: event:/TTS/Capybara/Capybara Angry
+  Guid:
+    Data1: -1812389043
+    Data2: 1254577170
+    Data3: 1235798206
+    Data4: -1907868225
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &7954316782796324324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -738,33 +961,6 @@ MonoBehaviour:
   Banks:
   - {fileID: -7471541365338935949}
   IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &8895486253887775664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/TTS/Hamster Angry
-  m_EditorClassIdentifier: 
-  Path: event:/TTS/Hamster Angry
-  Guid:
-    Data1: -1066202743
-    Data2: 1186593255
-    Data3: -2012557948
-    Data4: -1782854476
-  Banks:
-  - {fileID: -7471541365338935949}
-  IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
