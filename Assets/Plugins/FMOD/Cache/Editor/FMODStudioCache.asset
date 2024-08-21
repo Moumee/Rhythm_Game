@@ -54,6 +54,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 84086
+--- !u!114 &-8172942289307119348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TTS/Panda/Panda Greeting
+  m_EditorClassIdentifier: 
+  Path: event:/TTS/Panda/Panda Greeting
+  Guid:
+    Data1: 1812017368
+    Data2: 1091442158
+    Data3: 1078084491
+    Data4: 1189615123
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-7767095849538853268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +96,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638598237360457239
+  lastModified: 638598338157886550
   FileSizes: []
   Exists: 1
 --- !u!114 &-7471541365338935949
@@ -87,7 +114,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638598237361924849
+  lastModified: 638598338159280084
   FileSizes: []
   Exists: 1
 --- !u!114 &-7224081704133390864
@@ -339,10 +366,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638598237360472305
+  lastModified: 638598338157906629
   FileSizes:
   - Name: 
-    Value: 2262
+    Value: 2398
   Exists: 1
 --- !u!114 &-1082267935710891279
 MonoBehaviour:
@@ -420,12 +447,15 @@ MonoBehaviour:
   - {fileID: 4030449657366468290}
   - {fileID: 7446497426146274523}
   - {fileID: -2564121282339723027}
+  - {fileID: 7426365050114849975}
+  - {fileID: -8172942289307119348}
+  - {fileID: 4077905447609818057}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7767095849538853268}
   StringsBanks:
   - {fileID: -1955523241680991564}
-  cacheTime: 638598237361924849
+  cacheTime: 638598338159280084
   cacheVersion: 131618
 --- !u!114 &359600167592558344
 MonoBehaviour:
@@ -634,6 +664,33 @@ MonoBehaviour:
     Data2: 1135772441
     Data3: 551947667
     Data4: 1276854105
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4077905447609818057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TTS/Panda/Panda Angry
+  m_EditorClassIdentifier: 
+  Path: event:/TTS/Panda/Panda Angry
+  Guid:
+    Data1: 1969537770
+    Data2: 1202550910
+    Data3: -1886818421
+    Data4: -1067203685
   Banks:
   - {fileID: -7471541365338935949}
   IsStream: 0
@@ -904,6 +961,33 @@ MonoBehaviour:
     Data2: 1178726060
     Data3: 1378457019
     Data4: -144081407
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7426365050114849975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TTS/Panda/Panda Happy
+  m_EditorClassIdentifier: 
+  Path: event:/TTS/Panda/Panda Happy
+  Guid:
+    Data1: 1664498820
+    Data2: 1078534463
+    Data3: 1823287209
+    Data4: 1007747360
   Banks:
   - {fileID: -7471541365338935949}
   IsStream: 0
