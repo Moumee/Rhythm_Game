@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 1218164048}
   - component: {fileID: 1218164051}
   m_Layer: 0
-  m_Name: Panda Intro
+  m_Name: Lion Intro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -512,7 +512,7 @@ Animator:
   m_GameObject: {fileID: 1218164047}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 28fbc1f034fc7fd48a5dcc4b75c55798, type: 2}
+  m_Controller: {fileID: 9100000, guid: a6b9b466432ebfa439b559b9b2bd2603, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -564,7 +564,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0bf63c2631989a04cad2f359e265f077, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c6021327d732db7489be5bc5567623f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -604,11 +604,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TTSEvent:
     Guid:
-      Data1: 1812017368
-      Data2: 1091442158
-      Data3: 1078084491
-      Data4: 1189615123
-    Path: event:/TTS/Panda/Panda Greeting
+      Data1: -1846087134
+      Data2: 1122889742
+      Data3: 1055589528
+      Data4: 1032504276
+    Path: event:/TTS/Lion/Lion Greeting
 --- !u!1001 &1394733748
 PrefabInstance:
   m_ObjectHideFlags: 0

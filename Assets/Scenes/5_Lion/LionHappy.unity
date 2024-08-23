@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 102851446}
   - component: {fileID: 102851445}
   m_Layer: 0
-  m_Name: Panda
+  m_Name: Lion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,7 +151,7 @@ Animator:
   m_GameObject: {fileID: 102851444}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 30230f0667aa9d54abcba31cd409e991, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3570a5c2fbb142b438748b0b5a1110f2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -203,7 +203,7 @@ SpriteRenderer:
   m_SortingLayerID: -160730275
   m_SortingLayer: 2
   m_SortingOrder: 2
-  m_Sprite: {fileID: -1981168761, guid: 0ad1fdff4100ca243b6b86242028ac65, type: 3}
+  m_Sprite: {fileID: -896382017, guid: 634b88e5be43413429f923f8e0260742, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -413,7 +413,7 @@ Animator:
   m_GameObject: {fileID: 435214865}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dc2a7b4f44c095e428935932ec56b8b3, type: 2}
+  m_Controller: {fileID: 9100000, guid: f4f3c2d166d666c49b220c8e1054f9c3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -465,7 +465,7 @@ SpriteRenderer:
   m_SortingLayerID: -726705179
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8062fbc97ae03ae4f8e681d9b1366746, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a4548a3c97559ca4aaddce4713f93e4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -621,7 +621,7 @@ Animator:
   m_GameObject: {fileID: 650245430}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aa196f0575c662a4abfcca8d5af3e90e, type: 2}
+  m_Controller: {fileID: 9100000, guid: d06979b5e4cfaed4fbd36b712e5ffe8f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -919,7 +919,7 @@ GameObject:
   - component: {fileID: 1235250189}
   - component: {fileID: 1235250188}
   m_Layer: 0
-  m_Name: "\uD310\uB2E4\uB3D9\uC804\uC720\uB9AC\uBCD1"
+  m_Name: Lion Coins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -966,7 +966,7 @@ SpriteRenderer:
   m_SortingLayerID: -160730275
   m_SortingLayer: 2
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: f3b8e2a7eff179b4b88da3ad93e45d03, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2ec8fc32edd3db147afc337be8d87b46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1237,9 +1237,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -160730275
+  m_SortingLayer: 2
+  m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: 061edc33fdb7b644c8d2dc2f46c77b10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1276,7 +1276,7 @@ Animator:
   m_GameObject: {fileID: 1627838532}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 79748288af5c9a44692064113fc9230f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 80f39e61dd2ea9a4eadcb26971ff30fa, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1301,11 +1301,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TTSEvent:
     Guid:
-      Data1: 1664498820
-      Data2: 1078534463
-      Data3: 1823287209
-      Data4: 1007747360
-    Path: event:/TTS/Panda/Panda Happy
+      Data1: -691266549
+      Data2: 1307354792
+      Data3: 1674758798
+      Data4: -437436287
+    Path: event:/TTS/Lion/Lion Happy
 --- !u!1 &1829186282
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,7 +1364,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5f7207315ea0e5b40aec02a7d2562536, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9af7e527fcca1f24eba97f0d60c1ff8a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
