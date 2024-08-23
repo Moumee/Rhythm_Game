@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class NoteManager : MonoBehaviour
 {
-    public Transform[] noteSpawnPoint = new Transform[3];
+    public Transform[] noteSpawnPoint;
     //[SerializeField] GameObject[] Notes;
     private NotePool notePool;
     public Vector3 noteDirection;

@@ -119,7 +119,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(NoteStartDelay());
 
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);
-        noteManager.spawnPointChange(0);
         
     }
 
