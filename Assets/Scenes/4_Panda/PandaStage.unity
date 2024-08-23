@@ -1200,10 +1200,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11b8ecf506dd0148bb54395ba2184eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standPoint: []
-  noteSpawnPoint: {fileID: 1988931751}
-  Notes: []
-  secondSpawnPoint: {fileID: 1988931751}
+  noteSpawnPoint:
+  - {fileID: 1988931751}
+  - {fileID: 1988931751}
   noteDirection: {x: 1, y: 0, z: 0}
   notesToCheck: []
 --- !u!114 &719293583
@@ -1232,7 +1231,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1988931751}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &819925092 stripped
@@ -2565,7 +2565,6 @@ MonoBehaviour:
   noteNumber2: 0
   judgeNumber: 0
   anyKeyObj: {fileID: 0}
-  sceneController: {fileID: 0}
   BPM: 210
   count: 0
   startDelay: 0
@@ -2913,7 +2912,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 719293584}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2001775741
 GameObject:
@@ -3073,5 +3072,4 @@ SceneRoots:
   - {fileID: 719293584}
   - {fileID: 1628986136}
   - {fileID: 1205911533}
-  - {fileID: 1988931751}
   - {fileID: 873854755}

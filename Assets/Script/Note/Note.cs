@@ -8,8 +8,7 @@ using UnityEngine.Pool;
 public class Note : MonoBehaviour
 {
     private ObjectPool<Note> _pool;
-    private float speed;
-    Transform noteSpawnPoint;
+    public float speed;
     public Vector3 moveDirection;
     public bool judged = false;
     public Animator animator;
@@ -25,9 +24,8 @@ public class Note : MonoBehaviour
     {
         noteManager = FindObjectOfType<NoteManager>();
         animator = GetComponent<Animator>();
-        noteSpawnPoint = noteManager.noteSpawnPoint;
 
-        speed = 14 / (4 * BeatTracker.GetBeatInterval()) / 2 + 0.88f;
+        speed = 14 / (5 * BeatTracker.GetBeatInterval());
 
     }
 
@@ -40,11 +38,11 @@ public class Note : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!judged)
         {
-            transform.position += moveDirection * speed * Time.deltaTime;
+            transform.position += moveDirection * speed * Time.fixedDeltaTime;
             if (transform.position.x < -11 || transform.position.y < -7)
             {
                 noteManager.notesToCheck.Remove(this.gameObject);

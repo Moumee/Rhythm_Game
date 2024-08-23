@@ -1,46 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class NoteManager : MonoBehaviour
 {
-    [SerializeField] GameObject[] standPoint;
-    public Transform noteSpawnPoint;
-    //public Transform noteCenterPoint;
-    [SerializeField] GameObject[] Notes;
+    public Transform[] noteSpawnPoint = new Transform[3];
+    //[SerializeField] GameObject[] Notes;
     private NotePool notePool;
-    public Transform secondSpawnPoint;
     public Vector3 noteDirection;
 
     private Vector3[] directionList = new Vector3[4] {Vector3.left, Vector3.right, Vector3.up, Vector3.down };
     
 
-    private bool stageCheck = false;
+    //private bool stageCheck = false;
 
     public List<GameObject> notesToCheck = new List<GameObject>();
     private void Awake()
     {
         notePool = GetComponent<NotePool>();
+        notePool.noteSpawnPoint = noteSpawnPoint[0];
+
+
     }
 
     public void DirectionChange(int dir)
     {
+        Debug.Log(dir);
         noteDirection = directionList[dir];
+        
+    }
+
+    public void spawnPointChange(int sequence)
+    {
+        notePool.noteSpawnPoint = noteSpawnPoint[sequence];
     }
 
     private void Update()
     {
-        if (GameManager.Instance.currentStage == 1 && !stageCheck)
-        {
-            notePool.noteSpawnPoint = secondSpawnPoint;
-            stageCheck = true;
-        }
-        else if (GameManager.Instance.currentStage == 2)
-        {
-            notePool.noteSpawnPoint = noteSpawnPoint;
-        }
     }
 
 

@@ -11,7 +11,8 @@ public class NotePool : MonoBehaviour
 
     private void Awake()
     {
-        noteSpawnPoint = FindObjectOfType<NoteManager>().noteSpawnPoint;
+        noteSpawnPoint = GetComponent<Transform>();
+        //noteSpawnPoint = FindObjectOfType<NoteManager>().noteSpawnPoint;
         pool = new ObjectPool<Note>(CreateNote, OnTakeNoteFromPool,
             OnReturnNoteToPool, OnDestroyNote, false, 4, 20);
     }
