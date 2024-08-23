@@ -101,7 +101,7 @@ public class Ingredient : MonoBehaviour
     public void Event_BeatCall()
     {
         beatJumpCount++;
-        if(beatJumpCount > GameManager.Instance.beatJump-1) 
+        if(beatJumpCount > GameManager.Instance.noteBeatInterval-1) 
         {
             
             beatJumpCount = 0;

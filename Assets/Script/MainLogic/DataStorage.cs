@@ -61,7 +61,7 @@ public class DataStorage
         "CatAngry",
         2,
         new List<int> { 95 },
-        new List<int> { 3, 1 }
+        new List<int> { 0, 0 }
     );
     public StageData Data_Capybara = new StageData(
        new List<int>
@@ -117,7 +117,7 @@ public class DataStorage
            1,0,0,1,0,1,0,1,0,1,1,1,0,0,1,0,0,0,1,0,
            0,1,0,1,0,1,0,0,1,0,1,0,0,1,1,1,0,1,0,0,
            1,0,1,0,0,1,1,0,0,1,0,0,0,1,0,1,0,0,1,0,
-           1,0,1,0,1,0,
+           1,0,1,0,1,0,0,0,0,0,0,0,0,0,0
 
         },
         330, //BPM

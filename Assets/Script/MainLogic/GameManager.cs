@@ -18,25 +18,19 @@ public class GameManager : MonoBehaviour
 {
     //public UnityEvent FistMiss;
     public UnityEvent FillMiss;
-    public UnityEvent OnSpawnIngre;
 
     [HideInInspector]public enum numberofStage {_1Hamster = 1, _2Cat = 2, _3Capybara = 3, _4Panda = 4, _5Lion = 5};
     public numberofStage stageNumber = numberofStage._1Hamster;
     DataStorage dataStorage = new DataStorage();
     StageData stageData;
-
-
-    [HideInInspector]public EventAdapter eventAdapter;
-    
+     EventAdapter eventAdapter;
 
     [Header("¿Ã∆Â∆Æ")]
     public Animator missText;
     public Animator goodText;
     public Animator perfectText;
 
-
     public static GameManager Instance;
-
 
     [HideInInspector]public int noteNumber = 0;
     [HideInInspector]public int noteNumber2 = 0;
@@ -52,7 +46,7 @@ public class GameManager : MonoBehaviour
 
 
     private List<int> MusicChart;
-    private List<int> DelayChart = new List<int> { 0, 0 };
+    private List<int> DelayChart = new List<int> {};
 
 
     [HideInInspector]public float BPM;
@@ -76,7 +70,7 @@ public class GameManager : MonoBehaviour
 
     public int Score = 0;
 
-    public int beatJump = 3;    //number of beats to move ingredients
+    public int noteBeatInterval = 5;    //number of beats to move ingredients
 
     //value for 1-2
     public GameObject BackGround;
@@ -115,20 +109,17 @@ public class GameManager : MonoBehaviour
         interval = 60 / BPM;
 
 
-        SpawnChart.AddRange(DelayChart);
-        SpawnChart.AddRange(MusicChart);
-        for (int i = 0; i < beatJump * 2; i++)
+        for (int i = 0; i < noteBeatInterval; i++)
         {
             DelayChart.Add(0);
         }
-        JudgeChart.AddRange(DelayChart);
-        JudgeChart.AddRange(MusicChart);
-
+        SpawnChart.AddRange(DelayChart);
+        SpawnChart.AddRange(MusicChart);
 
         StartCoroutine(NoteStartDelay());
 
-        noteManager.spawnPointCange(-1);
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);
+        noteManager.spawnPointChange(0);
         
     }
 
@@ -193,7 +184,7 @@ public class GameManager : MonoBehaviour
             subStages[currentStage].SetActive(false);
             subStages[currentStage + 1].SetActive(true);
             currentStage++;
-            noteManager.spawnPointCange(currentStage);
+            noteManager.spawnPointChange(currentStage);
             noteManager.DirectionChange(stageData.noteDirection[currentStage]);
             
             //textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
@@ -239,25 +230,24 @@ public class GameManager : MonoBehaviour
             }
             eventAdapter.Event_OnBeat();
 
-            if (count + 4 <= SpawnChart.Count - 1)
+            if (count + 6 <= SpawnChart.Count - 1)
             {
-                if (SpawnChart[count + 4] == 1)
+                if (SpawnChart[count + 6 ] == 1)
                 {
                     noteNumber2++;
-                    OnSpawnIngre.Invoke();
+                    noteManager.EventNoteSpawn();
 
                 }
             }
 
-
             ++count;
         }
-        if (JudgeChart[count + 1] == 1)
+        if (SpawnChart[count + 1] == 1)
         {
-            judgeNumber++;
+            
             StartCoroutine(DefaultCycle());
 
-            isScoreGet = false;
+            
 
         }
 
@@ -305,6 +295,8 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(interval - margin_good);
         currentState = catchState.good;
+        judgeNumber++;
+        isScoreGet = false;
 
         yield return new WaitForSeconds(2*margin_good);
         currentState = catchState.Miss;

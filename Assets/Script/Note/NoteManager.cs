@@ -33,12 +33,9 @@ public class NoteManager : MonoBehaviour
         
     }
 
-    public void spawnPointCange(int sequence)
+    public void spawnPointChange(int sequence)
     {
-        if (sequence != -1)
-        {
-            notePool.noteSpawnPoint = noteSpawnPoint[sequence];
-        }
+        notePool.noteSpawnPoint = noteSpawnPoint[sequence];
     }
 
     private void Update()
