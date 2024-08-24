@@ -6,15 +6,25 @@ public class Cabbage : MonoBehaviour
 {
     public CabbageManager manager;
     private Transform[] cabbagePoints;
+    private SpriteRenderer spriteRenderer;
     private Animator animator;
     public int positionIndex = 0;
     public int hitCount = 0;
     private float moveDuration = 0.3f;
+    private bool firstMove = false;
+    private bool invisibleStart = false;
    
     void Awake()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();    
         animator = GetComponent<Animator>();
         cabbagePoints = manager.cabbagePoints;
+        if (positionIndex == 3 || positionIndex == 4)
+        {
+            invisibleStart = true;
+            spriteRenderer.enabled = false;
+        }
+
         
     }
 
@@ -30,6 +40,7 @@ public class Cabbage : MonoBehaviour
 
     private IEnumerator MoveNextCoroutine()
     {
+        
         if (positionIndex != 4)
         {
             float elapsedTime = 0f;
@@ -51,7 +62,15 @@ public class Cabbage : MonoBehaviour
             animator.SetBool("Survived", false);
             animator.SetTrigger("Reset");
         }
-
+        if (!firstMove && invisibleStart)
+        {
+            spriteRenderer.enabled = true;
+            firstMove = true;
+        }
+        if (positionIndex == 3)
+        {
+            animator.SetTrigger("Survived");
+        }
 
     }
 

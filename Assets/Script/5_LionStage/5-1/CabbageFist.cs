@@ -5,7 +5,8 @@ using UnityEngine;
 public class CabbageFist : MonoBehaviour
 {
     Animator animator;
-    public int hitIndex = 0;
+    public CabbageManager manager;
+    Cabbage currentCabbage;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,10 +16,8 @@ public class CabbageFist : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.DownArrow))
-        //{
-        //    OnNoteHit();
-        //}
+        currentCabbage = manager.currentCabbage;
+        
     }
 
     public void OnNoteMiss()
@@ -29,8 +28,7 @@ public class CabbageFist : MonoBehaviour
     public void OnNoteHit()
     {
         animator.SetTrigger("Hit");
-        animator.SetInteger("HitIndex", hitIndex);
-        hitIndex = (hitIndex + 1) % 3;
+        animator.SetInteger("HitIndex", currentCabbage.hitCount);
     }
 
     

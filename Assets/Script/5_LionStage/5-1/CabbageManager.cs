@@ -36,6 +36,11 @@ public class CabbageManager : MonoBehaviour
         {
             OnNoteHit();
         }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            OnNoteMiss();
+        }
     }
 
     public void OnNoteHit()
