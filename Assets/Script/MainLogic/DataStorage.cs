@@ -37,11 +37,13 @@ public class DataStorage
         "HamsterAngry",
         2,
         new List<int> { 135 },
-        new List<int> { 1, 3 }
+        new List<int> { 1, 3 },
+        new int[2][] { new int[1] {0}, new int[1] {0} }
     );
     public StageData Data_Cat = new StageData(
        new List<int>
         {
+           0,0,
            0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1,1,0,
            0,1,1,0,0,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,
            0,0,1,0,0,1,1,0,0,1,1,0,0,1,0,1,0,0,1,0,
@@ -60,13 +62,14 @@ public class DataStorage
         "CatHappy",
         "CatAngry",
         2,
-        new List<int> { 95 },
-        new List<int> { 0, 0 }
+        new List<int> { 97 },
+        new List<int> { 0, 0 },
+        new int[2][] { new int[2] { 1, 3 }, new int[1] { 0 } }
     );
     public StageData Data_Capybara = new StageData(
        new List<int>
         {
-           0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1,0,1,0,1,0,1,0,0,
+           0,1,0,0,1,0,0,0,1,0,1,0,1,0,1,0,0,
            0,1,0,0,0,1,0,1,0,1,0,0,0,1,1,1,1,0,0,1,
            1,0,0,1,1,0,0,1,0,1,0,0,1,0,1,0,0,1,0,1,
            1,1,0,1,0,0,1,0,0,1,0,1,0,0,1,0,0,1,0,1,
@@ -92,13 +95,14 @@ public class DataStorage
         "CapybaraAngry",
         3,
         new List<int> { 100, 236, },
-        new List<int> { 0, 3, 0 }
+        new List<int> { 0, 3, 0 },
+        new int[3][] { new int[1] { 0 }, new int[] { 0 }, new int[2] {1, 3 } }
     );
 
     public StageData Data_Panda = new StageData(
        new List<int>
         {
-           0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,1,0,0,1,0,
+           0,0,0,0,1,0,0,0,1,0,0,1,0,0,1,0,
            1,0,1,0,1,0,1,0,0,1,0,1,0,0,0,1,0,0,0,0,
            1,0,0,0,0,1,0,0,0,0,1,0,0,1,0,0,0,1,0,1,
            0,0,1,1,0,0,1,1,1,0,0,1,1,0,0,1,0,0,1,0,
@@ -125,7 +129,8 @@ public class DataStorage
         "PandaAngry",
         2,
         new List<int> { 178 },
-        new List<int> { 3, 3 }
+        new List<int> { 3, 3 },
+        new int[2][] { new int[1] { 0 }, new int[1] { 0 } }
     );
 
     public StageData Data_Lion = new StageData(
@@ -160,7 +165,8 @@ public class DataStorage
         "LionAngry",
         4,
         new List<int> { },
-        new List<int> { 1, 4 }
+        new List<int> { 1, 4 },
+        new int[2][] { new int[1] { 0 }, new int[1] { 0 } }
     );
 
 }

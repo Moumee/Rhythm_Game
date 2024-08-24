@@ -566,7 +566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &235917493
 Transform:
   m_ObjectHideFlags: 0
@@ -964,7 +964,7 @@ Transform:
   m_GameObject: {fileID: 553748904}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.908268, y: 6.310891, z: -0.018158995}
+  m_LocalPosition: {x: -9.908268, y: 14, z: -0.018158995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1696,38 +1696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a009e21b0bd4d944bf0e22cc31461aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FillMiss:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FillingManager, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnSpawnIngre:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1695466995}
-        m_TargetAssemblyTypeName: NoteManager, Assembly-CSharp
-        m_MethodName: EventNoteSpawn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   stageNumber: 3
-  eventAdapter: {fileID: 0}
   missText: {fileID: 1433726960}
   goodText: {fileID: 2114546763}
   perfectText: {fileID: 529521107}
@@ -1735,12 +1704,12 @@ MonoBehaviour:
   noteNumber2: 0
   judgeNumber: 0
   anyKeyObj: {fileID: 487574436}
+  beatTracker: {fileID: 0}
   BPM: 210
   count: 0
   startDelay: 0
   Score: 0
-  beatJump: 2
-  BackGround: {fileID: 0}
+  noteBeatInterval: 5
   currentStage: 0
   currentState: 0
   noteManager: {fileID: 1695466995}
@@ -2397,7 +2366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1249866006
 Transform:
   m_ObjectHideFlags: 0

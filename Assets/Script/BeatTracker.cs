@@ -109,6 +109,11 @@ public class BeatTracker : MonoBehaviour
 
     }
 
+    public void PlayMusic()
+    {
+        //PlayMusicTrack();
+    }
+
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
     //    if (collision.gameObject.CompareTag("Note"))

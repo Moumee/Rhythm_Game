@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Pool;
+using static GameManager;
 
 public class Note : MonoBehaviour
 {
@@ -14,18 +15,22 @@ public class Note : MonoBehaviour
     public Animator animator;
     private NoteManager noteManager;
 
-    private float catchableTime;
     public bool isOnTime;
 
     private int serialnum;
 
+    //for test
+    private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Awake()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         noteManager = FindObjectOfType<NoteManager>();
         animator = GetComponent<Animator>();
 
-        speed = 14 / (5 * BeatTracker.GetBeatInterval());
+        speed = 14 / (GameManager.Instance.noteBeatInterval * BeatTracker.GetBeatInterval());
 
     }
 
@@ -33,7 +38,7 @@ public class Note : MonoBehaviour
     {
         float interval = 60 / GameManager.Instance.BPM;
         judged = false;
-        catchableTime = BeatTracker.GetCurrentTime() + 4 * interval;
+        
         serialnum = GameManager.Instance.noteNumber2;
     }
 
@@ -50,12 +55,14 @@ public class Note : MonoBehaviour
             }
         }
 
-        if (serialnum == GameManager.Instance.judgeNumber)
+        if (serialnum == GameManager.Instance.judgeNumber && GameManager.Instance.currentState != catchState.Miss)
         { 
+            spriteRenderer.color = Color.blue;
             isOnTime = true;
         }
         else
         {
+            spriteRenderer.color = Color.red;
             isOnTime = false;
         }
     }

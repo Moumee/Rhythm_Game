@@ -11,12 +11,13 @@ public struct StageData
     public int stageCount { get; }
     public List<int> stageChangeBeats { get; }
     public List<int> noteDirection { get; }
+    public int[][] noteRotationStageList { get; }
 
 
 
     public StageData
     (List<int> chart, float bpm, string success, string fail, int count, 
-        List<int> changeBeats, List<int> direction)
+        List<int> changeBeats, List<int> direction, int[][] rotation)
     {
         MusicChart = chart;
         BPM = bpm;
@@ -25,6 +26,7 @@ public struct StageData
         stageCount = count;
         stageChangeBeats = changeBeats;
         noteDirection = direction;
+        noteRotationStageList = rotation;
     }
 }
 

@@ -13,6 +13,8 @@ public class NoteManager : MonoBehaviour
     public Vector3 noteDirection;
 
     private Vector3[] directionList = new Vector3[4] {Vector3.left, Vector3.right, Vector3.up, Vector3.down };
+
+    private float[] rotationList = new float[4] { 0f, 90f, 180f, 270f };
     
 
     //private bool stageCheck = false;
@@ -44,11 +46,13 @@ public class NoteManager : MonoBehaviour
 
 
 
-    public void EventNoteSpawn()
+    public void EventNoteSpawn(int random)
     {
         Note note = notePool.pool.Get();
         notesToCheck.Add(note.gameObject);
         note.moveDirection = noteDirection;
+
+        note.transform.rotation = Quaternion.Euler(Vector3.forward * rotationList[random]);
     }
 
     public void EventCatchNote()
@@ -65,6 +69,10 @@ public class NoteManager : MonoBehaviour
             {
                 tempNote.judged = true;
                 tempNote.animator.SetTrigger(name);
+            }
+            if (name == "Miss")
+            {
+                notesToCheck.Remove(note);
             }
         }
     }
