@@ -1,9 +1,11 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TomatoManager : MonoBehaviour
 {
+    public EventReference sliceTomatoSFX;
     public Tomato[] tomatoes;
     public List<Tomato> availableTomatoes = new List<Tomato>();
     public Tomato currentTomato;
@@ -33,7 +35,7 @@ public class TomatoManager : MonoBehaviour
         //}
         //if (Input.GetKeyDown(KeyCode.DownArrow))
         //{
-        //    currentTomato.OnNoteHit();
+        //    OnNoteHit();
         //}
     }
 
@@ -49,6 +51,7 @@ public class TomatoManager : MonoBehaviour
 
     public void OnNoteHit()
     {
+        AudioManager.Instance.PlaySFX(sliceTomatoSFX);
         currentTomato.OnNoteHit();
     }
 }

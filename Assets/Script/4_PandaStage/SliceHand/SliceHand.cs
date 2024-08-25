@@ -1,9 +1,11 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SliceHand : MonoBehaviour
 {
+    public EventReference bambooShootHit;
     Animator animator;
     SpriteRenderer spriteRenderer;
     public int sliceHandIndex = 0;
@@ -101,6 +103,7 @@ public class SliceHand : MonoBehaviour
     public void OnNoteHit()
     {
         if (bambooShoot.isMoving || isDoingFinalSlice) return;
+        AudioManager.Instance.PlaySFX(bambooShootHit);
         animator.SetBool("NoteHit", true);
         animator.SetInteger("SliceHandIndex", sliceHandIndex);
         animator.SetTrigger("Slice");

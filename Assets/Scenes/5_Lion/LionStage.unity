@@ -889,7 +889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &252814470
 Transform:
   m_ObjectHideFlags: 0
@@ -1440,6 +1440,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6d15b3ea6d55cd42b9b5ad140cfc027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grateCheeseSFX:
+    Guid:
+      Data1: 374739140
+      Data2: 1168806608
+      Data3: -2087604582
+      Data4: -1862497928
+    Path: event:/LionStageSFX/GrateCheese
   cheeseAnim: {fileID: 304266033}
 --- !u!1001 &448719963
 PrefabInstance:
@@ -2267,6 +2274,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b60c832efdb66a4dbdc8e33b321b06a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mushroomSFX:
+    Guid:
+      Data1: 1397443279
+      Data2: 1245232373
+      Data3: 1928951700
+      Data4: 860105301
+    Path: event:/LionStageSFX/CookMushroom
   fireAnim: {fileID: 526434881}
 --- !u!1 &906706325
 GameObject:
@@ -2487,6 +2501,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988acd7a02ce72541881e1aae777c975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smashCabbageSFX:
+    Guid:
+      Data1: -563632797
+      Data2: 1297892173
+      Data3: 1677600406
+      Data4: -1901945087
+    Path: event:/LionStageSFX/SmashCabbage
   cabbagePoints:
   - {fileID: 2074493605}
   - {fileID: 1151337165}
@@ -3241,6 +3262,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d60d09810a48dfe4fa91b2f18594dbd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sliceTomatoSFX:
+    Guid:
+      Data1: -1892280707
+      Data2: 1191191481
+      Data3: 1727085712
+      Data4: -924376036
+    Path: event:/LionStageSFX/SliceTomato
   tomatoes:
   - {fileID: 123659113}
   - {fileID: 1813497743}

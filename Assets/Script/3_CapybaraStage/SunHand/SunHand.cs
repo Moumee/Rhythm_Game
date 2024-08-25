@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
@@ -5,6 +6,7 @@ using UnityEngine;
 
 public class SunHand : MonoBehaviour
 {
+    public EventReference sunSqueeze;
     public float moveSpeed;
     private bool sunHandAppeared = false;
     private Animator animator;
@@ -24,6 +26,7 @@ public class SunHand : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
+            AudioManager.Instance.PlaySFX(sunSqueeze);
             animator.SetTrigger("Squeeze");
         }
     }

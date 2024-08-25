@@ -1,4 +1,5 @@
 using FMOD.Studio;
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,6 +7,7 @@ using UnityEngine;
 
 public class SeasoningManager : MonoBehaviour
 {
+    public EventReference pourSauceSFX;
     public Transform[] wayPoints;
     public List<Seasoning> seasonings = new List<Seasoning>();
     public List<Seasoning> readySeasonings = new List<Seasoning>();
@@ -47,6 +49,7 @@ public class SeasoningManager : MonoBehaviour
 
     public void OnNoteHit()
     {
+        AudioManager.Instance.PlaySFX(pourSauceSFX);    
         currentSeasoning.OnNoteHit();
         currentSeasoning.MoveNextCheck();
     }

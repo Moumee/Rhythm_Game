@@ -1,9 +1,11 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CabbageManager : MonoBehaviour
 {
+    public EventReference smashCabbageSFX;
     public Transform[] cabbagePoints;
     public Cabbage currentCabbage;
     public Cabbage[] cabbages;
@@ -45,6 +47,7 @@ public class CabbageManager : MonoBehaviour
 
     public void OnNoteHit()
     {
+        AudioManager.Instance.PlaySFX(smashCabbageSFX);
         StartCoroutine(ShakeCoroutine());
         currentCabbage.OnNoteHit();
         fist.OnNoteHit();

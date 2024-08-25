@@ -1,9 +1,11 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CheeseGrater : MonoBehaviour
 {
+    public EventReference grateCheeseSFX;
     Animator animator;
     public Animator cheeseAnim;
     // Start is called before the first frame update
@@ -32,12 +34,14 @@ public class CheeseGrater : MonoBehaviour
 
     public void OnGoodNoteHit()
     {
+        AudioManager.Instance.PlaySFX(grateCheeseSFX);
         animator.SetTrigger("Hit");
         cheeseAnim.SetTrigger("Good");
     }
 
     public void OnPerfectNoteHit()
     {
+        AudioManager.Instance.PlaySFX(grateCheeseSFX);
         animator.SetTrigger("Hit");
         cheeseAnim.SetTrigger("Perfect");
     }

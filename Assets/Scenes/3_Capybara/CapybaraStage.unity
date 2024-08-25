@@ -2591,6 +2591,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15879663ca97fc647a6df72184361418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sunSqueeze:
+    Guid:
+      Data1: 137838580
+      Data2: 1246206518
+      Data3: -461121351
+      Data4: -826150675
+    Path: event:/CapybaraStageSFX/SunSqueeze
   moveSpeed: 7
 --- !u!95 &1303474501
 Animator:
@@ -2824,6 +2831,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db1ee10219ed4c459c10b9e054c8fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syrupSFX:
+    Guid:
+      Data1: -317266916
+      Data2: 1333644282
+      Data3: -1781078355
+      Data4: -2076858869
+    Path: event:/CapybaraStageSFX/PutSyrup
   tangerineCandies:
   - {fileID: 1332034993}
   - {fileID: 1815796054}

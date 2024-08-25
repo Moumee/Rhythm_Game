@@ -96,7 +96,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638601811899093413
+  lastModified: 638601826385790204
   FileSizes: []
   Exists: 1
 --- !u!114 &-7660539305395831691
@@ -141,7 +141,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638601811900388763
+  lastModified: 638601826386960609
   FileSizes: []
   Exists: 1
 --- !u!114 &-7224081704133390864
@@ -243,6 +243,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-4582313737539135023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CapybaraStageSFX/SunSqueeze
+  m_EditorClassIdentifier: 
+  Path: event:/CapybaraStageSFX/SunSqueeze
+  Guid:
+    Data1: 137838580
+    Data2: 1246206518
+    Data3: -461121351
+    Data4: -826150675
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-4507059194610763417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +297,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-3980504964963804357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LionStageSFX/GrateCheese
+  m_EditorClassIdentifier: 
+  Path: event:/LionStageSFX/GrateCheese
+  Guid:
+    Data1: 374739140
+    Data2: 1168806608
+    Data3: -2087604582
+    Data4: -1862497928
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3806708234504302295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LionStageSFX/CookMushroom
+  m_EditorClassIdentifier: 
+  Path: event:/LionStageSFX/CookMushroom
+  Guid:
+    Data1: 1397443279
+    Data2: 1245232373
+    Data3: 1928951700
+    Data4: 860105301
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1150
 --- !u!114 &-3442064661754766974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,11 +555,65 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638601811899103473
+  lastModified: 638601826385800223
   FileSizes:
   - Name: 
-    Value: 2856
+    Value: 3266
   Exists: 1
+--- !u!114 &-1931764002089414428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LionStageSFX/SmashCabbage
+  m_EditorClassIdentifier: 
+  Path: event:/LionStageSFX/SmashCabbage
+  Guid:
+    Data1: -563632797
+    Data2: 1297892173
+    Data3: 1677600406
+    Data4: -1901945087
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1350
+--- !u!114 &-1465832724560167001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CapybaraStageSFX/PutSyrup
+  m_EditorClassIdentifier: 
+  Path: event:/CapybaraStageSFX/PutSyrup
+  Guid:
+    Data1: -317266916
+    Data2: 1333644282
+    Data3: -1781078355
+    Data4: -2076858869
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1082267935710891279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,12 +702,20 @@ MonoBehaviour:
   - {fileID: -3442064661754766974}
   - {fileID: -1986147700471928067}
   - {fileID: 4698713836991336268}
+  - {fileID: -1465832724560167001}
+  - {fileID: 1016737843418359667}
+  - {fileID: -1931764002089414428}
+  - {fileID: 2300518743577543430}
+  - {fileID: -3980504964963804357}
+  - {fileID: -3806708234504302295}
+  - {fileID: 2985597372898618166}
+  - {fileID: -4582313737539135023}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7767095849538853268}
   StringsBanks:
   - {fileID: -1955523241680991564}
-  cacheTime: 638601811900388763
+  cacheTime: 638601826386960609
   cacheVersion: 131618
 --- !u!114 &359600167592558344
 MonoBehaviour:
@@ -655,6 +798,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 113771
+--- !u!114 &1016737843418359667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PandaStageSFX/HitBambooShoot
+  m_EditorClassIdentifier: 
+  Path: event:/PandaStageSFX/HitBambooShoot
+  Guid:
+    Data1: -2121222077
+    Data2: 1191838347
+    Data3: 765038735
+    Data4: 1179411053
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1191082997394820924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,6 +906,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2300518743577543430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LionStageSFX/SliceTomato
+  m_EditorClassIdentifier: 
+  Path: event:/LionStageSFX/SliceTomato
+  Guid:
+    Data1: -1892280707
+    Data2: 1191191481
+    Data3: 1727085712
+    Data4: -924376036
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &2607125031657418482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -763,6 +960,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2985597372898618166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PandaStageSFX/PourSauce
+  m_EditorClassIdentifier: 
+  Path: event:/PandaStageSFX/PourSauce
+  Guid:
+    Data1: 162410193
+    Data2: 1283318983
+    Data3: -58511970
+    Data4: -1751230898
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &3319439732442790897
 MonoBehaviour:
   m_ObjectHideFlags: 0

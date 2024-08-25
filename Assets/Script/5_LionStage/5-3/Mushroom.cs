@@ -1,9 +1,11 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Mushroom : MonoBehaviour
 {
+    public EventReference mushroomSFX;
     Animator animator;
     public Animator fireAnim;
     // Start is called before the first frame update
@@ -29,23 +31,27 @@ public class Mushroom : MonoBehaviour
 
     public void OnPerfectRightNoteHit()
     {
+        AudioManager.Instance.PlaySFX(mushroomSFX);
         animator.SetTrigger("Right");
         fireAnim.SetTrigger("Perfect");
     }
 
     public void OnRightNoteHit()
     {
+        AudioManager.Instance.PlaySFX(mushroomSFX);
         animator.SetTrigger("Right");
     }
 
     public void OnPerfectLeftNoteHit()
     {
+        AudioManager.Instance.PlaySFX(mushroomSFX);
         animator.SetTrigger("Right");
         fireAnim.SetTrigger("Perfect");
     }
 
     public void OnLeftNoteHit()
     {
+        AudioManager.Instance.PlaySFX(mushroomSFX);
         animator.SetTrigger("Left");
     }
 

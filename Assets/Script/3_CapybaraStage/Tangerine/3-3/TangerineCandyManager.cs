@@ -1,9 +1,11 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TangerineCandyManager : MonoBehaviour
 {
+    public EventReference syrupSFX;
     public TangerineCandy[] tangerineCandies;
     public Transform[] candyPoints;
     public TangerineCandy currentCandy;
@@ -50,6 +52,7 @@ public class TangerineCandyManager : MonoBehaviour
     {
         if (!isMoving)
         {
+            AudioManager.Instance.PlaySFX(syrupSFX);
             currentCandy.TurnRight();
             keyPressCount++;
         }
@@ -60,6 +63,7 @@ public class TangerineCandyManager : MonoBehaviour
     {
         if (!isMoving)
         {
+            AudioManager.Instance.PlaySFX(syrupSFX);
             currentCandy.TurnLeft();
             keyPressCount++;
         }

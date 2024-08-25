@@ -242,6 +242,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43f44d50ff583a4ea07ae18eca314d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bambooShootHit:
+    Guid:
+      Data1: -2121222077
+      Data2: 1191838347
+      Data3: 765038735
+      Data4: 1179411053
+    Path: event:/PandaStageSFX/HitBambooShoot
   sliceHandIndex: 0
   attemptCount: 010000000100000001000000010000000100000001000000
   noteHitCount: 000000000000000000000000000000000000000000000000
@@ -2774,6 +2781,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf3a83a07947df47afa712e16350840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pourSauceSFX:
+    Guid:
+      Data1: 162410193
+      Data2: 1283318983
+      Data3: -58511970
+      Data4: -1751230898
+    Path: event:/PandaStageSFX/PourSauce
   wayPoints:
   - {fileID: 51156205}
   - {fileID: 1248258673}
