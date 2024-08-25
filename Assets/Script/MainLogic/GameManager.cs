@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public numberofStage stageNumber = numberofStage._1Hamster;
     DataStorage dataStorage = new DataStorage();
     StageData stageData;
+    [HideInInspector] public int currentStage = 0;
     int stageCheck = 0;
 
 
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     public Animator missText;
     public Animator goodText;
     public Animator perfectText;
+    public Animator comboText;
 
     [HideInInspector]public static GameManager Instance;
     [HideInInspector] public int noteNumber = 0;
@@ -82,7 +84,7 @@ public class GameManager : MonoBehaviour
     public int Score = 0;
     public int noteBeatInterval = 5;    //number of beats to move ingredients
 
-    [HideInInspector] public int currentStage = 0;
+    
 
     
     //페이드 변수
@@ -194,14 +196,16 @@ public class GameManager : MonoBehaviour
 
                     if (currentState == catchState.Perfect)
                     {
-                        perfectText.SetTrigger("Perfect");
+                        
                         noteManager.NoteJudgeEffect("Perfect");
                         if (combo > 5)
                         {
+                            comboText.SetTrigger("Combo");
                             Score += 13;
                         }
                         else
                         {
+                            perfectText.SetTrigger("Perfect");
                             Score += 10;
                         }
                         combo++;
