@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 438896615325968842}
   - component: {fileID: 3469646323617714845}
   - component: {fileID: 8926981330407627510}
-  - component: {fileID: 4255737015044549556}
   m_Layer: 5
   m_Name: FadeInStart
   m_TagString: Untagged
@@ -98,15 +97,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4255737015044549556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6889522115293003650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa431a86157d2af42b33fb3515c27f21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

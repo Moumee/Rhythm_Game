@@ -8,7 +8,7 @@ public class BambooShoot : MonoBehaviour
     Vector3 endScale = new Vector3(1f, 1f, 1f);
     public Transform spawnPoint;
     public Transform centerPoint;
-    private float transitionMoveDuration = 0.2f;
+    private float transitionMoveDuration = 0.03f;
     private float startMoveDuration = 1f;
     public bool isMoving = false;
     Animator animator;

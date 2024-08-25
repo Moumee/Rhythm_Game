@@ -47,9 +47,9 @@ public class StageResult : MonoBehaviour
         
         if (continueTextObj.activeInHierarchy)
         {
-            if (Input.anyKey)
+            if (Input.anyKeyDown)
             {
-                if (!Input.GetKey(KeyCode.Escape) && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
+                if (!Input.GetKey(KeyCode.Escape) && !Input.GetKeyDown(KeyCode.Mouse0) && !Input.GetKeyDown(KeyCode.Mouse1))
                 {
                     if (anyKeyIndex == 0)
                     {
