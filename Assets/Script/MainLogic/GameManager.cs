@@ -16,8 +16,8 @@ using FMODUnity;
 
 public class GameManager : MonoBehaviour
 {
-
     [HideInInspector] public enum numberofStage { _1Hamster = 1, _2Cat = 2, _3Capybara = 3, _4Panda = 4, _5Lion = 5 };
+
     public numberofStage stageNumber = numberofStage._1Hamster;
     DataStorage dataStorage = new DataStorage();
     StageData stageData;
@@ -33,8 +33,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int noteNumber2 = 0;
     [HideInInspector] public int judgeNumber = 0;
 
-    public GameObject anyKeyObj;
-    public BeatTracker beatTracker;
+    //public GameObject anyKeyObj;
+    private BeatTracker beatTracker;
     private int startDelayBeatCount = 0;
 
     private int combo = 0;
@@ -68,20 +68,16 @@ public class GameManager : MonoBehaviour
     //[SerializeField] float bgmStartDelay = 1f;
 
     public int Score = 0;
-
     public int noteBeatInterval = 5;    //number of beats to move ingredients
-
-    //value for 1-2
 
     [HideInInspector] public int currentStage = 0;
 
     public enum catchState { Miss = 0, Perfect = 1, good = 2 };
     public catchState currentState = catchState.Miss;
-
-
     public NoteManager noteManager;
 
-    [SerializeField] GameObject fade;
+    //[SerializeField] GameObject fade;
+    [SerializeField] Animator fadeanim;
     bool fadeOutStart = false;
 
 
@@ -103,8 +99,6 @@ public class GameManager : MonoBehaviour
         BPM = stageData.BPM;
         MusicChart = stageData.MusicChart;
 
-        
-
         isScoreGet = true;
         interval = 60 / BPM;
 
@@ -119,22 +113,29 @@ public class GameManager : MonoBehaviour
         StartCoroutine(NoteStartDelay());
 
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);
+
         
     }
 
     IEnumerator FadeOutToNextScene(string sceneName)
     {
-        fade.SetActive(true);
-        fade.GetComponent<Animator>().SetTrigger("FadeOut");
+        //fade.SetActive(true);
+        //fade.GetComponent<Animator>().SetTrigger("FadeOut");
+        fadeanim.SetTrigger("FadeOut");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(sceneName);
     }
 
     IEnumerator FadeInOut()
     {
-        fade.GetComponent<Animator>().SetTrigger("FadeOut");
+        fadeanim.SetTrigger("FadeOut");
         yield return new WaitForSeconds(1f);
-        fade.GetComponent<Animator>().SetTrigger("FadeIn");
+        subStages[currentStage].SetActive(false);
+        subStages[currentStage + 1].SetActive(true);
+        currentStage++;
+        noteManager.spawnPointChange(currentStage);
+        noteManager.DirectionChange(stageData.noteDirection[currentStage]);
+        fadeanim.SetTrigger("FadeIn");
     }
 
 
@@ -147,8 +148,6 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-
-        Debug.Log(Input.inputString);
 
         if (BeatStart && !stageEnd)
         {
@@ -202,13 +201,8 @@ public class GameManager : MonoBehaviour
         if (currentStage!= stageData.stageCount-1 && count == stageData.stageChangeBeats[currentStage])
         {
             StartCoroutine(FadeInOut());
-            subStages[currentStage].SetActive(false);
-            subStages[currentStage + 1].SetActive(true);
-            currentStage++;
-            noteManager.spawnPointChange(currentStage);
-            noteManager.DirectionChange(stageData.noteDirection[currentStage]);
+
             
-            //textEffectObj.transform.position = new Vector3(-7.32f, -3.6f, 0f);
         }
         //ending
         if (count == SpawnChart.Count - 1 && !stageEnd)
