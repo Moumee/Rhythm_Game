@@ -130,6 +130,13 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    IEnumerator FadeInOut()
+    {
+        fade.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(1f);
+        fade.GetComponent<Animator>().SetTrigger("FadeIn");
+    }
+
 
     
 
@@ -194,6 +201,7 @@ public class GameManager : MonoBehaviour
         //stage change
         if (currentStage!= stageData.stageCount-1 && count == stageData.stageChangeBeats[currentStage])
         {
+            StartCoroutine(FadeInOut());
             subStages[currentStage].SetActive(false);
             subStages[currentStage + 1].SetActive(true);
             currentStage++;
