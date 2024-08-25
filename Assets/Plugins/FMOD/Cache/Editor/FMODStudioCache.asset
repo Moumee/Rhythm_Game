@@ -96,9 +96,36 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638601387630197266
+  lastModified: 638601811899093413
   FileSizes: []
   Exists: 1
+--- !u!114 &-7660539305395831691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FinalResult/Success/SuccessResultVideo
+  m_EditorClassIdentifier: 
+  Path: event:/FinalResult/Success/SuccessResultVideo
+  Guid:
+    Data1: 723143454
+    Data2: 1197648926
+    Data3: -785834873
+    Data4: 265884722
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-7471541365338935949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +141,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638601387630252343
+  lastModified: 638601811900388763
   FileSizes: []
   Exists: 1
 --- !u!114 &-7224081704133390864
@@ -159,7 +186,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638601387630174680
+  lastModified: 638601811898802910
   FileSizes: []
   Exists: 1
 --- !u!114 &-5296404545856308810
@@ -236,6 +263,33 @@ MonoBehaviour:
     Data4: -709275731
   Banks:
   - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3442064661754766974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FinalResult/FinalResultButton
+  m_EditorClassIdentifier: 
+  Path: event:/FinalResult/FinalResultButton
+  Guid:
+    Data1: -98465878
+    Data2: 1162376146
+    Data3: 2008134064
+    Data4: -2054121466
+  Banks:
+  - {fileID: -6392482322019898061}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -351,6 +405,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 131784
+--- !u!114 &-1986147700471928067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FinalResult/Fail/FailResultBGM
+  m_EditorClassIdentifier: 
+  Path: event:/FinalResult/Fail/FailResultBGM
+  Guid:
+    Data1: -67513280
+    Data2: 1211870112
+    Data3: -1748803450
+    Data4: -847366151
+  Banks:
+  - {fileID: -6392482322019898061}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11154
 --- !u!114 &-1972109259833627361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,10 +474,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638599713514760084
+  lastModified: 638601811899103473
   FileSizes:
   - Name: 
-    Value: 2562
+    Value: 2856
   Exists: 1
 --- !u!114 &-1082267935710891279
 MonoBehaviour:
@@ -481,12 +562,17 @@ MonoBehaviour:
   - {fileID: 751094769479932681}
   - {fileID: 7710215263712258413}
   - {fileID: -2003241728720183983}
+  - {fileID: 8952272725554770915}
+  - {fileID: -7660539305395831691}
+  - {fileID: -3442064661754766974}
+  - {fileID: -1986147700471928067}
+  - {fileID: 4698713836991336268}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7767095849538853268}
   StringsBanks:
   - {fileID: -1955523241680991564}
-  cacheTime: 638601387630252343
+  cacheTime: 638601811900388763
   cacheVersion: 131618
 --- !u!114 &359600167592558344
 MonoBehaviour:
@@ -776,6 +862,33 @@ MonoBehaviour:
     Data2: 1144733937
     Data3: -1996734838
     Data4: -454918378
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4698713836991336268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FinalResult/Fail/FailResultVideo
+  m_EditorClassIdentifier: 
+  Path: event:/FinalResult/Fail/FailResultVideo
+  Guid:
+    Data1: -767177961
+    Data2: 1323657398
+    Data3: 2062005390
+    Data4: -904226663
   Banks:
   - {fileID: -7471541365338935949}
   IsStream: 0
@@ -1163,3 +1276,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &8952272725554770915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FinalResult/Success/SuccessResultBGM
+  m_EditorClassIdentifier: 
+  Path: event:/FinalResult/Success/SuccessResultBGM
+  Guid:
+    Data1: 290458973
+    Data2: 1270866033
+    Data3: -114552905
+    Data4: 2099344380
+  Banks:
+  - {fileID: -6392482322019898061}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 100153
