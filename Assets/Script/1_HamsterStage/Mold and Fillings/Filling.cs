@@ -8,14 +8,11 @@ public class Filling : MonoBehaviour
     int index;
     float elapsedTime = 0f;
     float fallDuration = 0.1f;
-    Vector3 startPos;
+    public Vector3 startPos;
     // Start is called before the first frame update
     void Start()
     {
         fillingManager = FindObjectOfType<FillingManager>();
-        index = FindObjectOfType<FillingManager>().callNumber;
-        transform.position = fillingManager.fillingStartPos[index].position;
-        startPos = fillingManager.fillingStartPos[index].position;
 
     }
 
@@ -33,16 +30,6 @@ public class Filling : MonoBehaviour
     {
         if (collision.CompareTag("Hole"))
         {
-            
-            
-            if (fillingManager.callNumber != 2)
-            {
-                fillingManager.callNumber++;
-            }
-            else if (fillingManager.callNumber == 2)
-            {
-                fillingManager.callNumber = 0;
-            }
             
             collision.GetComponent<SpriteRenderer>().enabled = true;
             Destroy(gameObject);

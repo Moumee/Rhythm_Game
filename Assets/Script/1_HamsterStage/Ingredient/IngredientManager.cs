@@ -81,7 +81,7 @@ public class IngredientManager : MonoBehaviour
         activeIngredients.Add(tempIngre);
     }
 
-    //Must be executed 2~3 beats prior.
+    //Must be executed 2~4 beats prior.
     public void MoveIngredients()
     {
         SpawnIngredient();

@@ -7,81 +7,30 @@ using UnityEngine.Pool;
 
 public class Mold : MonoBehaviour
 {
+    MoldManager manager;
     private ObjectPool<Mold> _pool;
-    [SerializeField] int positionId = 0;
-    private string currentState;
+    public int positionId = 0;
     private int beatJumpCount;
     [SerializeField]
     SpriteRenderer[] fillingRenderers;
-    [SerializeField] GameObject[] standPoints;
+    [SerializeField] Transform[] standPoints;
 
-    private float speed = 100f;
     public bool isLive = false;
     public bool isOnTime = false;
+
+    private float moveDuration = 0.1f;
 
     // Start is called before the first frame update
     void Awake()
     {
+        manager = FindObjectOfType<MoldManager>();
         isLive = true;
         beatJumpCount = 0;
-        //transform.position = standPoints[positionId].transform.position;
-    }
-
-    private void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        float step = speed * Time.deltaTime;
-
-        transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, step);
-
-        if (Mathf.Abs(standPoints[1].transform.position.x - transform.position.x) <= 1.5f)
-        {
-            isOnTime = true;
-        }
-        else
-        {
-            isOnTime = false;
-        }
-
+        standPoints = manager.standPoints;
     }
 
 
-    private void OnEnable()
-    {
-
-        //SetNext();
-    }
-
-    public void Event_BeatCall()
-    {
-        
-
-    }
-
-    public void SetNext()
-    {
-        
-        if (positionId == standPoints.Length - 1)
-        {
-            isLive = false;
-            positionId = 0;
-            transform.position = standPoints[positionId].transform.position;
-            _pool.Release(this);
-            
-        }
-
-        else if (positionId < standPoints.Length - 1)
-        {
-            ++positionId;
-        }
-    }
-
-    public void SetPoint(GameObject[] standPoint)
+    public void SetPoint(Transform[] standPoint)
     {
         this.standPoints = standPoint;
         isLive = true;
@@ -97,6 +46,35 @@ public class Mold : MonoBehaviour
         foreach (var renderer in fillingRenderers)
         {
             renderer.enabled = false;
+        }
+    }
+
+    public void MoveMold()
+    {
+        StartCoroutine(MoveCoroutine());
+    }
+
+    IEnumerator MoveCoroutine()
+    {
+        if (positionId < 2)
+        {
+            float timer = 0f;
+            while (timer <= moveDuration)
+            {
+                timer += Time.deltaTime;
+                transform.position = Vector3.Lerp(standPoints[positionId].position,
+                    standPoints[positionId + 1].position, timer / moveDuration);
+                yield return null;
+            }
+            transform.position = standPoints[positionId + 1].position;
+            positionId++;
+        }
+        else
+        {
+            yield return new WaitForSeconds(moveDuration);
+            positionId = 0;
+            manager.activeMolds.Remove(this);
+            _pool.Release(this);
         }
     }
 

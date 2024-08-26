@@ -43,8 +43,8 @@ public class HamsterAdapter : EventAdapter
     {
         if (GameManager.Instance.currentStage > 0)
         {
-            moldManager.EventCatchNote();
-            fillingManager.FillingFall();
+            //moldManager.EventCatchNote();
+            //fillingManager.FillingFall();
         }
         else
         {
@@ -57,8 +57,8 @@ public class HamsterAdapter : EventAdapter
     {
         if (GameManager.Instance.currentStage == 1)
         {
-            moldManager.EventCatchNote();
-            fillingManager.FillingFall();
+            //moldManager.EventCatchNote();
+            //fillingManager.FillingFall();
         }
         else
         {
