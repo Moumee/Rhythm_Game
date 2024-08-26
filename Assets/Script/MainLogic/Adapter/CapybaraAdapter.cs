@@ -34,7 +34,7 @@ public class CapybaraAdapter : EventAdapter
         
     }
 
-    public override void Event_CatchNote()
+    public override void Event_CatchNote(bool isPerfect = true, int direction = 0)
     {
         if (GameManager.Instance.currentStage == 0)
         {
@@ -65,7 +65,7 @@ public class CapybaraAdapter : EventAdapter
         }
     }
 
-    public void Event_SpawnIngre()
+    public override void Event_SpawnIngre()
     {
 
     }

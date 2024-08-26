@@ -30,7 +30,6 @@ public class NoteManager : MonoBehaviour
 
     public void DirectionChange(int dir)
     {
-        Debug.Log(dir);
         noteDirection = directionList[dir];
         
     }
