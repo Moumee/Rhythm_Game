@@ -28,7 +28,7 @@ public class LionAdapter : EventAdapter
         }
         else if (GameManager.Instance.currentStage == 2)
         {
-            mushroom.CookMushroom();
+            
         }
         else
         {
@@ -53,6 +53,8 @@ public class LionAdapter : EventAdapter
         }
         else if (GameManager.Instance.currentStage == 2)
         {
+            mushroomCount++;
+            
             if (isPerfect)
             {
                 if(direction == 1)
@@ -74,6 +76,15 @@ public class LionAdapter : EventAdapter
                 {
                     mushroom.OnLeftNoteHit();
                 }
+            }
+            if (mushroomCount == 20) 
+            {
+                mushroom.CookMushroom();
+                GameManager.Instance.missCount = 0;
+            }
+            if (mushroomCount >= 20 && GameManager.Instance.missCount == 18)
+            {
+                mushroom.BurnMushroom();
             }
         }
         else

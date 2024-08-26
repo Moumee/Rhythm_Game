@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     private int randomvalue = 0;
     private List<int> noterotationList = new List<int> {0};
 
-    public int ingreDelay = 2;
+    public int ingreDelay = 3;
 
 
     private List<KeyCode> keyCodeList = 
@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
     
 
     public int Score = 0;
+    [HideInInspector] public int missCount;
     public int noteBeatInterval = 5;    //number of beats to move ingredients
 
     
@@ -184,6 +185,7 @@ public class GameManager : MonoBehaviour
             {
                 if (!Input.GetKeyDown(keyCodeList[noterotationList[judgeNumber]]) || currentState == catchState.Miss)
                 {
+                    missCount++;
                     eventAdapter.Event_MissNote();
                     missText.SetTrigger("Miss");
                     noteManager.NoteJudgeEffect("Miss");
@@ -228,12 +230,7 @@ public class GameManager : MonoBehaviour
 
         //stage change
         
-        if (currentStage!= stageData.stageCount-1 && currentStage == stageCheck
-            && count == stageData.stageChangeBeats[currentStage])
-        {
-            currentStage++;
-            StartCoroutine(FadeInOut());
-        }
+        
         //ending
         if (count == SpawnChart.Count - 1 && !stageEnd)
         {
@@ -261,6 +258,13 @@ public class GameManager : MonoBehaviour
         if (!FindObjectOfType<PauseMenu>().isPlaying)
         {
             return;
+        }
+
+        if (currentStage != stageData.stageCount - 1 //&& currentStage == stageCheck
+            && count == stageData.stageChangeBeats[currentStage])
+        {
+            currentStage++;
+            StartCoroutine(FadeInOut());
         }
 
         if (BeatStart && !stageEnd)
