@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     private int randomvalue = 0;
     private List<int> noterotationList = new List<int> {0};
 
-    public int ingreDelay = 3;
+    public int ingreDelay = 4;
 
 
     private List<KeyCode> keyCodeList = 
