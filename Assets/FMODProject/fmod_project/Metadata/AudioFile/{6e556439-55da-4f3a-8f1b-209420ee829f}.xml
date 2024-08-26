@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{6e556439-55da-4f3a-8f1b-209420ee829f}">
+		<property name="assetPath">
+			<value>CapybaraStageSFX/귤껍질까기.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>5.1200000000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7aac224d-fac4-455f-830d-dba4aad57a74}</destination>
+		</relationship>
+	</object>
+</objects>

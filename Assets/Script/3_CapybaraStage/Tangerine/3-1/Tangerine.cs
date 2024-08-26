@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,7 +50,7 @@ public class Tangerine : MonoBehaviour
             transform.position = tangerinePoints[0].position;
             currentIndex = 0;
             sunHitCount = 0;
-            tangerineManager.ResetMoveFlag();
+            tangerineManager.ResetFlag();
             animator.SetInteger("SunHitCount", sunHitCount);
         }
         

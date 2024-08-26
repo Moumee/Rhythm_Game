@@ -96,7 +96,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638601826385790204
+  lastModified: 638602908588515748
   FileSizes: []
   Exists: 1
 --- !u!114 &-7660539305395831691
@@ -141,7 +141,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638601826386960609
+  lastModified: 638602908590172350
   FileSizes: []
   Exists: 1
 --- !u!114 &-7224081704133390864
@@ -189,6 +189,33 @@ MonoBehaviour:
   lastModified: 638601811898802910
   FileSizes: []
   Exists: 1
+--- !u!114 &-6372968822680558511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CapybaraStageSFX/TangerinePeel
+  m_EditorClassIdentifier: 
+  Path: event:/CapybaraStageSFX/TangerinePeel
+  Guid:
+    Data1: -846892051
+    Data2: 1097200280
+    Data3: 1106282927
+    Data4: 2002080462
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-5296404545856308810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,10 +582,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638601826385800223
+  lastModified: 638602908588525808
   FileSizes:
   - Name: 
-    Value: 3266
+    Value: 3348
   Exists: 1
 --- !u!114 &-1931764002089414428
 MonoBehaviour:
@@ -710,12 +737,14 @@ MonoBehaviour:
   - {fileID: -3806708234504302295}
   - {fileID: 2985597372898618166}
   - {fileID: -4582313737539135023}
+  - {fileID: 7343636426433231724}
+  - {fileID: -6372968822680558511}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7767095849538853268}
   StringsBanks:
   - {fileID: -1955523241680991564}
-  cacheTime: 638601826386960609
+  cacheTime: 638602908590172350
   cacheVersion: 131618
 --- !u!114 &359600167592558344
 MonoBehaviour:
@@ -1383,6 +1412,33 @@ MonoBehaviour:
     Data2: 1307354792
     Data3: 1674758798
     Data4: -437436287
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7343636426433231724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CapybaraStageSFX/TangerineCook
+  m_EditorClassIdentifier: 
+  Path: event:/CapybaraStageSFX/TangerineCook
+  Guid:
+    Data1: -1293196599
+    Data2: 1101337400
+    Data3: -1960864082
+    Data4: 1893726404
   Banks:
   - {fileID: -7471541365338935949}
   IsStream: 0
