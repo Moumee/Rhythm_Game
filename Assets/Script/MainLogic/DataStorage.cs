@@ -199,7 +199,7 @@ public class DataStorage
         "LionAngry",
         4,
         new List<int> { 130, 275, 388 },
-        new List<int> { 1, 4 },
+        new List<int> { 0, 0, 3,0 },
         new int[4][] { new int[1] { 0 }, new int[1] { 0 }, new int[1] { 0 }, new int[1] { 0 } }
     );
 

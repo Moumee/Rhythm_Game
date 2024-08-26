@@ -18,18 +18,18 @@ public class CheeseGrater : MonoBehaviour
     void Update()
     {
         //Test Code
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            OnGoodNoteHit();
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            OnPerfectNoteHit();
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            OnNoteMiss();
-        }
+        //if (Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //    OnGoodNoteHit();
+        //}
+        //else if (Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    OnPerfectNoteHit();
+        //}
+        //else if (Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    OnNoteMiss();
+        //}
     }
 
     public void OnGoodNoteHit()

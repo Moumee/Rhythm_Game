@@ -30,7 +30,7 @@ public class CatAdapter : EventAdapter {
 
     }
 
-    public override void Event_CatchNote()
+    public override void Event_CatchNote(bool isPerfect = true, int direction = 0)
     {
         if (GameManager.Instance.currentStage == 0)
         {
@@ -42,10 +42,7 @@ public class CatAdapter : EventAdapter {
         }
     }
 
-    public void Event_SpawnIngre()
-    {
-
-    }
+    
 
     public override void Event_MissNote()
     {
@@ -57,5 +54,10 @@ public class CatAdapter : EventAdapter {
         {
             fishManager.OnNoteMiss();
         }
+    }
+
+    public override void Event_SpawnIngre()
+    {
+
     }
 }

@@ -18,22 +18,22 @@ public class BackgroundCheese : MonoBehaviour
         
     }
 
-    public void OnFirstNoteHit()
+    public void FirstPile()
     {
         StartCoroutine(CheeseAppear(0));
     }
 
-    public void OnOneThirdBeat()
+    public void SecondPile()
     {
         StartCoroutine(CheeseAppear(1));
     }
 
-    public void OnTwoThirdsBeat()
+    public void ThirdPile()
     {
         StartCoroutine((CheeseAppear(2)));
     }
 
-    public void OnThreeThirdsBeat()
+    public void FourthPile()
     {
         StartCoroutine(CheeseAppear((3)));
     }

@@ -19,14 +19,14 @@ public class Mushroom : MonoBehaviour
     {
         //Test Code
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            OnRightNoteHit();
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            OnLeftNoteHit();
-        }
+        //if (Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    OnRightNoteHit();
+        //}
+        //else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //{
+        //    OnLeftNoteHit();
+        //}
     }
 
     public void OnPerfectRightNoteHit()

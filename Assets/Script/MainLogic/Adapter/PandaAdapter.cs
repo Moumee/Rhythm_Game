@@ -32,7 +32,7 @@ public class PandaAdapter : EventAdapter
 
     }
 
-    public override void Event_CatchNote()
+    public override void Event_CatchNote(bool isPerfect = true, int direction = 0)
     {
         if (GameManager.Instance.currentStage == 0)
         {
@@ -42,22 +42,22 @@ public class PandaAdapter : EventAdapter
         {
             seasoningManager.OnNoteHit();
             containerCount++;
-            if(containerCount == 20)
+            if(containerCount == 25)
             {
                 pickleContainer.OnOneThird();
             }
-            else if(containerCount == 40)
+            else if(containerCount == 50)
             {
                 pickleContainer.OnTwoThirds();
             }
-            else if(containerCount == 60)
+            else if(containerCount == 75)
             {
                 pickleContainer.OnThreeThirds();
             }
         }
     }
 
-    public void Event_SpawnIngre()
+    public override void Event_SpawnIngre()
     {
 
     }

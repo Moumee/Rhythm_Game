@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
     private int randomvalue = 0;
     private List<int> noterotationList = new List<int> {0};
 
+    public int ingreDelay = 2;
+
 
     private List<KeyCode> keyCodeList = 
         new List<KeyCode> {KeyCode.DownArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.LeftArrow };
@@ -192,7 +194,7 @@ public class GameManager : MonoBehaviour
                 {
                     AudioManager.Instance.PlaySFX(AudioManager.Instance.notePress);
                     
-                    eventAdapter.Event_CatchNote(); //노트캐치
+                    eventAdapter.Event_CatchNote(currentState == catchState.Perfect, noterotationList[judgeNumber]); //노트캐치
 
                     if (currentState == catchState.Perfect)
                     {
@@ -281,6 +283,15 @@ public class GameManager : MonoBehaviour
 
                 }
             }
+            if (count + ingreDelay <= SpawnChart.Count - 1)
+            {
+                if (SpawnChart[count + ingreDelay] == 1)
+                {
+                    eventAdapter.Event_SpawnIngre();
+
+                }
+            }
+
             ++count;
         }
         if (count + 1 <= SpawnChart.Count - 1 && SpawnChart[count + 1] == 1)
