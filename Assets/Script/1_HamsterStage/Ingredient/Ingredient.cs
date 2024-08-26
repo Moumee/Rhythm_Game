@@ -2,21 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using static UnityEditor.PlayerSettings;
 
 
 public class Ingredient : MonoBehaviour
 {
+    IngredientManager manager;
     public ObjectPool<Ingredient> _pool;
-    [SerializeField] int positionId = 0;
+    public int positionId = 0;
     public Animator animator;
-    [SerializeField] RuntimeAnimatorController[] contollers;
+    [SerializeField] RuntimeAnimatorController[] controllers;
     private string currentState;
     private int beatJumpCount;
+    private float moveDuration = 0.5f;
 
-    [SerializeField] GameObject[] standPoints;
+    public Transform[] standPoints;
 
     
-    private float speed = 70f;
     public bool isLive = false;
     public bool isOnTime = false;
     public bool cracked = false;
@@ -28,19 +30,22 @@ public class Ingredient : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        manager = FindObjectOfType<IngredientManager>();
         animator = GetComponent<Animator>();
-        animator.runtimeAnimatorController = contollers[Random.Range(0, contollers.Length)];
+        animator.runtimeAnimatorController = controllers[Random.Range(0, controllers.Length)];
         isLive = true;
         beatJumpCount = 0;
         //speed = 15/(60 / GameManager.Instance.BPM/3);
         //transform.position = standPoints[positionId].transform.position;
-        
+        standPoints = manager.standPoints;
     }
     private void OnEnable()
     {
         cracked = false;
         catchableTime = AudioSettings.dspTime + 4 * (60 / GameManager.Instance.BPM);
         serialnum = GameManager.Instance.noteNumber;
+
+
     }
 
     private void Start()
@@ -51,10 +56,7 @@ public class Ingredient : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!FindObjectOfType<PauseMenu>().isPlaying) { return;}
-        float step = speed * Time.deltaTime;
-
-        transform.position = Vector3.MoveTowards(transform.position, standPoints[positionId].transform.position, step);
+        //if (!FindObjectOfType<PauseMenu>().isPlaying) { return;}
 
         if (transform.position.x < standPoints[0].transform.position.x && transform.position.x > standPoints[1].transform.position.x)
         {
@@ -98,36 +100,66 @@ public class Ingredient : MonoBehaviour
         currentState = newState;
     }
 
-    public void Event_BeatCall()
-    {
-        beatJumpCount++;
-        if(beatJumpCount > GameManager.Instance.noteBeatInterval-1) 
-        {
+    //public void Event_BeatCall()
+    //{
+    //    beatJumpCount++;
+    //    if(beatJumpCount > GameManager.Instance.noteBeatInterval-1) 
+    //    {
             
-            beatJumpCount = 0;
-            SetNext();
-        }
+    //        beatJumpCount = 0;
+    //        SetNext();
+    //    }
         
+    //}
+
+    public void MoveNext()
+    {
+        StartCoroutine(MoveCoroutine());
     }
 
-    private void SetNext()
+    IEnumerator MoveCoroutine()
     {
-        if (positionId == standPoints.Length - 1)
+        if (positionId < 4)
         {
-            isLive = false;
-            positionId = 0;
-            transform.position = standPoints[positionId].transform.position;
+            if (!cracked)
+            {
+                animator.SetTrigger("Move");
+            }
+            float timer = 0f;
+            while (timer < moveDuration)
+            {
+                timer += Time.deltaTime;
+                transform.position = Vector3.Lerp(standPoints[positionId].position,
+                    standPoints[positionId + 1].position, timer / moveDuration);
+                yield return null;
+            }
+            transform.position = standPoints[positionId + 1].position;
+            positionId++;
+        }
+        else
+        {
             _pool.Release(this);
         }
-
-        else if (positionId < standPoints.Length - 1)
-        {
-            ++positionId;
-            animator.SetTrigger("Move");
-        }
     }
 
-    public void SetPoint(GameObject[] standPoint)
+    //private void SetNext()
+    //{
+    //    if (positionId == standPoints.Length - 1)
+    //    {
+    //        isLive = false;
+    //        positionId = 0;
+    //        transform.position = standPoints[positionId].transform.position;
+    //        _pool.Release(this);
+    //    }
+
+    //    else if (positionId < standPoints.Length - 1)
+    //    {
+    //        ++positionId;
+    //        animator.SetTrigger("Move");
+    //    }
+    //}
+
+    public void SetPoint(Transform[] standPoint)
     {
         this.standPoints = standPoint;
         isLive = true;

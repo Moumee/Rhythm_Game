@@ -10,7 +10,7 @@ public class Cabbage : MonoBehaviour
     private Animator animator;
     public int positionIndex = 0;
     public int hitCount = 0;
-    private float moveDuration = 0.3f;
+    private float moveDuration = 0.2f;
     private bool firstMove = false;
     private bool invisibleStart = false;
    
@@ -19,18 +19,27 @@ public class Cabbage : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();    
         animator = GetComponent<Animator>();
         cabbagePoints = manager.cabbagePoints;
-        if (positionIndex == 3 || positionIndex == 4)
+        
+
+        
+    }
+
+    private void Start()
+    {
+        if (positionIndex == 3)
         {
             invisibleStart = true;
             spriteRenderer.enabled = false;
         }
 
-        
     }
 
     void Update()
     {
-        
+        if (positionIndex == 4)
+        {
+            animator.SetTrigger("Reset");
+        }
     }
 
     public void MoveNext()
@@ -51,23 +60,22 @@ public class Cabbage : MonoBehaviour
                     cabbagePoints[positionIndex + 1].position, elapsedTime / moveDuration);
                 yield return null;
             }
-            positionIndex = (positionIndex + 1) % cabbagePoints.Length;
+            positionIndex++;
             transform.position = cabbagePoints[positionIndex].position;
         }
         else if (positionIndex == 4)
         {
-            positionIndex = (positionIndex + 1) % cabbagePoints.Length;
+            positionIndex = 0;
             transform.position= cabbagePoints[positionIndex].position;
             hitCount = 0;
-            animator.SetBool("Survived", false);
-            animator.SetTrigger("Reset");
+            animator.SetInteger("HitCount", 0);
         }
         if (!firstMove && invisibleStart)
         {
             spriteRenderer.enabled = true;
             firstMove = true;
         }
-        if (positionIndex == 3)
+        if (positionIndex == 3 && hitCount == 0)
         {
             animator.SetTrigger("Survived");
         }

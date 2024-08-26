@@ -4,59 +4,43 @@ using UnityEngine;
 
 public class IngredientManager : MonoBehaviour
 {
-    private IngredientPool ingrepool;
+    private IngredientPool ingrePool;
 
-    [SerializeField] GameObject[] standPoint;
+    public Transform[] standPoints;
 
-    private Ingredient[] livingIngres;
-    private Ingredient[] livingIngres2;
+    public List<Ingredient> ingredients = new List<Ingredient>();
 
-    public Ingredient tempingre;
+    public Ingredient tempIngre;
+
+    private Ingredient startIngre;
 
     private void Awake()
     {
-        ingrepool = GetComponent<IngredientPool>();
+        ingrePool = GetComponent<IngredientPool>();
+        
+    }
+
+    private void Start()
+    {
+        startIngre = ingrePool.pool.Get();
+        startIngre.transform.position = standPoints[1].position;
+        startIngre.positionId = 1;
     }
 
     public void OnEvent_SpawnIngredient()
     {
-        tempingre = ingrepool.pool.Get();
-        tempingre.SetPoint(standPoint);
+        tempIngre = ingrePool.pool.Get();
+        tempIngre.SetPoint(standPoints);
     }
 
-    public void OnEvent_MoveIngredient()
+    //Must be executed 2~3 beats prior.
+    public void MoveIngredients()
     {
-        livingIngres = this.gameObject.GetComponentsInChildren<Ingredient>();
-        foreach (Ingredient living in livingIngres)
-        {
-            if (living.isLive)
-            {
-                living.Event_BeatCall();
-            }
-        }
+        
+        
     }
 
-    public void OnEvent_CatchNote()
-    {
-        livingIngres = this.gameObject.GetComponentsInChildren<Ingredient>();
-        foreach (Ingredient living in livingIngres)
-        {
-            if (living.isLive)
-            {
-                //living.SetNext();
-            }
-        }
-    }
+    
 
-    public void EventCatchNote()
-    {
-        livingIngres2 = this.gameObject.GetComponentsInChildren<Ingredient>();
-        foreach (Ingredient living in livingIngres2)
-        {
-            if (living.isOnTime)
-            {
-                living.Break();
-            }
-        }
-    }
+    
 }

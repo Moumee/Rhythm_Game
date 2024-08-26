@@ -21,11 +21,11 @@ public class Mushroom : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            OnRightNoteHit();
+            OnPerfectRightNoteHit();
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            OnLeftNoteHit();
+            OnPerfectLeftNoteHit();
         }
     }
 
@@ -45,7 +45,7 @@ public class Mushroom : MonoBehaviour
     public void OnPerfectLeftNoteHit()
     {
         AudioManager.Instance.PlaySFX(mushroomSFX);
-        animator.SetTrigger("Right");
+        animator.SetTrigger("Left");
         fireAnim.SetTrigger("Perfect");
     }
 

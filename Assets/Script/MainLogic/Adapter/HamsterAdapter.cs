@@ -11,7 +11,7 @@ public class HamsterAdapter : EventAdapter
 
 
 
-    // Start is called before the first frame update
+  
 
 
     public override void Event_OnBeat()
@@ -22,7 +22,7 @@ public class HamsterAdapter : EventAdapter
         }
         else
         {
-            ingredientManager.OnEvent_MoveIngredient();
+            //ingredientManager.OnEvent_MoveIngredient();
         }
     }
 
@@ -49,13 +49,13 @@ public class HamsterAdapter : EventAdapter
         else
         {
             punch.OnEvent_Punch();
-            ingredientManager.EventCatchNote();
+            //ingredientManager.EventCatchNote();
         }
     }
 
     public void Event_SpawnIngre()
     {
-        if (GameManager.Instance.currentStage ==1)
+        if (GameManager.Instance.currentStage == 1)
         {
             moldManager.EventCatchNote();
             fillingManager.FillingFall();
@@ -63,7 +63,7 @@ public class HamsterAdapter : EventAdapter
         else
         {
             punch.OnEvent_Punch();
-            ingredientManager.EventCatchNote();
+            //ingredientManager.EventCatchNote();
         }
     }
 
