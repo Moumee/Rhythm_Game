@@ -14,7 +14,7 @@ public class Ingredient : MonoBehaviour
     [SerializeField] RuntimeAnimatorController[] controllers;
     private string currentState;
     private int beatJumpCount;
-    private float moveDuration = 0.5f;
+    private float moveDuration = 0.3f;
 
     public Transform[] standPoints;
 
@@ -42,16 +42,14 @@ public class Ingredient : MonoBehaviour
     private void OnEnable()
     {
         cracked = false;
-        catchableTime = AudioSettings.dspTime + 4 * (60 / GameManager.Instance.BPM);
-        serialnum = GameManager.Instance.noteNumber;
+        transform.position = standPoints[0].position;
+        //catchableTime = AudioSettings.dspTime + 4 * (60 / GameManager.Instance.BPM);
+        //serialnum = GameManager.Instance.noteNumber;
 
 
     }
 
-    private void Start()
-    {
-        
-    }
+    
 
     // Update is called once per frame
     void Update()
@@ -76,19 +74,19 @@ public class Ingredient : MonoBehaviour
             animator.SetTrigger("Happy");
         }
 
-        if (serialnum == GameManager.Instance.judgeNumber) 
-        {
-            isOnTime = true;
-        }
-        else
-        {
-            isOnTime = false;
-        }
+        //if (serialnum == GameManager.Instance.judgeNumber) 
+        //{
+        //    isOnTime = true;
+        //}
+        //else
+        //{
+        //    isOnTime = false;
+        //}
 
-        if (GameManager.Instance.count >= 151)
-        {
-            _pool.Release(this);
-        }
+        //if (GameManager.Instance.count >= 151)
+        //{
+        //    _pool.Release(this);
+        //}
         
     }
 
@@ -126,7 +124,7 @@ public class Ingredient : MonoBehaviour
                 animator.SetTrigger("Move");
             }
             float timer = 0f;
-            while (timer < moveDuration)
+            while (timer <= moveDuration)
             {
                 timer += Time.deltaTime;
                 transform.position = Vector3.Lerp(standPoints[positionId].position,
@@ -138,6 +136,10 @@ public class Ingredient : MonoBehaviour
         }
         else
         {
+            yield return new WaitForSeconds(moveDuration);  
+            positionId = 0;
+            animator.SetBool("Cracked", false);
+            manager.activeIngredients.Remove(this);
             _pool.Release(this);
         }
     }
@@ -175,8 +177,8 @@ public class Ingredient : MonoBehaviour
     {
         cracked = true;
         animator.SetTrigger("Crack");
+        animator.SetBool("Cracked", true);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.crack);
-        gameObject.transform.position += Vector3.down;
     }
 
 

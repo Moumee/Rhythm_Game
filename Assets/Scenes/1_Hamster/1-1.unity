@@ -306,37 +306,6 @@ MonoBehaviour:
   - {fileID: 870481721}
   - {fileID: 1412407288}
   callNumber: 0
---- !u!1 &351051234
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 351051235}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &351051235
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 351051234}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &467063358
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +315,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 467063360}
-  - component: {fileID: 467063359}
   m_Layer: 0
   m_Name: CatchController
   m_TagString: Untagged
@@ -354,18 +322,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &467063359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 467063358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46f464ff17055504db4987d3c8c55b29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &467063360
 Transform:
   m_ObjectHideFlags: 0
@@ -375,7 +331,7 @@ Transform:
   m_GameObject: {fileID: 467063358}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.7954366, y: -0.5950408, z: 0.010043612}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1776,7 +1732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1750320640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1790,20 +1746,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageNumber: 1
+  currentStage: 0
   missText: {fileID: 1348473699}
   goodText: {fileID: 166179783}
   perfectText: {fileID: 1383203660}
+  comboText: {fileID: 0}
   noteNumber: 0
   noteNumber2: 0
   judgeNumber: 0
+  currentState: 0
+  ingreDelay: 4
   BPM: 210
   count: 0
   startDelay: 0
   Score: 0
+  missCount: 0
   noteBeatInterval: 5
-  currentStage: 0
-  currentState: 0
-  noteManager: {fileID: 140664321}
   fadeanim: {fileID: 0}
   subStages: []
 --- !u!4 &1750320641
@@ -2381,14 +2339,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8428ca5cceee3d942b50871c6cbe9b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  punch: {fileID: 665091818}
   standPoints:
   - {fileID: 1002562058}
   - {fileID: 1210770788}
   - {fileID: 523283212}
   - {fileID: 1411957879}
   - {fileID: 1033533545}
-  ingredients: []
+  activeIngredients: []
   tempIngre: {fileID: 0}
+  targetIngre: {fileID: 0}
 --- !u!4 &2100601290
 Transform:
   m_ObjectHideFlags: 0
@@ -2793,4 +2753,3 @@ SceneRoots:
   - {fileID: 2118084802}
   - {fileID: 467063360}
   - {fileID: 1750320641}
-  - {fileID: 351051235}

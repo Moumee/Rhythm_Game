@@ -45,6 +45,7 @@ public class BackgroundCheese : MonoBehaviour
         float timer = 0f;
         while (appearDuration > timer)
         {
+            timer += Time.deltaTime;
             cheeseRenderers[index].color = Color.Lerp(startColor, targetColor, timer / appearDuration);
             yield return null;
         }

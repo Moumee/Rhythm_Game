@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Punch : MonoBehaviour
 {
-    float punchDuration = 0.1f;
-    float upDuration = 0.2f;   
-    float missDuration = 0.05f;
+    float punchDuration = 0.05f;
+    float upDuration = 0.1f;   
+    float missDuration = 0.02f;
     Vector3 startPos;
     Animator animator;
     // Start is called before the first frame update
@@ -15,16 +15,18 @@ public class Punch : MonoBehaviour
         animator = GetComponent<Animator>();
         startPos = transform.position;
     }
-    public void OnEvent_Punch()
+
+    public void OnNoteHit()
     {
         StartCoroutine(PunchSuccess());
-        
     }
 
-    public void OnEvent_Miss()
+
+    public void OnNoteMiss()
     {
-        StartCoroutine(PunchMiss());    
+        StartCoroutine(PunchMiss());
     }
+
 
     IEnumerator PunchSuccess()
     {
@@ -37,8 +39,8 @@ public class Punch : MonoBehaviour
         }
         transform.position = startPos + new Vector3(0, -8.5f, 0);
         animator.SetTrigger("Punch");
-        yield return new WaitForSeconds(0.2f);
         float secondElapsedTime = 0f;
+        yield return new WaitForSeconds(0.1f);
         while (secondElapsedTime < upDuration)
         {
             secondElapsedTime += Time.deltaTime;
@@ -58,7 +60,7 @@ public class Punch : MonoBehaviour
             yield return null;
         }
         transform.position = startPos + new Vector3(0, -3f, 0);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         float secondElapseTime = 0f;
         while (secondElapseTime < missDuration)
         {

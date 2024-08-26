@@ -1043,7 +1043,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &252814470
 Transform:
   m_ObjectHideFlags: 0
@@ -1839,6 +1839,7 @@ MonoBehaviour:
   count: 0
   startDelay: 0
   Score: 0
+  missCount: 0
   noteBeatInterval: 5
   fadeanim: {fileID: 1079533667}
   subStages:
@@ -1873,11 +1874,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0719938f2b131894992f5dafbb7a359d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cabbageManager: {fileID: 0}
-  tomatoManager: {fileID: 0}
-  mushroom: {fileID: 0}
-  cheeseGrater: {fileID: 0}
-  backgroundCheese: {fileID: 0}
+  cabbageManager: {fileID: 987619710}
+  tomatoManager: {fileID: 1339058901}
+  mushroom: {fileID: 822147725}
+  cheeseGrater: {fileID: 419348163}
+  backgroundCheese: {fileID: 715818627}
 --- !u!1 &526434877
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,7 +2318,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -160730275
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 14a3c2a5b2844a746b695d7fb81589bd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
@@ -3606,7 +3607,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1320361113
 Transform:
   m_ObjectHideFlags: 0
@@ -3705,7 +3706,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -160730275
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: bf2a00b6a18c82946af6dc03db204ea8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
@@ -3973,7 +3974,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -160730275
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: a413c30e2360075408ce9b23d2e17fa7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0

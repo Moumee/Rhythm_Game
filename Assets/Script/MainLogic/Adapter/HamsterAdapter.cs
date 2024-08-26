@@ -11,32 +11,32 @@ public class HamsterAdapter : EventAdapter
 
 
 
-  
+
 
 
     public override void Event_OnBeat()
     {
-        if (GameManager.Instance.currentStage > 0)
-        {
-            moldManager.OnEvent_MoveMold();
-        }
-        else
-        {
-            //ingredientManager.OnEvent_MoveIngredient();
-        }
+        //if (GameManager.Instance.currentStage > 0)
+        //{
+        //    moldManager.OnEvent_MoveMold();
+        //}
+        //else
+        //{
+        //    //ingredientManager.OnEvent_MoveIngredient();
+        //}
     }
 
     public override void Event_OnNote()
     {
-        if (GameManager.Instance.currentStage > 0)
-        {
-            Debug.Log("f");
-            moldManager.OnEvent_SpawnMold();
-        }
-        else
-        {
-            ingredientManager.OnEvent_SpawnIngredient();
-        }
+        //if (GameManager.Instance.currentStage > 0)
+        //{
+        //    Debug.Log("f");
+        //    moldManager.OnEvent_SpawnMold();
+        //}
+        //else
+        //{
+        //    ingredientManager.SpawnIngredient();
+        //}
     }
 
     public override void Event_CatchNote(bool isPerfect = true, int direction = 0)
@@ -48,7 +48,7 @@ public class HamsterAdapter : EventAdapter
         }
         else
         {
-            punch.OnEvent_Punch();
+            //punch.OnEvent_Punch();
             //ingredientManager.EventCatchNote();
         }
     }
@@ -62,7 +62,7 @@ public class HamsterAdapter : EventAdapter
         }
         else
         {
-            punch.OnEvent_Punch();
+            //punch.OnEvent_Punch();
             //ingredientManager.EventCatchNote();
         }
     }

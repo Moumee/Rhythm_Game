@@ -581,7 +581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anyKeyObj: {fileID: 19720396}
   fadeAnim: {fileID: 1680741826}
-  nextSceneName: CapybaraStage
+  nextSceneName: CatStage
 --- !u!1001 &1676124716
 PrefabInstance:
   m_ObjectHideFlags: 0
