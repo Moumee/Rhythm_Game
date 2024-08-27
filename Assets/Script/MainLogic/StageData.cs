@@ -14,12 +14,14 @@ public struct StageData
     public int[][] noteRotationStageList { get; }
     public int noteInterval { get; }
 
+    public int oneCount { get; } //노트 차트의 1의 개수
+
 
 
     public StageData
     (List<int> chart, float bpm, string success, string fail, int count, 
         List<int> changeBeats, List<int> direction, int[][] rotation,
-        int interval)
+        int interval, int numOfOnes)
     {
         MusicChart = chart;
         BPM = bpm;
@@ -30,6 +32,7 @@ public struct StageData
         noteDirection = direction;
         noteRotationStageList = rotation;
         noteInterval = interval;
+        oneCount = numOfOnes;
     }
 }
 

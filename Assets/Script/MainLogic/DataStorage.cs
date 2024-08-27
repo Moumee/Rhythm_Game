@@ -40,7 +40,8 @@ public class DataStorage
         new List<int> { 148 },
         new List<int> { 0, 3 },
         new int[2][] { new int[1] {0}, new int[1] {0} },
-        5   //noteInterval
+        5, //noteInterval
+        74
     );
     public StageData Data_Cat = new StageData(
        new List<int>
@@ -79,7 +80,8 @@ public class DataStorage
         new List<int> { 135 },
         new List<int> { 0, 0 },
         new int[2][] { new int[2] { 1, 3 }, new int[1] { 0 } },
-        7   //noteInterval
+        7,   //noteInterval
+        102
     );
     public StageData Data_Capybara = new StageData(
        new List<int>
@@ -118,7 +120,8 @@ public class DataStorage
         new List<int> { 126, 291, },
         new List<int> { 0, 3, 0 },
         new int[3][] { new int[1] { 0 }, new int[] { 0 }, new int[2] {1, 3 } },
-        5   //noteInterval
+        5,   //noteInterval
+        144
     );
 
     public StageData Data_Panda = new StageData(
@@ -165,7 +168,8 @@ public class DataStorage
         new List<int> { 196 },
         new List<int> { 3, 3 },
         new int[2][] { new int[1] { 0 }, new int[1] { 0 } },
-        8   //noteInterval
+        8, //noteInterval
+        159
     );
 
     public StageData Data_Lion = new StageData(
@@ -212,7 +216,9 @@ public class DataStorage
         new List<int> { 120, 264, 376 },
         new List<int> { 0, 0, 3,0 },
         new int[4][] { new int[1] { 0 }, new int[1] { 0 }, new int[2] { 1,3 }, new int[1] { 0 } },
-        5   //noteInterval
+        5, //noteInterval
+        234
+
     );
 
 }

@@ -249,11 +249,11 @@ public class GameManager : MonoBehaviour
             stageEnd = true;
             AudioManager.Instance.stageSource.Stop();
             scoreStorage.FinalScore += Score;
-            if (Score > 75 * 7.5 && !fadeOutStart)
+            if (Score > stageData.oneCount * 7.5 && !fadeOutStart)
             {
                 StartCoroutine(FadeOutToNextScene(stageData.successScene));
             }
-            else if (Score <= 75 * 7.5 && !fadeOutStart)
+            else if (Score <= stageData.oneCount * 7.5 && !fadeOutStart)
             {
                 StartCoroutine(FadeOutToNextScene(stageData.failScene));
 
