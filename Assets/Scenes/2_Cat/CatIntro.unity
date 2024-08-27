@@ -430,9 +430,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1680741824}
   - {fileID: 1676124717}
   - {fileID: 19720397}
+  - {fileID: 2096844761}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -580,7 +580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anyKeyObj: {fileID: 19720396}
-  fadeAnim: {fileID: 1680741826}
+  fadeAnim: {fileID: 2096844762}
   nextSceneName: CatStage
 --- !u!1001 &1676124716
 PrefabInstance:
@@ -793,7 +793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5583f62e72441ec44b766ab81d9d1759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1680741823
+--- !u!1001 &2096844760
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -801,9 +801,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1030577563}
     m_Modifications:
+    - target: {fileID: 3469646323617714845, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6889522115293003650, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
       propertyPath: m_Name
       value: FadeInStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 6889522115293003650, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7675655784323722303, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
       propertyPath: m_Pivot.x
@@ -855,15 +863,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7675655784323722303, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7675655784323722303, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7675655784323722303, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7675655784323722303, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -885,20 +893,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8926981330407627510, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 86f8057c2e595a74c94921067052f108, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
---- !u!224 &1680741824 stripped
+--- !u!224 &2096844761 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7675655784323722303, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
-  m_PrefabInstance: {fileID: 1680741823}
+  m_PrefabInstance: {fileID: 2096844760}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1680741826 stripped
+--- !u!95 &2096844762 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8926981330407627510, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
-  m_PrefabInstance: {fileID: 1680741823}
+  m_PrefabInstance: {fileID: 2096844760}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

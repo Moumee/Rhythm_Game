@@ -593,6 +593,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7675655784323722303, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
   m_PrefabInstance: {fileID: 490039934}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &490039936 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8926981330407627510, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
+  m_PrefabInstance: {fileID: 490039934}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &650245430
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,10 +1091,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ab57064d921ac4ba8b3e2f91f1c1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLionStage: 1
+  fadeAnim: {fileID: 490039936}
+  nextSceneName: 
   continueTextObj: {fileID: 362075966}
   speechBubble: {fileID: 1627838533}
   effect: {fileID: 650245432}
-  hamsterAnim: {fileID: 102851445}
+  animalAnim: {fileID: 102851445}
   speechAnim: {fileID: 1627838535}
   foodSpriteRenderer: {fileID: 435214867}
   videoFadeDuration: 1

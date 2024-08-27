@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Video;
-using static System.Net.WebRequestMethods;
+using UnityEngine.SceneManagement;
+
 
 public class StageResult : MonoBehaviour
 {
+    public bool isLionStage = false;
+    public Animator fadeAnim;
+    public string nextSceneName;
     float objectAlpha;
     [SerializeField] GameObject continueTextObj;
     [SerializeField] SpriteRenderer speechBubble;
     [SerializeField] SpriteRenderer effect;
-    [SerializeField] Animator hamsterAnim;
+    [SerializeField] Animator animalAnim;
     [SerializeField] Animator speechAnim;
     private int anyKeyIndex = 0;
     [SerializeField] SpriteRenderer foodSpriteRenderer;
@@ -61,12 +63,17 @@ public class StageResult : MonoBehaviour
                     else if (anyKeyIndex == 1)
                     {
                         continueTextObj.SetActive(false);
-                        hamsterAnim.SetTrigger("Down");
+                        animalAnim.SetTrigger("Down");
                         StartCoroutine(ObjectFadeOut());
                         if (hasEffect)
                         {
                             StartCoroutine(EffectFadeOut());
                         }
+                        if (!isLionStage)
+                        {
+                            StartCoroutine(LoadNextScene(nextSceneName));
+                        }
+                        
                     }
                 }
                 
@@ -74,6 +81,12 @@ public class StageResult : MonoBehaviour
             
         }
         
+    }
+
+    IEnumerator LoadNextScene(string sceneName)
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadSceneAsync(sceneName);
     }
 
     IEnumerator FoodFade(float duration)

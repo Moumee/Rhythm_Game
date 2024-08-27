@@ -28,7 +28,8 @@ public class Intro : MonoBehaviour
                 {
                     anyKeyObj.SetActive(false);
                     fadeAnim.SetTrigger("FadeOut");
-                    StartCoroutine(LoadNextScene(nextSceneName));
+                    AudioManager.Instance.StopAllMusic();
+                    SceneManager.LoadSceneAsync(nextSceneName);
                 }
             }
         }
@@ -39,10 +40,5 @@ public class Intro : MonoBehaviour
         anyKeyObj.SetActive(true);  
     }
 
-    IEnumerator LoadNextScene(string sceneName)
-    {
-        AudioManager.Instance.StopAllMusic();
-        yield return new WaitForSeconds(fadeAnim.GetCurrentAnimatorClipInfo(0)[0].clip.length);
-        SceneManager.LoadSceneAsync(sceneName);
-    }
+    
 }
