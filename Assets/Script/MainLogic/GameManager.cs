@@ -248,6 +248,7 @@ public class GameManager : MonoBehaviour
         {
             stageEnd = true;
             AudioManager.Instance.stageSource.Stop();
+            
             scoreStorage.FinalScore += Score;
             if (Score > stageData.oneCount * 7.5 && !fadeOutStart)
             {
