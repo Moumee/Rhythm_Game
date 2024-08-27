@@ -37,7 +37,7 @@ public class DataStorage
         "HamsterAngry",
         2,
         new List<int> { 135 },
-        new List<int> { 1, 3 },
+        new List<int> { 0, 0 },
         new int[2][] { new int[1] {0}, new int[1] {0} },
         5   //noteInterval
     );

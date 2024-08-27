@@ -223,6 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteSpawnPoint:
   - {fileID: 1586679160}
+  - {fileID: 1586679160}
   noteDirection: {x: -1, y: 0, z: 0}
   notesToCheck: []
 --- !u!4 &140664322
@@ -1160,6 +1161,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2021391841}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1161293028 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8926981330407627510, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
+  m_PrefabInstance: {fileID: 766084077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1210770787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,6 +1694,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1684405199}
+  - component: {fileID: 1684405200}
   m_Layer: 0
   m_Name: Text Effect
   m_TagString: Untagged
@@ -1713,6 +1720,21 @@ Transform:
   - {fileID: 2107668488}
   m_Father: {fileID: 1750320641}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1684405200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684405198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 204747e1fc43cb943bb1daa5b5ebfdde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noteCenter:
+  - {fileID: 745237013}
+  - {fileID: 2001545330}
 --- !u!1 &1750320639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,7 +1752,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1750320640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1745,7 +1767,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageNumber: 1
   currentStage: 0
-  subStages: []
+  subStages:
+  - {fileID: 505152854}
+  - {fileID: 1935337503}
   missText: {fileID: 1348473699}
   goodText: {fileID: 166179783}
   perfectText: {fileID: 1383203660}
@@ -1761,7 +1785,7 @@ MonoBehaviour:
   missCount: 0
   ingreDelay: 4
   noteBeatInterval: 5
-  fadeanim: {fileID: 0}
+  fadeanim: {fileID: 1161293028}
 --- !u!4 &1750320641
 Transform:
   m_ObjectHideFlags: 0
@@ -1792,9 +1816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredientManager: {fileID: 2100601289}
-  punch: {fileID: 665091818}
   moldManager: {fileID: 96987481}
-  fillingManager: {fileID: 195566974}
 --- !u!1 &1789407388
 GameObject:
   m_ObjectHideFlags: 0

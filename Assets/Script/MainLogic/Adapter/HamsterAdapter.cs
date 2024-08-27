@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class HamsterAdapter : EventAdapter
 {
-    [SerializeField] IngredientManager ingredientManager;
-    public Punch punch;
+    public IngredientManager ingredientManager;
     public MoldManager moldManager;
-    public FillingManager fillingManager;
 
 
 
