@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
-using static UnityEditor.PlayerSettings;
 
 
 public class Ingredient : MonoBehaviour
@@ -14,9 +13,10 @@ public class Ingredient : MonoBehaviour
     [SerializeField] RuntimeAnimatorController[] controllers;
     private string currentState;
     private int beatJumpCount;
-    private float moveDuration = 0.3f;
+    private float moveDuration = 0.1f;
 
-    public Transform[] standPoints;
+    [SerializeField] PointSO pointData;
+    public Vector3[] standPoints;
 
     
     public bool isLive = false;
@@ -30,19 +30,20 @@ public class Ingredient : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        manager = FindObjectOfType<IngredientManager>();
+        manager = GetComponentInParent<IngredientManager>();
         animator = GetComponent<Animator>();
         animator.runtimeAnimatorController = controllers[Random.Range(0, controllers.Length)];
         isLive = true;
         beatJumpCount = 0;
         //speed = 15/(60 / GameManager.Instance.BPM/3);
         //transform.position = standPoints[positionId].transform.position;
-        standPoints = manager.standPoints;
+        standPoints = pointData.seedPoints;
     }
     private void OnEnable()
     {
+
         cracked = false;
-        transform.position = standPoints[0].position;
+        transform.position = standPoints[0];
         //catchableTime = AudioSettings.dspTime + 4 * (60 / GameManager.Instance.BPM);
         //serialnum = GameManager.Instance.noteNumber;
 
@@ -56,22 +57,24 @@ public class Ingredient : MonoBehaviour
     {
         //if (!FindObjectOfType<PauseMenu>().isPlaying) { return;}
 
-        if (transform.position.x < standPoints[0].transform.position.x && transform.position.x > standPoints[1].transform.position.x)
-        {
-            animator.SetTrigger("Move");
-        }
-        else if (transform.position.x == standPoints[1].transform.position.x && !cracked)
+        
+        if (transform.position.x == standPoints[1].x && !cracked)
         {
             animator.SetTrigger("Shake");
         }
-        else if (transform.position.x == standPoints[2].transform.position.x && !cracked)
+        else if (transform.position.x == standPoints[2].x && !cracked)
         {
             animator.SetTrigger("Scared");
 
         }
-        else if (transform.position.x < standPoints[2].transform.position.x && !cracked)
+        else if (transform.position.x < standPoints[2].x && !cracked)
         {
             animator.SetTrigger("Happy");
+        }
+
+        if (transform.position.x < standPoints[2].x + 2f && transform.position.x >= standPoints[2].x)
+        {
+            manager.targetIngre = this;
         }
 
         //if (serialnum == GameManager.Instance.judgeNumber) 
@@ -127,11 +130,11 @@ public class Ingredient : MonoBehaviour
             while (timer <= moveDuration)
             {
                 timer += Time.deltaTime;
-                transform.position = Vector3.Lerp(standPoints[positionId].position,
-                    standPoints[positionId + 1].position, timer / moveDuration);
+                transform.position = Vector3.Lerp(standPoints[positionId],
+                    standPoints[positionId + 1], timer / moveDuration);
                 yield return null;
             }
-            transform.position = standPoints[positionId + 1].position;
+            transform.position = standPoints[positionId + 1];
             positionId++;
         }
         else
@@ -161,11 +164,7 @@ public class Ingredient : MonoBehaviour
     //    }
     //}
 
-    public void SetPoint(Transform[] standPoint)
-    {
-        this.standPoints = standPoint;
-        isLive = true;
-    }
+    
 
     public void SetPool(ObjectPool<Ingredient> pool)
     {
@@ -176,8 +175,8 @@ public class Ingredient : MonoBehaviour
     public void Break()
     {
         cracked = true;
-        animator.SetTrigger("Crack");
         animator.SetBool("Cracked", true);
+        animator.SetTrigger("Crack");
         AudioManager.Instance.PlaySFX(AudioManager.Instance.crack);
     }
 

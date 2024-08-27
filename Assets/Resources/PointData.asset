@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420ef28206d3a6f4d8f9f11c60a587ec, type: 3}
   m_Name: PointData
   m_EditorClassIdentifier: 
+  seedPoints:
+  - {x: 14, y: -3, z: 0}
+  - {x: 7, y: -3, z: 0}
+  - {x: 0, y: -3, z: 0}
+  - {x: -7, y: -3, z: 0}
+  - {x: -14, y: -3, z: 0}
   moldPoints:
   - {x: 15, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}

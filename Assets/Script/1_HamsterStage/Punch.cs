@@ -5,8 +5,8 @@ using UnityEngine;
 public class Punch : MonoBehaviour
 {
     float punchDuration = 0.05f;
-    float upDuration = 0.1f;   
-    float missDuration = 0.02f;
+    float upDuration = 0.05f;   
+    float missDuration = 0.05f;
     Vector3 startPos;
     Animator animator;
     // Start is called before the first frame update
@@ -39,8 +39,8 @@ public class Punch : MonoBehaviour
         }
         transform.position = startPos + new Vector3(0, -8.5f, 0);
         animator.SetTrigger("Punch");
+        yield return new WaitForSeconds(0.05f);
         float secondElapsedTime = 0f;
-        yield return new WaitForSeconds(0.1f);
         while (secondElapsedTime < upDuration)
         {
             secondElapsedTime += Time.deltaTime;
@@ -60,7 +60,7 @@ public class Punch : MonoBehaviour
             yield return null;
         }
         transform.position = startPos + new Vector3(0, -3f, 0);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         float secondElapseTime = 0f;
         while (secondElapseTime < missDuration)
         {
