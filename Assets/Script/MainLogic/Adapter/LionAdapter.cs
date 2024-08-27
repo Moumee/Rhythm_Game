@@ -15,6 +15,10 @@ public class LionAdapter : EventAdapter
 
     // Start is called before the first frame update
 
+    private void Awake()
+    {
+        
+    }
 
     public override void Event_OnBeat()
     {
