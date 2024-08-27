@@ -73,6 +73,10 @@ public class StageResult : MonoBehaviour
                         {
                             StartCoroutine(LoadNextScene(nextSceneName));
                         }
+                        else if (isLionStage)
+                        {
+                            
+                        }
                         
                     }
                 }
