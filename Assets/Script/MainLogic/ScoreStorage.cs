@@ -6,9 +6,21 @@ public class ScoreStorage : MonoBehaviour
 {
     public int FinalScore = 0;
 
-    private void Awake()
+    private static ScoreStorage _Instance;
+    public static ScoreStorage Instance
     {
-        DontDestroyOnLoad(gameObject);
+        get
+        {
+            if (!_Instance)
+            {
+                var prefab = Resources.Load<GameObject>("ScoreStoragePrefab");
+                var inScene = Instantiate(prefab);
+                _Instance = inScene.GetComponentInChildren<ScoreStorage>();
+                if (!_Instance) _Instance = inScene.AddComponent<ScoreStorage>();
+                DontDestroyOnLoad(_Instance.transform.root.gameObject);
+            }
+            return _Instance;
+        }
     }
-    
+
 }

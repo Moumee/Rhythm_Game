@@ -9,7 +9,7 @@ public class LoadFinalResult : MonoBehaviour
     public int successTotalScore;
     public void LoadResultScene()
     {
-        if (FindObjectOfType<ScoreStorage>().FinalScore >= successTotalScore)
+        if (ScoreStorage.Instance.FinalScore >= successTotalScore)
         {
             SceneManager.LoadSceneAsync("SuccessResult");
         }

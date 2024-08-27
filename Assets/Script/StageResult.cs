@@ -75,7 +75,7 @@ public class StageResult : MonoBehaviour
                         }
                         else if (isLionStage)
                         {
-                            
+                            FindObjectOfType<LoadFinalResult>().LoadResultScene();
                         }
                         
                     }
