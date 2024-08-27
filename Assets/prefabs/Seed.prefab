@@ -124,6 +124,7 @@ MonoBehaviour:
   controllers:
   - {fileID: 9100000, guid: 2d1a50be41b77b246a8d1d69c30679b8, type: 2}
   - {fileID: 9100000, guid: 6cf3a42af39e44841ae1c702a3cccd02, type: 2}
+  pointData: {fileID: 11400000, guid: c93895c5bb6e1cd47855372f6565d8c9, type: 2}
   standPoints: []
   isLive: 0
   isOnTime: 0

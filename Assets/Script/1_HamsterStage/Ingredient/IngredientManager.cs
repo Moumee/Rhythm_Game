@@ -50,13 +50,7 @@ public class IngredientManager : MonoBehaviour
             OnNoteMiss();
         }
 
-        foreach (var ingredient in activeIngredients)
-        {
-            if (ingredient.transform.position.x < 3 && ingredient.transform.position.x > -3)
-            {
-                targetIngre = ingredient;
-            }
-        }
+        
     }
 
     public void OnNoteHit()
@@ -77,7 +71,7 @@ public class IngredientManager : MonoBehaviour
     public void SpawnIngredient()
     {
         tempIngre = ingrePool.pool.Get();
-        tempIngre.SetPoint(standPoints);
+        
         activeIngredients.Add(tempIngre);
     }
 
