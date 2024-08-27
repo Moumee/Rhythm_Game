@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     DataStorage dataStorage = new DataStorage();
     StageData stageData;
     [HideInInspector] public int currentStage = 0;
-    int stageCheck = 0;
+    public List<GameObject> subStages = new List<GameObject>();
 
 
     EventAdapter eventAdapter;
@@ -50,12 +50,11 @@ public class GameManager : MonoBehaviour
     public catchState currentState = catchState.Miss;
     private int randomvalue = 0;
     private List<int> noterotationList = new List<int> {0};
+    private List<KeyCode> keyCodeList =
+        new List<KeyCode> { KeyCode.DownArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.LeftArrow };
 
-    public int ingreDelay = 4;
+    
 
-
-    private List<KeyCode> keyCodeList = 
-        new List<KeyCode> {KeyCode.DownArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.LeftArrow };
 
     //채보관련
     private List<int> SpawnChart = new List<int>();
@@ -72,7 +71,6 @@ public class GameManager : MonoBehaviour
     private float margin_perfect = 0.05f;
     private float margin_good = 0.1f;
     private bool isScoreGet = true;
-    private float catchDelay = 0.01f;
     private bool isCatchable = true;
 
     public int count = 0;       //count of called beats
@@ -85,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     public int Score = 0;
     [HideInInspector] public int missCount;
+    public int ingreDelay = 4;
     public int noteBeatInterval = 5;    //number of beats to move ingredients
 
     
@@ -95,8 +94,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Animator fadeanim;
     bool fadeOutStart = false;
 
-
-    public List<GameObject> subStages = new List<GameObject>();
+    TextEffectMove textEffectMove;
+    
 
 
     void Awake()
@@ -109,6 +108,7 @@ public class GameManager : MonoBehaviour
         eventAdapter = GetComponent<EventAdapter>();
         noteManager = FindObjectOfType<NoteManager>();
         beatTracker = FindObjectOfType<BeatTracker>();
+        textEffectMove = FindObjectOfType<TextEffectMove>();
 
         stageData = dataStorage.getStageData((int)stageNumber);
 
@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(NoteStartDelay());
 
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);
+        textEffectMove.EffectMove(currentStage);
 
         
     }
@@ -149,6 +150,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         subStages[currentStage-1].SetActive(false);
         subStages[currentStage].SetActive(true);
+        textEffectMove.EffectMove(currentStage);
         Debug.Log(currentStage);
         noteManager.spawnPointChange(currentStage);
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);

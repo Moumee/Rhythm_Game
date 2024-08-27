@@ -174,6 +174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 361214720}
+  - component: {fileID: 361214721}
   m_Layer: 0
   m_Name: Text Effect
   m_TagString: Untagged
@@ -200,6 +201,21 @@ Transform:
   - {fileID: 1186103974}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &361214721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361214719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 204747e1fc43cb943bb1daa5b5ebfdde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noteCenter:
+  - {fileID: 1070619574}
+  - {fileID: 1314140731}
 --- !u!114 &378107162 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7856073060147190455, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
@@ -2311,10 +2327,12 @@ MonoBehaviour:
   noteNumber2: 0
   judgeNumber: 0
   currentState: 0
+  ingreDelay: 4
   BPM: 210
   count: 0
   startDelay: 0
   Score: 0
+  missCount: 0
   noteBeatInterval: 5
   fadeanim: {fileID: 1989119777}
   subStages:

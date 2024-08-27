@@ -43,7 +43,8 @@ public class DataStorage
     public StageData Data_Cat = new StageData(
        new List<int>
         {
-           0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,
+           //0,0,0,0,0,0,
+           0,0,0,0,0,0,0,0,0,0,1,0,0,0,
            1,0,0,0,1,1,0,0,1,1,0,0,1,0,0,0,1,0,1,0,
            1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,
            1,1,0,0,1,1,0,0,1,0,1,0,1,0,0,1,0,0,1,0,
@@ -71,7 +72,7 @@ public class DataStorage
         "CatHappy",
         "CatAngry",
         2,
-        new List<int> { 148 },
+        new List<int> { 142 },
         new List<int> { 0, 0 },
         new int[2][] { new int[2] { 1, 3 }, new int[1] { 0 } }
     );
