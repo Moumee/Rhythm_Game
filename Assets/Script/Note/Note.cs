@@ -57,13 +57,16 @@ public class Note : MonoBehaviour
 
         if (serialnum == GameManager.Instance.judgeNumber && GameManager.Instance.currentState != catchState.Miss)
         { 
-            spriteRenderer.color = Color.blue;
             isOnTime = true;
         }
         else
         {
-            spriteRenderer.color = Color.red;
             isOnTime = false;
+        }
+
+        if (transform.position.x <= 0 || transform.position.y <= 0)
+        {
+            StartCoroutine(Dead());
         }
     }
     
@@ -76,5 +79,12 @@ public class Note : MonoBehaviour
     {
         noteManager.notesToCheck.Remove(this.gameObject);
         _pool.Release(this);
+    }
+
+    IEnumerator Dead()
+    {
+        yield return new WaitForSeconds(0.5f);
+        judged = true;
+        animator.SetTrigger("Miss");
     }
 }
