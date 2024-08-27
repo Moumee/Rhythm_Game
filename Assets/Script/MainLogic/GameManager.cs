@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     DataStorage dataStorage = new DataStorage();
     StageData stageData;
     [HideInInspector] public int currentStage = 0;
-    public List<GameObject> subStages = new List<GameObject>();
+    int stageCheck = 0;
 
 
     EventAdapter eventAdapter;
@@ -35,11 +35,12 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]public static GameManager Instance;
     [HideInInspector] public int noteNumber = 0;
-    [HideInInspector] public int noteSerialNum = 0;
+    [HideInInspector] public int noteNumber2 = 0;
     [HideInInspector] public int judgeNumber = 0;
 
     //public GameObject anyKeyObj;
     private BeatTracker beatTracker;
+    private int startDelayBeatCount = 0;
 
     private int combo = 0;
 
@@ -49,11 +50,12 @@ public class GameManager : MonoBehaviour
     public catchState currentState = catchState.Miss;
     private int randomvalue = 0;
     private List<int> noterotationList = new List<int> {0};
-    private List<KeyCode> keyCodeList =
-        new List<KeyCode> { KeyCode.DownArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.LeftArrow };
 
-    
+    public int ingreDelay = 4;
 
+
+    private List<KeyCode> keyCodeList = 
+        new List<KeyCode> {KeyCode.DownArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.LeftArrow };
 
     //채보관련
     private List<int> SpawnChart = new List<int>();
@@ -70,6 +72,7 @@ public class GameManager : MonoBehaviour
     private float margin_perfect = 0.05f;
     private float margin_good = 0.1f;
     private bool isScoreGet = true;
+    private float catchDelay = 0.01f;
     private bool isCatchable = true;
 
     public int count = 0;       //count of called beats
@@ -82,7 +85,6 @@ public class GameManager : MonoBehaviour
 
     public int Score = 0;
     [HideInInspector] public int missCount;
-    public int ingreDelay = 4;
     public int noteBeatInterval = 5;    //number of beats to move ingredients
 
     
@@ -93,8 +95,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Animator fadeanim;
     bool fadeOutStart = false;
 
-    TextEffectMove textEffectMove;
-    
+
+    public List<GameObject> subStages = new List<GameObject>();
 
 
     void Awake()
@@ -107,10 +109,8 @@ public class GameManager : MonoBehaviour
         eventAdapter = GetComponent<EventAdapter>();
         noteManager = FindObjectOfType<NoteManager>();
         beatTracker = FindObjectOfType<BeatTracker>();
-        textEffectMove = FindObjectOfType<TextEffectMove>();
 
         stageData = dataStorage.getStageData((int)stageNumber);
-        noteBeatInterval = stageData.noteInterval;
 
         BPM = stageData.BPM;
         MusicChart = stageData.MusicChart;
@@ -129,7 +129,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(NoteStartDelay());
 
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);
-        textEffectMove.EffectMove(currentStage);
 
         
     }
@@ -150,7 +149,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         subStages[currentStage-1].SetActive(false);
         subStages[currentStage].SetActive(true);
-        textEffectMove.EffectMove(currentStage);
         Debug.Log(currentStage);
         noteManager.spawnPointChange(currentStage);
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);
@@ -169,10 +167,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void IntervalFix()
-    {
 
-    }
 
     // Update is called once per frame
     void Update()
@@ -281,11 +276,11 @@ public class GameManager : MonoBehaviour
             }
             eventAdapter.Event_OnBeat();
 
-            if (count + noteBeatInterval <= SpawnChart.Count - 1)
+            if (count + 6 <= SpawnChart.Count - 1)
             {
-                if (SpawnChart[count + noteBeatInterval] == 1)
+                if (SpawnChart[count + 6 ] == 1)
                 {
-                    noteSerialNum++;
+                    noteNumber2++;
                     randomvalue = RandomMachine();
                     noterotationList.Add(randomvalue);
                     noteManager.EventNoteSpawn(randomvalue);

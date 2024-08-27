@@ -38,14 +38,12 @@ public class DataStorage
         2,
         new List<int> { 135 },
         new List<int> { 1, 3 },
-        new int[2][] { new int[1] {0}, new int[1] {0} },
-        5   //noteInterval
+        new int[2][] { new int[1] {0}, new int[1] {0} }
     );
     public StageData Data_Cat = new StageData(
        new List<int>
         {
-           //0,0,0,0,0,0,
-           0,0,0,0,0,0,0,0,0,0,1,0,0,0,
+           0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,
            1,0,0,0,1,1,0,0,1,1,0,0,1,0,0,0,1,0,1,0,
            1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,
            1,1,0,0,1,1,0,0,1,0,1,0,1,0,0,1,0,0,1,0,
@@ -73,10 +71,9 @@ public class DataStorage
         "CatHappy",
         "CatAngry",
         2,
-        new List<int> { 142 },
+        new List<int> { 148 },
         new List<int> { 0, 0 },
-        new int[2][] { new int[2] { 1, 3 }, new int[1] { 0 } },
-        5   //noteInterval
+        new int[2][] { new int[2] { 1, 3 }, new int[1] { 0 } }
     );
     public StageData Data_Capybara = new StageData(
        new List<int>
@@ -114,8 +111,7 @@ public class DataStorage
         3,
         new List<int> { 130, 295, },
         new List<int> { 0, 3, 0 },
-        new int[3][] { new int[1] { 0 }, new int[] { 0 }, new int[2] {1, 3 } },
-        5   //noteInterval
+        new int[3][] { new int[1] { 0 }, new int[] { 0 }, new int[2] {1, 3 } }
     );
 
     public StageData Data_Panda = new StageData(
@@ -160,8 +156,7 @@ public class DataStorage
         2,
         new List<int> { 206 },
         new List<int> { 3, 3 },
-        new int[2][] { new int[1] { 0 }, new int[1] { 0 } },
-        9   //noteInterval
+        new int[2][] { new int[1] { 0 }, new int[1] { 0 } }
     );
 
     public StageData Data_Lion = new StageData(
@@ -205,8 +200,7 @@ public class DataStorage
         4,
         new List<int> { 124, 268, 380 },
         new List<int> { 0, 0, 3,0 },
-        new int[4][] { new int[1] { 0 }, new int[1] { 0 }, new int[2] { 1,3 }, new int[1] { 0 } },
-        5   //noteInterval
+        new int[4][] { new int[1] { 0 }, new int[1] { 0 }, new int[2] { 1,3 }, new int[1] { 0 } }
     );
 
 }

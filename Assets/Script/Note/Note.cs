@@ -39,7 +39,7 @@ public class Note : MonoBehaviour
         float interval = 60 / GameManager.Instance.BPM;
         judged = false;
         
-        serialnum = GameManager.Instance.noteSerialNum;
+        serialnum = GameManager.Instance.noteNumber2;
     }
 
     // Update is called once per frame

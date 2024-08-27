@@ -34,15 +34,7 @@ public class CatAdapter : EventAdapter {
     {
         if (GameManager.Instance.currentStage == 0)
         {
-            if (direction == 1)
-            {
-                slapManager.OnRightNoteHit();
-            }
-            else
-            {
-                slapManager.OnLeftNoteHit();
-            }
-            
+            slapManager.OnLeftNoteHit();
         }
         else if (GameManager.Instance.currentStage == 1)
         {
