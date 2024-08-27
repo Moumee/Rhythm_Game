@@ -1687,6 +1687,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1205911533}
+  - component: {fileID: 1205911534}
   m_Layer: 0
   m_Name: Text Effect
   m_TagString: Untagged
@@ -1713,6 +1714,21 @@ Transform:
   - {fileID: 1168372808}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1205911534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205911532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 204747e1fc43cb943bb1daa5b5ebfdde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noteCenter:
+  - {fileID: 707854090}
+  - {fileID: 1463541751}
 --- !u!1 &1206640452
 GameObject:
   m_ObjectHideFlags: 0
@@ -2489,23 +2505,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageNumber: 4
   currentStage: 0
+  subStages:
+  - {fileID: 1828595338}
+  - {fileID: 2001775741}
   missText: {fileID: 600149856}
   goodText: {fileID: 819925093}
   perfectText: {fileID: 1472893772}
   comboText: {fileID: 1168372809}
   noteNumber: 0
-  noteNumber2: 0
+  noteSerialNum: 0
   judgeNumber: 0
   currentState: 0
   BPM: 210
   count: 0
   startDelay: 0
   Score: 0
+  scoreStorage: {fileID: 0}
+  missCount: 0
+  ingreDelay: 4
   noteBeatInterval: 5
   fadeanim: {fileID: 1375056953}
-  subStages:
-  - {fileID: 1828595338}
-  - {fileID: 2001775741}
 --- !u!4 &1628986136
 Transform:
   m_ObjectHideFlags: 0
@@ -2759,7 +2778,7 @@ Transform:
   m_GameObject: {fileID: 1988931750}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.65, y: 13.3, z: 0}
+  m_LocalPosition: {x: -7.65, y: 14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2916,8 +2935,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 421850425}
   - {fileID: 2104787542}
-  - {fileID: 1828595339}
   - {fileID: 526407979}
+  - {fileID: 1828595339}
   - {fileID: 2001775742}
   - {fileID: 719293584}
   - {fileID: 1628986136}

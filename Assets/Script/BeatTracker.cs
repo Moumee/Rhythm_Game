@@ -104,14 +104,14 @@ public class BeatTracker : MonoBehaviour
         beatTrackerInstance = this;
         startCollider = GetComponent<BoxCollider2D>();
         SetMusicTrack(eventToPlay);
-        PlayMusicTrack();
+        //PlayMusicTrack();
         
 
     }
 
     public void PlayMusic()
     {
-        //PlayMusicTrack();
+        PlayMusicTrack();
     }
 
     //private void OnTriggerEnter2D(Collider2D collision)

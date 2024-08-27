@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
 
     
 
-
     //채보관련
     private List<int> SpawnChart = new List<int>();
     private List<int> MusicChart;
@@ -77,10 +76,11 @@ public class GameManager : MonoBehaviour
     //valriables for manipulate the starttime
     private bool BeatStart = false;
     bool stageEnd = false;
-    [SerializeField] float startDelay = 0f;
+    [SerializeField] float startDelay = 1f;
     
 
     public int Score = 0;
+    [HideInInspector] public ScoreStorage scoreStorage;
     [HideInInspector] public int missCount;
     public int ingreDelay = 4;
     public int noteBeatInterval = 5;    //number of beats to move ingredients
@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
         noteManager = FindObjectOfType<NoteManager>();
         beatTracker = FindObjectOfType<BeatTracker>();
         textEffectMove = FindObjectOfType<TextEffectMove>();
+        scoreStorage = FindObjectOfType<ScoreStorage>();
 
         stageData = dataStorage.getStageData((int)stageNumber);
         noteBeatInterval = stageData.noteInterval;
@@ -132,6 +133,7 @@ public class GameManager : MonoBehaviour
         textEffectMove.EffectMove(currentStage);
 
         
+        
     }
 
     IEnumerator FadeOutToNextScene(string sceneName)
@@ -143,7 +145,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    IEnumerator FadeInOut()
+    IEnumerator FadeInOutBackground()
     {
         fadeanim.SetTrigger("FadeOut");
 
@@ -156,16 +158,21 @@ public class GameManager : MonoBehaviour
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);
         fadeanim.SetTrigger("FadeIn");
     }
-    IEnumerator MoveBackground(float duration)
+    IEnumerator SlideBackground(float duration)
     {
-        //backgroundMoved = true;
         float elapsedTime = 0f;
+        //subStages[currentStage].transform.position = Vector3.right * 19.2f;
+        subStages[currentStage].SetActive(true);
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            //BackGround.transform.position = Vector3.Lerp(Vector3.zero, new Vector3(-19.2f, 0f, 0f), elapsedTime / duration);
+            subStages[currentStage-1].transform.position = Vector3.Lerp(Vector3.zero, new Vector3(-19.2f, 0f, 0f), elapsedTime / duration);
+            subStages[currentStage].transform.position = Vector3.Lerp(new Vector3(19.2f, 0f, 0f), Vector3.zero, elapsedTime / duration);
             yield return null;
         }
+        noteManager.spawnPointChange(currentStage);
+        noteManager.DirectionChange(stageData.noteDirection[currentStage]);
+        subStages[currentStage - 1].SetActive(false);
     }
 
 
@@ -241,6 +248,7 @@ public class GameManager : MonoBehaviour
         {
             stageEnd = true;
             AudioManager.Instance.stageSource.Stop();
+            scoreStorage.FinalScore += Score;
             if (Score > 75 * 7.5 && !fadeOutStart)
             {
                 StartCoroutine(FadeOutToNextScene(stageData.successScene));
@@ -269,7 +277,15 @@ public class GameManager : MonoBehaviour
             && count == stageData.stageChangeBeats[currentStage])
         {
             currentStage++;
-            StartCoroutine(FadeInOut());
+            if( stageNumber == numberofStage._1Hamster)
+            {
+                StartCoroutine(SlideBackground(1f));
+            }
+            else
+            {
+                StartCoroutine(FadeInOutBackground());
+            }
+            
         }
 
         if (BeatStart && !stageEnd)
@@ -281,9 +297,9 @@ public class GameManager : MonoBehaviour
             }
             eventAdapter.Event_OnBeat();
 
-            if (count + noteBeatInterval <= SpawnChart.Count - 1)
+            if (count + noteBeatInterval+1 <= SpawnChart.Count - 1)
             {
-                if (SpawnChart[count + noteBeatInterval] == 1)
+                if (SpawnChart[count + noteBeatInterval+1] == 1)
                 {
                     noteSerialNum++;
                     randomvalue = RandomMachine();
@@ -322,6 +338,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(startDelay);
         BeatStart = true;
+        FindObjectOfType<BeatTracker>().PlayMusic();
     }
 
     private void OnDestroy()

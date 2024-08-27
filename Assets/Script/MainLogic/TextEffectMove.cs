@@ -8,6 +8,15 @@ public class TextEffectMove : MonoBehaviour
 
     public void EffectMove(int stage)
     {
-        transform.position = noteCenter[stage].position+Vector3.down*4;
+        if(GameManager.Instance.stageNumber == GameManager.numberofStage._3Capybara
+            && GameManager.Instance.currentStage == 0)
+        {
+            transform.position = noteCenter[stage].position + Vector3.down * 1;
+        }
+        else
+        {
+            transform.position = noteCenter[stage].position + Vector3.down * 4;
+        }
+        
     }
 }

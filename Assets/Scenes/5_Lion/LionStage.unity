@@ -849,7 +849,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 204747e1fc43cb943bb1daa5b5ebfdde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteCenter: []
+  noteCenter:
+  - {fileID: 923277942}
+  - {fileID: 1109859697}
+  - {fileID: 786594800}
+  - {fileID: 1123476869}
 --- !u!1 &215068281
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,7 +1061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &252814470
 Transform:
   m_ObjectHideFlags: 0
@@ -1850,15 +1854,16 @@ MonoBehaviour:
   perfectText: {fileID: 1368899793}
   comboText: {fileID: 483597392}
   noteNumber: 0
-  noteNumber2: 0
+  noteSerialNum: 0
   judgeNumber: 0
   currentState: 0
   BPM: 210
   count: 0
   startDelay: 0
   Score: 0
+  scoreStorage: {fileID: 0}
   missCount: 0
-  ingreDelay: 2
+  ingreDelay: 5
   noteBeatInterval: 5
   fadeanim: {fileID: 1079533667}
 --- !u!4 &499952903
@@ -3621,7 +3626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1320361113
 Transform:
   m_ObjectHideFlags: 0

@@ -47,14 +47,7 @@ public class MoldManager : MonoBehaviour
         }
 
         //Test Code
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            OnNoteHit();
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            OnNoteMiss();
-        }
+       
     }
 
 
