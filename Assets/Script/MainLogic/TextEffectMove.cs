@@ -8,6 +8,6 @@ public class TextEffectMove : MonoBehaviour
 
     public void EffectMove(int stage)
     {
-        transform.position = noteCenter[stage].position+Vector3.down*2;
+        transform.position = noteCenter[stage].position+Vector3.down*4;
     }
 }

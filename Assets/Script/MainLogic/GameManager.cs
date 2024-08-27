@@ -35,12 +35,11 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]public static GameManager Instance;
     [HideInInspector] public int noteNumber = 0;
-    [HideInInspector] public int noteNumber2 = 0;
+    [HideInInspector] public int noteSerialNum = 0;
     [HideInInspector] public int judgeNumber = 0;
 
     //public GameObject anyKeyObj;
     private BeatTracker beatTracker;
-    private int startDelayBeatCount = 0;
 
     private int combo = 0;
 
@@ -111,6 +110,7 @@ public class GameManager : MonoBehaviour
         textEffectMove = FindObjectOfType<TextEffectMove>();
 
         stageData = dataStorage.getStageData((int)stageNumber);
+        noteBeatInterval = stageData.noteInterval;
 
         BPM = stageData.BPM;
         MusicChart = stageData.MusicChart;
@@ -169,7 +169,10 @@ public class GameManager : MonoBehaviour
     }
 
 
+    void IntervalFix()
+    {
 
+    }
 
     // Update is called once per frame
     void Update()
@@ -278,11 +281,11 @@ public class GameManager : MonoBehaviour
             }
             eventAdapter.Event_OnBeat();
 
-            if (count + 6 <= SpawnChart.Count - 1)
+            if (count + noteBeatInterval <= SpawnChart.Count - 1)
             {
-                if (SpawnChart[count + 6 ] == 1)
+                if (SpawnChart[count + noteBeatInterval] == 1)
                 {
-                    noteNumber2++;
+                    noteSerialNum++;
                     randomvalue = RandomMachine();
                     noterotationList.Add(randomvalue);
                     noteManager.EventNoteSpawn(randomvalue);
