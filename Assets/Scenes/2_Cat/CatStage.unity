@@ -405,7 +405,7 @@ Transform:
   m_GameObject: {fileID: 611064508}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15, y: 4.179, z: 0}
+  m_LocalPosition: {x: 14, y: 4.179, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2319,25 +2319,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageNumber: 2
   currentStage: 0
+  subStages:
+  - {fileID: 1794496109}
+  - {fileID: 1455947203}
   missText: {fileID: 1546220071}
   goodText: {fileID: 1034763818}
   perfectText: {fileID: 1835033612}
   comboText: {fileID: 1186103975}
   noteNumber: 0
-  noteNumber2: 0
+  noteSerialNum: 0
   judgeNumber: 0
   currentState: 0
-  ingreDelay: 4
   BPM: 210
   count: 0
   startDelay: 0
   Score: 0
+  scoreStorage: {fileID: 0}
   missCount: 0
+  ingreDelay: 4
   noteBeatInterval: 5
   fadeanim: {fileID: 1989119777}
-  subStages:
-  - {fileID: 1794496109}
-  - {fileID: 1455947203}
 --- !u!4 &1955672856
 Transform:
   m_ObjectHideFlags: 0

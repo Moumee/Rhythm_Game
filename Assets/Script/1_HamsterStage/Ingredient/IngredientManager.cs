@@ -35,20 +35,7 @@ public class IngredientManager : MonoBehaviour
 
     private void Update()
     {
-        //Test Code
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            MoveIngredients();
-        }
-
-        if (Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            OnNoteHit();
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            OnNoteMiss();
-        }
+        
 
         
     }

@@ -1389,6 +1389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 676430276}
+  - component: {fileID: 676430277}
   m_Layer: 0
   m_Name: Text Effect
   m_TagString: Untagged
@@ -1415,6 +1416,22 @@ Transform:
   - {fileID: 926932091}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &676430277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676430275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 204747e1fc43cb943bb1daa5b5ebfdde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noteCenter:
+  - {fileID: 1580607173}
+  - {fileID: 1845357445}
+  - {fileID: 1702614787}
 --- !u!1 &682370835
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,26 +1894,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageNumber: 3
   currentStage: 0
+  subStages:
+  - {fileID: 1249866005}
+  - {fileID: 235917492}
+  - {fileID: 62021170}
   missText: {fileID: 1433726960}
   goodText: {fileID: 2114546763}
   perfectText: {fileID: 529521107}
   comboText: {fileID: 926932092}
   noteNumber: 0
-  noteNumber2: 0
+  noteSerialNum: 0
   judgeNumber: 0
   currentState: 0
-  ingreDelay: 4
   BPM: 210
   count: 0
   startDelay: 0
   Score: 0
+  scoreStorage: {fileID: 0}
   missCount: 0
+  ingreDelay: 4
   noteBeatInterval: 5
   fadeanim: {fileID: 1849276261}
-  subStages:
-  - {fileID: 1249866005}
-  - {fileID: 235917492}
-  - {fileID: 62021170}
 --- !u!4 &935664841
 Transform:
   m_ObjectHideFlags: 0

@@ -5,9 +5,7 @@ using UnityEngine;
 public class HamsterAdapter : EventAdapter
 {
     [SerializeField] IngredientManager ingredientManager;
-    public Punch punch;
     public MoldManager moldManager;
-    public FillingManager fillingManager;
 
 
 
@@ -16,59 +14,61 @@ public class HamsterAdapter : EventAdapter
 
     public override void Event_OnBeat()
     {
-        //if (GameManager.Instance.currentStage > 0)
-        //{
-        //    moldManager.OnEvent_MoveMold();
-        //}
-        //else
-        //{
-        //    //ingredientManager.OnEvent_MoveIngredient();
-        //}
+        if (GameManager.Instance.currentStage == 0)
+        {
+            
+        }
+        else if (GameManager.Instance.currentStage == 1)
+        {
+
+        }
     }
 
     public override void Event_OnNote()
     {
-        //if (GameManager.Instance.currentStage > 0)
-        //{
-        //    Debug.Log("f");
-        //    moldManager.OnEvent_SpawnMold();
-        //}
-        //else
-        //{
-        //    ingredientManager.SpawnIngredient();
-        //}
+        if (GameManager.Instance.currentStage == 0)
+        {
+
+        }
+        else if (GameManager.Instance.currentStage == 1)
+        {
+
+        }
     }
 
     public override void Event_CatchNote(bool isPerfect = true, int direction = 0)
     {
-        if (GameManager.Instance.currentStage > 0)
+        if (GameManager.Instance.currentStage == 0)
         {
-            //moldManager.EventCatchNote();
-            //fillingManager.FillingFall();
+            ingredientManager.OnNoteHit();
         }
-        else
+        else if (GameManager.Instance.currentStage == 1)
         {
-            //punch.OnEvent_Punch();
-            //ingredientManager.EventCatchNote();
+            moldManager.OnNoteHit();
         }
     }
 
     public override void Event_SpawnIngre()
     {
-        if (GameManager.Instance.currentStage == 1)
+        if (GameManager.Instance.currentStage == 0)
         {
-            //moldManager.EventCatchNote();
-            //fillingManager.FillingFall();
+            ingredientManager.MoveIngredients();  
         }
-        else
+        else if (GameManager.Instance.currentStage == 1)
         {
-            //punch.OnEvent_Punch();
-            //ingredientManager.EventCatchNote();
+
         }
     }
 
     public override void Event_MissNote()
     {
-
+        if (GameManager.Instance.currentStage == 0)
+        {
+            ingredientManager.OnNoteMiss();
+        }
+        else if (GameManager.Instance.currentStage == 1)
+        {
+            moldManager.OnNoteMiss();
+        }
     }
 }
