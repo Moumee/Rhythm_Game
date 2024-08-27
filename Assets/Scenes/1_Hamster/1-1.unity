@@ -354,7 +354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &505152855
 Transform:
   m_ObjectHideFlags: 0
@@ -1745,23 +1745,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageNumber: 1
   currentStage: 0
+  subStages: []
   missText: {fileID: 1348473699}
   goodText: {fileID: 166179783}
   perfectText: {fileID: 1383203660}
   comboText: {fileID: 0}
   noteNumber: 0
-  noteNumber2: 0
+  noteSerialNum: 0
   judgeNumber: 0
   currentState: 0
-  ingreDelay: 4
   BPM: 210
   count: 0
   startDelay: 0
   Score: 0
   missCount: 0
+  ingreDelay: 4
   noteBeatInterval: 5
   fadeanim: {fileID: 0}
-  subStages: []
 --- !u!4 &1750320641
 Transform:
   m_ObjectHideFlags: 0
@@ -2028,7 +2028,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1935337504
 Transform:
   m_ObjectHideFlags: 0
