@@ -17,7 +17,7 @@ public class Note : MonoBehaviour
 
     public bool isOnTime;
 
-    private int serialnum;
+    public int serialnum;
 
     //for test
     private SpriteRenderer spriteRenderer;

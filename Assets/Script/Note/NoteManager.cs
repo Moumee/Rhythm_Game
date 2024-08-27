@@ -61,8 +61,10 @@ public class NoteManager : MonoBehaviour
 
     public void NoteJudgeEffect(string name)
     {
-        foreach (GameObject note in notesToCheck)
+        //foreach (GameObject note in notesToCheck)
+        for (int i = notesToCheck.Count-1; i >=0; i--)
         {
+            GameObject note = notesToCheck[i];
             Note tempNote = note.GetComponent<Note>();
             if (tempNote.isOnTime)
             {
@@ -71,7 +73,8 @@ public class NoteManager : MonoBehaviour
             }
             if (name == "Miss")
             {
-                notesToCheck.Remove(note);
+                //notesToCheck.Remove(note);
+                //tempNote.animator.SetTrigger(name);
             }
         }
     }

@@ -209,7 +209,7 @@ public class DataStorage
         "LionHappy",
         "LionAngry",
         4,
-        new List<int> { 120, 264, 376 },
+        new List<int> { 120, 261, 376 },
         new List<int> { 0, 0, 3,0 },
         new int[4][] { new int[1] { 0 }, new int[1] { 0 }, new int[2] { 1,3 }, new int[1] { 0 } },
         5   //noteInterval
