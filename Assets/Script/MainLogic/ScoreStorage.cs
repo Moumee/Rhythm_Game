@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ScoreStorage : MonoBehaviour
@@ -13,13 +14,27 @@ public class ScoreStorage : MonoBehaviour
         {
             if (!_Instance)
             {
-                var prefab = Resources.Load<GameObject>("ScoreStoragePrefab");
-                var inScene = Instantiate(prefab);
-                _Instance = inScene.GetComponentInChildren<ScoreStorage>();
-                if (!_Instance) _Instance = inScene.AddComponent<ScoreStorage>();
-                DontDestroyOnLoad(_Instance.transform.root.gameObject);
+                _Instance = FindObjectOfType<ScoreStorage>();
+                if (_Instance == null)
+                {
+                    GameObject scoreStorageObject = new GameObject(nameof(ScoreStorage));
+                    _Instance = scoreStorageObject.AddComponent<ScoreStorage>();
+                }
             }
             return _Instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (_Instance == null)
+        {
+            _Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (_Instance != this)
+        {
+            Destroy(gameObject);
         }
     }
 

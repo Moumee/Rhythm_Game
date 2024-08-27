@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     
 
     public int Score = 0;
-    [HideInInspector] public ScoreStorage scoreStorage;
+    
     [HideInInspector] public int missCount;
     public int ingreDelay = 4;
     public int noteBeatInterval = 5;    //number of beats to move ingredients
@@ -108,7 +108,6 @@ public class GameManager : MonoBehaviour
         noteManager = FindObjectOfType<NoteManager>();
         beatTracker = FindObjectOfType<BeatTracker>();
         textEffectMove = FindObjectOfType<TextEffectMove>();
-        scoreStorage = FindObjectOfType<ScoreStorage>();
 
         stageData = dataStorage.getStageData((int)stageNumber);
         noteBeatInterval = stageData.noteInterval;
@@ -248,7 +247,7 @@ public class GameManager : MonoBehaviour
         {
             stageEnd = true;
             AudioManager.Instance.stageSource.Stop();
-            scoreStorage.FinalScore += Score;
+            ScoreStorage.Instance.FinalScore += Score;
             if (Score > stageData.oneCount * 7.5 && !fadeOutStart)
             {
                 StartCoroutine(FadeOutToNextScene(stageData.successScene));
