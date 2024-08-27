@@ -64,7 +64,7 @@ public class Note : MonoBehaviour
             isOnTime = false;
         }
 
-        if (transform.position.x <= 0 || transform.position.y <= 0)
+        if ((transform.position.x <= 0 && moveDirection == Vector3.left) || (transform.position.y <= 0 && moveDirection == Vector3.down))
         {
             StartCoroutine(Dead());
         }
@@ -83,7 +83,7 @@ public class Note : MonoBehaviour
 
     IEnumerator Dead()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         judged = true;
         animator.SetTrigger("Miss");
     }
