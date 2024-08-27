@@ -194,7 +194,7 @@ MonoBehaviour:
       Data3: -2012557948
       Data4: -1782854476
     Path: event:/TTS/Hamster/Hamster Angry
-  masterVolume: 1
+  masterVolume: 0.02
   bgmVolume: 1
   sfxVolume: 1
 --- !u!114 &3045072922224617601

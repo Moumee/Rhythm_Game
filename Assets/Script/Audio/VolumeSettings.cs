@@ -1,15 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class VolumeSettings : MonoBehaviour
 {
-    
-    
-    
-    private enum VoulmeType
+    private enum VolumeType
     {
         MASTER,
         BGM,
@@ -17,50 +13,46 @@ public class VolumeSettings : MonoBehaviour
     }
 
     [Header("Type")]
-    [SerializeField] private VoulmeType volumeType;
+    [SerializeField] private VolumeType volumeType;
 
+     
 
     private Slider volumeSlider;
+    
 
     private void Awake()
     {
-        volumeSlider = GetComponentInChildren<Slider>();
+        volumeSlider = GetComponent<Slider>();
+    }
+
+    private void Start()
+    {
+        
     }
 
     private void Update()
     {
-        switch (volumeType)
-        {
-            case VoulmeType.MASTER:
-                volumeSlider.value = AudioManager.Instance.masterVolume;
-                break;
-            case VoulmeType.BGM:
-                volumeSlider.value = AudioManager.Instance.bgmVolume;
-                break;
-            case VoulmeType.SFX:
-                volumeSlider.value = AudioManager.Instance.sfxVolume;
-                break;
-            default:
-                Debug.LogWarning("VoulmeType error");
-                break;
-        }
+        
     }
 
-    public void OnSliderValueChanged()
+
+    
+
+    
+
+    public void SetVolume(float volume)
     {
         switch (volumeType)
         {
-            case VoulmeType.MASTER:
-                AudioManager.Instance.masterVolume = volumeSlider.value;
+            
+            case VolumeType.BGM:
+                AudioManager.Instance.bgmVCA.setVolume(volume);
                 break;
-            case VoulmeType.BGM:
-                AudioManager.Instance.bgmVolume = volumeSlider.value;
-                break;
-            case VoulmeType.SFX:
-                AudioManager.Instance.sfxVolume = volumeSlider.value;
+            case VolumeType.SFX:
+                AudioManager.Instance.sfxVCA.setVolume(volume);
                 break;
             default:
-                Debug.LogWarning("VoulmeType error");
+                Debug.LogWarning("VolumeType error");
                 break;
         }
     }

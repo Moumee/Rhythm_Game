@@ -40,20 +40,9 @@ public class AudioManager : MonoBehaviour
     public Dictionary<EventInstance, Coroutine> activeInstances = new Dictionary<EventInstance, Coroutine>();
     public EventInstance bgmEventInstance;
 
-    [Header("Volume")]
-    [Range(0, 1)]
-    public float masterVolume = 1;
 
-    [Range(0, 1)]
-    public float bgmVolume = 1;
-
-    [Range(0, 1)]
-    public float sfxVolume = 1;
-
-    private Bus masterBus;
-    private Bus bgmBus;
-    private Bus sfxBus; 
-
+    public FMOD.Studio.VCA sfxVCA;
+    public FMOD.Studio.VCA bgmVCA;
 
 
     public enum SFX
@@ -103,17 +92,11 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        masterBus = RuntimeManager.GetBus("bus:/");
-        bgmBus = RuntimeManager.GetBus("bus:/BGM");
-        sfxBus = RuntimeManager.GetBus("bus:/SFX");
+        sfxVCA = FMODUnity.RuntimeManager.GetVCA("vca:/SFX");
+        bgmVCA = FMODUnity.RuntimeManager.GetVCA("vca:/BGM");
     }
 
-    private void Update()
-    {
-        masterBus.setVolume(masterVolume);
-        bgmBus.setVolume(bgmVolume);
-        sfxBus.setVolume(sfxVolume);    
-    }
+   
 
     public void StopAllMusic()
     {
