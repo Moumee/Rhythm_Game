@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tangerineFallManger: {fileID: 744830868}
-  rotationSpeed: 700
+  rotationSpeed: 1400
   rotationPoint: {fileID: 1806495452}
   rotationDelay: 0.5
   isRotating: 0

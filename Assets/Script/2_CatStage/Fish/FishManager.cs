@@ -47,6 +47,7 @@ public class FishManager : MonoBehaviour
             if (fish.positionId == 1)
             {
                 currentFish = fish;
+                break;
             }
         }
 

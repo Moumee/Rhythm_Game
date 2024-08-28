@@ -123,6 +123,71 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &87563608
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1088522608}
+    m_Modifications:
+    - target: {fileID: 1851937093427300885, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+      propertyPath: m_Name
+      value: Fish (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1851937093427300885, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390637903612459477, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+      propertyPath: positionId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835194825191127534, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835194825191127534, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835194825191127534, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835194825191127534, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835194825191127534, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835194825191127534, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835194825191127534, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835194825191127534, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835194825191127534, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835194825191127534, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
 --- !u!1 &142597465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,6 +1107,7 @@ Transform:
   m_Children:
   - {fileID: 1352488170}
   - {fileID: 1051756159}
+  - {fileID: 1895934955}
   m_Father: {fileID: 1455947204}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1110658852
@@ -1782,6 +1848,7 @@ MonoBehaviour:
   fishList:
   - {fileID: 7993708723497112550}
   - {fileID: 1328891224}
+  - {fileID: 1895934956}
   currentFish: {fileID: 0}
   vibrateFishOffset: 0.2
   vibrateDuration: 0.1
@@ -2047,6 +2114,22 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 6190812008910294043, guid: 41ac38e467ae2f847ac15943144b7859, type: 3}
   m_PrefabInstance: {fileID: 2111012342}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1895934955 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7835194825191127534, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+  m_PrefabInstance: {fileID: 87563608}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1895934956 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4390637903612459477, guid: 8ffc77382c06f5b46b63e86e7868ed3e, type: 3}
+  m_PrefabInstance: {fileID: 87563608}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77871f973c331c4a9fb259117f7c153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1905179185
 GameObject:
   m_ObjectHideFlags: 0
@@ -2213,7 +2296,9 @@ MonoBehaviour:
   missCount: 0
   ingreDelay: 4
   noteBeatInterval: 5
-  fadeanim: {fileID: 0}
+  transitionImage: {fileID: 0}
+  transitionDuration: 1
+  targetCanvas: {fileID: 0}
 --- !u!4 &1955672856
 Transform:
   m_ObjectHideFlags: 0

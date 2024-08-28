@@ -9,7 +9,7 @@ public class TangerineCandy : MonoBehaviour
     public Sprite[] leftSides;
     private SpriteRenderer spriteRenderer;
     public TangerineCandyManager manager;
-    public float moveDuration = 0.2f;
+    private float moveDuration = 0.1f;
     private int index = 0;
     public int pointIndex;
     private float moveDelay = 0.3f;

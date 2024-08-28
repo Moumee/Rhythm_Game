@@ -49,19 +49,24 @@ public class Fish : MonoBehaviour
     private IEnumerator MoveFishLeftCoroutine()
     {
         isMoving = true;
-        int nextIndex = (positionId + 1) % pointData.fishWaypoints.Length;
-        float elapsedTime = 0;
-        while (moveDuration >= elapsedTime)
+        int nextIndex = positionId + 1;
+        if (nextIndex < pointData.fishWaypoints.Length)
         {
-            transform.position = Vector3.Lerp(pointData.fishWaypoints[positionId],
-                pointData.fishWaypoints[nextIndex], elapsedTime / moveDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            float elapsedTime = 0;
+            while (moveDuration >= elapsedTime)
+            {
+                transform.position = Vector3.Lerp(pointData.fishWaypoints[positionId],
+                    pointData.fishWaypoints[nextIndex], elapsedTime / moveDuration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            positionId = nextIndex;
+            transform.position = pointData.fishWaypoints[nextIndex];
         }
-        positionId = nextIndex;
-        transform.position = pointData.fishWaypoints[nextIndex];
-        if (positionId == pointData.fishWaypoints.Length - 1)
+        
+        else if (nextIndex == pointData.fishWaypoints.Length)
         {
+            yield return new WaitForSeconds(moveDuration);
             transform.position = pointData.fishWaypoints[0];
             positionId = 0;
         }
