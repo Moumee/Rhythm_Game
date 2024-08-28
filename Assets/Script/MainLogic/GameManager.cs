@@ -204,7 +204,7 @@ public class GameManager : MonoBehaviour
                     combo = 0;
                     //StartCoroutine(CatchDelay());
                 }
-                else
+                else if(isCatchable)
                 {
                     AudioManager.Instance.PlaySFX(AudioManager.Instance.notePress);
                     
@@ -233,7 +233,7 @@ public class GameManager : MonoBehaviour
                         Score += 5;
                         combo = 0;
                     }
-                    isScoreGet = true;
+                    isCatchable = false;
 
                 }
                 
@@ -364,7 +364,7 @@ public class GameManager : MonoBehaviour
         judgeNumber++;
         int tempJudgeNum = judgeNumber;
         currentState = catchState.good;
-        isScoreGet = false;
+        isCatchable = true;
 
         yield return new WaitForSeconds(margin_good - margin_perfect);
         currentState = catchState.Perfect;

@@ -55,7 +55,7 @@ public class Note : MonoBehaviour
             }
         }
 
-        if (serialnum == GameManager.Instance.judgeNumber && GameManager.Instance.currentState != catchState.Miss)
+        if (serialnum == GameManager.Instance.judgeNumber && GameManager.Instance.currentState != catchState.Miss && !judged)
         { 
             isOnTime = true;
         }
