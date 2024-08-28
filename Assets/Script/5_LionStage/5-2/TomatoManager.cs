@@ -54,4 +54,9 @@ public class TomatoManager : MonoBehaviour
         AudioManager.Instance.PlaySFX(sliceTomatoSFX);
         currentTomato.OnNoteHit();
     }
+
+    public void OnNoteMiss()
+    {
+        currentTomato.OnNoteMiss();
+    }
 }

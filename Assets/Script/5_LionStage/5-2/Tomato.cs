@@ -47,6 +47,11 @@ public class Tomato : MonoBehaviour
         
     }
 
+    public void OnNoteMiss()
+    {
+        manager.movingTomatoes.Remove(this);
+    }
+
     public void MoveStateTrue()
     {
         spriteRenderer.enabled = true;
