@@ -1861,7 +1861,6 @@ MonoBehaviour:
   count: 0
   startDelay: 0
   Score: 0
-  scoreStorage: {fileID: 0}
   missCount: 0
   ingreDelay: 5
   noteBeatInterval: 5
@@ -1898,6 +1897,7 @@ MonoBehaviour:
   mushroom: {fileID: 822147725}
   cheeseGrater: {fileID: 419348163}
   backgroundCheese: {fileID: 715818627}
+  backgroundScratch: {fileID: 215068283}
 --- !u!1 &526434877
 GameObject:
   m_ObjectHideFlags: 0
@@ -5408,7 +5408,7 @@ PrefabInstance:
     - target: {fileID: 5688634414397928442, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1864143728}
+      objectReference: {fileID: 0}
     - target: {fileID: 5688634414397928442, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnSliderValueChanged
@@ -5452,7 +5452,7 @@ PrefabInstance:
     - target: {fileID: 8866978088426576808, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1864143729}
+      objectReference: {fileID: 0}
     - target: {fileID: 8866978088426576808, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnSliderValueChanged
@@ -5476,28 +5476,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0662a3e07609d74ea0c1f06f7d06002, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1864143728 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7856073060147190455, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
-  m_PrefabInstance: {fileID: 1864143725}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5583f62e72441ec44b766ab81d9d1759, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1864143729 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5727746364487908660, guid: 3530878d364f49a4084b7b3bb56a30db, type: 3}
-  m_PrefabInstance: {fileID: 1864143725}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5583f62e72441ec44b766ab81d9d1759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1869550194

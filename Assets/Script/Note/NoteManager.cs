@@ -73,6 +73,7 @@ public class NoteManager : MonoBehaviour
             }
             if (name == "Miss")
             {
+
                 //notesToCheck.Remove(note);
                 //tempNote.animator.SetTrigger(name);
             }

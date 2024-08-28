@@ -9,9 +9,11 @@ public class LionAdapter : EventAdapter
     public Mushroom mushroom;
     public CheeseGrater cheeseGrater;
     public BackgroundCheese backgroundCheese;
+    public BackgroundScratch backgroundScratch;
 
     private int containerCount = 0;
     private int mushroomCount = 0;
+    private int scratchCount = 0;
 
     // Start is called before the first frame update
 
@@ -54,6 +56,16 @@ public class LionAdapter : EventAdapter
         else if (GameManager.Instance.currentStage == 1)
         {
             tomatoManager.OnNoteHit();
+            scratchCount++;
+            if (scratchCount == 25)
+            {
+                backgroundScratch.OnOneThird();
+            }
+            else if (scratchCount == 50)
+            {
+                backgroundScratch.OnTwoThirds();
+            }
+            
         }
         else if (GameManager.Instance.currentStage == 2)
         {
