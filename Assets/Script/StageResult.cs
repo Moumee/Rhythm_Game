@@ -71,7 +71,7 @@ public class StageResult : MonoBehaviour
                         }
                         if (!isLionStage)
                         {
-                            StartCoroutine(LoadNextScene(nextSceneName));
+                            SceneManager.LoadSceneAsync(nextSceneName);
                         }
                         else if (isLionStage)
                         {
@@ -87,11 +87,7 @@ public class StageResult : MonoBehaviour
         
     }
 
-    IEnumerator LoadNextScene(string sceneName)
-    {
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadSceneAsync(sceneName);
-    }
+    
 
     IEnumerator FoodFade(float duration)
     {

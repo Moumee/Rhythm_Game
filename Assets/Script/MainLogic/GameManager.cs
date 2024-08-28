@@ -251,6 +251,7 @@ public class GameManager : MonoBehaviour
             ScoreStorage.Instance.FinalScore += Score;
             if (Score > stageData.oneCount * 7.5 && !fadeOutStart)
             {
+                
                 StartCoroutine(FadeOutToNextScene(stageData.successScene));
             }
             else if (Score <= stageData.oneCount * 7.5 && !fadeOutStart)

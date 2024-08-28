@@ -500,8 +500,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 1613161501}
     m_Modifications:
     - target: {fileID: 3469646323617714845, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bfccd6a36d384324686728162026f54a, type: 3}
+    - target: {fileID: 3469646323617714845, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
       propertyPath: m_Color.a
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469646323617714845, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469646323617714845, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469646323617714845, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6889522115293003650, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
       propertyPath: m_Name
@@ -594,7 +610,7 @@ PrefabInstance:
     - target: {fileID: 8926981330407627510, guid: 2d3c8fb95895256479c9021e7d1ab5a2, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 86f8057c2e595a74c94921067052f108, type: 2}
+      objectReference: {fileID: 9100000, guid: 67a688308ae6e404b924669ceffd4807, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1002,6 +1018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ab57064d921ac4ba8b3e2f91f1c1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLionStage: 0
   fadeAnim: {fileID: 490039936}
   nextSceneName: CatIntro
   continueTextObj: {fileID: 362075966}

@@ -7,6 +7,12 @@ public class ScoreStorage : MonoBehaviour
 {
     public int FinalScore = 0;
 
+    public bool hamsterSuccess = true;
+    public bool catSuccess = true;
+    public bool capybaraSuccess = true;
+    public bool pandaSuccess = true;
+    public bool lionSuccess = true;
+
     private static ScoreStorage _Instance;
     public static ScoreStorage Instance
     {
