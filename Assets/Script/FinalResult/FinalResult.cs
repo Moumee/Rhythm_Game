@@ -10,6 +10,8 @@ public class FinalResult : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         AudioManager.Instance.PlaySFX(videoAudio);
         AudioManager.Instance.PlayBGM(bgm);
     }
