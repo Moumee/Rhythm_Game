@@ -169,6 +169,7 @@ public class GameManager : MonoBehaviour
             subStages[currentStage].transform.position = Vector3.Lerp(new Vector3(19.2f, 0f, 0f), Vector3.zero, elapsedTime / duration);
             yield return null;
         }
+        textEffectMove.EffectMove(currentStage);
         noteManager.spawnPointChange(currentStage);
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);
         subStages[currentStage - 1].SetActive(false);
@@ -361,6 +362,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(interval - margin_good);
         judgeNumber++;
+        int tempJudgeNum = judgeNumber;
         currentState = catchState.good;
         isScoreGet = false;
 
@@ -372,7 +374,11 @@ public class GameManager : MonoBehaviour
 
 
         yield return new WaitForSeconds(margin_good);
-        currentState = catchState.Miss;
+        if(judgeNumber == tempJudgeNum)
+        {
+            currentState = catchState.Miss;
+        }
+        
     }
 
 
