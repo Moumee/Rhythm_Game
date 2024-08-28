@@ -220,17 +220,10 @@ public class GameManager : MonoBehaviour
                 || Input.GetKeyDown(KeyCode.UpArrow)|| Input.GetKeyDown(KeyCode.LeftArrow)
                 ) 
             {
-                if (!Input.GetKeyDown(keyCodeList[noterotationList[judgeNumber]]) || currentState == catchState.Miss)
+                
+                if (Input.GetKeyDown(keyCodeList[noterotationList[judgeNumber]]) && currentState != catchState.Miss && isCatchable)
                 {
-                    missCount++;
-                    eventAdapter.Event_MissNote();
-                    missText.SetTrigger("Miss");
-                    noteManager.NoteJudgeEffect("Miss");
-                    combo = 0;
-                    //StartCoroutine(CatchDelay());
-                }
-                else if(isCatchable)
-                {
+                    isCatchable = false;
                     AudioManager.Instance.PlaySFX(AudioManager.Instance.notePress);
                     
                     eventAdapter.Event_CatchNote(currentState == catchState.Perfect, noterotationList[judgeNumber]); //노트캐치
@@ -253,15 +246,25 @@ public class GameManager : MonoBehaviour
                     }
                     else
                     {
-                        goodText.SetTrigger("Good");
                         noteManager.NoteJudgeEffect("Good");
+                        goodText.SetTrigger("Good");
                         Score += 5;
                         combo = 0;
                     }
-                    isCatchable = false;
+                    
 
                 }
-                
+                else//if(!Input.GetKeyDown(keyCodeList[noterotationList[judgeNumber]]) || currentState == catchState.Miss)
+                {
+                    
+                    missCount++;
+                    eventAdapter.Event_MissNote();
+                    missText.SetTrigger("Miss");
+                    noteManager.NoteJudgeEffect("Miss");
+                    combo = 0;
+                    //StartCoroutine(CatchDelay());
+                }
+
             }
         }
 

@@ -135,7 +135,7 @@ public class LionAdapter : EventAdapter
         }
         else if (GameManager.Instance.currentStage == 1)
         {
-            
+            tomatoManager.OnNoteMiss();
         }
         else if (GameManager.Instance.currentStage == 2)
         {
