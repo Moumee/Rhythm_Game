@@ -33,7 +33,28 @@ public class PauseMenu : MonoBehaviour
         AudioManager.Instance.StopAllMusic(); // Updated this line
 
         Time.timeScale = 1f;
-        SceneManager.LoadSceneAsync("1-1");
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        if (currentSceneName.Contains("Hamster") || currentSceneName.Contains("1-1"))
+        {
+            SceneManager.LoadSceneAsync("1-1");
+        }
+        else if (currentSceneName.Contains("Cat"))
+        {
+            SceneManager.LoadSceneAsync("CatStage");
+        }
+        else if (currentSceneName.Contains("Capybara"))
+        {
+            SceneManager.LoadSceneAsync("CapybaraStage");
+        }
+        else if (currentSceneName.Contains("Panda"))
+        {
+            SceneManager.LoadSceneAsync("PandaStage");
+        }
+        else if (currentSceneName.Contains("Lion"))
+        {
+            SceneManager.LoadSceneAsync("LionStage");
+        }
+
         isPlaying = true;
     }
 

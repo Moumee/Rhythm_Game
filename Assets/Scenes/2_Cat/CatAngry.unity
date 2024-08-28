@@ -695,7 +695,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 78209181503080846aba7d297684237c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4543795f670707c48b78599717ac7eac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -989,6 +989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ab57064d921ac4ba8b3e2f91f1c1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLionStage: 0
   fadeAnim: {fileID: 1574425270}
   nextSceneName: CapybaraIntro
   continueTextObj: {fileID: 362075966}
