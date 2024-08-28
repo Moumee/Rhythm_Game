@@ -11,11 +11,11 @@ public class LoadFinalResult : MonoBehaviour
     {
         if (ScoreStorage.Instance.FinalScore >= successTotalScore)
         {
-            SceneManager.LoadSceneAsync("SuccessResult");
+            SceneTransitionManager.LoadSceneWithTransition("SuccessResult");
         }
         else
         {
-            SceneManager.LoadSceneAsync("FailResult");
+            SceneTransitionManager.LoadSceneWithTransition("FailResult");
         }
     }
 }

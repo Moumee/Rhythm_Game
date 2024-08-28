@@ -42,7 +42,6 @@ public class StartMenu : MonoBehaviour
     private void Start()
     {
         AudioManager.Instance.PlayBGM(AudioManager.Instance.mainMenu);
-        StartCoroutine(PreLoadScene());
     }
 
     public void Play()
@@ -82,7 +81,7 @@ public class StartMenu : MonoBehaviour
                 if (!Input.GetKey(KeyCode.Escape) && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
                 {
                     AudioManager.Instance.StopAllMusic(); // Updated this line
-                    StartCoroutine(FadeOutToNextScene());
+                    SceneTransitionManager.LoadSceneWithTransition("1-1");
                 }
             }
         }
@@ -98,16 +97,7 @@ public class StartMenu : MonoBehaviour
         StartCoroutine(Fade());
     }
 
-    IEnumerator PreLoadScene()
-    {
-        asyncOperation = SceneManager.LoadSceneAsync("1-1");
-        asyncOperation.allowSceneActivation = false;
-
-        while (!asyncOperation.isDone)
-        {
-            yield return null;
-        }
-    }
+    
 
     IEnumerator FadeOutToNextScene()
     {
@@ -115,7 +105,7 @@ public class StartMenu : MonoBehaviour
         fade.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(0.5f);
         AudioManager.Instance.StopAllMusic(); // Added this line
-        asyncOperation.allowSceneActivation = true;
+        
     }
 
     IEnumerator Fade()

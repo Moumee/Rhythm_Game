@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class Intro : MonoBehaviour
 {
     public GameObject anyKeyObj;
-    public Animator fadeAnim;
     public string nextSceneName;
     
     // Start is called before the first frame update
@@ -27,9 +26,8 @@ public class Intro : MonoBehaviour
                 if (!Input.GetKeyDown(KeyCode.Escape) && !Input.GetKeyDown(KeyCode.Mouse0) && !Input.GetKeyDown(KeyCode.Mouse1))
                 {
                     anyKeyObj.SetActive(false);
-                    fadeAnim.SetTrigger("FadeOut");
                     AudioManager.Instance.StopAllMusic();
-                    SceneManager.LoadSceneAsync(nextSceneName);
+                    SceneTransitionManager.LoadSceneWithTransition(nextSceneName);
                 }
             }
         }

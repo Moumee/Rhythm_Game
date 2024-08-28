@@ -85,21 +85,26 @@ public class GameManager : MonoBehaviour
     public int ingreDelay = 4;
     public int noteBeatInterval = 5;    //number of beats to move ingredients
 
-    
 
-    
+
+
     //페이드 변수
     //[SerializeField] GameObject fade;
-    [SerializeField] Animator fadeanim;
+    public UnityEngine.UI.Image transitionImage;
     bool fadeOutStart = false;
-
+    public float transitionDuration = 1f;
     TextEffectMove textEffectMove;
-    
+    private Canvas canvas;
+    private RectTransform canvasRectTransform;
+    public Canvas targetCanvas;
+
 
 
     void Awake()
     {
         BeatTracker.OnFixedBeat += IterateChart;    //FMOD 차트 구독
+
+        canvas = FindObjectOfType<Canvas>();
 
         if (Instance == null) { Instance = this; }  //singleton
         else { Destroy(gameObject); }
@@ -131,31 +136,51 @@ public class GameManager : MonoBehaviour
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);
         textEffectMove.EffectMove(currentStage);
 
-        
-        
+        //CrossFade Image Generator
+        targetCanvas = FindObjectOfType<Canvas>();
+        GameObject imageObject = new GameObject("TransitionImage");
+        imageObject.transform.SetParent(targetCanvas.transform, false);
+        transitionImage = imageObject.AddComponent<UnityEngine.UI.Image>();
+        RectTransform rectTransform = transitionImage.GetComponent<RectTransform>();
+        rectTransform.anchorMin = Vector2.zero;
+        rectTransform.anchorMax = Vector2.one;
+        rectTransform.sizeDelta = Vector2.zero;
+        rectTransform.anchoredPosition = Vector2.zero;
+        transitionImage.transform.SetAsLastSibling();
+        transitionImage.raycastTarget = false;
+        transitionImage.gameObject.SetActive(false);
     }
 
-    IEnumerator FadeOutToNextScene(string sceneName)
-    {
-        //fade.SetActive(true);
-        //fade.GetComponent<Animator>().SetTrigger("FadeOut");
-        fadeanim.SetTrigger("FadeOut");
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(sceneName);
-    }
+    
 
-    IEnumerator FadeInOutBackground()
+    IEnumerator CrossfadeSubstage()
     {
-        fadeanim.SetTrigger("FadeOut");
-
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForEndOfFrame();
+        Texture2D screenCapture = ScreenCapture.CaptureScreenshotAsTexture();
+        if (transitionImage != null)
+        {
+            transitionImage.gameObject.SetActive(true);
+            transitionImage.sprite = Sprite.Create(screenCapture, new Rect(0, 0, screenCapture.width, screenCapture.height), new Vector2(0.5f, 0.5f));
+            transitionImage.color = Color.white;
+            transitionImage.raycastTarget = false;
+            
+        }
         subStages[currentStage-1].SetActive(false);
         subStages[currentStage].SetActive(true);
         textEffectMove.EffectMove(currentStage);
+        float elapsedTime = 0f;
+        while (elapsedTime < transitionDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = 1f - (elapsedTime / transitionDuration);
+            transitionImage.color = new Color(1f, 1f, 1f, alpha);
+            yield return null;
+        }
+        transitionImage.gameObject.SetActive(false);
+        Destroy(screenCapture);
         Debug.Log(currentStage);
         noteManager.spawnPointChange(currentStage);
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);
-        fadeanim.SetTrigger("FadeIn");
     }
     IEnumerator SlideBackground(float duration)
     {
@@ -252,11 +277,11 @@ public class GameManager : MonoBehaviour
             if (Score > stageData.oneCount * 7.5 && !fadeOutStart)
             {
                 
-                StartCoroutine(FadeOutToNextScene(stageData.successScene));
+                SceneTransitionManager.LoadSceneWithTransition(stageData.successScene);
             }
             else if (Score <= stageData.oneCount * 7.5 && !fadeOutStart)
             {
-                StartCoroutine(FadeOutToNextScene(stageData.failScene));
+                SceneTransitionManager.LoadSceneWithTransition(stageData.failScene);
 
             }
         }
@@ -284,7 +309,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                StartCoroutine(FadeInOutBackground());
+                StartCoroutine(CrossfadeSubstage());
             }
             
         }

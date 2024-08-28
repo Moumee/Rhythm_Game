@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class StageResult : MonoBehaviour
 {
     public bool isLionStage = false;
-    public Animator fadeAnim;
     public string nextSceneName;
     float objectAlpha;
     [SerializeField] GameObject continueTextObj;
@@ -71,7 +70,7 @@ public class StageResult : MonoBehaviour
                         }
                         if (!isLionStage)
                         {
-                            SceneManager.LoadSceneAsync(nextSceneName);
+                            StartCoroutine(LoadSceneWithDelay());
                         }
                         else if (isLionStage)
                         {
@@ -87,7 +86,11 @@ public class StageResult : MonoBehaviour
         
     }
 
-    
+    IEnumerator LoadSceneWithDelay()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadSceneAsync(nextSceneName);
+    }
 
     IEnumerator FoodFade(float duration)
     {
