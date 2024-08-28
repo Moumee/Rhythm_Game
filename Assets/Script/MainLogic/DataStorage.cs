@@ -215,7 +215,7 @@ public class DataStorage
         4,
         new List<int> { 120, 261, 376 },
         new List<int> { 0, 0, 3,0 },
-        new int[4][] { new int[1] { 0 }, new int[1] { 0 }, new int[2] { 1,3 }, new int[1] { 0 } },
+        new int[4][] { new int[1] { 0 }, new int[4] { 0,1,2,3 }, new int[2] { 1,3 }, new int[2] { 1, 3 } },
         5, //noteInterval
         234
 
