@@ -23,6 +23,21 @@ public class VolumeSettings : MonoBehaviour
     private void Awake()
     {
         volumeSlider = GetComponent<Slider>();
+        switch (volumeType)
+        {
+            case VolumeType.BGM:
+                FMOD.RESULT bgmResult = AudioManager.Instance.bgmVCA.getVolume(out float bgmVolume);
+                volumeSlider.value = bgmVolume;
+                break;
+            case VolumeType.SFX:
+                FMOD.RESULT sfxResult = AudioManager.Instance.sfxVCA.getVolume(out float sfxVolume);
+                volumeSlider.value = sfxVolume;
+                break;
+            default:
+                break;
+        }
+
+
     }
 
     private void Start()
