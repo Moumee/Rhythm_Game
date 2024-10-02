@@ -11,6 +11,7 @@ public class StartMenu : MonoBehaviour
 {
     [SerializeField] VideoPlayer introVideoPlayer;
     [SerializeField] VideoPlayer hamsterVideoPlayer;
+    [SerializeField] VideoPlayer loadingVideoPlayer;
     [SerializeField] GameObject[] otherUI;
     [SerializeField] Animator chefAnimator;
     [SerializeField] Animator forkAnimator;
@@ -29,7 +30,8 @@ public class StartMenu : MonoBehaviour
 
     private void Awake()
     {
-        introVideoPlayer.loopPointReached += PlayHamsterVideo;
+        introVideoPlayer.loopPointReached += PlayLoadingVideo;
+        loadingVideoPlayer.loopPointReached += PlayHamsterVideo;
         hamsterVideoPlayer.loopPointReached += HamsterVideoFinished;
     }
 
@@ -52,10 +54,7 @@ public class StartMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            StartCoroutine(Fade());
-        }
+        
         if (introVideoPlayer.frame == 1)
         {
             foreach (var UI in otherUI)
@@ -64,9 +63,13 @@ public class StartMenu : MonoBehaviour
             }
         }
 
-        if (hamsterVideoPlayer.frame == 1 && !hamsterVideoStart)
+        if (loadingVideoPlayer.frame == 1)
         {
             introVideoPlayer.gameObject.SetActive(false);
+        }
+        if (hamsterVideoPlayer.frame == 1)
+        {
+            loadingVideoPlayer.gameObject.SetActive(false);
             AudioManager.Instance.PlaySFX(AudioManager.Instance.bell);
             AudioManager.Instance.PlayBGM(AudioManager.Instance.restaurant);
             StartCoroutine(PlayHamsterGreetingTTS());
@@ -92,9 +95,14 @@ public class StartMenu : MonoBehaviour
         }
     }
 
+    private void PlayLoadingVideo(VideoPlayer vp)
+    {
+        StartCoroutine(FadeToLoading());
+    }
+
     private void PlayHamsterVideo(VideoPlayer vp)
     {
-        StartCoroutine(Fade());
+        StartCoroutine(FadeToHamster());
     }
 
     
@@ -108,7 +116,19 @@ public class StartMenu : MonoBehaviour
         
     }
 
-    IEnumerator Fade()
+    IEnumerator FadeToLoading()
+    {
+        fade.SetActive(true);
+        fade.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(0.5f);
+        pauseController.SetActive(true);
+        loadingVideoPlayer.Play();
+        yield return new WaitForSeconds(0.2f);
+        fade.GetComponent<Animator>().SetTrigger("FadeIn");
+        yield return new WaitForSeconds(0.5f);
+        fade.SetActive(false);
+    }
+    IEnumerator FadeToHamster()
     {
         fade.SetActive(true);
         fade.GetComponent<Animator>().SetTrigger("FadeOut");
