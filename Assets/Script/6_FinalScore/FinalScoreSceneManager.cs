@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using FMODUnity;
+using UnityEngine.UI;
 
 public class FinalScoreSceneManager : MonoBehaviour
 {
@@ -13,9 +15,22 @@ public class FinalScoreSceneManager : MonoBehaviour
     [SerializeField]
     private Animator videoAnim;
     bool videoEnd = false;
+    bool scrollStart = false;
+
+    [SerializeField]
+    private EventReference videoAudio;
+    [SerializeField]
+    private EventReference phoneAudio;
+    [SerializeField]
+    private EventReference endingBGM;
+
+    [SerializeField]
+    private ScoreScroller scoreScroller;
     private void Awake()
     {
-       
+        AudioManager.Instance.PlaySFX(videoAudio);
+        AudioManager.Instance.PlayBGM(endingBGM);
+        
     }
 
     
@@ -24,13 +39,20 @@ public class FinalScoreSceneManager : MonoBehaviour
     {
         if (videoAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1f && !videoEnd)
         {
-            PlayeAnim();
+            PlayAnim();
             videoEnd = true;
+        }
+
+        if (!phoneAnim.GetComponent<Image>().enabled && !scrollStart)
+        {
+            scoreScroller.StartScoreScroll();
+            scrollStart = true;
         }
         
     }
-    public void PlayeAnim()
+    public void PlayAnim()
     {
+        AudioManager.Instance.PlaySFX(phoneAudio);
         phoneAnim.Play("phone_start");
         fingerAnim.Play("finger_slide");
     }

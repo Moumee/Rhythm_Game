@@ -34,10 +34,7 @@ public class ScoreScroller : MonoBehaviour
         InitDigit((score % 1000) / 100, hundredsRT);
         InitDigit((score % 100) / 10, tensRT);
         InitDigit(score % 10, unitsRT);
-        StartCoroutine(MoveUnitsCoroutine());
-        StartCoroutine(MoveDigitCoroutine(tensRT, 2));
-        StartCoroutine(MoveDigitCoroutine(hundredsRT, 4)); 
-        StartCoroutine(MoveDigitCoroutine(thousandsRT, 6));    
+            
 
     }
 
@@ -46,6 +43,13 @@ public class ScoreScroller : MonoBehaviour
 
     }
 
+    public void StartScoreScroll()
+    {
+        StartCoroutine(MoveUnitsCoroutine());
+        StartCoroutine(MoveDigitCoroutine(tensRT, 2));
+        StartCoroutine(MoveDigitCoroutine(hundredsRT, 4));
+        StartCoroutine(MoveDigitCoroutine(thousandsRT, 6));
+    }
     
     void InitDigit(int targetNumber, RectTransform RT)
     {

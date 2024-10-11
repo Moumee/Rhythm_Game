@@ -96,7 +96,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638604136851866953
+  lastModified: 638642725778700171
   FileSizes: []
   Exists: 1
 --- !u!114 &-7660539305395831691
@@ -141,7 +141,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638604135727476326
+  lastModified: 638642725652309983
   FileSizes: []
   Exists: 1
 --- !u!114 &-7224081704133390864
@@ -171,6 +171,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-6663901267171094638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/EndingVideo/PhoneWoosh
+  m_EditorClassIdentifier: 
+  Path: event:/EndingVideo/PhoneWoosh
+  Guid:
+    Data1: 354025880
+    Data2: 1271973683
+    Data3: -507928899
+    Data4: -2067402360
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-6392482322019898061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +213,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638604135727406295
+  lastModified: 638642725778499129
   FileSizes: []
   Exists: 1
 --- !u!114 &-6372968822680558511
@@ -324,6 +351,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-4038034202194587141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/EndingVideo/EndingBGM
+  m_EditorClassIdentifier: 
+  Path: event:/EndingVideo/EndingBGM
+  Guid:
+    Data1: 1739687894
+    Data2: 1112032941
+    Data3: 349088138
+    Data4: 902791535
+  Banks:
+  - {fileID: -6392482322019898061}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 107363
 --- !u!114 &-3980504964963804357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,6 +432,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1150
+--- !u!114 &-3698378370051693554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/EndingVideo/EndingVideo
+  m_EditorClassIdentifier: 
+  Path: event:/EndingVideo/EndingVideo
+  Guid:
+    Data1: 434787882
+    Data2: 1176471934
+    Data3: 556777636
+    Data4: 617023862
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-3442064661754766974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,10 +663,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638604065683929577
+  lastModified: 638642725778710182
   FileSizes:
   - Name: 
-    Value: 3432
+    Value: 3586
   Exists: 1
 --- !u!114 &-1931764002089414428
 MonoBehaviour:
@@ -739,12 +820,15 @@ MonoBehaviour:
   - {fileID: -4582313737539135023}
   - {fileID: 7343636426433231724}
   - {fileID: -6372968822680558511}
+  - {fileID: -4038034202194587141}
+  - {fileID: -3698378370051693554}
+  - {fileID: -6663901267171094638}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7767095849538853268}
   StringsBanks:
   - {fileID: -1955523241680991564}
-  cacheTime: 638604136851866953
+  cacheTime: 638642725778710182
   cacheVersion: 131618
 --- !u!114 &359600167592558344
 MonoBehaviour:
