@@ -279,7 +279,7 @@ public class GameManager : MonoBehaviour
             ScoreStorage.Instance.FinalScore += Score;
             if (Score > stageData.oneCount * 7.5 && !fadeOutStart)
             {
-                
+                ScoreStorage.Instance.isSuccess[currentStage-1] = true;
                 SceneTransitionManager.LoadSceneWithTransition(stageData.successScene);
             }
             else if (Score <= stageData.oneCount * 7.5 && !fadeOutStart)
