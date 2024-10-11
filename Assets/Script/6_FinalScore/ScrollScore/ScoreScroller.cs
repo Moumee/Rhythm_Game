@@ -13,13 +13,23 @@ public class ScoreScroller : MonoBehaviour
     public RectTransform thousandsRT;
     
     
-    public GameObject numberPrefab;
+    public GameObject blueNumberPrefab;
+    public GameObject redNumberPrefab;
+    private GameObject numberPrefab;
     private int height = 100;
-    private int score = 0604; 
+    public int score = 9999; 
     public int cycles = 10;
     
     private void Awake()
     {
+        if (score >= 2800)
+        {
+            numberPrefab = blueNumberPrefab;
+        }
+        else
+        {
+            numberPrefab = redNumberPrefab;
+        }
         InitDigit(score / 1000, thousandsRT);
         InitDigit((score % 1000) / 100, hundredsRT);
         InitDigit((score % 100) / 10, tensRT);
