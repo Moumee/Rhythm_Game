@@ -12,8 +12,6 @@ public class Reply : MonoBehaviour
     private Vector3 destination;
     private RectTransform rect;
 
-    private bool isApear = false, isSlide = false;
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -39,14 +37,18 @@ public class Reply : MonoBehaviour
 
     public void Slide()
     {
+        if (rect.position.y >= 722f)
+        {
+            sprite.CrossFadeAlpha(0f, 0.3f, false);
+        }
         destination = rect.position + moveDistance;
     }
 
     public void Update()
     {
-        if ((rect.position - destination).magnitude > 1f)
+        if ((rect.position - destination).magnitude > 2f)
         {
-            rect.position += moveDistance.normalized * 700 * Time.deltaTime;
+            rect.position += moveDistance.normalized * 700f * Time.deltaTime;
         }
         else
         {

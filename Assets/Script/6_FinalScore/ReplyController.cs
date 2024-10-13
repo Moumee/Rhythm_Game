@@ -21,7 +21,9 @@ public class ReplyController : MonoBehaviour
             // commentsList에서 원하는 스프라이트 선택
             replies[i].GetComponent<Reply>().initialize(commentsList[2*i + (isSuccess ? 0 : 1)], i);
             
-        }  
+        }
+
+        //AllApear(); //테스트용
     }
 
     // Update is called once per frame
