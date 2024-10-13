@@ -1203,6 +1203,7 @@ MonoBehaviour:
       Data4: 902791535
     Path: event:/EndingVideo/EndingBGM
   scoreScroller: {fileID: 879773129}
+  successTotalScore: 3500
 --- !u!4 &1831633599
 Transform:
   m_ObjectHideFlags: 0
