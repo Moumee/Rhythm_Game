@@ -30,9 +30,11 @@ public class FinalScoreSceneManager : MonoBehaviour
     //최종점수판정
     [SerializeField] private int successTotalScore = 3500; 
 
+    private ReplyController replyController;
+
     private void Awake()
     {
-
+        replyController = FindFirstObjectByType<ReplyController>();
 
         AudioManager.Instance.PlaySFX(videoAudio);
         AudioManager.Instance.PlayBGM(endingBGM);
@@ -61,6 +63,7 @@ public class FinalScoreSceneManager : MonoBehaviour
         AudioManager.Instance.PlaySFX(phoneAudio);
         phoneAnim.Play("phone_start");
         fingerAnim.Play("finger_slide");
+        replyController.AllApear();
     }
     
     IEnumerator nextSceneDelay()

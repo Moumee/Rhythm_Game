@@ -44,11 +44,17 @@ public class ReplyController : MonoBehaviour
 
     IEnumerator AllApearCoruotine()
     {
+        yield return new WaitForSeconds(0.5f);
         foreach (var rp in replies)
         {
-            yield return new WaitForSeconds(0.5f);
+            
             rp.GetComponent<Reply>().Apear();
+            yield return new WaitForSeconds(0.4f);
         }
+        AllSlide();
+        yield return new WaitForSeconds(2f);
+        AllSlide();
+
         yield return null;
     }
 }
