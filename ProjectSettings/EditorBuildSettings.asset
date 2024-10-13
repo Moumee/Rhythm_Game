@@ -71,4 +71,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinalResult/SuccessResult.unity
     guid: c64f6fe15da06674b895c568034a627a
+  - enabled: 1
+    path: Assets/Scenes/FinalScore/ScoreScroll.unity
+    guid: 20a70e046080ef247aa54ea8e935d3e7
   m_configObjects: {}

@@ -26,8 +26,14 @@ public class FinalScoreSceneManager : MonoBehaviour
 
     [SerializeField]
     private ScoreScroller scoreScroller;
+
+    //최종점수판정
+    [SerializeField] private int successTotalScore = 3500; 
+
     private void Awake()
     {
+
+
         AudioManager.Instance.PlaySFX(videoAudio);
         AudioManager.Instance.PlayBGM(endingBGM);
         
@@ -57,6 +63,17 @@ public class FinalScoreSceneManager : MonoBehaviour
         fingerAnim.Play("finger_slide");
     }
     
+    IEnumerator nextSceneDelay()
+    {
+        yield return new WaitForSeconds(5f);
+        if (ScoreStorage.Instance.FinalScore >= successTotalScore)
+        {
+            SceneTransitionManager.LoadSceneWithTransition("SuccessResult");
+        }
+        else
+        {
+            SceneTransitionManager.LoadSceneWithTransition("FailResult");
+        }
+    }
 
-    
 }

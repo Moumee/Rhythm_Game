@@ -9,13 +9,14 @@ public class LoadFinalResult : MonoBehaviour
     public int successTotalScore;
     public void LoadResultScene()
     {
-        if (ScoreStorage.Instance.FinalScore >= successTotalScore)
-        {
-            SceneTransitionManager.LoadSceneWithTransition("SuccessResult");
-        }
-        else
-        {
-            SceneTransitionManager.LoadSceneWithTransition("FailResult");
-        }
+        SceneTransitionManager.LoadSceneWithTransition("ScoreScroll");
+        //if (ScoreStorage.Instance.FinalScore >= successTotalScore)
+        //{
+        //    SceneTransitionManager.LoadSceneWithTransition("SuccessResult");
+        //}
+        //else
+        //{
+        //    SceneTransitionManager.LoadSceneWithTransition("FailResult");
+        //}
     }
 }
