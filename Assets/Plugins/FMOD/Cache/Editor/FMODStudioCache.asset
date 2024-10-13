@@ -54,6 +54,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 84086
+--- !u!114 &-8206988505873620067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Stars/Star5
+  m_EditorClassIdentifier: 
+  Path: event:/Stars/Star5
+  Guid:
+    Data1: 2095691800
+    Data2: 1200021797
+    Data3: 934697622
+    Data4: 583741328
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-8172942289307119348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +123,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638604140117058350
+  lastModified: 638644583723644031
   FileSizes: []
   Exists: 1
 --- !u!114 &-7660539305395831691
@@ -141,7 +168,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638644526673386893
+  lastModified: 638644583725330143
   FileSizes: []
   Exists: 1
 --- !u!114 &-7224081704133390864
@@ -162,6 +189,33 @@ MonoBehaviour:
     Data2: 1205291542
     Data3: 1912851843
     Data4: -39658756
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6736372492608418117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Stars/Star4
+  m_EditorClassIdentifier: 
+  Path: event:/Stars/Star4
+  Guid:
+    Data1: -1429367758
+    Data2: 1112790724
+    Data3: -1946654044
+    Data4: -984563367
   Banks:
   - {fileID: -7471541365338935949}
   IsStream: 0
@@ -213,7 +267,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 638644526672939300
+  lastModified: 638642725778499129
   FileSizes: []
   Exists: 1
 --- !u!114 &-6372968822680558511
@@ -288,6 +342,33 @@ MonoBehaviour:
     Data2: 1203146817
     Data3: 1276265662
     Data4: -574514420
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4791534498426553944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Comments/CommentSFX
+  m_EditorClassIdentifier: 
+  Path: event:/Comments/CommentSFX
+  Guid:
+    Data1: 1761212116
+    Data2: 1129145132
+    Data3: 907101100
+    Data4: -1758992752
   Banks:
   - {fileID: -7471541365338935949}
   IsStream: 0
@@ -663,10 +744,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638644526673219297
+  lastModified: 638644583723654087
   FileSizes:
   - Name: 
-    Value: 3586
+    Value: 3826
   Exists: 1
 --- !u!114 &-1931764002089414428
 MonoBehaviour:
@@ -823,12 +904,18 @@ MonoBehaviour:
   - {fileID: -4038034202194587141}
   - {fileID: -3698378370051693554}
   - {fileID: -6663901267171094638}
+  - {fileID: 2478680649174061367}
+  - {fileID: -8206988505873620067}
+  - {fileID: -6736372492608418117}
+  - {fileID: 3991701381058787167}
+  - {fileID: -4791534498426553944}
+  - {fileID: 4732886599050323497}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7767095849538853268}
   StringsBanks:
   - {fileID: -1955523241680991564}
-  cacheTime: 638644526673386893
+  cacheTime: 638644583725330143
   cacheVersion: 131618
 --- !u!114 &359600167592558344
 MonoBehaviour:
@@ -1046,6 +1133,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2478680649174061367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Stars/Star3
+  m_EditorClassIdentifier: 
+  Path: event:/Stars/Star3
+  Guid:
+    Data1: 1831784976
+    Data2: 1277166760
+    Data3: -91083091
+    Data4: 319678059
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &2607125031657418482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1127,6 +1241,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &3991701381058787167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Stars/Star1
+  m_EditorClassIdentifier: 
+  Path: event:/Stars/Star1
+  Guid:
+    Data1: -1886965450
+    Data2: 1212662413
+    Data3: 504117939
+    Data4: -60653594
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &4030449657366468290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1226,6 +1367,33 @@ MonoBehaviour:
     Data2: 1323657398
     Data3: 2062005390
     Data4: -904226663
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4732886599050323497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Stars/Star2
+  m_EditorClassIdentifier: 
+  Path: event:/Stars/Star2
+  Guid:
+    Data1: -669561130
+    Data2: 1316897722
+    Data3: 332758205
+    Data4: 880887090
   Banks:
   - {fileID: -7471541365338935949}
   IsStream: 0

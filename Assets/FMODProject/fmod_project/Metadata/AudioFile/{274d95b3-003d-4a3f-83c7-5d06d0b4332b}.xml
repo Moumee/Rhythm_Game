@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{274d95b3-003d-4a3f-83c7-5d06d0b4332b}">
+		<property name="assetPath">
+			<value>AnimalComments/동물대사효과음3.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.192</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7aac224d-fac4-455f-830d-dba4aad57a74}</destination>
+		</relationship>
+	</object>
+</objects>
