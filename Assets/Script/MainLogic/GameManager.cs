@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     //value for judge
     private float margin_perfect = 0.05f;
     private float margin_good = 0.1f;
-    private bool isScoreGet = true;
+    private bool isMissDelay = false;
     private bool isCatchable = true;
 
     public int count = 0;       //count of called beats
@@ -120,7 +120,6 @@ public class GameManager : MonoBehaviour
         BPM = stageData.BPM;
         MusicChart = stageData.MusicChart;
 
-        isScoreGet = true;
         interval = 60 / BPM;
 
 
@@ -216,13 +215,14 @@ public class GameManager : MonoBehaviour
 
         if (BeatStart && !stageEnd)
         {
-            if (Input.GetKeyDown(KeyCode.DownArrow)|| Input.GetKeyDown(KeyCode.RightArrow)
-                || Input.GetKeyDown(KeyCode.UpArrow)|| Input.GetKeyDown(KeyCode.LeftArrow)
+            if ((Input.GetKeyDown(KeyCode.DownArrow)|| Input.GetKeyDown(KeyCode.RightArrow)
+                || Input.GetKeyDown(KeyCode.UpArrow)|| Input.GetKeyDown(KeyCode.LeftArrow))
                 ) 
             {
                 
-                if (Input.GetKeyDown(keyCodeList[noterotationList[judgeNumber]]) && currentState != catchState.Miss && isCatchable)
+                if (Input.GetKeyDown(keyCodeList[noterotationList[judgeNumber]]) && currentState != catchState.Miss )
                 {
+                    
                     isCatchable = false;
                     AudioManager.Instance.PlaySFX(AudioManager.Instance.notePress);
                     
@@ -254,16 +254,24 @@ public class GameManager : MonoBehaviour
                     
 
                 }
-                else//if(!Input.GetKeyDown(keyCodeList[noterotationList[judgeNumber]]) || currentState == catchState.Miss)
+                else 
                 {
-                    
-                    missCount++;
+                    currentState = catchState.Miss;
+                    isCatchable = false;
                     eventAdapter.Event_MissNote();
-                    missText.SetTrigger("Miss");
-                    noteManager.NoteJudgeEffect("Miss");
-                    combo = 0;
-                    //StartCoroutine(CatchDelay());
+                    if (!isMissDelay)
+                    {
+                        missCount++;
+                        
+                        missText.SetTrigger("Miss");
+                        noteManager.NoteJudgeEffect("Miss");
+                        combo = 0;
+                    }
+                        
+                    
                 }
+                currentState = catchState.Miss;
+                StartCoroutine(MissDelay());
 
             }
         }
@@ -378,13 +386,11 @@ public class GameManager : MonoBehaviour
 
     
 
-    IEnumerator CatchDelay()
+    IEnumerator MissDelay()
     {
-        isCatchable = false;
-        
-        //yield return new WaitForSeconds(catchDelay);
-        yield return null;
-        isCatchable = true;
+        isMissDelay = true;
+        yield return new WaitForSeconds(interval/2);
+        isMissDelay = false;
     }
 
     IEnumerator DefaultCycle()
@@ -402,7 +408,7 @@ public class GameManager : MonoBehaviour
         currentState = catchState.good;
 
 
-        yield return new WaitForSeconds(margin_good);
+        yield return new WaitForSeconds(margin_good - margin_perfect);
         if(judgeNumber == tempJudgeNum)
         {
             currentState = catchState.Miss;
