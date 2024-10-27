@@ -537,10 +537,10 @@ RectTransform:
   m_Children:
   - {fileID: 1250494447}
   - {fileID: 879773125}
-  - {fileID: 2078313071}
   - {fileID: 1867833227}
-  - {fileID: 1650649827}
   - {fileID: 104857047}
+  - {fileID: 2078313071}
+  - {fileID: 1650649827}
   - {fileID: 1636758663}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1328,6 +1328,7 @@ GameObject:
   - component: {fileID: 2078313074}
   - component: {fileID: 2078313073}
   - component: {fileID: 2078313072}
+  - component: {fileID: 2078313075}
   m_Layer: 5
   m_Name: Finger
   m_TagString: Untagged
@@ -1413,6 +1414,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078313070}
   m_CullTransparentMesh: 1
+--- !u!114 &2078313075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078313070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e88da4c4e7e0c48a6e71db9287e9cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

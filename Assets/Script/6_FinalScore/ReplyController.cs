@@ -51,9 +51,9 @@ public class ReplyController : MonoBehaviour
             rp.GetComponent<Reply>().Apear();
             yield return new WaitForSeconds(0.4f);
         }
-        AllSlide();
-        yield return new WaitForSeconds(2f);
-        AllSlide();
+        //AllSlide();
+       // yield return new WaitForSeconds(2f);
+        //AllSlide();
 
         yield return null;
     }
