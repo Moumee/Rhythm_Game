@@ -17,13 +17,14 @@ public class ReplyController : MonoBehaviour
         for(int i = 0; i < 5; i++) 
         {
             replies[i] = Instantiate(replyPrefeb, GameObject.Find("ReplyContainer").transform);
+            replies[i].transform.rotation = Quaternion.identity;
             isSuccess = ScoreStorage.Instance.isSuccess[i];
-            // commentsList¿¡¼­ ¿øÇÏ´Â ½ºÇÁ¶óÀÌÆ® ¼±ÅÃ
+            // commentsListï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
             replies[i].GetComponent<Reply>().initialize(commentsList[2*i + (isSuccess ? 0 : 1)], i);
             
         }
 
-        //AllApear(); //Å×½ºÆ®¿ë
+        //AllApear(); //ï¿½×½ï¿½Æ®ï¿½ï¿½
     }
 
     // Update is called once per frame

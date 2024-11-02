@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Fingeranimationfunction : MonoBehaviour
 {
+    [SerializeField] ReplyController replyController;
+    
     void AllSlide()
     {
-        Debug.Log("fy");
+        replyController.AllSlide();
     }
 }
