@@ -76,13 +76,20 @@ public class ScoreScroller : MonoBehaviour
     
     void MoveDigit(RectTransform inRT, int cycleSubtract)
     {
-        inRT.DOAnchorPosY(-cycles * height * 10, 3.4f, true)
-            .SetEase(Ease.OutCubic)
+        float targetStopPosition = -cycles * height * 10 + 100 * cycleSubtract * 10;
+
+        DOTween.Sequence()
+            .Append(
+                inRT.DOAnchorPosY(-cycles * height * 10, 3.4f, true)
+                    .SetEase(Ease.OutCubic)
+            )
             .OnUpdate(() => 
             {
-                if (inRT.anchoredPosition.y <= -cycles * height * 10 + 100 * cycleSubtract * 10)
+                if (inRT.anchoredPosition.y <= targetStopPosition)
                 {
+                    // Kill current tween and immediately set to exact position
                     DOTween.Kill(inRT);
+                    inRT.DOAnchorPosY(targetStopPosition, 0).SetEase(Ease.Linear);
                 }
             });
     }
