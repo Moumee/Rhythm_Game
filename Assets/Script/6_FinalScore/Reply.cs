@@ -46,7 +46,7 @@ public class Reply : MonoBehaviour
 
     public void Update()
     {
-        if ((rect.position - destination).magnitude > 2f)
+        if ((rect.position - destination).magnitude > 5f)
         {
             rect.position += moveDistance.normalized * 700f * Time.deltaTime;
         }

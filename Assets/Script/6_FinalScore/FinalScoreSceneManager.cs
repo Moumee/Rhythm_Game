@@ -14,6 +14,8 @@ public class FinalScoreSceneManager : MonoBehaviour
     private Animator fingerAnim;
     [SerializeField]
     private Animator videoAnim;
+    [SerializeField]
+    private Animator starAnim;
     bool videoEnd = false;
     bool scrollStart = false;
 
@@ -32,12 +34,20 @@ public class FinalScoreSceneManager : MonoBehaviour
 
     private ReplyController replyController;
 
+    [SerializeField] EventReference star1Audio;
+    [SerializeField] EventReference star2Audio;
+    [SerializeField] EventReference star3Audio;
+    [SerializeField] EventReference star4Audio;
+    [SerializeField] EventReference star5Audio;
+
+
     private void Awake()
     {
         replyController = FindFirstObjectByType<ReplyController>();
 
         AudioManager.Instance.PlaySFX(videoAudio);
         AudioManager.Instance.PlayBGM(endingBGM);
+
         
     }
 
@@ -57,12 +67,24 @@ public class FinalScoreSceneManager : MonoBehaviour
         AudioManager.Instance.PlaySFX(phoneAudio);
         phoneAnim.Play("phone_start");
         fingerAnim.Play("finger_slide");
+        starAnim.Play("star");
+        int starcount = -2;
+        starcount++;
+        for (int i = 0; i < 5; i++)
+        {
+            starcount += (ScoreStorage.Instance.isSuccess[i] ? 1 : 0);
+        }
+        if (starcount == 0) AudioManager.Instance.PlaySFX(star1Audio);
+        else if (starcount == 0) AudioManager.Instance.PlaySFX(star2Audio);
+        else if (starcount == 0) AudioManager.Instance.PlaySFX(star3Audio);
+        else if (starcount == 0) AudioManager.Instance.PlaySFX(star4Audio);
+        else if (starcount == 0) AudioManager.Instance.PlaySFX(star5Audio);
+        starAnim.SetInteger("starcount", starcount);
         replyController.AllApear();
     }
     
-    IEnumerator nextSceneDelay()
+    public void FinalScene()
     {
-        yield return new WaitForSeconds(5f);
         if (ScoreStorage.Instance.FinalScore >= successTotalScore)
         {
             SceneTransitionManager.LoadSceneWithTransition("SuccessResult");

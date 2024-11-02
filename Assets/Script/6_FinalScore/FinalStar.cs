@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class FinalStar : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Animator animator;
+    private void Awake()
     {
-        
+        animator = GetComponent<Animator>();   
     }
 
-    // Update is called once per frame
     void Update()
     {
         
