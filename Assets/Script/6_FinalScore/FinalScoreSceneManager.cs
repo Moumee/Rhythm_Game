@@ -27,7 +27,7 @@ public class FinalScoreSceneManager : MonoBehaviour
     [SerializeField]
     private ScoreScroller scoreScroller;
 
-    //ÃÖÁ¾Á¡¼öÆÇÁ¤
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     [SerializeField] private int successTotalScore = 3500; 
 
     private ReplyController replyController;
@@ -49,12 +49,6 @@ public class FinalScoreSceneManager : MonoBehaviour
         {
             PlayAnim();
             videoEnd = true;
-        }
-
-        if (!phoneAnim.GetComponent<Image>().enabled && !scrollStart)
-        {
-            scoreScroller.StartScoreScroll();
-            scrollStart = true;
         }
         
     }

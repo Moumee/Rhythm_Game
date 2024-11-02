@@ -46,10 +46,10 @@ public class ScoreScroller : MonoBehaviour
 
     public void StartScoreScroll()
     {
-        StartCoroutine(MoveUnitsCoroutine());
-        StartCoroutine(MoveDigitCoroutine(tensRT, 2));
-        StartCoroutine(MoveDigitCoroutine(hundredsRT, 4));
-        StartCoroutine(MoveDigitCoroutine(thousandsRT, 6));
+        MoveDigit(unitsRT, 0);
+        MoveDigit(tensRT, 2);
+        MoveDigit(hundredsRT, 4);
+        MoveDigit(thousandsRT, 6);
     }
     
     void InitDigit(int targetNumber, RectTransform RT)
@@ -73,18 +73,17 @@ public class ScoreScroller : MonoBehaviour
         yield return tween.WaitForCompletion();
     }
 
-    IEnumerator MoveDigitCoroutine( RectTransform inRT, int cycleSubtract)
+    
+    void MoveDigit(RectTransform inRT, int cycleSubtract)
     {
-        Tween tween = inRT.DOAnchorPosY(-cycles * height * 10, 3.4f, true)
-            .SetEase(Ease.OutCubic);
-        while (tween.IsActive() && !tween.IsComplete())
-        {
-            if (inRT.anchoredPosition.y <= -cycles * height * 10 + 100 * cycleSubtract * 10)
+        inRT.DOAnchorPosY(-cycles * height * 10, 3.4f, true)
+            .SetEase(Ease.OutCubic)
+            .OnUpdate(() => 
             {
-                tween.Kill();
-                yield break;
-            }
-            yield return null;
-        }
+                if (inRT.anchoredPosition.y <= -cycles * height * 10 + 100 * cycleSubtract * 10)
+                {
+                    DOTween.Kill(inRT);
+                }
+            });
     }
 }

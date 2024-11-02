@@ -1395,6 +1395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fingerImage: {fileID: 2078313073}
+  scoreScroller: {fileID: 879773129}
 --- !u!1 &1892022771
 GameObject:
   m_ObjectHideFlags: 0

@@ -123,7 +123,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638644583723644031
+  lastModified: 638661825616809547
   FileSizes: []
   Exists: 1
 --- !u!114 &-7660539305395831691
@@ -168,7 +168,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638644583725330143
+  lastModified: 638661825618865438
   FileSizes: []
   Exists: 1
 --- !u!114 &-7224081704133390864
@@ -744,10 +744,10 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638644583723654087
+  lastModified: 638661825616824719
   FileSizes:
   - Name: 
-    Value: 3826
+    Value: 3868
   Exists: 1
 --- !u!114 &-1931764002089414428
 MonoBehaviour:
@@ -910,12 +910,13 @@ MonoBehaviour:
   - {fileID: 3991701381058787167}
   - {fileID: -4791534498426553944}
   - {fileID: 4732886599050323497}
+  - {fileID: 6977810370774700398}
   EditorParameters: []
   MasterBanks:
   - {fileID: -7767095849538853268}
   StringsBanks:
   - {fileID: -1955523241680991564}
-  cacheTime: 638644583725330143
+  cacheTime: 638661825618865438
   cacheVersion: 131618
 --- !u!114 &359600167592558344
 MonoBehaviour:
@@ -1619,6 +1620,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 180
+--- !u!114 &6977810370774700398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/EndingVideo/ScoreScroll
+  m_EditorClassIdentifier: 
+  Path: event:/EndingVideo/ScoreScroll
+  Guid:
+    Data1: -1846014926
+    Data2: 1221304137
+    Data3: 32680597
+    Data4: 598303029
+  Banks:
+  - {fileID: -7471541365338935949}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &7156511215585553248
 MonoBehaviour:
   m_ObjectHideFlags: 0
