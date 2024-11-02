@@ -67,7 +67,13 @@ public class FinalScoreSceneManager : MonoBehaviour
         AudioManager.Instance.PlaySFX(phoneAudio);
         phoneAnim.Play("phone_start");
         fingerAnim.Play("finger_slide");
-        starAnim.Play("star");
+        
+        
+        replyController.AllApear();
+    }
+
+    public void PlayStar()
+    {
         int starcount = -2;
         starcount++;
         for (int i = 0; i < 5; i++)
@@ -75,19 +81,37 @@ public class FinalScoreSceneManager : MonoBehaviour
             starcount += (ScoreStorage.Instance.isSuccess[i] ? 1 : 0);
         }
         starAnim.SetInteger("starcount", starcount);
-        if (starcount == 0) AudioManager.Instance.PlaySFX(star1Audio);
-        else if (starcount == 1) AudioManager.Instance.PlaySFX(star2Audio);
-        else if (starcount == 2) AudioManager.Instance.PlaySFX(star3Audio);
-        else if (starcount == 3) AudioManager.Instance.PlaySFX(star4Audio);
-        else if (starcount == 4) AudioManager.Instance.PlaySFX(star5Audio);
-        
-        replyController.AllApear();
+        if (starcount == 0)
+        {
+            AudioManager.Instance.PlaySFX(star1Audio);
+        }
+        else if (starcount == 1)
+        {
+            AudioManager.Instance.PlaySFX(star2Audio);
+        }
+        else if (starcount == 2)
+        {
+            AudioManager.Instance.PlaySFX(star3Audio);
+        }
+        else if (starcount == 3)
+        {
+            AudioManager.Instance.PlaySFX(star4Audio);
+        }
+        else if (starcount == 4)
+        {
+            AudioManager.Instance.PlaySFX(star5Audio);
+        }
     }
     
     public void FinalScene()
     {
-        //if (ScoreStorage.Instance.FinalScore >= successTotalScore)
-        if (false)
+        StartCoroutine(FinalSceneCoroutine());
+    }
+
+    IEnumerator FinalSceneCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        if (ScoreStorage.Instance.FinalScore >= successTotalScore)
         {
             SceneTransitionManager.LoadSceneWithTransition("SuccessResult");
         }

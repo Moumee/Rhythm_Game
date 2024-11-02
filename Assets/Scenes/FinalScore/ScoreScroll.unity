@@ -486,6 +486,7 @@ MonoBehaviour:
   tensRT: {fileID: 1747812331}
   hundredsRT: {fileID: 455326307}
   thousandsRT: {fileID: 1784217574}
+  finalScoreSceneManager: {fileID: 1831633598}
   blueNumberPrefab: {fileID: 7722411397481431389, guid: 0a4e5d7600e8fe54bbbefe491d267a11, type: 3}
   redNumberPrefab: {fileID: 7722411397481431389, guid: a1c5b61693aaa384683f4277797cfdbe, type: 3}
   score: 9999

@@ -15,7 +15,7 @@ public class ScoreScroller : MonoBehaviour
     public RectTransform tensRT;
     public RectTransform hundredsRT;
     public RectTransform thousandsRT;
-    
+    public FinalScoreSceneManager finalScoreSceneManager;
     
     public GameObject blueNumberPrefab;
     public GameObject redNumberPrefab;
@@ -43,13 +43,15 @@ public class ScoreScroller : MonoBehaviour
 
     }
 
-    private void Update()
+    IEnumerator StarCouroutine()
     {
-
+        yield return new WaitForSeconds(3.4f);
+        finalScoreSceneManager.PlayStar();
     }
 
     public void StartScoreScroll()
     {
+        StartCoroutine(StarCouroutine());
         AudioManager.Instance.PlaySFX(scrollSound);
         MoveDigit(unitsRT, 0);
         MoveDigit(tensRT, 2);
