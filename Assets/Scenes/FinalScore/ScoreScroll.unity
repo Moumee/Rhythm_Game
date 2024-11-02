@@ -1697,6 +1697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   replyController: {fileID: 423799115}
+  finalScoreSceneManager: {fileID: 1831633598}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

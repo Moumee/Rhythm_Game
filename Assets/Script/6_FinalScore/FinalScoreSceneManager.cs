@@ -74,18 +74,20 @@ public class FinalScoreSceneManager : MonoBehaviour
         {
             starcount += (ScoreStorage.Instance.isSuccess[i] ? 1 : 0);
         }
-        if (starcount == 0) AudioManager.Instance.PlaySFX(star1Audio);
-        else if (starcount == 0) AudioManager.Instance.PlaySFX(star2Audio);
-        else if (starcount == 0) AudioManager.Instance.PlaySFX(star3Audio);
-        else if (starcount == 0) AudioManager.Instance.PlaySFX(star4Audio);
-        else if (starcount == 0) AudioManager.Instance.PlaySFX(star5Audio);
         starAnim.SetInteger("starcount", starcount);
+        if (starcount == 0) AudioManager.Instance.PlaySFX(star1Audio);
+        else if (starcount == 1) AudioManager.Instance.PlaySFX(star2Audio);
+        else if (starcount == 2) AudioManager.Instance.PlaySFX(star3Audio);
+        else if (starcount == 3) AudioManager.Instance.PlaySFX(star4Audio);
+        else if (starcount == 4) AudioManager.Instance.PlaySFX(star5Audio);
+        
         replyController.AllApear();
     }
     
     public void FinalScene()
     {
-        if (ScoreStorage.Instance.FinalScore >= successTotalScore)
+        //if (ScoreStorage.Instance.FinalScore >= successTotalScore)
+        if (false)
         {
             SceneTransitionManager.LoadSceneWithTransition("SuccessResult");
         }

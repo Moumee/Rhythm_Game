@@ -7,7 +7,7 @@ public class ScoreStorage : MonoBehaviour
 {
     public int FinalScore = 0;
 
-    public bool[] isSuccess = new bool[]{true, true, true, false, false};
+    public bool[] isSuccess = new bool[]{true, true, true, true, true};
 
     private static ScoreStorage _Instance;
     public static ScoreStorage Instance

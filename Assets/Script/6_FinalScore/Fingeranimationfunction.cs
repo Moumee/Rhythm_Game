@@ -5,9 +5,15 @@ using UnityEngine;
 public class Fingeranimationfunction : MonoBehaviour
 {
     [SerializeField] ReplyController replyController;
+    [SerializeField] FinalScoreSceneManager finalScoreSceneManager;
     
-    void AllSlide()
+    public void AllSlide()
     {
         replyController.AllSlide();
+    }
+
+    public void FinalScene()
+    {
+        finalScoreSceneManager.FinalScene();
     }
 }
