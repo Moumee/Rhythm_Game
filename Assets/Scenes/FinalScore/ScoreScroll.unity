@@ -475,6 +475,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db8332b5b70a534aa8d3f80eb058d2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollSound:
+    Guid:
+      Data1: -1846014926
+      Data2: 1221304137
+      Data3: 32680597
+      Data4: 598303029
+    Path: event:/EndingVideo/ScoreScroll
   unitsRT: {fileID: 1192685054}
   tensRT: {fileID: 1747812331}
   hundredsRT: {fileID: 455326307}

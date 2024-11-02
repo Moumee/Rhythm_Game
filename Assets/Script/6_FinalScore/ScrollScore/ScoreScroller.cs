@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using FMODUnity;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using UnityEngine.EventSystems;
 
 public class ScoreScroller : MonoBehaviour
 {
+    [SerializeField] private EventReference scrollSound;
+    
     public RectTransform unitsRT;
     public RectTransform tensRT;
     public RectTransform hundredsRT;
@@ -46,6 +50,7 @@ public class ScoreScroller : MonoBehaviour
 
     public void StartScoreScroll()
     {
+        AudioManager.Instance.PlaySFX(scrollSound);
         MoveDigit(unitsRT, 0);
         MoveDigit(tensRT, 2);
         MoveDigit(hundredsRT, 4);
