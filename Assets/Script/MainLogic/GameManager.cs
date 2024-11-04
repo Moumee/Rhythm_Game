@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
     private RectTransform canvasRectTransform;
     public Canvas targetCanvas;
 
-
+    bool _isScore = false;
 
     void Awake()
     {
@@ -251,7 +251,7 @@ public class GameManager : MonoBehaviour
                         Score += 5;
                         combo = 0;
                     }
-                    
+                    _isScore = true;
 
                 }
                 else 
@@ -396,6 +396,7 @@ public class GameManager : MonoBehaviour
     IEnumerator DefaultCycle()
     {
         yield return new WaitForSeconds(interval - margin_good);
+        _isScore = false;
         judgeNumber++;
         int tempJudgeNum = judgeNumber;
         currentState = catchState.good;
@@ -409,6 +410,7 @@ public class GameManager : MonoBehaviour
 
 
         yield return new WaitForSeconds(margin_good - margin_perfect);
+        if(!_isScore) { eventAdapter.Event_MissNote(true); }
         if(judgeNumber == tempJudgeNum)
         {
             currentState = catchState.Miss;

@@ -62,13 +62,13 @@ public class PandaAdapter : EventAdapter
 
     }
 
-    public override void Event_MissNote()
+    public override void Event_MissNote(bool passThrough = false)
     {
-        if (GameManager.Instance.currentStage == 0)
+        if (GameManager.Instance.currentStage == 0 && !passThrough)
         {
             sliceHand.OnNoteMiss();
         }
-        else if (GameManager.Instance.currentStage == 1)
+        else if (GameManager.Instance.currentStage == 1 && !passThrough)
         {
             seasoningManager.OnNoteMiss();
         }

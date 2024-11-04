@@ -60,15 +60,23 @@ public class HamsterAdapter : EventAdapter
         }
     }
 
-    public override void Event_MissNote()
+    public override void Event_MissNote(bool passThrough = false)
     {
         if (GameManager.Instance.currentStage == 0)
         {
-            ingredientManager.OnNoteMiss();
+            if(!passThrough)
+            {
+                ingredientManager.OnNoteMiss();
+            }
+            
         }
         else if (GameManager.Instance.currentStage == 1)
         {
-            moldManager.OnNoteMiss();
+            if (passThrough)
+            {
+                moldManager.OnNoteMiss();
+            }
+            
         }
     }
 }

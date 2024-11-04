@@ -127,21 +127,21 @@ public class LionAdapter : EventAdapter
             }
         }
     }
-    public override void Event_MissNote()
+    public override void Event_MissNote(bool passThrough = false)
     {
-        if (GameManager.Instance.currentStage == 0)
+        if (GameManager.Instance.currentStage == 0 && !passThrough)
         {
             cabbageManager.OnNoteMiss();
         }
-        else if (GameManager.Instance.currentStage == 1)
+        else if (GameManager.Instance.currentStage == 1 && !passThrough)
         {
             tomatoManager.OnNoteMiss();
         }
-        else if (GameManager.Instance.currentStage == 2)
+        else if (GameManager.Instance.currentStage == 2 && !passThrough)
         {
 
         }
-        else
+        else if (!passThrough) 
         {
             cheeseGrater.OnNoteMiss();
         }

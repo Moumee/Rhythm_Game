@@ -49,17 +49,17 @@ public class CapybaraAdapter : EventAdapter
             tangerineCandyManager.OnRightNoteHit();
         }
     }
-    public override void Event_MissNote()
+    public override void Event_MissNote(bool passThrough = false)
     {
         if (GameManager.Instance.currentStage == 0)
         {
 
         }
-        else if (GameManager.Instance.currentStage == 1)
+        else if (GameManager.Instance.currentStage == 1 && passThrough)
         {
             tangerineFallManger.OnNoteMiss();
         }
-        else
+        else if (passThrough)
         {
             tangerineCandyManager.OnNoteMiss();
         }

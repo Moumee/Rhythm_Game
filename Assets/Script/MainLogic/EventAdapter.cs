@@ -9,7 +9,8 @@ abstract public class EventAdapter : MonoBehaviour
     abstract public void Event_OnBeat();
     abstract public void Event_OnNote();
     abstract public void Event_CatchNote(bool isPerfect = true, int direction = 0);
-    abstract public void Event_MissNote();
+    
+    abstract public void Event_MissNote(bool passThrough = false);
 
     abstract public void Event_SpawnIngre();
 }
