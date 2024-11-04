@@ -13,16 +13,7 @@ public class ReplyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bool isSuccess;
-        for(int i = 0; i < 5; i++) 
-        {
-            replies[i] = Instantiate(replyPrefeb, GameObject.Find("ReplyContainer").transform);
-            replies[i].transform.rotation = Quaternion.identity;
-            isSuccess = ScoreStorage.Instance.isSuccess[i];
-            // commentsList���� ���ϴ� ��������Ʈ ����
-            replies[i].GetComponent<Reply>().initialize(commentsList[2*i + (isSuccess ? 0 : 1)], i);
-            
-        }
+        
 
         //AllApear(); //�׽�Ʈ��
     }
@@ -40,6 +31,16 @@ public class ReplyController : MonoBehaviour
 
     public void AllApear()
     {
+        bool isSuccess;
+        for (int i = 0; i < 5; i++)
+        {
+            replies[i] = Instantiate(replyPrefeb, GameObject.Find("ReplyContainer").transform);
+            replies[i].transform.rotation = Quaternion.identity;
+            isSuccess = ScoreStorage.Instance.isSuccess[i];
+            // commentsList���� ���ϴ� ��������Ʈ ����
+            replies[i].GetComponent<Reply>().initialize(commentsList[2 * i + (isSuccess ? 0 : 1)], i);
+
+        }
         StartCoroutine(AllApearCoruotine());
     }
 

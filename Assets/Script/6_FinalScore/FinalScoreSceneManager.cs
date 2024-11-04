@@ -30,7 +30,7 @@ public class FinalScoreSceneManager : MonoBehaviour
     private ScoreScroller scoreScroller;
 
     //������������
-    [SerializeField] private int successTotalScore = 3500; 
+    [SerializeField] private int successTotalScore = 2800; 
 
     private ReplyController replyController;
 
@@ -74,12 +74,11 @@ public class FinalScoreSceneManager : MonoBehaviour
 
     public void PlayStar()
     {
-        int starcount = -2;
-        starcount++;
-        for (int i = 0; i < 5; i++)
-        {
-            starcount += (ScoreStorage.Instance.isSuccess[i] ? 1 : 0);
-        }
+        int starcount = 0;
+        if (ScoreStorage.Instance.FinalScore >= 1500) starcount += 1;
+        if (ScoreStorage.Instance.FinalScore >= 2800) starcount += 1;
+        if (ScoreStorage.Instance.FinalScore >= 3500) starcount += 1;
+        if (ScoreStorage.Instance.FinalScore >= 4200) starcount += 1;
         starAnim.SetInteger("starcount", starcount);
         if (starcount == 0)
         {
