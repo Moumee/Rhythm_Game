@@ -888,7 +888,7 @@ MonoBehaviour:
   foodSpriteRenderer: {fileID: 180500545}
   videoFadeDuration: 1
   isAngry: 1
-  hasEffect: 1
+  hasEffect: 0
 --- !u!114 &1613161498
 MonoBehaviour:
   m_ObjectHideFlags: 0

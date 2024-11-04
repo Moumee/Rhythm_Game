@@ -132,9 +132,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 104857047}
-  - component: {fileID: 104857050}
   - component: {fileID: 104857049}
   - component: {fileID: 104857048}
+  - component: {fileID: 104857050}
   m_Layer: 5
   m_Name: ReplyContainerMask
   m_TagString: Untagged
@@ -209,20 +209,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 104857046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 385b7d1277b6c4007a84c065696e0f8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
-  m_MaskingMode: 0
-  m_AlphaHitTest: 0
-  m_SoftnessRange:
-    m_Min: 0
-    m_Max: 1
-  m_DownSamplingRate: 1
-  m_AntiAliasingThreshold: 0
-  m_Alpha: -1
-  m_Softness: -1
-  m_PartOfParent: 0
 --- !u!1 &423799113
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +384,7 @@ GameObject:
   - component: {fileID: 879773128}
   - component: {fileID: 879773127}
   - component: {fileID: 879773129}
-  - component: {fileID: 879773131}
+  - component: {fileID: 879773130}
   m_Layer: 5
   m_Name: Mask Box
   m_TagString: Untagged
@@ -491,7 +481,7 @@ MonoBehaviour:
   redNumberPrefab: {fileID: 7722411397481431389, guid: a1c5b61693aaa384683f4277797cfdbe, type: 3}
   score: 9999
   cycles: 10
---- !u!114 &879773131
+--- !u!114 &879773130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -500,20 +490,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 879773124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 385b7d1277b6c4007a84c065696e0f8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
-  m_MaskingMode: 0
-  m_AlphaHitTest: 0
-  m_SoftnessRange:
-    m_Min: 0
-    m_Max: 1
-  m_DownSamplingRate: 1
-  m_AntiAliasingThreshold: 0
-  m_Alpha: -1
-  m_Softness: -1
-  m_PartOfParent: 0
 --- !u!1 &1070646803
 GameObject:
   m_ObjectHideFlags: 0

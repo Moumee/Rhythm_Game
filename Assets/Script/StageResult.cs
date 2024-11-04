@@ -61,6 +61,7 @@ public class StageResult : MonoBehaviour
                     }
                     else if (anyKeyIndex == 1)
                     {
+                        anyKeyIndex++;
                         continueTextObj.SetActive(false);
                         animalAnim.SetTrigger("Down");
                         StartCoroutine(ObjectFadeOut());
@@ -88,7 +89,7 @@ public class StageResult : MonoBehaviour
 
     IEnumerator LoadSceneWithDelay()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadSceneAsync(nextSceneName);
     }
 
