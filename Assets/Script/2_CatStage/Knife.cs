@@ -18,6 +18,7 @@ public class Knife : MonoBehaviour
     private Vector3 targetPosition;
     private Vector3 startPosition;
     public KnifeState currentState = KnifeState.Resetting;
+    private bool inRange = false;
 
     public enum KnifeState
     {
@@ -48,10 +49,11 @@ public class Knife : MonoBehaviour
         }
     }
 
-    public void OnKeyPress()
+    public void OnKeyPress(bool inRange)
     {
         if (currentState == KnifeState.Ready)
             StartKnifeMovement();
+        this.inRange = inRange;
     }
 
     private void ResetKnife()
@@ -129,7 +131,10 @@ public class Knife : MonoBehaviour
                     transform.position = new Vector3(firstKnifePoint.x, firstKnifePoint.y - resetDepth, firstKnifePoint.z);
                     currentState = KnifeState.Resetting;
                     targetPosition = knifePoints[0].position;
-                    fishManager.MoveAllFish();
+                    if (inRange)
+                    {
+                        fishManager.MoveAllFish();
+                    }
                 });
                 break;
 
