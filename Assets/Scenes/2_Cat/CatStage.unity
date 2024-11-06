@@ -2623,12 +2623,24 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 517734504728677847, guid: 98b539e3dbafe994982c5b8db1b1ee13, type: 3}
+      propertyPath: cutDuration
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 517734504728677847, guid: 98b539e3dbafe994982c5b8db1b1ee13, type: 3}
       propertyPath: fishManager
       value: 
       objectReference: {fileID: 1535740803}
     - target: {fileID: 517734504728677847, guid: 98b539e3dbafe994982c5b8db1b1ee13, type: 3}
+      propertyPath: resetDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 517734504728677847, guid: 98b539e3dbafe994982c5b8db1b1ee13, type: 3}
       propertyPath: horizontalSpeed
       value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 517734504728677847, guid: 98b539e3dbafe994982c5b8db1b1ee13, type: 3}
+      propertyPath: horizontalDuration
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 517734504728677847, guid: 98b539e3dbafe994982c5b8db1b1ee13, type: 3}
       propertyPath: knifePoints.Array.size

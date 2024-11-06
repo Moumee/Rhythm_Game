@@ -90,9 +90,9 @@ public class FishManager : MonoBehaviour
         VibrateCurrentFish();
     }
 
-    public void OnNoteMiss(bool inRange)
+    public void OnNoteMiss(bool passThrough)
     {
-        knife.OnKeyPress(inRange);
+        knife.OnKeyPress(passThrough);
         
     }
 }

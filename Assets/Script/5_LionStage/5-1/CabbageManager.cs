@@ -51,11 +51,12 @@ public class CabbageManager : MonoBehaviour
         }
     }
 
-    public void OnNoteMiss(bool inRange)
+    public void OnNoteMiss(bool passThrough)
     {
-        fist.OnNoteMiss();
-        if (inRange)
+        
+        if (!passThrough)
         {
+            fist.OnNoteMiss();
             keyPressCount++;
             if (keyPressCount == 3)
             {

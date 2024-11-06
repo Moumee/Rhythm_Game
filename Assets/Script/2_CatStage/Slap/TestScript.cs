@@ -39,7 +39,7 @@ public class TestScript : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow) && isSecondPart)
         {
-            fishManager.OnNoteMiss();
+            fishManager.OnNoteMiss(true);
         }
 
     }

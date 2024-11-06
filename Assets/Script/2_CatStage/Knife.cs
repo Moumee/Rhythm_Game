@@ -6,155 +6,95 @@ public class Knife : MonoBehaviour
 {
     [SerializeField] private FishManager fishManager;
     [SerializeField] private Transform[] knifePoints;
-    [SerializeField] private float cutSpeed = 20f;
-    [SerializeField] private float readySpeed = 80f;
-    [SerializeField] private float horizontalSpeed = 70f;
+    [SerializeField] private float cutDuration = 0.1f;
+    [SerializeField] private float horizontalDuration = 0.1f;
+    [SerializeField] private float resetDuration = 0.2f;
     [SerializeField] private float cutDepth = 0.6f;
     [SerializeField] private float resetDepth = 10f;
 
     public int knifeIndex = 0;
     private bool isMoving = false;
     private bool sfxPlayed = false;
-    private Vector3 targetPosition;
-    private Vector3 startPosition;
-    public KnifeState currentState = KnifeState.Resetting;
-    private bool inRange = false;
 
-    public enum KnifeState
+
+    public void OnKeyPress(bool passThrough)
     {
-        Ready,
-        MovingDown,
-        MovingUp,
-        MovingHorizontal,
-        MovingDownToReset,
-        Resetting
+        StartCoroutine(CutCoroutine(passThrough));
     }
 
-    private void OnEnable()
+    private IEnumerator ResetCoroutine()
     {
-        ResetKnife();
-    }
-
-    private void Update()
-    {
-        switch (currentState)
+        fishManager.MoveAllFish();
+        Vector3 startPos = knifePoints[knifeIndex].position;
+        Vector3 targetPos = startPos - resetDepth * Vector3.up;
+        float elapsedTime = 0f;
+        while (elapsedTime < resetDuration / 2f)
         {
-            case KnifeState.MovingDown:
-            case KnifeState.MovingUp:
-            case KnifeState.MovingHorizontal:
-            case KnifeState.MovingDownToReset:
-            case KnifeState.Resetting:
-                MoveKnife();
-                break;
+            elapsedTime += Time.deltaTime;
+            transform.position = Vector3.Lerp(startPos, targetPos, elapsedTime / (resetDuration / 2f));
+            yield return null;
         }
-    }
-
-    public void OnKeyPress(bool inRange)
-    {
-        if (currentState == KnifeState.Ready)
-            StartKnifeMovement();
-        this.inRange = inRange;
-    }
-
-    private void ResetKnife()
-    {
-        if (knifePoints.Length == 0)
+        transform.position = knifePoints[0].position - resetDepth * Vector3.up;
+        startPos = transform.position;
+        targetPos = knifePoints[0].position;
+        elapsedTime = 0f;
+        while (elapsedTime < resetDuration / 2f)
         {
-            Debug.LogError("No knife points assigned!");
-            return;
+            elapsedTime += Time.deltaTime;
+            transform.position = Vector3.Lerp(startPos, targetPos, elapsedTime / (resetDuration / 2f));
+            yield return null;
         }
+        transform.position = targetPos;
+        knifeIndex = 0;
 
-        Vector3 initialPosition = knifePoints[0].position;
-        transform.position = new Vector3(initialPosition.x, initialPosition.y - resetDepth, initialPosition.z);
-        currentState = KnifeState.Resetting;
-        targetPosition = knifePoints[0].position;
+    }
+
+    private IEnumerator CutCoroutine(bool passThrough)
+    {
+        Vector3 startPosition = knifePoints[knifeIndex].position;
+        Vector3 targetPosition = startPosition - cutDepth * Vector3.up;
         isMoving = true;
-    }
-
-    private void StartKnifeMovement()
-    {
-        isMoving = true;
-        currentState = KnifeState.MovingDown;
-        startPosition = transform.position;
-        targetPosition = startPosition + Vector3.down * cutDepth;
-    }
-
-    private void MoveKnife()
-    {
-        switch (currentState)
+        float elapsedTime = 0f;
+        while (elapsedTime <= (cutDuration / 2f))
         {
-            case KnifeState.MovingDown:
-                if (!sfxPlayed)
-                {
-                    AudioManager.Instance.PlaySFX(AudioManager.Instance.knifeCut);
-                    sfxPlayed = true;
-                }
-                MoveTowardsTarget(targetPosition, cutSpeed, () =>
-                {
-                    currentState = KnifeState.MovingUp;
-                    targetPosition = startPosition;
-                    AudioManager.Instance.PlaySFX(AudioManager.Instance.cuttingBoard);
-                    sfxPlayed = false;
-                });
-                break;
-
-            case KnifeState.MovingUp:
-                MoveTowardsTarget(targetPosition, cutSpeed, () =>
-                {
-                    if (knifeIndex == knifePoints.Length - 1)
-                    {
-                        currentState = KnifeState.MovingDownToReset;
-                        targetPosition = new Vector3(startPosition.x, startPosition.y - resetDepth, startPosition.z);
-                    }
-                    else
-                    {
-                        currentState = KnifeState.MovingHorizontal;
-                        knifeIndex = (knifeIndex + 1) % knifePoints.Length;
-                        targetPosition = knifePoints[knifeIndex].position;
-                    }
-                });
-                
-                break;
-
-            case KnifeState.MovingHorizontal:
-                MoveTowardsTarget(targetPosition, horizontalSpeed, () =>
-                {
-                    currentState = KnifeState.Ready;
-                    isMoving = false;
-                });
-                break;
-
-            case KnifeState.MovingDownToReset:
-                MoveTowardsTarget(targetPosition, readySpeed, () =>
-                {
-                    Vector3 firstKnifePoint = knifePoints[0].position;
-                    transform.position = new Vector3(firstKnifePoint.x, firstKnifePoint.y - resetDepth, firstKnifePoint.z);
-                    currentState = KnifeState.Resetting;
-                    targetPosition = knifePoints[0].position;
-                    if (inRange)
-                    {
-                        fishManager.MoveAllFish();
-                    }
-                });
-                break;
-
-            case KnifeState.Resetting:
-                MoveTowardsTarget(targetPosition, readySpeed, () =>
-                {
-                    knifeIndex = 0;
-                    currentState = KnifeState.Ready;
-                    isMoving = false;
-                });
-                break;
+            elapsedTime += Time.deltaTime;
+            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / (cutDuration / 2f));
+            yield return null;
+        }
+        transform.position = targetPosition;
+        startPosition = knifePoints[knifeIndex].position - cutDepth * Vector3.up;
+        targetPosition = knifePoints[knifeIndex].position;
+        elapsedTime = 0f;
+        while (elapsedTime <= (cutDuration / 2f))
+        {
+            elapsedTime += Time.deltaTime;
+            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / (cutDuration / 2f));
+            yield return null;
+        }
+        transform.position = targetPosition;
+        if (passThrough)
+        {
+            StartCoroutine(knifeIndex + 1 < knifePoints.Length - 1 ? MoveRightCoroutine() : ResetCoroutine());
         }
     }
 
-    private void MoveTowardsTarget(Vector3 target, float speed, System.Action onReachedTarget)
+    private IEnumerator MoveRightCoroutine()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, target) < 0.001f)
+        Vector3 startPosition = knifePoints[knifeIndex].position;
+        Vector3 targetPosition = knifePoints[knifeIndex + 1].position;
+        float elapsedTime = 0f;
+        while (elapsedTime <= horizontalDuration)
         {
-            onReachedTarget?.Invoke();
+            elapsedTime += Time.deltaTime;
+            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / horizontalDuration);
+            yield return null;
         }
+        transform.position = targetPosition;
+        knifeIndex++;
+        isMoving = false;
     }
+
+    
+
+    
 }

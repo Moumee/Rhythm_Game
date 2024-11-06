@@ -60,7 +60,7 @@ public class CatAdapter : EventAdapter {
         }
         else if (GameManager.Instance.currentStage == 1 && !passThrough)
         {
-            fishManager.OnNoteMiss();
+            fishManager.OnNoteMiss(false);
         }
     }
 

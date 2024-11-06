@@ -129,9 +129,10 @@ public class LionAdapter : EventAdapter
     }
     public override void Event_MissNote(bool passThrough = false)
     {
-        if (GameManager.Instance.currentStage == 0 && !passThrough)
+        if (GameManager.Instance.currentStage == 0)
         {
-            cabbageManager.OnNoteMiss();
+            cabbageManager.OnNoteMiss(passThrough);
+            
         }
         else if (GameManager.Instance.currentStage == 1 && !passThrough)
         {
