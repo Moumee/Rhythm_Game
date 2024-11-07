@@ -8,6 +8,7 @@ TagManager:
   - NoteEnd
   - NoteOut
   - Hole
+  - NoteCenterPoint
   layers:
   - Default
   - TransparentFX

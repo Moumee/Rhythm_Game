@@ -1702,7 +1702,6 @@ MonoBehaviour:
   ingreDelay: 2
   noteBeatInterval: 3
   transitionImage: {fileID: 0}
-  transitionDuration: 1
   targetCanvas: {fileID: 0}
 --- !u!4 &1750320641
 Transform:
@@ -2073,7 +2072,7 @@ GameObject:
   - component: {fileID: 2001545331}
   m_Layer: 0
   m_Name: Note Center Point
-  m_TagString: Untagged
+  m_TagString: NoteCenterPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

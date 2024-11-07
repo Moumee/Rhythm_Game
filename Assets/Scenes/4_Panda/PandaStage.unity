@@ -2481,7 +2481,6 @@ MonoBehaviour:
   ingreDelay: 4
   noteBeatInterval: 5
   transitionImage: {fileID: 0}
-  transitionDuration: 1
   targetCanvas: {fileID: 0}
 --- !u!4 &1628986136
 Transform:

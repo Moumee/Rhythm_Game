@@ -1,22 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
-using UnityEngine.Video;
-using AsyncOperation = UnityEngine.AsyncOperation;
-using System;
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
-using static GameManager;
+using System.Linq;
 using FMODUnity;
 
 public class GameManager : MonoBehaviour
 {
-    //½ºÅ×ÀÌÁö º¯¼ö
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     [HideInInspector] public enum numberofStage { _1Hamster = 1, _2Cat = 2, _3Capybara = 3, _4Panda = 4, _5Lion = 5 };
     public numberofStage stageNumber = numberofStage._1Hamster;
     DataStorage dataStorage = new DataStorage();
@@ -27,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     EventAdapter eventAdapter;
 
-    [Header("ÀÌÆåÆ®")]
+    [Header("ï¿½ï¿½ï¿½ï¿½Æ®")]
     public Animator missText;
     public Animator goodText;
     public Animator perfectText;
@@ -43,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     private int combo = 0;
 
-    //³ëÆ®°ü·Ã
+    //ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½
     NoteManager noteManager;
     public enum catchState { Miss = 0, Perfect = 1, good = 2 };
     public catchState currentState = catchState.Miss;
@@ -54,12 +44,12 @@ public class GameManager : MonoBehaviour
 
     
 
-    //Ã¤º¸°ü·Ã
+    //Ã¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private List<int> SpawnChart = new List<int>();
     private List<int> MusicChart;
     private List<int> DelayChart = new List<int> { };
 
-    //À½¾Ç°ü·Ã
+    //ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½
     [HideInInspector] public float BPM;
     private float interval;     //time between beat that calculated  by BPM
 
@@ -88,11 +78,11 @@ public class GameManager : MonoBehaviour
 
 
 
-    //ÆäÀÌµå º¯¼ö
+    //ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
     //[SerializeField] GameObject fade;
     public UnityEngine.UI.Image transitionImage;
     bool fadeOutStart = false;
-    public float transitionDuration = 1f;
+    private float transitionDuration = 0.5f;
     TextEffectMove textEffectMove;
     private Canvas canvas;
     private RectTransform canvasRectTransform;
@@ -102,7 +92,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        BeatTracker.OnFixedBeat += IterateChart;    //FMOD Â÷Æ® ±¸µ¶
+        BeatTracker.OnFixedBeat += IterateChart;    //FMOD ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 
         canvas = FindObjectOfType<Canvas>();
 
@@ -154,30 +144,62 @@ public class GameManager : MonoBehaviour
 
     IEnumerator CrossfadeSubstage()
     {
-        yield return new WaitForEndOfFrame();
-        Texture2D screenCapture = ScreenCapture.CaptureScreenshotAsTexture();
-        if (transitionImage != null)
+        GameObject currentSubstage = subStages[currentStage - 1];
+        GameObject nextSubstage = subStages[currentStage];
+        SpriteRenderer[] currentRenderers = currentSubstage.GetComponentsInChildren<SpriteRenderer>(true);
+    
+        SpriteRenderer[] nextRenderers = nextSubstage.GetComponentsInChildren<SpriteRenderer>(true)
+            .Where(renderer => renderer.gameObject.tag != "NoteCenterPoint")
+            .ToArray();
+        nextSubstage.SetActive(true);
+        foreach (var renderer in nextRenderers)
         {
-            transitionImage.gameObject.SetActive(true);
-            transitionImage.sprite = Sprite.Create(screenCapture, new Rect(0, 0, screenCapture.width, screenCapture.height), new Vector2(0.5f, 0.5f));
-            transitionImage.color = Color.white;
-            transitionImage.raycastTarget = false;
-            
+            Color color = renderer.color;
+            color.a = 0f;
+            renderer.color = color;
         }
-        subStages[currentStage-1].SetActive(false);
-        subStages[currentStage].SetActive(true);
-        textEffectMove.EffectMove(currentStage);
+
         float elapsedTime = 0f;
         while (elapsedTime < transitionDuration)
         {
             elapsedTime += Time.deltaTime;
-            float alpha = 1f - (elapsedTime / transitionDuration);
-            transitionImage.color = new Color(1f, 1f, 1f, alpha);
+            float normalizedTime = elapsedTime / transitionDuration;
+        
+            float smoothProgress = normalizedTime * normalizedTime * (3f - 2f * normalizedTime);
+        
+            foreach (var renderer in currentRenderers)
+            {
+                Color color = renderer.color;
+                color.a = 1f - smoothProgress;
+                renderer.color = color;
+            }
+        
+            foreach (var renderer in nextRenderers)
+            {
+                Color color = renderer.color;
+                color.a = smoothProgress;
+                renderer.color = color;
+            }
+        
             yield return null;
         }
-        transitionImage.gameObject.SetActive(false);
-        Destroy(screenCapture);
-        Debug.Log(currentStage);
+
+        currentSubstage.SetActive(false);
+    
+        foreach (var renderer in currentRenderers)
+        {
+            Color color = renderer.color;
+            color.a = 0f;
+            renderer.color = color;
+        }
+    
+        foreach (var renderer in nextRenderers)
+        {
+            Color color = renderer.color;
+            color.a = 1f;
+            renderer.color = color;
+        }
+        textEffectMove.EffectMove(currentStage);
         noteManager.spawnPointChange(currentStage);
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);
     }
@@ -226,7 +248,7 @@ public class GameManager : MonoBehaviour
                     isCatchable = false;
                     AudioManager.Instance.PlaySFX(AudioManager.Instance.notePress);
                     
-                    eventAdapter.Event_CatchNote(currentState == catchState.Perfect, noterotationList[judgeNumber]); //³ëÆ®Ä³Ä¡
+                    eventAdapter.Event_CatchNote(currentState == catchState.Perfect, noterotationList[judgeNumber]); //ï¿½ï¿½Æ®Ä³Ä¡
 
                     if (currentState == catchState.Perfect)
                     {
