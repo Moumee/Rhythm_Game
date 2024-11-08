@@ -54,15 +54,19 @@ public class CabbageManager : MonoBehaviour
     public void OnNoteMiss(bool passThrough)
     {
         
-        if (!passThrough)
+        if (passThrough)
         {
-            fist.OnNoteMiss();
+            
             keyPressCount++;
             if (keyPressCount == 3)
             {
                 MoveAllCabbages();
                 keyPressCount = 0;
             }
+        }
+        else
+        {
+            fist.OnNoteMiss();
         }
     }
 
