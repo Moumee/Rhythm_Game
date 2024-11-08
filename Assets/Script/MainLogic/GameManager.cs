@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using FMODUnity;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -90,6 +92,16 @@ public class GameManager : MonoBehaviour
     public Canvas targetCanvas;
 
     bool _isScore = false;
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     void Awake()
     {
@@ -265,6 +277,10 @@ public class GameManager : MonoBehaviour
         subStages[currentStage - 1].SetActive(false);
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        isTransitioning = false;
+    }
 
     void IntervalFix()
     {
