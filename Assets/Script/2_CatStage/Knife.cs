@@ -72,7 +72,7 @@ public class Knife : MonoBehaviour
             yield return null;
         }
         transform.position = targetPosition;
-        if (passThrough)
+        if (true) // 노트 끝났는지 판정해야 함. 임시로 true 넣음
         {
             StartCoroutine(knifeIndex == knifePoints.Length - 1 ? ResetCoroutine() : MoveRightCoroutine());
         }
@@ -80,6 +80,7 @@ public class Knife : MonoBehaviour
         {
             isMoving = false;
         }
+        
     }
 
     private IEnumerator MoveRightCoroutine()

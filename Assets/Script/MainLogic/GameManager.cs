@@ -148,7 +148,9 @@ public class GameManager : MonoBehaviour
         
         // Get renderers for both stages
         SpriteRenderer[] currentRenderers = currentSubstage.GetComponentsInChildren<SpriteRenderer>(true);
-        SpriteRenderer[] nextRenderers = nextSubstage.GetComponentsInChildren<SpriteRenderer>(true);
+            
+        SpriteRenderer[] nextRenderers = nextSubstage.GetComponentsInChildren<SpriteRenderer>(true)
+            .Where(r => !r.CompareTag("IgnoreAlpha")).ToArray();
         
         // Store original sorting layers and orders
         Dictionary<SpriteRenderer, string> originalLayers = new Dictionary<SpriteRenderer, string>();

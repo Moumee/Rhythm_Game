@@ -9,6 +9,7 @@ TagManager:
   - NoteOut
   - Hole
   - NoteCenterPoint
+  - IgnoreAlpha
   layers:
   - Default
   - TransparentFX
