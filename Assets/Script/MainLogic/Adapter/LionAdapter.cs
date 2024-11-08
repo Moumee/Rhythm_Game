@@ -93,6 +93,7 @@ public class LionAdapter : EventAdapter
                     mushroom.OnLeftNoteHit();
                 }
             }
+            
             if (mushroomCount == 20) 
             {
                 mushroom.CookMushroom();

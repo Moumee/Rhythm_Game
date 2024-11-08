@@ -348,23 +348,32 @@ public class GameManager : MonoBehaviour
         //ending
         if (count == SpawnChart.Count - 1 && !stageEnd)
         {
-            stageEnd = true;
-            AudioManager.Instance.stageSource.Stop();
-            ScoreStorage.Instance.FinalScore += Score;
-            if (Score > stageData.oneCount * 7.5 && !fadeOutStart)
-            {
-                ScoreStorage.Instance.isSuccess[currentStage-1] = true;
-                SceneTransitionManager.LoadSceneWithTransition(stageData.successScene);
-            }
-            else if (Score <= stageData.oneCount * 7.5 && !fadeOutStart)
-            {
-                SceneTransitionManager.LoadSceneWithTransition(stageData.failScene);
-
-            }
+            HandleStageEnd();
         }
 
         
 
+    }
+
+    private void HandleStageEnd()
+    {
+        if (isTransitioning) return;
+        
+        isTransitioning = true;
+        stageEnd = true;
+        AudioManager.Instance.stageSource.Stop();
+        ScoreStorage.Instance.FinalScore += Score;
+
+        if (Score > stageData.oneCount * 7.5 && !fadeOutStart)
+        {
+            ScoreStorage.Instance.isSuccess[currentStage - 1] = true;
+            SceneTransitionManager.LoadSceneWithTransition(stageData.successScene);
+        }
+        else if (Score <= stageData.oneCount * 7.5 && !fadeOutStart)
+        {
+            SceneTransitionManager.LoadSceneWithTransition(stageData.failScene);
+
+        }
     }
     
     //Made IterateChart function and subscribed to BeatTracker.OnFixedBeat in the Awake function

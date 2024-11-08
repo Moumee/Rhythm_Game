@@ -5,7 +5,7 @@ using System.Collections;
 
 public class SceneTransitionManager : MonoBehaviour
 {
-    public float transitionDuration = 1f;
+    private float transitionDuration = 0.5f;
     private static SceneTransitionManager instance;
 
     public static SceneTransitionManager Instance
