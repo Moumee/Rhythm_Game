@@ -10,7 +10,6 @@ using TMPro;
 public class StartMenu : MonoBehaviour
 {
     [SerializeField] VideoPlayer introVideoPlayer;
-    [SerializeField] VideoPlayer hamsterVideoPlayer;
     [SerializeField] VideoPlayer loadingVideoPlayer;
     [SerializeField] GameObject[] otherUI;
     [SerializeField] Animator chefAnimator;
@@ -19,26 +18,11 @@ public class StartMenu : MonoBehaviour
     [SerializeField] GameObject continueTextObj;
     [SerializeField] GameObject pauseController;
     [SerializeField] GameObject fade;
-    [SerializeField] SceneController sceneController;
-    [SerializeField] SceneFade sceneFade;
-    AsyncOperation asyncOperation;
-    private float fadeSpeed = 1f;
-    bool hamsterVideoFinshed = false;
-    bool hamsterVideoStart = false;
-    float offset = 0;
-    float alpha;
 
     private void Awake()
     {
         introVideoPlayer.loopPointReached += PlayLoadingVideo;
-        loadingVideoPlayer.loopPointReached += PlayHamsterVideo;
-        hamsterVideoPlayer.loopPointReached += HamsterVideoFinished;
-    }
-
-    private void HamsterVideoFinished(VideoPlayer source)
-    {
-        continueTextObj.SetActive(true);
-        hamsterVideoFinshed = true;
+        loadingVideoPlayer.loopPointReached += LoadHamsterIntro;
     }
 
     private void Start()
@@ -67,32 +51,7 @@ public class StartMenu : MonoBehaviour
         {
             introVideoPlayer.gameObject.SetActive(false);
         }
-        if (hamsterVideoPlayer.frame == 1 && !hamsterVideoStart)
-        {
-            loadingVideoPlayer.gameObject.SetActive(false);
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.bell);
-            AudioManager.Instance.PlayBGM(AudioManager.Instance.restaurant);
-            StartCoroutine(PlayHamsterGreetingTTS());
-            hamsterVideoStart = true;
-        }
-        if (hamsterVideoFinshed)
-        {
-            alpha = Mathf.PingPong(Time.time * fadeSpeed + offset, 0.8f);
-            continueTextObj.GetComponent<TextMeshProUGUI>().color = new Color(0, 0, 0, alpha);
-            if (Input.anyKey)
-            {
-                if (!Input.GetKey(KeyCode.Escape) && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
-                {
-                    AudioManager.Instance.StopAllMusic(); // Updated this line
-                    SceneTransitionManager.LoadSceneWithTransition("1-1");
-                }
-            }
-        }
 
-        if (alpha < Mathf.Epsilon)
-        {
-            offset = -Time.time * fadeSpeed;
-        }
     }
 
     private void PlayLoadingVideo(VideoPlayer vp)
@@ -100,20 +59,9 @@ public class StartMenu : MonoBehaviour
         StartCoroutine(FadeToLoading());
     }
 
-    private void PlayHamsterVideo(VideoPlayer vp)
+    private void LoadHamsterIntro(VideoPlayer vp)
     {
-        StartCoroutine(FadeToHamster());
-    }
-
-    
-
-    IEnumerator FadeOutToNextScene()
-    {
-        fade.SetActive(true);
-        fade.GetComponent<Animator>().SetTrigger("FadeOut");
-        yield return new WaitForSeconds(0.5f);
-        AudioManager.Instance.StopAllMusic(); // Added this line
-        
+        SceneTransitionManager.LoadSceneWithTransition("HamsterIntro");
     }
 
     IEnumerator FadeToLoading()
@@ -123,18 +71,6 @@ public class StartMenu : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         pauseController.SetActive(true);
         loadingVideoPlayer.Play();
-        yield return new WaitForSeconds(0.2f);
-        fade.GetComponent<Animator>().SetTrigger("FadeIn");
-        yield return new WaitForSeconds(0.5f);
-        fade.SetActive(false);
-    }
-    IEnumerator FadeToHamster()
-    {
-        fade.SetActive(true);
-        fade.GetComponent<Animator>().SetTrigger("FadeOut");
-        yield return new WaitForSeconds(0.5f);
-        pauseController.SetActive(true);
-        hamsterVideoPlayer.Play();
         yield return new WaitForSeconds(0.2f);
         fade.GetComponent<Animator>().SetTrigger("FadeIn");
         yield return new WaitForSeconds(0.5f);
@@ -155,9 +91,4 @@ public class StartMenu : MonoBehaviour
         AudioManager.Instance.PlayBGM(AudioManager.Instance.introVideoAudio);
     }
 
-    IEnumerator PlayHamsterGreetingTTS()
-    {
-        yield return new WaitForSeconds(1f);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.hamsterGreetingTTS);
-    }
 }

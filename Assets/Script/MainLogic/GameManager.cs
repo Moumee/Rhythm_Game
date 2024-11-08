@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int currentStage = 0;
     public List<GameObject> subStages = new List<GameObject>();
 
+    private bool isTransitioning = false;
 
     EventAdapter eventAdapter;
 
@@ -140,69 +141,110 @@ public class GameManager : MonoBehaviour
         transitionImage.gameObject.SetActive(false);
     }
 
-    
-
     IEnumerator CrossfadeSubstage()
     {
         GameObject currentSubstage = subStages[currentStage - 1];
         GameObject nextSubstage = subStages[currentStage];
+        
+        // Get renderers for both stages
         SpriteRenderer[] currentRenderers = currentSubstage.GetComponentsInChildren<SpriteRenderer>(true);
-    
-        SpriteRenderer[] nextRenderers = nextSubstage.GetComponentsInChildren<SpriteRenderer>(true)
-            .Where(renderer => renderer.gameObject.tag != "NoteCenterPoint")
-            .ToArray();
-        nextSubstage.SetActive(true);
+        SpriteRenderer[] nextRenderers = nextSubstage.GetComponentsInChildren<SpriteRenderer>(true);
+        
+        // Store original sorting layers and orders
+        Dictionary<SpriteRenderer, string> originalLayers = new Dictionary<SpriteRenderer, string>();
+        Dictionary<SpriteRenderer, int> originalOrders = new Dictionary<SpriteRenderer, int>();
+        
+        // Set next stage renderers to be in Background layer temporarily
         foreach (var renderer in nextRenderers)
         {
+            originalLayers[renderer] = renderer.sortingLayerName;
+            originalOrders[renderer] = renderer.sortingOrder;
+            renderer.sortingLayerName = "Default";  // Temporarily put in Default layer
             Color color = renderer.color;
             color.a = 0f;
             renderer.color = color;
         }
 
+        nextSubstage.SetActive(true);
+
+        // Fade transition
         float elapsedTime = 0f;
         while (elapsedTime < transitionDuration)
         {
-            elapsedTime += Time.deltaTime;
-            float normalizedTime = elapsedTime / transitionDuration;
-        
-            float smoothProgress = normalizedTime * normalizedTime * (3f - 2f * normalizedTime);
-        
+            float t = elapsedTime / transitionDuration;
+            
+            // Fade out current stage
             foreach (var renderer in currentRenderers)
             {
-                Color color = renderer.color;
-                color.a = 1f - smoothProgress;
-                renderer.color = color;
+                if (renderer.CompareTag("NoteCenterPoint"))
+                {
+                    renderer.color = new Color(
+                        renderer.color.r,
+                        renderer.color.g,
+                        renderer.color.b,
+                        Mathf.Lerp(0.6f, 0f, t)
+                    );
+                }
+                else
+                {
+                    Color color = renderer.color;
+                    color.a = Mathf.Lerp(1f, 0f, t);
+                    renderer.color = color;
+                }
             }
-        
+
+            // Fade in next stage
             foreach (var renderer in nextRenderers)
             {
-                Color color = renderer.color;
-                color.a = smoothProgress;
-                renderer.color = color;
+                if (renderer.CompareTag("NoteCenterPoint"))
+                {
+                    renderer.color = new Color(
+                        renderer.color.r,
+                        renderer.color.g,
+                        renderer.color.b,
+                        Mathf.Lerp(0f, 0.6f, t)
+                    );
+                }
+                else
+                {
+                    Color color = renderer.color;
+                    color.a = Mathf.Lerp(0f, 1f, t);
+                    renderer.color = color;
+                }
             }
-        
+
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        currentSubstage.SetActive(false);
-    
-        foreach (var renderer in currentRenderers)
-        {
-            Color color = renderer.color;
-            color.a = 0f;
-            renderer.color = color;
-        }
-    
+        // Restore original sorting layers and set final states
         foreach (var renderer in nextRenderers)
         {
-            Color color = renderer.color;
-            color.a = 1f;
-            renderer.color = color;
+            renderer.sortingLayerName = originalLayers[renderer];
+            renderer.sortingOrder = originalOrders[renderer];
+            if (renderer.CompareTag("NoteCenterPoint"))
+            {
+                renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 0.6f);
+            }
+            else
+            {
+                renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 1f);
+            }
         }
+
+        foreach (var renderer in currentRenderers)
+        {
+            renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 0f);
+        }
+
+        currentSubstage.SetActive(false);
+        
         textEffectMove.EffectMove(currentStage);
         noteManager.spawnPointChange(currentStage);
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);
+        isTransitioning = false;
     }
+   
     IEnumerator SlideBackground(float duration)
     {
         float elapsedTime = 0f;
@@ -322,7 +364,7 @@ public class GameManager : MonoBehaviour
         
 
     }
-
+    
     //Made IterateChart function and subscribed to BeatTracker.OnFixedBeat in the Awake function
     //On every beat IterateChart is called
     private void IterateChart()
@@ -333,8 +375,9 @@ public class GameManager : MonoBehaviour
         }
 
         if (currentStage != stageData.stageCount - 1 //&& currentStage == stageCheck
-            && count == stageData.stageChangeBeats[currentStage])
+            && count == stageData.stageChangeBeats[currentStage] && !isTransitioning)
         {
+            isTransitioning = true;
             currentStage++;
             if( stageNumber == numberofStage._1Hamster)
             {

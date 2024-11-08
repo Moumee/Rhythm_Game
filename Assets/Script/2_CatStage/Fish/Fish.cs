@@ -10,10 +10,10 @@ public class Fish : MonoBehaviour
     private FishManager fishManager;
     public GameObject[] cutObjects;
     public bool isMoving = false;
-    private float moveDuration = 0.05f;
+    private float moveDuration = 0.1f;
 
     
-    private void OnEnable()
+    private void Awake()
     {
         fishManager = FindObjectOfType<FishManager>();
         cutObjects = new GameObject[transform.childCount];
@@ -22,24 +22,13 @@ public class Fish : MonoBehaviour
         {
             cutObjects[i] = transform.GetChild(i).gameObject;
         }
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        //If position is at spawn point, disable fish cuts.
-        if (positionId == 0)
-        {
-            foreach (var cutObject in cutObjects)
-            {
-                cutObject.SetActive(false);
-            }
-        }
-
-
         
+        if (positionId == 1)
+        {
+            fishManager.currentFish = this;
+        }
     }
+    
 
     public void MoveFish()
     {
@@ -61,7 +50,11 @@ public class Fish : MonoBehaviour
                 yield return null;
             }
             positionId = nextIndex;
-            transform.position = pointData.fishWaypoints[nextIndex];
+            transform.position = pointData.fishWaypoints[positionId];
+            if (positionId == 1)
+            {
+                fishManager.currentFish = this;
+            }
         }
         
         else if (nextIndex == pointData.fishWaypoints.Length)
@@ -69,6 +62,10 @@ public class Fish : MonoBehaviour
             yield return new WaitForSeconds(moveDuration);
             transform.position = pointData.fishWaypoints[0];
             positionId = 0;
+            foreach (var cutObject in cutObjects)
+            {
+                cutObject.SetActive(false);
+            }
         }
         isMoving = false;
 

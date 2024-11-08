@@ -2154,8 +2154,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2021391841}
   m_Layer: 0
-  m_Name: NotePoint
-  m_TagString: Untagged
+  m_Name: Note Center Point
+  m_TagString: NoteCenterPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

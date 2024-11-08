@@ -1885,7 +1885,6 @@ MonoBehaviour:
   ingreDelay: 2
   noteBeatInterval: 5
   transitionImage: {fileID: 0}
-  transitionDuration: 1
   targetCanvas: {fileID: 0}
 --- !u!4 &499952903
 Transform:
@@ -2923,7 +2922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7242213674179031513, guid: 0b5206b4d617f044cb5c32aabaf01623, type: 3}
       propertyPath: m_Name
-      value: Note Center Point (1)
+      value: Note Center Point
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -17,16 +17,7 @@ public class FishManager : MonoBehaviour
 
     
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-        
-    }
-
-    private void OnDestroy()
-    {
-        
-    }
+   
 
     public void MoveAllFish()
     {
@@ -38,20 +29,7 @@ public class FishManager : MonoBehaviour
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        foreach (var fish in fishList)
-        {
-            if (fish.positionId == 1)
-            {
-                currentFish = fish;
-                break;
-            }
-        }
-
-    }
+    
 
     public void VibrateCurrentFish()
     {
@@ -83,9 +61,11 @@ public class FishManager : MonoBehaviour
 
     public void OnNoteHit()
     {
-        if (currentFish.isMoving)
+        if (currentFish.isMoving || !currentFish)
             return;
         knife.OnKeyPress(true);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.knifeCut);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.cuttingBoard);
         currentFish.cutObjects[knife.knifeIndex].SetActive(true);
         VibrateCurrentFish();
     }

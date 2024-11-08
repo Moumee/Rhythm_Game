@@ -74,7 +74,11 @@ public class Knife : MonoBehaviour
         transform.position = targetPosition;
         if (passThrough)
         {
-            StartCoroutine(knifeIndex + 1 < knifePoints.Length - 1 ? MoveRightCoroutine() : ResetCoroutine());
+            StartCoroutine(knifeIndex == knifePoints.Length - 1 ? ResetCoroutine() : MoveRightCoroutine());
+        }
+        else
+        {
+            isMoving = false;
         }
     }
 
