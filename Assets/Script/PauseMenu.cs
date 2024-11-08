@@ -63,6 +63,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
 
         AudioManager.Instance.bgmEventInstance.setPaused(false);
+        AudioManager.Instance.PauseAllSFX(false);
         BeatTracker.currentMusicTrack.setPaused(false);
         pauseMenu.SetActive(false);
         Cursor.visible = false;
