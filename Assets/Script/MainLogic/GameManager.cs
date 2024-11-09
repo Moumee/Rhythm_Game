@@ -296,7 +296,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (BeatStart && !stageEnd)
+        if (BeatStart && !stageEnd && judgeNumber<=stageData.oneCount)
         {
             if ((Input.GetKeyDown(KeyCode.DownArrow)|| Input.GetKeyDown(KeyCode.RightArrow)
                 || Input.GetKeyDown(KeyCode.UpArrow)|| Input.GetKeyDown(KeyCode.LeftArrow))
@@ -354,6 +354,7 @@ public class GameManager : MonoBehaviour
                     
                 }
                 currentState = catchState.Miss;
+                if (judgeNumber == stageData.oneCount) { judgeNumber++; }
                 StartCoroutine(MissDelay());
 
             }
@@ -511,6 +512,7 @@ public class GameManager : MonoBehaviour
         if(judgeNumber == tempJudgeNum)
         {
             currentState = catchState.Miss;
+            if (judgeNumber == stageData.oneCount) { judgeNumber++; }
         }
         
     }

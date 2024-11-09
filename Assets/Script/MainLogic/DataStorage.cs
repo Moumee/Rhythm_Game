@@ -41,7 +41,7 @@ public class DataStorage
         new List<int> { 0, 3 },
         new int[2][] { new int[1] {0}, new int[1] {0} },
         5, //noteInterval
-        74
+        75
     );
     public StageData Data_Cat = new StageData(
        new List<int>
