@@ -1,18 +1,21 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class SceneTransitionManager : MonoBehaviour
 {
-    private float transitionDuration = 0.5f;
+    [SerializeField] private float transitionDuration = 0.75f;
     private static SceneTransitionManager instance;
+    private RawImage transitionOverlay;
+    private readonly WaitForEndOfFrame waitForEndOfFrame = new WaitForEndOfFrame();
+    private Canvas canvas;
 
     public static SceneTransitionManager Instance
     {
         get
         {
-            if (instance == null)
+            if (!instance)
             {
                 GameObject go = new GameObject("SceneTransitionManager");
                 instance = go.AddComponent<SceneTransitionManager>();
@@ -28,6 +31,7 @@ public class SceneTransitionManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             SetupCanvas();
+            SetupTransitionOverlay();
         }
         else if (instance != this)
         {
@@ -37,11 +41,26 @@ public class SceneTransitionManager : MonoBehaviour
 
     private void SetupCanvas()
     {
-        Canvas canvas = gameObject.AddComponent<Canvas>();
+        canvas = gameObject.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.sortingOrder = 9999; // Ensure it renders on top of everything
         gameObject.AddComponent<CanvasScaler>();
         gameObject.AddComponent<GraphicRaycaster>();
+    }
+
+    private void SetupTransitionOverlay()
+    {
+        GameObject overlayGo = new GameObject("TransitionOverlay", typeof(RawImage));
+        transitionOverlay = overlayGo.GetComponent<RawImage>();
+        transitionOverlay.raycastTarget = false;
+        transitionOverlay.transform.SetParent(transform, false);
+        
+        RectTransform rectTransform = transitionOverlay.rectTransform;
+        rectTransform.anchorMin = Vector2.zero;
+        rectTransform.anchorMax = Vector2.one;
+        rectTransform.sizeDelta = Vector2.zero;
+        
+        transitionOverlay.gameObject.SetActive(false);
     }
 
     public static void LoadSceneWithTransition(string sceneName)
@@ -51,52 +70,101 @@ public class SceneTransitionManager : MonoBehaviour
 
     private IEnumerator TransitionCoroutine(string sceneName)
     {
-        // Capture the current scene
-        RenderTexture rt = new RenderTexture(Screen.width, Screen.height, 24);
-        Camera.main.targetTexture = rt;
-        Camera.main.Render();
-        Camera.main.targetTexture = null;
+        // Wait for end of frame to ensure clean screen capture
+        yield return waitForEndOfFrame;
 
-        Texture2D screenshot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-        RenderTexture.active = rt;
-        screenshot.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-        screenshot.Apply();
-
-        RenderTexture.active = null;
-        Destroy(rt);
-
-        // Load the new scene
-        SceneManager.LoadScene(sceneName);
-
-        // Wait for the new scene to load
-        yield return null;
-
-        // Create a RawImage to display the screenshot
-        RawImage rawImage = new GameObject("TransitionOverlay").AddComponent<RawImage>();
-        rawImage.texture = screenshot;
-        rawImage.raycastTarget = false; // This makes the RawImage not block raycasts
-
-        // Set the RawImage as a child of our canvas
-        rawImage.transform.SetParent(transform, false);
-
-        // Ensure the RawImage covers the entire screen
-        RectTransform rectTransform = rawImage.rectTransform;
-        rectTransform.anchorMin = Vector2.zero;
-        rectTransform.anchorMax = Vector2.one;
-        rectTransform.sizeDelta = Vector2.zero;
-
-        // Fade out the screenshot
-        float elapsedTime = 0f;
-        while (elapsedTime < transitionDuration)
+        // Capture current screen
+        var width = Screen.width;
+        var height = Screen.height;
+        var rt = RenderTexture.GetTemporary(width, height, 24);
+        var screenshot = new Texture2D(width, height, TextureFormat.RGB24, false);
+        
+        var originalRT = RenderTexture.active;
+        var mainCamera = Camera.main;
+        
+        if (mainCamera != null)
         {
-            elapsedTime += Time.deltaTime;
-            float alpha = 1f - (elapsedTime / transitionDuration);
-            rawImage.color = new Color(1f, 1f, 1f, alpha);
+            mainCamera.targetTexture = rt;
+            mainCamera.Render();
+            RenderTexture.active = rt;
+            
+            screenshot.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+            screenshot.Apply(false);
+            
+            mainCamera.targetTexture = null;
+        }
+        
+        RenderTexture.active = originalRT;
+
+        // Start async scene load
+        var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+        if (asyncOperation != null)
+        {
+            asyncOperation.allowSceneActivation = false;
+
+            // Show the transition overlay with captured screenshot
+            transitionOverlay.gameObject.SetActive(true);
+            transitionOverlay.texture = screenshot;
+            transitionOverlay.color = Color.white;
+
+            // Wait for the scene to load to 0.9 (90%)
+            while (asyncOperation.progress < 0.9f)
+            {
+                yield return null;
+            }
+
+            // Activate the new scene
+            asyncOperation.allowSceneActivation = true;
+
+            // Wait one frame for the scene to actually change
             yield return null;
+
+            // Capture new scene
+            var newRt = RenderTexture.GetTemporary(width, height, 24);
+            var newScreenshot = new Texture2D(width, height, TextureFormat.RGB24, false);
+            
+            mainCamera = Camera.main;
+            if (mainCamera != null)
+            {
+                mainCamera.targetTexture = newRt;
+                mainCamera.Render();
+                RenderTexture.active = newRt;
+                
+                newScreenshot.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+                newScreenshot.Apply(false);
+                
+                mainCamera.targetTexture = null;
+            }
+            
+            RenderTexture.active = originalRT;
+
+            // Perform crossfade
+            float elapsedTime = 0f;
+            while (elapsedTime < transitionDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                float t = elapsedTime / transitionDuration;
+                transitionOverlay.texture = screenshot;
+                transitionOverlay.color = new Color(1f, 1f, 1f, 1f - t);
+                yield return null;
+
+                // Draw new scene on top with increasing opacity
+                Graphics.DrawTexture(new Rect(0, 0, width, height), newScreenshot, new Rect(0, 1, 1, -1), 0, 0, 0, 0, new Color(1f, 1f, 1f, t));
+            }
         }
 
         // Clean up
-        Destroy(rawImage.gameObject);
+        RenderTexture.ReleaseTemporary(rt);
         Destroy(screenshot);
+        transitionOverlay.texture = null;
+        transitionOverlay.gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        if (transitionOverlay != null)
+        {
+            Destroy(transitionOverlay.gameObject);
+        }
     }
 }

@@ -75,10 +75,10 @@ public class FinalScoreSceneManager : MonoBehaviour
     public void PlayStar()
     {
         int starcount = 0;
-        if (ScoreStorage.Instance.FinalScore >= 1500) starcount += 1;
-        if (ScoreStorage.Instance.FinalScore >= 3500) starcount += 1;
-        if (ScoreStorage.Instance.FinalScore >= 5500) starcount += 1;
-        if (ScoreStorage.Instance.FinalScore >= 7500) starcount += 1;
+        if (ScoreStorage.Instance.FinalScore >= 2700) starcount += 1;
+        if (ScoreStorage.Instance.FinalScore >= 4700) starcount += 1;
+        if (ScoreStorage.Instance.FinalScore >= 6700) starcount += 1;
+        if (ScoreStorage.Instance.FinalScore >= 8700) starcount += 1;
         starAnim.SetInteger("starcount", starcount);
         if (starcount == 0)
         {

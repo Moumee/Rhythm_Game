@@ -1919,6 +1919,8 @@ MonoBehaviour:
   cheeseGrater: {fileID: 419348163}
   backgroundCheese: {fileID: 715818627}
   backgroundScratch: {fileID: 215068283}
+  mushroomGoodCount: 0
+  mushroomMissCount: 0
 --- !u!1 &526434877
 GameObject:
   m_ObjectHideFlags: 0
