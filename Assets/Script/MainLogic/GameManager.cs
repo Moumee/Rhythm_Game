@@ -157,109 +157,172 @@ public class GameManager : MonoBehaviour
 
     IEnumerator CrossfadeSubstage()
     {
-        GameObject currentSubstage = subStages[currentStage - 1];
-        GameObject nextSubstage = subStages[currentStage];
-        
-        // Get renderers for both stages
-        SpriteRenderer[] currentRenderers = currentSubstage.GetComponentsInChildren<SpriteRenderer>(true);
-            
-        SpriteRenderer[] nextRenderers = nextSubstage.GetComponentsInChildren<SpriteRenderer>(true)
-            .Where(r => !r.CompareTag("IgnoreAlpha")).ToArray();
-        
-        // Store original sorting layers and orders
-        Dictionary<SpriteRenderer, string> originalLayers = new Dictionary<SpriteRenderer, string>();
-        Dictionary<SpriteRenderer, int> originalOrders = new Dictionary<SpriteRenderer, int>();
-        
-        // Set next stage renderers to be in Background layer temporarily
-        foreach (var renderer in nextRenderers)
+        // Wait for end of frame to ensure clean screen capture
+        yield return new WaitForEndOfFrame();
+
+        // Capture current screen
+        var width = Screen.width;
+        var height = Screen.height;
+        var rt = RenderTexture.GetTemporary(width, height, 24);
+        var screenshot = new Texture2D(width, height, TextureFormat.RGB24, false);
+
+        var originalRT = RenderTexture.active;
+        var mainCamera = Camera.main;
+
+        if (mainCamera != null)
         {
-            originalLayers[renderer] = renderer.sortingLayerName;
-            originalOrders[renderer] = renderer.sortingOrder;
-            renderer.sortingLayerName = "Default";  // Temporarily put in Default layer
-            Color color = renderer.color;
-            color.a = 0f;
-            renderer.color = color;
+            mainCamera.targetTexture = rt;
+            mainCamera.Render();
+            RenderTexture.active = rt;
+
+            screenshot.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+            screenshot.Apply(false);
+
+            mainCamera.targetTexture = null;
         }
 
-        nextSubstage.SetActive(true);
+        RenderTexture.active = originalRT;
 
-        // Fade transition
+        // Deactivate current substage
+        subStages[currentStage - 1].SetActive(false);
+
+        // Activate next substage
+        subStages[currentStage].SetActive(true);
+
+        // Show the transition overlay with captured screenshot
+        transitionImage.gameObject.SetActive(true);
+        transitionImage.sprite = Sprite.Create(screenshot, new Rect(0, 0, width, height), new Vector2(0.5f, 0.5f));
+        transitionImage.color = Color.white;
+
+        // Perform fade out of the captured screenshot
         float elapsedTime = 0f;
         while (elapsedTime < transitionDuration)
         {
-            float t = elapsedTime / transitionDuration;
-            
-            // Fade out current stage
-            foreach (var renderer in currentRenderers)
-            {
-                if (renderer.CompareTag("NoteCenterPoint"))
-                {
-                    renderer.color = new Color(
-                        renderer.color.r,
-                        renderer.color.g,
-                        renderer.color.b,
-                        Mathf.Lerp(0.6f, 0f, t)
-                    );
-                }
-                else
-                {
-                    Color color = renderer.color;
-                    color.a = Mathf.Lerp(1f, 0f, t);
-                    renderer.color = color;
-                }
-            }
-
-            // Fade in next stage
-            foreach (var renderer in nextRenderers)
-            {
-                if (renderer.CompareTag("NoteCenterPoint"))
-                {
-                    renderer.color = new Color(
-                        renderer.color.r,
-                        renderer.color.g,
-                        renderer.color.b,
-                        Mathf.Lerp(0f, 0.6f, t)
-                    );
-                }
-                else
-                {
-                    Color color = renderer.color;
-                    color.a = Mathf.Lerp(0f, 1f, t);
-                    renderer.color = color;
-                }
-            }
-
             elapsedTime += Time.deltaTime;
+            float t = elapsedTime / transitionDuration;
+            transitionImage.color = new Color(1f, 1f, 1f, 1f - t);
             yield return null;
         }
 
-        // Restore original sorting layers and set final states
-        foreach (var renderer in nextRenderers)
-        {
-            renderer.sortingLayerName = originalLayers[renderer];
-            renderer.sortingOrder = originalOrders[renderer];
-            if (renderer.CompareTag("NoteCenterPoint"))
-            {
-                renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 0.6f);
-            }
-            else
-            {
-                renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 1f);
-            }
-        }
+        // Clean up
+        RenderTexture.ReleaseTemporary(rt);
+        Destroy(screenshot);
+        transitionImage.sprite = null;
+        transitionImage.gameObject.SetActive(false);
 
-        foreach (var renderer in currentRenderers)
-        {
-            renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 0f);
-        }
-
-        currentSubstage.SetActive(false);
-        
+        // Update other necessary components
         textEffectMove.EffectMove(currentStage);
         noteManager.spawnPointChange(currentStage);
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);
+
         isCrossFading = false;
     }
+
+    // IEnumerator CrossfadeSubstage()
+    // {
+    //     GameObject currentSubstage = subStages[currentStage - 1];
+    //     GameObject nextSubstage = subStages[currentStage];
+    //     
+    //     // Get renderers for both stages
+    //     SpriteRenderer[] currentRenderers = currentSubstage.GetComponentsInChildren<SpriteRenderer>(true);
+    //         
+    //     SpriteRenderer[] nextRenderers = nextSubstage.GetComponentsInChildren<SpriteRenderer>(true)
+    //         .Where(r => !r.CompareTag("IgnoreAlpha")).ToArray();
+    //     
+    //     // Store original sorting layers and orders
+    //     Dictionary<SpriteRenderer, string> originalLayers = new Dictionary<SpriteRenderer, string>();
+    //     Dictionary<SpriteRenderer, int> originalOrders = new Dictionary<SpriteRenderer, int>();
+    //     
+    //     // Set next stage renderers to be in Background layer temporarily
+    //     foreach (var renderer in nextRenderers)
+    //     {
+    //         originalLayers[renderer] = renderer.sortingLayerName;
+    //         originalOrders[renderer] = renderer.sortingOrder;
+    //         renderer.sortingLayerName = "Default";  // Temporarily put in Default layer
+    //         Color color = renderer.color;
+    //         color.a = 0f;
+    //         renderer.color = color;
+    //     }
+    //
+    //     nextSubstage.SetActive(true);
+    //
+    //     // Fade transition
+    //     float elapsedTime = 0f;
+    //     while (elapsedTime < transitionDuration)
+    //     {
+    //         float t = elapsedTime / transitionDuration;
+    //         
+    //         // Fade out current stage
+    //         foreach (var renderer in currentRenderers)
+    //         {
+    //             if (renderer.CompareTag("NoteCenterPoint"))
+    //             {
+    //                 renderer.color = new Color(
+    //                     renderer.color.r,
+    //                     renderer.color.g,
+    //                     renderer.color.b,
+    //                     Mathf.Lerp(0.6f, 0f, t)
+    //                 );
+    //             }
+    //             else
+    //             {
+    //                 Color color = renderer.color;
+    //                 color.a = Mathf.Lerp(1f, 0f, t);
+    //                 renderer.color = color;
+    //             }
+    //         }
+    //
+    //         // Fade in next stage
+    //         foreach (var renderer in nextRenderers)
+    //         {
+    //             if (renderer.CompareTag("NoteCenterPoint"))
+    //             {
+    //                 renderer.color = new Color(
+    //                     renderer.color.r,
+    //                     renderer.color.g,
+    //                     renderer.color.b,
+    //                     Mathf.Lerp(0f, 0.6f, t)
+    //                 );
+    //             }
+    //             else
+    //             {
+    //                 Color color = renderer.color;
+    //                 color.a = Mathf.Lerp(0f, 1f, t);
+    //                 renderer.color = color;
+    //             }
+    //         }
+    //
+    //         elapsedTime += Time.deltaTime;
+    //         yield return null;
+    //     }
+    //
+    //     // Restore original sorting layers and set final states
+    //     foreach (var renderer in nextRenderers)
+    //     {
+    //         renderer.sortingLayerName = originalLayers[renderer];
+    //         renderer.sortingOrder = originalOrders[renderer];
+    //         if (renderer.CompareTag("NoteCenterPoint"))
+    //         {
+    //             renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 0.6f);
+    //         }
+    //         else
+    //         {
+    //             renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 1f);
+    //         }
+    //     }
+    //
+    //     foreach (var renderer in currentRenderers)
+    //     {
+    //         renderer.color = new Color(renderer.color.r, renderer.color.g, renderer.color.b, 0f);
+    //     }
+    //
+    //     currentSubstage.SetActive(false);
+    //     
+    //     textEffectMove.EffectMove(currentStage);
+    //     noteManager.spawnPointChange(currentStage);
+    //     noteManager.DirectionChange(stageData.noteDirection[currentStage]);
+    //     isCrossFading = false;
+    // }
    
     IEnumerator SlideBackground(float duration)
     {
