@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int currentStage = 0;
     public List<GameObject> subStages = new List<GameObject>();
 
-    private bool isTransitioning = false;
+    private bool isSceneTransitioning = false;
+    private bool isCrossFading = false;
 
     EventAdapter eventAdapter;
 
@@ -257,7 +258,7 @@ public class GameManager : MonoBehaviour
         textEffectMove.EffectMove(currentStage);
         noteManager.spawnPointChange(currentStage);
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);
-        isTransitioning = false;
+        isCrossFading = false;
     }
    
     IEnumerator SlideBackground(float duration)
@@ -276,11 +277,12 @@ public class GameManager : MonoBehaviour
         noteManager.spawnPointChange(currentStage);
         noteManager.DirectionChange(stageData.noteDirection[currentStage]);
         subStages[currentStage - 1].SetActive(false);
+        isCrossFading = false;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        isTransitioning = false;
+        isSceneTransitioning = false;
     }
 
     void IntervalFix()
@@ -375,9 +377,6 @@ public class GameManager : MonoBehaviour
 
     private void HandleStageEnd()
     {
-        if (isTransitioning) return;
-        
-        isTransitioning = true;
         stageEnd = true;
         AudioManager.Instance.stageSource.Stop();
         ScoreStorage.Instance.FinalScore += Score;
@@ -404,9 +403,9 @@ public class GameManager : MonoBehaviour
         }
 
         if (currentStage != stageData.stageCount - 1 //&& currentStage == stageCheck
-            && count == stageData.stageChangeBeats[currentStage] && !isTransitioning)
+            && count == stageData.stageChangeBeats[currentStage] && !isCrossFading)
         {
-            isTransitioning = true;
+            isCrossFading = true;
             currentStage++;
             if( stageNumber == numberofStage._1Hamster)
             {
