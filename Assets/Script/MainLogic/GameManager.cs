@@ -73,8 +73,9 @@ public class GameManager : MonoBehaviour
     
 
     public int Score = 0;
-    
-    [HideInInspector] public int missCount;
+
+    //[HideInInspector] 
+    public int missCount = 0;
     public int ingreDelay = 4;
     public int noteBeatInterval = 5;    //number of beats to move ingredients
 
@@ -382,7 +383,7 @@ public class GameManager : MonoBehaviour
 
         if (Score > stageData.oneCount * 7.5 && !fadeOutStart)
         {
-            ScoreStorage.Instance.isSuccess[currentStage - 1] = true;
+            ScoreStorage.Instance.isSuccess[currentStage + 1] = true;
             SceneTransitionManager.LoadSceneWithTransition(stageData.successScene);
         }
         else if (Score <= stageData.oneCount * 7.5 && !fadeOutStart)
@@ -502,7 +503,11 @@ public class GameManager : MonoBehaviour
 
 
         yield return new WaitForSeconds(margin_good - margin_perfect);
-        if(!_isScore) { eventAdapter.Event_MissNote(true); }
+        if(!_isScore) 
+        { 
+            eventAdapter.Event_MissNote(true);
+            missCount++;
+        }
         if(judgeNumber == tempJudgeNum)
         {
             currentState = catchState.Miss;

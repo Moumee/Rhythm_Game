@@ -12,7 +12,8 @@ public class LionAdapter : EventAdapter
     public BackgroundScratch backgroundScratch;
 
     private int containerCount = 0;
-    private int mushroomCount = 0;
+    [SerializeField]private int mushroomGoodCount = 0;
+    [SerializeField]private int mushroomMissCount = 0;
     private int scratchCount = 0;
 
     // Start is called before the first frame update
@@ -69,7 +70,7 @@ public class LionAdapter : EventAdapter
         }
         else if (GameManager.Instance.currentStage == 2)
         {
-            mushroomCount++;
+            mushroomGoodCount++;
             
             if (isPerfect)
             {
@@ -94,15 +95,11 @@ public class LionAdapter : EventAdapter
                 }
             }
             
-            if (mushroomCount == 20) 
+            if (mushroomGoodCount == 20) 
             {
                 mushroom.CookMushroom();
-                GameManager.Instance.missCount = 0;
             }
-            if (mushroomCount >= 20 && GameManager.Instance.missCount == 18)
-            {
-                mushroom.BurnMushroom();
-            }
+
         }
         else
         {
@@ -139,9 +136,13 @@ public class LionAdapter : EventAdapter
         {
             tomatoManager.OnNoteMiss();
         }
-        else if (GameManager.Instance.currentStage == 2 && !passThrough)
+        else if (GameManager.Instance.currentStage == 2 && passThrough)
         {
-
+            mushroomMissCount++;
+            if (mushroomMissCount >= 20)
+            {
+                mushroom.BurnMushroom();
+            }
         }
         else if (!passThrough) 
         {
