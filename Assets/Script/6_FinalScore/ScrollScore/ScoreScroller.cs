@@ -27,7 +27,7 @@ public class ScoreScroller : MonoBehaviour
     private void Awake()
     {
         score = ScoreStorage.Instance.FinalScore;
-        if (score >= 2800)
+        if (score >= 3500)
         {
             numberPrefab = blueNumberPrefab;
         }
