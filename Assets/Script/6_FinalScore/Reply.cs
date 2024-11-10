@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,43 +16,64 @@ public class Reply : MonoBehaviour
     {
         sprite = GetComponent<Image>();
         rect = GetComponent<RectTransform>();
-        sprite.CrossFadeAlpha(0f, 0f, true);
+        sprite.color = new Color(1f, 1f, 1f, 0f);
     }
 
-    public void initialize(Sprite spr, int postionNum)
+    public void Initialize(Sprite spr, int positionNum)
     {
         sprite.sprite = spr;
-        rect.position += (- postionNum) * moveDistance;
-        destination = rect.position;
+        // Set localPosition instead of position
+        rect.localPosition += (-positionNum) * moveDistance;
+        destination = rect.localPosition; // Use localPosition for destination
     }
 
-    public void Apear()
-    {  
-        sprite.CrossFadeAlpha(1f, 0.5f, false);
-        destination = rect.position;
-        rect.position -= moveDistance.normalized * 50;
+    public void Appear()
+    {
+        StartCoroutine(AlphaCoroutine(1f, 0.5f));
+        destination = rect.localPosition; // Update destination
+        rect.localPosition -= moveDistance.normalized * 50; // Use localPosition
     }
 
+    IEnumerator AlphaCoroutine(float targetAlpha, float duration)
+    {
+        
+        Color targetColor = sprite.color;
+        Color startColor = sprite.color;
+        targetColor.a = targetAlpha;
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            sprite.color = Color.Lerp(startColor, targetColor,elapsedTime / duration);
+            yield return null;
+        }
+        sprite.color = targetColor;
+        
+    }
 
     public void Slide()
     {
-        if (rect.position.y >= 722f)
+        if (rect.localPosition.y >= 722f) // Use localPosition for comparison
         {
-            sprite.CrossFadeAlpha(0f, 0.3f, false);
+            StartCoroutine(AlphaCoroutine(0f, 0.3f));
         }
-        destination = rect.position + moveDistance;
+
+        destination = rect.localPosition + moveDistance; // Update destination
     }
+    
+    
 
     public void Update()
     {
-        if ((rect.position - destination).magnitude > 5f)
+        // Check distance using localPosition
+        if ((rect.localPosition - destination).magnitude > 5f)
         {
-            rect.position += moveDistance.normalized * 700f * Time.deltaTime;
+            rect.localPosition += moveDistance.normalized * 700f * Time.deltaTime; // Use localPosition
         }
         else
         {
-            rect.position = destination;
+            rect.localPosition = destination; // Ensure we set to destination
         }
-        
+
     }
 }

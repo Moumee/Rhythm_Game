@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class ReplyController : MonoBehaviour
 {
@@ -9,16 +7,6 @@ public class ReplyController : MonoBehaviour
     private GameObject[] replies = new GameObject[5];
 
     public GameObject replyPrefeb;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-
-        //AllApear(); //�׽�Ʈ��
-    }
-
-    // Update is called once per frame
 
 
     public void AllSlide()
@@ -29,7 +17,7 @@ public class ReplyController : MonoBehaviour
         }
     }
 
-    public void AllApear()
+    public void AllAppear()
     {
         bool isSuccess;
         for (int i = 0; i < 5; i++)
@@ -38,19 +26,19 @@ public class ReplyController : MonoBehaviour
             replies[i].transform.rotation = Quaternion.identity;
             isSuccess = ScoreStorage.Instance.isSuccess[i];
             // commentsList���� ���ϴ� ��������Ʈ ����
-            replies[i].GetComponent<Reply>().initialize(commentsList[2 * i + (isSuccess ? 0 : 1)], i);
+            replies[i].GetComponent<Reply>().Initialize(commentsList[2 * i + (isSuccess ? 0 : 1)], i);
 
         }
-        StartCoroutine(AllApearCoruotine());
+        StartCoroutine(AllAppearCoruotine());
     }
 
-    IEnumerator AllApearCoruotine()
+    IEnumerator AllAppearCoruotine()
     {
         yield return new WaitForSeconds(0.5f);
         foreach (var rp in replies)
         {
             
-            rp.GetComponent<Reply>().Apear();
+            rp.GetComponent<Reply>().Appear();
             yield return new WaitForSeconds(0.4f);
         }
         //AllSlide();

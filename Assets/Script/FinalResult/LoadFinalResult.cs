@@ -5,18 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LoadFinalResult : MonoBehaviour
 {
-    [Header("¸ÀÁýµî±Ø À§ÇÑ Á¡¼ö")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public int successTotalScore;
     public void LoadResultScene()
     {
         SceneTransitionManager.LoadSceneWithTransition("ScoreScroll");
-        //if (ScoreStorage.Instance.FinalScore >= successTotalScore)
-        //{
-        //    SceneTransitionManager.LoadSceneWithTransition("SuccessResult");
-        //}
-        //else
-        //{
-        //    SceneTransitionManager.LoadSceneWithTransition("FailResult");
-        //}
     }
 }

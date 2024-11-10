@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class FinalScoreSceneManager : MonoBehaviour
 {
+    private ScoreStorage scoreStorage;
     [SerializeField] 
     private Animator phoneAnim;
     [SerializeField]
@@ -44,7 +45,7 @@ public class FinalScoreSceneManager : MonoBehaviour
     private void Awake()
     {
         replyController = FindFirstObjectByType<ReplyController>();
-
+        scoreStorage = ScoreStorage.Instance;
         AudioManager.Instance.PlaySFX(videoAudio);
         AudioManager.Instance.PlayBGM(endingBGM);
 
@@ -69,16 +70,16 @@ public class FinalScoreSceneManager : MonoBehaviour
         fingerAnim.Play("finger_slide");
         
         
-        replyController.AllApear();
+        replyController.AllAppear();
     }
 
     public void PlayStar()
     {
         int starcount = 0;
-        if (ScoreStorage.Instance.FinalScore >= 2700) starcount += 1;
-        if (ScoreStorage.Instance.FinalScore >= 4700) starcount += 1;
-        if (ScoreStorage.Instance.FinalScore >= 6700) starcount += 1;
-        if (ScoreStorage.Instance.FinalScore >= 8700) starcount += 1;
+        if (scoreStorage.FinalScore >= 2700) starcount += 1;
+        if (scoreStorage.FinalScore >= 4700) starcount += 1;
+        if (scoreStorage.FinalScore >= 6700) starcount += 1;
+        if (scoreStorage.FinalScore >= 8700) starcount += 1;
         starAnim.SetInteger("starcount", starcount);
         if (starcount == 0)
         {
@@ -104,12 +105,6 @@ public class FinalScoreSceneManager : MonoBehaviour
     
     public void FinalScene()
     {
-        StartCoroutine(FinalSceneCoroutine());
-    }
-
-    IEnumerator FinalSceneCoroutine()
-    {
-        yield return new WaitForSeconds(2f);
         if (ScoreStorage.Instance.FinalScore >= successTotalScore)
         {
             SceneTransitionManager.LoadSceneWithTransition("SuccessResult");
@@ -119,5 +114,8 @@ public class FinalScoreSceneManager : MonoBehaviour
             SceneTransitionManager.LoadSceneWithTransition("FailResult");
         }
     }
+
+   
+    
 
 }
