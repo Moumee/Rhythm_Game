@@ -19,12 +19,11 @@ public class ReplyController : MonoBehaviour
 
     public void AllAppear()
     {
-        bool isSuccess;
         for (int i = 0; i < 5; i++)
         {
             replies[i] = Instantiate(replyPrefeb, GameObject.Find("ReplyContainer").transform);
             replies[i].transform.rotation = Quaternion.identity;
-            isSuccess = ScoreStorage.Instance.isSuccess[i];
+            bool isSuccess = ScoreStorage.Instance.isSuccess[i];
             // commentsList���� ���ϴ� ��������Ʈ ����
             replies[i].GetComponent<Reply>().Initialize(commentsList[2 * i + (isSuccess ? 0 : 1)], i);
 

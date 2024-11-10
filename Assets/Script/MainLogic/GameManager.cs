@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int currentStage = 0;
     public List<GameObject> subStages = new List<GameObject>();
 
+    public int currentStageIndex = 0;
     private bool isSceneTransitioning = false;
     private bool isCrossFading = false;
 
@@ -345,7 +346,28 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        stageEnd = false;
         isSceneTransitioning = false;
+        switch (scene.name)
+        {
+            case "1-1":
+                currentStageIndex = 0;
+                break;
+            case "CatStage":
+                currentStageIndex = 1;
+                break;
+            case "CapybaraStage":
+                currentStageIndex = 2;
+                break;
+            case "PandaStage":
+                currentStageIndex = 3;
+                break;
+            case "LionStage":
+                currentStageIndex = 4;
+                break;
+            default:
+                break;
+        }
     }
 
     void IntervalFix()
@@ -443,16 +465,18 @@ public class GameManager : MonoBehaviour
         stageEnd = true;
         AudioManager.Instance.stageSource.Stop();
         ScoreStorage.Instance.FinalScore += Score;
-
+        
         if (Score > stageData.oneCount * 7.5 && !fadeOutStart)
         {
-            ScoreStorage.Instance.isSuccess[currentStage + 1] = true;
+            
+            ScoreStorage.Instance.isSuccess[currentStageIndex] = true;
+            
             SceneTransitionManager.LoadSceneWithTransition(stageData.successScene);
         }
         else if (Score <= stageData.oneCount * 7.5 && !fadeOutStart)
         {
+            
             SceneTransitionManager.LoadSceneWithTransition(stageData.failScene);
-
         }
     }
     
