@@ -15,6 +15,11 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 1f;
+        ScoreStorage.Instance.FinalScore = 0;
+        for (int i = 0; i < ScoreStorage.Instance.isSuccess.Length; i++)
+        {
+            ScoreStorage.Instance.isSuccess[i] = false;
+        }
         AudioManager.Instance.StopAllMusic(); // Added this line
         SceneManager.LoadSceneAsync("StartMenu");
         isPlaying = true;

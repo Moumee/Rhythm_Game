@@ -41,12 +41,22 @@ public class FinalResultButton : MonoBehaviour
     public void Restart()
     {
         AudioManager.Instance.StopAllMusic();
+        ScoreStorage.Instance.FinalScore = 0;
+        for (int i = 0; i < ScoreStorage.Instance.isSuccess.Length; i++)
+        {
+            ScoreStorage.Instance.isSuccess[i] = false;
+        }
         SceneManager.LoadSceneAsync("1-1");
     }
 
     public void Home()
     {
         AudioManager.Instance.StopAllMusic();
+        ScoreStorage.Instance.FinalScore = 0;
+        for (int i = 0; i < ScoreStorage.Instance.isSuccess.Length; i++)
+        {
+            ScoreStorage.Instance.isSuccess[i] = false;
+        }
         SceneManager.LoadSceneAsync("StartMenu");
     }
 
