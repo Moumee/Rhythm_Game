@@ -397,7 +397,7 @@ public class GameManager : MonoBehaviour
                     AudioManager.Instance.PlaySFX(AudioManager.Instance.notePress);
                     
                     eventAdapter.Event_CatchNote(currentState == catchState.Perfect, noterotationList[judgeNumber]); //��Ʈĳġ
-                    //missText.SetTrigger("exit");
+                    missText.SetTrigger("exit");
 
                     if (currentState == catchState.Perfect)
                     {
