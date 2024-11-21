@@ -144,7 +144,7 @@ public class LionAdapter : EventAdapter
                 mushroom.BurnMushroom();
             }
         }
-        else if (!passThrough) 
+        else if (GameManager.Instance.currentStage == 3 && !passThrough) 
         {
             cheeseGrater.OnNoteMiss();
         }
