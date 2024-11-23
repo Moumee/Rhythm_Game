@@ -92,6 +92,8 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        QualitySettings.vSyncCount = 0; // Disable VSync
+        Application.targetFrameRate = 60; // Set target FPS (e.g., 60)
         sfxVCA = FMODUnity.RuntimeManager.GetVCA("vca:/SFX");
         bgmVCA = FMODUnity.RuntimeManager.GetVCA("vca:/BGM");
     }
